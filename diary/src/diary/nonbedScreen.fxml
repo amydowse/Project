@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="975.0" prefWidth="1770.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+       
+      <Label layoutX="46.0" layoutY="43.0" text="NON-BED BOOKINGS">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      
+      <Label layoutX="46.0" layoutY="125.0" text="Nurse:">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      
+      <TextField fx:id="txtNurse" layoutX="129.0" layoutY="116.0" prefHeight="48.75" prefWidth="306.0" />
+      
+      <TableView fx:id="tblClinic" layoutX="46.0" layoutY="206.0" prefHeight="749.0" prefWidth="1690.0">
+         <columns>
+            <TableColumn fx:id="tblColTime" prefWidth="132.0" text="Time" />
+            <TableColumn fx:id="tblColName" prefWidth="256.0" text="Name" />
+            <TableColumn fx:id="tobColAge" prefWidth="128.0" text="Age" />
+            <TableColumn fx:id="tblColHopsital" prefWidth="161.0" text="Hospital Number" />
+            <TableColumn fx:id="tblColNumber" prefWidth="184.0" text="Contact Number" />
+            <TableColumn fx:id="tblColReason" prefWidth="671.0" text="Reason" />
+            <TableColumn fx:id="tblColDuration" prefWidth="157.0" text="Duration" />
+         </columns>
+      </TableView>
+
+      
+   </children>
+</Pane>

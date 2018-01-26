@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="975.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="diary.SettingScreenDocumentController">
+   <children>
+      <Line layoutX="885.0" startY="975.0" />
+      <Line endX="1920.0" endY="430.0" startX="885.0" startY="430.0" />
+      <Pane fx:id="paneAlter1" layoutX="884.0" layoutY="429.0" onMouseClicked="#alterClicked" prefHeight="547.0" prefWidth="1036.0" />
+      <Pane fx:id="paneTemplateContainer" layoutX="883.0" onMouseClicked="#templateClicked" prefHeight="431.0" prefWidth="1042.0" />
+      <Pane fx:id="paneExtraContainer" onMouseClicked="#extraClicked" prefHeight="975.0" prefWidth="885.0" />
+      <Pane fx:id="paneExtra" prefHeight="975.0" prefWidth="885.0">
+         <children>
+            <Label fx:id="lblExtraDate" layoutX="46.0" layoutY="125.0" text="Date">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="extraListDate" layoutX="134.0" layoutY="118.0" prefHeight="44.0" prefWidth="230.0" />
+            <Label fx:id="lblExtraInstructions" layoutX="46.0" layoutY="190.0" text="Please select the types of procedures that will occur on">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <CheckBox fx:id="chbSurgery" layoutX="46.0" layoutY="240.0" mnemonicParsing="false" text="Surgery (Bays)">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="chbBlood" layoutX="46.0" layoutY="318.0" mnemonicParsing="false" onAction="#showBlood" text="Blood Clinic">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="chbOncology" layoutX="46.0" layoutY="471.0" mnemonicParsing="false" text="Oncology">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="chbPreop" layoutX="46.0" layoutY="393.0" mnemonicParsing="false" text="Pre-op">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="chbNonbed" layoutX="46.0" layoutY="537.0" mnemonicParsing="false" text="Non-bed">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </CheckBox>
+            <Pane fx:id="paneBloodDetails" layoutX="7.0" layoutY="593.0" prefHeight="392.0" prefWidth="571.0">
+               <children>
+                  <Label fx:id="lblExtraStart" layoutX="41.0" layoutY="69.0" text="Start Time">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblExtraEnd" layoutX="41.0" layoutY="121.0" text="End Time">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblExtraLength" layoutX="45.0" layoutY="175.0" text="Appointment Length">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblExtraBreakStart" layoutX="41.0" layoutY="245.0" text="Break Start Time">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblExtraBreakEnd" layoutX="41.0" layoutY="294.0" text="Break EndTime">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txtExtraStart" layoutX="246.0" layoutY="68.0" />
+                  <TextField fx:id="txtExtraEnd" layoutX="246.0" layoutY="120.0" />
+                  <TextField fx:id="txtExtraLength" layoutX="246.0" layoutY="174.0" />
+                  <TextField fx:id="txtExtraBreakStart" layoutX="246.0" layoutY="244.0" />
+                  <TextField fx:id="txtExtraBreakEnd" layoutX="246.0" layoutY="293.0" />
+                  <Label layoutX="41.0" layoutY="22.0" text="Please enter the details for the Blood Clinic">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Label fx:id="lblExtra" layoutX="46.0" layoutY="48.0" text="Extra List">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnSaveExtra" layoutX="660.0" layoutY="874.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="90.0" text="SAVE" />
+         </children>
+      </Pane>
+      <Pane fx:id="paneTemplate" layoutX="885.0" prefHeight="431.0" prefWidth="1036.0">
+         <children>
+            <Label fx:id="lblTemplate" layoutX="46.0" layoutY="48.0" text="Blood Clinic Template">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <CheckBox fx:id="chbMonday" layoutX="46.0" layoutY="119.0" mnemonicParsing="false" text="Monday" />
+            <CheckBox fx:id="chbTuesday" layoutX="46.0" layoutY="176.0" mnemonicParsing="false" text="Tuesday" />
+            <CheckBox fx:id="chbWednesday" layoutX="46.0" layoutY="237.0" mnemonicParsing="false" text="Wednesday" />
+            <CheckBox fx:id="chbThursday" layoutX="46.0" layoutY="297.0" mnemonicParsing="false" text="Thursday" />
+            <CheckBox fx:id="chbFriday" layoutX="46.0" layoutY="366.0" mnemonicParsing="false" text="Friday" />
+            <TextField fx:id="txtTempBreakEnd" layoutX="572.0" layoutY="345.0" />
+            <TextField fx:id="txtTempBreakStart" layoutX="572.0" layoutY="296.0" />
+            <TextField fx:id="txtTempLength" layoutX="572.0" layoutY="226.0" />
+            <TextField fx:id="txtTempEnd" layoutX="572.0" layoutY="172.0" />
+            <TextField fx:id="txtTempStart" layoutX="572.0" layoutY="120.0" />
+            <Label fx:id="lblTempBreakEnd" layoutX="367.0" layoutY="346.0" text="Break EndTime">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblTempBreakStart" layoutX="367.0" layoutY="297.0" text="Break Start Time">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblTempLength" layoutX="371.0" layoutY="227.0" text="Appointment Length">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblTempEnd" layoutX="367.0" layoutY="173.0" text="End Time">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblTempStart" layoutX="367.0" layoutY="121.0" text="Start Time">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnSaveTemplate" layoutX="832.0" layoutY="353.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="90.0" text="SAVE" />
+         </children>
+      </Pane>
+      <Pane fx:id="paneAlter" layoutX="884.0" layoutY="430.0" prefHeight="547.0" prefWidth="1042.0">
+         <children>
+            <Label fx:id="lblAlter" layoutX="46.0" layoutY="36.0" text="Alter Specific Blood Clinic">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="alterDate" layoutX="46.0" layoutY="145.0" prefHeight="44.0" prefWidth="230.0" />
+            <Label fx:id="lblAlterStart" layoutX="46.0" layoutY="226.0" text="Start Time">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblAlterEnd" layoutX="46.0" layoutY="278.0" text="End Time">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblAlterLength" layoutX="50.0" layoutY="332.0" text="Appointment Length">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblAlterBreakStart" layoutX="46.0" layoutY="402.0" text="Break Start Time">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblAlterBreakEnd" layoutX="46.0" layoutY="451.0" text="Break EndTime">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtAlterStart" layoutX="251.0" layoutY="225.0" />
+            <TextField fx:id="txtAlterEnd" layoutX="251.0" layoutY="277.0" />
+            <TextField fx:id="txtAlterLength" layoutX="251.0" layoutY="331.0" />
+            <TextField fx:id="txtAlterBreakStart" layoutX="251.0" layoutY="401.0" />
+            <TextField fx:id="txtAlterBreakEnd" layoutX="251.0" layoutY="450.0" />
+            <Label fx:id="lblAlterInstructions" layoutX="45.0" layoutY="91.0" text="Please select the date of the blood clinic that you would like to alter">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnSaveAlter" layoutX="844.0" layoutY="439.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="90.0" text="SAVE" />
+         </children>
+      </Pane>
+   </children>
+</Pane>

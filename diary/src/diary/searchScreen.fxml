@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="975.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="diary.SearchScreenDocumentController">
+   <children>
+      <RadioButton fx:id="rdbPatient" layoutX="61.0" layoutY="56.0" mnemonicParsing="false" text="Patient">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="rdbProcedure" layoutX="301.0" layoutY="56.0" mnemonicParsing="false" text="Next Avilable Procedure">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </RadioButton>
+      <TextField fx:id="txtSearchName" layoutX="61.0" layoutY="144.0" prefHeight="31.0" prefWidth="851.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextField>
+      <ComboBox fx:id="cmbSearchProcedure" layoutX="61.0" layoutY="144.0" prefHeight="44.0" prefWidth="851.0" />
+      <Button fx:id="btnSearch" layoutX="1024.0" layoutY="144.0" mnemonicParsing="false" text="SEARCH">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Label fx:id="lbl" layoutX="61.0" layoutY="239.0" text="Results for:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblSearchCriteria" layoutX="180.0" layoutY="239.0" prefHeight="30.0" prefWidth="720.0">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tblSearchResult" layoutX="61.0" layoutY="313.0" prefHeight="603.0" prefWidth="1064.0">
+        <columns>
+          <TableColumn fx:id="tblColDate" prefWidth="150.0" text="Date" />
+          <TableColumn fx:id="tblColTime" minWidth="0.0" prefWidth="150.0" text="Time" />
+            <TableColumn fx:id="tblColName" minWidth="0.0" prefWidth="323.0" text="Name" />
+            <TableColumn fx:id="tblColAge" minWidth="0.0" prefWidth="150.0" text="Age" />
+            <TableColumn fx:id="tblColProcedure" minWidth="0.0" prefWidth="290.0" text="Procedure" />
+        </columns>
+      </TableView>
+   </children>
+</Pane>

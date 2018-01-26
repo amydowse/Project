@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="975.0" prefWidth="1770.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    
+    <children>
+        <Label layoutX="46.0" layoutY="43.0" text="PRE-OPS">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      
+      <!-- AM HEADINGS -->
+      <TextField fx:id="txtAM" editable="false" layoutX="45.0" layoutY="116.0" prefHeight="47.7" prefWidth="1680.0" text="AM">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtTimeAM" alignment="CENTER" editable="false" layoutX="45.0" layoutY="164.0" prefHeight="47.7" prefWidth="186.0" text="Time">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtNameAM" alignment="CENTER" editable="false" layoutX="231.0" layoutY="164.0" prefHeight="48.0" prefWidth="341.0" text="Name">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtAgeAM" alignment="CENTER" editable="false" layoutX="572.0" layoutY="164.0" prefHeight="48.0" prefWidth="204.0" text="Age">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtHospitalAM" alignment="CENTER" editable="false" layoutX="776.0" layoutY="164.0" prefHeight="48.0" prefWidth="204.0" text="Hospital Number">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtSpecialityAM" alignment="CENTER" editable="false" layoutX="980.0" layoutY="164.0" prefHeight="48.0" prefWidth="204.0" text="Speciality">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtInformationAM" alignment="CENTER" editable="false" layoutX="1184.0" layoutY="164.0" prefHeight="48.0" prefWidth="334.0" text="Extra Information">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtNotesAM" alignment="CENTER" editable="false" layoutX="1518.0" layoutY="164.0" prefHeight="48.0" prefWidth="207.0" text="Notes">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </TextField>
+
+      
+      
+      
+     <!-- AM ROW 1 --> 
+      <TextField fx:id="txtTime1" alignment="CENTER" editable="false" layoutX="45.0" layoutY="212.0" prefHeight="47.7" prefWidth="186.0" text="08:00">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </TextField>      
+      <TextField fx:id="txtNameA1" layoutX="231.0" layoutY="212.0" prefHeight="48.0" prefWidth="341.0" />    
+      <TextField fx:id="txtAgeA1" layoutX="572.0" layoutY="212.0" prefHeight="48.0" prefWidth="204.0" />
+      <TextField fx:id="txtHospitalA1" layoutX="776.0" layoutY="212.0" prefHeight="48.0" prefWidth="204.0" />      
+      <TextField fx:id="txtSpecialityA1" layoutX="980.0" layoutY="212.0" prefHeight="48.0" prefWidth="204.0" />      
+      <TextField fx:id="txtInformationA1" layoutX="1184.0" layoutY="212.0" prefHeight="48.0" prefWidth="334.0" />
+      <TextField fx:id="txtNotesA1" layoutX="1518.0" layoutY="212.0" prefHeight="48.0" prefWidth="207.0" />
+
+    <!-- AM ROW 2 --> 
+      <TextField fx:id="txtTimeA2" alignment="CENTER" editable="false" layoutX="45.0" layoutY="260.0" prefHeight="47.7" prefWidth="186.0" text="08:30">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtNameA2" layoutX="231.0" layoutY="260.0" prefHeight="48.0" prefWidth="341.0" />
+      <TextField fx:id="txtAgeA2" layoutX="572.0" layoutY="260.0" prefHeight="48.0" prefWidth="204.0" />
+      <TextField fx:id="txtHospitalA2" layoutX="776.0" layoutY="260.0" prefHeight="48.0" prefWidth="204.0" />
+      <TextField fx:id="txtSpecialityA2" layoutX="980.0" layoutY="260.0" prefHeight="48.0" prefWidth="204.0" />
+      <TextField fx:id="txtInformationA2" layoutX="1184.0" layoutY="260.0" prefHeight="48.0" prefWidth="334.0" />
+      <TextField fx:id="txtNotesA2" layoutX="1518.0" layoutY="260.0" prefHeight="48.0" prefWidth="207.0" />
+      
+    <!-- AM ROW 3 -->
+      <TextField fx:id="txtTimeA3" alignment="CENTER" editable="false" layoutX="45.0" layoutY="308.0" prefHeight="47.7" prefWidth="186.0" text="09:00">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </TextField>    
+      <TextField fx:id="txtNameA3" layoutX="231.0" layoutY="308.0" prefHeight="48.0" prefWidth="341.0" />
+      <TextField fx:id="txtAgeA3" layoutX="572.0" layoutY="308.0" prefHeight="48.0" prefWidth="204.0" />
+      <TextField fx:id="txtHospitalA3" layoutX="776.0" layoutY="308.0" prefHeight="48.0" prefWidth="204.0" />
+      <TextField fx:id="txtSpecialityA3" layoutX="980.0" layoutY="308.0" prefHeight="48.0" prefWidth="204.0" />
+      <TextField fx:id="txtInformationA3" layoutX="1184.0" layoutY="308.0" prefHeight="48.0" prefWidth="334.0" />      
+      <TextField fx:id="txtNotesA3" layoutX="1518.0" layoutY="308.0" prefHeight="48.0" prefWidth="207.0" />
+
+    <!-- AM ROW 4 -->  
+      <TextField fx:id="txtTimeA4" alignment="CENTER" editable="false" layoutX="45.0" layoutY="356.0" prefHeight="47.7" prefWidth="186.0" text="09:30">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtNameA4" layoutX="231.0" layoutY="356.0" prefHeight="48.0" prefWidth="341.0" />
+      <TextField fx:id="txtAgeA4" layoutX="572.0" layoutY="356.0" prefHeight="48.0" prefWidth="204.0" />
+      <TextField fx:id="txtHospitalA4" layoutX="776.0" layoutY="356.0" prefHeight="48.0" prefWidth="204.0" />
+      <TextField fx:id="txtSpecialityA4" layoutX="980.0" layoutY="356.0" prefHeight="48.0" prefWidth="204.0" />
+      <TextField fx:id="txtInformationA4" layoutX="1184.0" layoutY="356.0" prefHeight="48.0" prefWidth="334.0" />
+      <TextField fx:id="txtNotesA4" layoutX="1518.0" layoutY="356.0" prefHeight="48.0" prefWidth="207.0" />
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <!-- PM HEADINGS -->
+      <TextField fx:id="txtPM" editable="false" layoutX="45.0" layoutY="404.0" prefHeight="47.7" prefWidth="1680.0" text="PM">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </TextField>     
+      <TextField fx:id="txtTimePM" alignment="CENTER" editable="false" layoutX="45.0" layoutY="452.0" prefHeight="47.7" prefWidth="186.0" text="Time">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </TextField>      
+      <TextField fx:id="txtNamePM" alignment="CENTER" editable="false" layoutX="231.0" layoutY="452.0" prefHeight="48.0" prefWidth="341.0" text="Name">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </TextField>      
+      <TextField fx:id="txtAgePM" alignment="CENTER" editable="false" layoutX="572.0" layoutY="452.0" prefHeight="48.0" prefWidth="204.0" text="Age">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </TextField>      
+      <TextField fx:id="txtHospitalPM" alignment="CENTER" editable="false" layoutX="776.0" layoutY="452.0" prefHeight="48.0" prefWidth="204.0" text="Hospital Number">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </TextField>      
+      <TextField fx:id="txtSpecialityPM" alignment="CENTER" editable="false" layoutX="980.0" layoutY="452.0" prefHeight="48.0" prefWidth="204.0" text="Speciality">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </TextField>      
+      <TextField fx:id="txtInformationPM" alignment="CENTER" editable="false" layoutX="1184.0" layoutY="452.0" prefHeight="48.0" prefWidth="334.0" text="Extra Information">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtNotesPM" alignment="CENTER" editable="false" layoutX="1518.0" layoutY="452.0" prefHeight="48.0" prefWidth="207.0" text="Notes">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </TextField>
+
+      
+      
+    <!-- PM ROW 1 -->
+      <TextField fx:id="txtTime14" alignment="CENTER" editable="false" layoutX="45.0" layoutY="500.0" prefHeight="47.7" prefWidth="186.0" text="14:00">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtNameP1" layoutX="231.0" layoutY="500.0" prefHeight="48.0" prefWidth="341.0" />
+      <TextField fx:id="txtAgeP1" layoutX="572.0" layoutY="500.0" prefHeight="48.0" prefWidth="204.0" />
+      <TextField fx:id="txtHospitalP1" layoutX="776.0" layoutY="500.0" prefHeight="48.0" prefWidth="204.0" />
+      <TextField fx:id="txtSpecialityP1" layoutX="980.0" layoutY="500.0" prefHeight="48.0" prefWidth="204.0" />
+      <TextField fx:id="txtInformationP1" layoutX="1184.0" layoutY="500.0" prefHeight="48.0" prefWidth="334.0" />
+      <TextField fx:id="txtNotesP1" layoutX="1518.0" layoutY="500.0" prefHeight="48.0" prefWidth="207.0" />      
+      
+    <!-- PM ROW 2 -->
+      <TextField fx:id="txtTimeP2" alignment="CENTER" editable="false" layoutX="45.0" layoutY="548.0" prefHeight="47.7" prefWidth="186.0" text="14:30">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </TextField> 
+      <TextField fx:id="txtNameP2" layoutX="231.0" layoutY="548.0" prefHeight="48.0" prefWidth="341.0" /> 
+      <TextField fx:id="txtAgeP2" layoutX="572.0" layoutY="548.0" prefHeight="48.0" prefWidth="204.0" /> 
+      <TextField fx:id="txtHospitalP2" layoutX="776.0" layoutY="548.0" prefHeight="48.0" prefWidth="204.0" /> 
+      <TextField fx:id="txtSpecialityP2" layoutX="980.0" layoutY="548.0" prefHeight="48.0" prefWidth="204.0" /> 
+      <TextField fx:id="txtInformationP2" layoutX="1184.0" layoutY="548.0" prefHeight="48.0" prefWidth="334.0" />
+      <TextField fx:id="txtNotesP2" layoutX="1518.0" layoutY="548.0" prefHeight="48.0" prefWidth="207.0" />
+      
+      
+<!-- PM ROW 3 -->  
+      <TextField fx:id="txtTimeP3" alignment="CENTER" editable="false" layoutX="45.0" layoutY="596.0" prefHeight="47.7" prefWidth="186.0" text="15:00">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </TextField>    
+      <TextField fx:id="txtNameP3" layoutX="231.0" layoutY="596.0" prefHeight="48.0" prefWidth="341.0" />    
+      <TextField fx:id="txtAgeP3" layoutX="572.0" layoutY="596.0" prefHeight="48.0" prefWidth="204.0" />    
+      <TextField fx:id="txtHospitalP3" layoutX="776.0" layoutY="596.0" prefHeight="48.0" prefWidth="204.0" />    
+      <TextField fx:id="txtSpecialityP3" layoutX="980.0" layoutY="596.0" prefHeight="48.0" prefWidth="204.0" />    
+      <TextField fx:id="txtInformationP3" layoutX="1184.0" layoutY="596.0" prefHeight="48.0" prefWidth="334.0" />
+      <TextField fx:id="txtNotesP3" layoutX="1518.0" layoutY="596.0" prefHeight="48.0" prefWidth="207.0" />      
+      
+    <!-- PM ROW 4 -->
+      <TextField fx:id="txtTimeP4" alignment="CENTER" editable="false" layoutX="45.0" layoutY="644.0" prefHeight="47.7" prefWidth="186.0" text="15:30">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </TextField>    
+      <TextField fx:id="txtNameP4" layoutX="231.0" layoutY="644.0" prefHeight="48.0" prefWidth="341.0" />    
+      <TextField fx:id="txtAgeP4" layoutX="572.0" layoutY="644.0" prefHeight="48.0" prefWidth="204.0" /> 
+      <TextField fx:id="txtHospitalP4" layoutX="776.0" layoutY="644.0" prefHeight="48.0" prefWidth="204.0" />      
+      <TextField fx:id="txtSpecialityP4" layoutX="980.0" layoutY="644.0" prefHeight="48.0" prefWidth="204.0" />         
+      <TextField fx:id="txtInformationP4" layoutX="1184.0" layoutY="644.0" prefHeight="48.0" prefWidth="334.0" />
+      <TextField fx:id="txtNotesP4" layoutX="1518.0" layoutY="644.0" prefHeight="48.0" prefWidth="207.0" />
+
+
+
+
+
+
+      
+      
+
+ <!-- UNSCHEDULED HEADINGS -->  
+      <TextField fx:id="txtUnscheduled" editable="false" layoutX="46.0" layoutY="692.0" prefHeight="47.7" prefWidth="1680.0" text="UNSHCEDULED">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </TextField>      
+      <TextField fx:id="txtTimeU" alignment="CENTER" editable="false" layoutX="45.0" layoutY="740.0" prefHeight="47.7" prefWidth="186.0" text="Time">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </TextField>   
+      <TextField fx:id="txtNameU" alignment="CENTER" editable="false" layoutX="231.0" layoutY="740.0" prefHeight="48.0" prefWidth="341.0" text="Name">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </TextField>      
+      <TextField fx:id="txtAgeU" alignment="CENTER" editable="false" layoutX="572.0" layoutY="740.0" prefHeight="48.0" prefWidth="204.0" text="Age">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </TextField>         
+      <TextField fx:id="txtHospitalU" alignment="CENTER" editable="false" layoutX="776.0" layoutY="740.0" prefHeight="48.0" prefWidth="204.0" text="Hospital Number">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </TextField>            
+      <TextField fx:id="txtSpecialityU" alignment="CENTER" editable="false" layoutX="980.0" layoutY="740.0" prefHeight="48.0" prefWidth="204.0" text="Speciality">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </TextField>                  
+      <TextField fx:id="txtInformationU" alignment="CENTER" editable="false" layoutX="1184.0" layoutY="740.0" prefHeight="48.0" prefWidth="334.0" text="Extra Information">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtNotesU" alignment="CENTER" editable="false" layoutX="1518.0" layoutY="740.0" prefHeight="48.0" prefWidth="207.0" text="Notes">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </TextField>
+
+   
+   
+    <!-- UNSHEDULED 1 -->
+      <TextField fx:id="txtTimeU1" alignment="CENTER" layoutX="45.0" layoutY="788.0" prefHeight="47.7" prefWidth="186.0">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtNameU1" layoutX="231.0" layoutY="788.0" prefHeight="48.0" prefWidth="341.0" />
+      <TextField fx:id="txtAgeU1" layoutX="572.0" layoutY="788.0" prefHeight="48.0" prefWidth="204.0" />
+      <TextField fx:id="txtHospitalU1" layoutX="776.0" layoutY="788.0" prefHeight="48.0" prefWidth="204.0" />
+      <TextField fx:id="txtSpecialityU1" layoutX="980.0" layoutY="788.0" prefHeight="48.0" prefWidth="204.0" />
+      <TextField fx:id="txtInformationU1" layoutX="1184.0" layoutY="788.0" prefHeight="48.0" prefWidth="334.0" />
+      <TextField fx:id="txtNotesU1" layoutX="1518.0" layoutY="788.0" prefHeight="48.0" prefWidth="207.0" />
+
+    <!-- UNSCHEDULED 2 -->
+      <TextField fx:id="txtTimeU2" alignment="CENTER" layoutX="45.0" layoutY="836.0" prefHeight="47.7" prefWidth="186.0">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </TextField>      
+      <TextField fx:id="txtNameU2" layoutX="231.0" layoutY="836.0" prefHeight="48.0" prefWidth="341.0" />      
+      <TextField fx:id="txtAgeU2" layoutX="572.0" layoutY="836.0" prefHeight="48.0" prefWidth="204.0" />      
+      <TextField fx:id="txtHospitalU2" layoutX="776.0" layoutY="836.0" prefHeight="48.0" prefWidth="204.0" />     
+      <TextField fx:id="txtSpecialityU2" layoutX="980.0" layoutY="836.0" prefHeight="48.0" prefWidth="204.0" />        
+      <TextField fx:id="txtInformationU2" layoutX="1184.0" layoutY="836.0" prefHeight="48.0" prefWidth="334.0" />
+      <TextField fx:id="txtNotesU2" layoutX="1518.0" layoutY="836.0" prefHeight="48.0" prefWidth="207.0" />
+
+    <!-- UNSCHEDULED 3 -->  
+      <TextField fx:id="txtTimeU3" alignment="CENTER" layoutX="45.0" layoutY="884.0" prefHeight="47.7" prefWidth="186.0">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </TextField>      
+      <TextField fx:id="txtNameU3" layoutX="231.0" layoutY="884.0" prefHeight="48.0" prefWidth="341.0" />      
+      <TextField fx:id="txtAgeU3" layoutX="572.0" layoutY="884.0" prefHeight="48.0" prefWidth="204.0" />      
+      <TextField fx:id="txtHospitalU3" layoutX="776.0" layoutY="884.0" prefHeight="48.0" prefWidth="204.0" />   
+      <TextField fx:id="txtSpecialityU3" layoutX="980.0" layoutY="884.0" prefHeight="48.0" prefWidth="204.0" />   
+      <TextField fx:id="txtInformationU3" layoutX="1184.0" layoutY="884.0" prefHeight="48.0" prefWidth="334.0" />
+      <TextField fx:id="txtNotesU3" layoutX="1518.0" layoutY="884.0" prefHeight="48.0" prefWidth="207.0" />
+     
+
+
+
+
+        
+      
+   
+
+</children>
+
+</Pane>
