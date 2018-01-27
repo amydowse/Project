@@ -5,8 +5,11 @@
  */
 package bases;
 
+import common.codeBank;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -47,12 +50,17 @@ public class MainScreenDocumentController implements Initializable
         ContentPane = this.Content;
         try 
         {
+            LocalDate Today = LocalDate.now();
+            String stringDate = codeBank.dateToString(Today);
+            lblDate.setText(stringDate);
+            
             showDiary();
         } 
         catch (IOException ex) 
         {
             Logger.getLogger(MainScreenDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
 
     }
     

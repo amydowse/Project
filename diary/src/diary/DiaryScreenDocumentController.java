@@ -6,6 +6,7 @@
 package diary;
 
 import common.DatabaseConnector;
+import common.codeBank;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -43,7 +44,7 @@ public class DiaryScreenDocumentController  implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
-        //todays date
+        //todays date into a localDate format 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate Today = LocalDate.now();
         
@@ -65,20 +66,18 @@ public class DiaryScreenDocumentController  implements Initializable
             Statement stmt = c.createStatement();
             
             //make localdate into string
-            DateTimeFormatter Stringformatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            String stringDate = SearchDate.format(Stringformatter);
-            
-            System.out.println(stringDate);
+            String stringDate = codeBank.dateToString(SearchDate);
             
             //implement query
             rs = stmt.executeQuery("SELECT * FROM diary WHERE Date = '" + stringDate + "'" );
             
             while(rs.next())
             { 
+                //get String into LocalDate
                 String date = rs.getString("Date"); //LocalDate
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                LocalDate localDate = LocalDate.parse(date, formatter);
+                LocalDate localDate = codeBank.stringToDate(date);
                 
+                //get String into LocalTime
                 String time = rs.getString("Time"); //Time
                 LocalTime localTime = LocalTime.parse(time, DateTimeFormatter.ISO_LOCAL_TIME);
                 
@@ -91,11 +90,12 @@ public class DiaryScreenDocumentController  implements Initializable
                 int notes = rs.getInt("Notes");
                 int attendance = rs.getInt("Attendance");
                 
+                //creating a diary object 
                 diary instanceOfDiary = new diary(localDate, bedNumber, localTime, name, age, hospitalNumber, speciality, extraInfo, notes, attendance);
                 
-                System.out.println(instanceOfDiary.getName());
                 
-                //txtTime1MA.setText(instanceOfDiary.getTime());
+                //showing results in textboxes 
+                txtTime1MA.setText((instanceOfDiary.getTime()).toString());
                 txtName1MA.setText(instanceOfDiary.getName());
                 txtAge1MA.setText(String.valueOf(instanceOfDiary.getAge()));
                 txtHospital1MA.setText(instanceOfDiary.getHospitalNumber());
