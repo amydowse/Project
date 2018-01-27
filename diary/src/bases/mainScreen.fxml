@@ -14,12 +14,12 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane id="whole" prefHeight="1050.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="diary.MainScreenDocumentController">
+<BorderPane id="whole" prefHeight="1050.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bases.MainScreenDocumentController">
     
     <top>
         <Pane id="topBar" prefHeight="75.0" prefWidth="850.0" style="-fx-background-color: red;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
          <children>
-            <Button fx:id="btnHome" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" text="HOME" onAction="#Home"/>
+            <Button fx:id="btnHome" mnemonicParsing="false" onAction="#Home" prefHeight="75.0" prefWidth="75.0" text="HOME" />
             <Button fx:id="btnCalandar" layoutX="1845.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" text="CAL" />
             <Button fx:id="btnRight" layoutX="1770.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" text="→" />
             <Button fx:id="btnLeft" layoutX="1695.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" text="←" />
@@ -28,6 +28,8 @@
                   <Font size="40.0" />
                </font>
             </Label>
+            <DatePicker fx:id="dpCalandar" editable="false" layoutX="1137.0" prefHeight="75.0" prefWidth="298.0" />
+            <Button fx:id="btnToday" layoutX="1620.0" layoutY="1.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" text="TODAY" />
          </children>
         </Pane>
     </top>
@@ -40,11 +42,11 @@
     <right>
         <Pane fx:id="navigaion" prefHeight="500.0" prefWidth="150.0" style="-fx-background-color: pink;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnNonBed" layoutY="780.0" mnemonicParsing="false" prefHeight="195.0" prefWidth="150.0" text="Non-bed" onAction="#showNonbed" />
-            <Button fx:id="btnPreOP" layoutY="390.0" mnemonicParsing="false" prefHeight="195.0" prefWidth="150.0" text="Pre-op" onAction="#showPreop" />
-            <Button fx:id="btnBlood" layoutY="195.0" mnemonicParsing="false" prefHeight="195.0" prefWidth="150.0" text="Blood Clinic" onAction="#showBlood" />
-            <Button fx:id="btnOncology" layoutY="585.0" mnemonicParsing="false" prefHeight="195.0" prefWidth="150.0" text="Oncology" onAction="#showOncology" />
-            <Button fx:id="btnDiary" mnemonicParsing="false" prefHeight="195.0" prefWidth="150.0" text="Diary" onAction="#showDiary" />
+            <Button fx:id="btnNonBed" layoutY="780.0" mnemonicParsing="false" onAction="#showNonbed" prefHeight="195.0" prefWidth="150.0" text="Non-bed" />
+            <Button fx:id="btnPreOP" layoutY="390.0" mnemonicParsing="false" onAction="#showPreop" prefHeight="195.0" prefWidth="150.0" text="Pre-op" />
+            <Button fx:id="btnBlood" layoutY="195.0" mnemonicParsing="false" onAction="#showBlood" prefHeight="195.0" prefWidth="150.0" text="Blood Clinic" />
+            <Button fx:id="btnOncology" layoutY="585.0" mnemonicParsing="false" onAction="#showOncology" prefHeight="195.0" prefWidth="150.0" text="Oncology" />
+            <Button fx:id="btnDiary" mnemonicParsing="false" onAction="#showDiary" prefHeight="195.0" prefWidth="150.0" text="Diary" />
          </children></Pane>
    </right> 
  

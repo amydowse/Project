@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package diary;
+package bases;
 
 import java.io.IOException;
 import java.net.URL;
@@ -47,8 +47,7 @@ public class MainScreenDocumentController implements Initializable
         ContentPane = this.Content;
         try 
         {
-            Pane newLoadedPane = FXMLLoader.load(getClass().getResource("diaryScreen.fxml"));
-            changeContentPane(newLoadedPane); 
+            showDiary();
         } 
         catch (IOException ex) 
         {
@@ -60,14 +59,14 @@ public class MainScreenDocumentController implements Initializable
     @FXML
     public void showDiary() throws IOException
     {
-       Pane newLoadedPane = FXMLLoader.load(getClass().getResource("diaryScreen.fxml"));
+       Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/diary/diaryScreen.fxml"));
        changeContentPane(newLoadedPane);    
     }
     
     @FXML
     public void showBlood() throws IOException
     {
-       Pane newLoadedPane = FXMLLoader.load(getClass().getResource("bloodScreen.fxml"));
+       Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/blood/bloodScreen.fxml"));
        changeContentPane(newLoadedPane);
         
     }
@@ -75,7 +74,7 @@ public class MainScreenDocumentController implements Initializable
     @FXML
     public void showPreop() throws IOException
     {
-       Pane newLoadedPane = FXMLLoader.load(getClass().getResource("preopScreen.fxml"));
+       Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/preop/preopScreen.fxml"));
        changeContentPane(newLoadedPane);
         
     }
@@ -83,7 +82,7 @@ public class MainScreenDocumentController implements Initializable
     @FXML
     public void showOncology() throws IOException
     {
-       Pane newLoadedPane = FXMLLoader.load(getClass().getResource("oncologyScreen.fxml"));
+       Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/oncology/oncologyScreen.fxml"));
        changeContentPane(newLoadedPane);
         
     }
@@ -91,7 +90,7 @@ public class MainScreenDocumentController implements Initializable
     @FXML
     public void showNonbed() throws IOException
     {
-       Pane newLoadedPane = FXMLLoader.load(getClass().getResource("nonbedScreen.fxml"));
+       Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/nonbed/nonbedScreen.fxml"));
        changeContentPane(newLoadedPane);
         
     }
@@ -100,9 +99,9 @@ public class MainScreenDocumentController implements Initializable
     @FXML
     public void Home() throws IOException
     {
-        Parent root = FXMLLoader.load(getClass().getResource("startScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/bases/startScreen.fxml"));
         Scene scene = new Scene(root);
-        diary.Diary.stage.setScene(scene);
+        bases.Start.stage.setScene(scene);
         
     }
     

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package diary;
+package bases;
 
 import java.io.IOException;
 import java.net.URL;
@@ -43,7 +43,7 @@ public class StartScreenDocumentController implements Initializable
         ContentPane = this.Content;
        
         //http://www.java2s.com/Code/Java/JavaFX/LoadajpgimagewithImageanduseImageViewtodisplay.htm - accessed 15/1/18
-        Image image1 = new Image(Diary.class.getResourceAsStream("logo.jpg"));
+        Image image1 = new Image(Start.class.getResourceAsStream("/bases/logo.jpg"));
         imgLogo.setImage(image1);
 
       
@@ -53,7 +53,7 @@ public class StartScreenDocumentController implements Initializable
     @FXML
     public void showDiaryMain() throws IOException
     {
-        Pane newLoadedPane = FXMLLoader.load(getClass().getResource("mainScreen.fxml"));
+        Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/bases/mainScreen.fxml"));
         changeContentPane(newLoadedPane);
     }
 
@@ -64,9 +64,9 @@ public class StartScreenDocumentController implements Initializable
     @FXML
     public void load() throws IOException
     {
-        Parent root = FXMLLoader.load(getClass().getResource("topMenuScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/bases/topMenuScreen.fxml"));
         Scene scene = new Scene(root);
-        diary.Diary.stage.setScene(scene);        
+        bases.Start.stage.setScene(scene);        
     }
     
     

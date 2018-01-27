@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package diary;
+package bases;
 
-import static diary.MainScreenDocumentController.changeContentPane;
-import static diary.StartScreenDocumentController.ContentPane;
+import static bases.MainScreenDocumentController.changeContentPane;
+import static bases.StartScreenDocumentController.ContentPane;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -39,32 +39,32 @@ public class TopMenuDocumentController implements Initializable
         Pane newLoadedPane;
         try 
         {
-            String selection = diary.StartScreenDocumentController.selection;
+            String selection = bases.StartScreenDocumentController.selection;
      
             switch(selection)
             {
                 case "Staff": 
-                    newLoadedPane = FXMLLoader.load(getClass().getResource("staffScreen.fxml"));
+                    newLoadedPane = FXMLLoader.load(getClass().getResource("/staff/staffScreen.fxml"));
                     changeContentPaneNewLoad(newLoadedPane);
                     lblHeading.setText("STAFF");
                     break;
                 case "Regular": 
-                    newLoadedPane = FXMLLoader.load(getClass().getResource("regularScreen.fxml"));
+                    newLoadedPane = FXMLLoader.load(getClass().getResource("/regular/regularScreen.fxml"));
                     changeContentPaneNewLoad(newLoadedPane); 
                     lblHeading.setText("REGULAR ATTENDERS");
                     break;
                 case "Procedures": 
-                    newLoadedPane = FXMLLoader.load(getClass().getResource("procedureScreen.fxml"));
+                    newLoadedPane = FXMLLoader.load(getClass().getResource("/procedure/procedureScreen.fxml"));
                     changeContentPaneNewLoad(newLoadedPane); 
                     lblHeading.setText("PROCEDURES");
                     break;
                 case "Search": 
-                    newLoadedPane = FXMLLoader.load(getClass().getResource("searchScreen.fxml"));
+                    newLoadedPane = FXMLLoader.load(getClass().getResource("/search/searchScreen.fxml"));
                     changeContentPaneNewLoad(newLoadedPane);  
                     lblHeading.setText("SEARCH");
                     break;
                 case "Settings": 
-                    newLoadedPane = FXMLLoader.load(getClass().getResource("settingScreen.fxml"));
+                    newLoadedPane = FXMLLoader.load(getClass().getResource("/settings/settingScreen.fxml"));
                     changeContentPaneNewLoad(newLoadedPane);   
                     lblHeading.setText("SETTINGS");
                     break;
@@ -83,7 +83,7 @@ public class TopMenuDocumentController implements Initializable
     {
         Parent root = FXMLLoader.load(getClass().getResource("startScreen.fxml"));
         Scene scene = new Scene(root);
-        diary.Diary.stage.setScene(scene);
+        bases.Start.stage.setScene(scene);
         
     }
     

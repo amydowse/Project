@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package diary;
+package bases;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -17,7 +17,7 @@ import javafx.scene.layout.Pane;
  *
  * @author amydo
  */
-public class Diary extends Application
+public class Start extends Application
 {
 
     /**
@@ -34,7 +34,7 @@ public class Diary extends Application
     @Override public void start(Stage stage) throws Exception 
     {
         this.stage = stage;
-        Parent root = FXMLLoader.load(getClass().getResource("startScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/bases/startScreen.fxml"));
         Scene scene = new Scene(root);
         
         //scene.getStylesheets().add(getClass().getResource("tableComponent.css").toExternalForm());
