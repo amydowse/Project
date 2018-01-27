@@ -6,6 +6,10 @@
 package diary;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -28,6 +32,38 @@ public class SearchScreenDocumentController implements Initializable
         ToggleGroup group = new ToggleGroup();
         rdbPatient.setToggleGroup(group);
         rdbProcedure.setToggleGroup(group);
+        
+        Load();
     }
+    
+    
+    public void Load() 
+    {
+        try
+        {
+            // open a connection
+            Connection c = DatabaseConnector.activateConnection();
+            c.setAutoCommit( true ); 
+            ResultSet rs ;
+            
+            // when creating a statement object, you MUST use a connection object to call the instance method
+            Statement stmt = c.createStatement();
+            rs = stmt.executeQuery("SELECT * FROM procedures"); 
+            while(rs.next())
+            {  
+                System.out.println(rs.getInt("ID"));
+                System.out.println(rs.getString("Name"));
+                System.out.println(rs.getInt("Duration"));
+                System.out.println(rs.getInt("NumberOfNurses"));
+                System.out.println(rs.getString("Location"));
+            }
+            
+        }
+        catch (SQLException e)
+        {
+            
+        }
+    }
+    
     
 }
