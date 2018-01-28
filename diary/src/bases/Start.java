@@ -18,8 +18,7 @@ import javafx.scene.layout.Pane;
  * @author amydo
  */
 public class Start extends Application
-{
-
+{ 
     /**
      * @param args the command line arguments
      */

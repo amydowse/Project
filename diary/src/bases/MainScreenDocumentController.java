@@ -48,6 +48,8 @@ public class MainScreenDocumentController implements Initializable
         
     @FXML private DatePicker dpCalandar = new DatePicker();
     
+    public static LocalDate currentDate = LocalDate.now();
+
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
@@ -55,20 +57,21 @@ public class MainScreenDocumentController implements Initializable
         ContentPane = this.Content;
         try 
         {
-            LocalDate Today = LocalDate.now();
-            String stringDate = codeBank.dateToString(Today);
-            lblDate.setText(stringDate);
-            
+            updateDate();
             showDiary();
         } 
         catch (IOException ex) 
         {
             Logger.getLogger(MainScreenDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-
     }
     
+    public void updateDate()
+    {
+        DateTimeFormatter Stringformatter = DateTimeFormatter.ofPattern("EEEE dd MMMM yyyy");
+        String stringDate = currentDate.format(Stringformatter);
+        lblDate.setText(stringDate);        
+    }
     
     @FXML
     public void today()
@@ -76,14 +79,29 @@ public class MainScreenDocumentController implements Initializable
         //todays date into a localDate format 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate Today = LocalDate.now();
+        currentDate = Today;
+        updateDate();
         
         //showing todays information 
-        DiaryScreenDocumentController x = new DiaryScreenDocumentController();
-        x.showInformation(Today);
+        //codeBank.x.showInformation(currentDate);
     
     }
     
     
+    
+    @FXML 
+    public void plusOneDay()
+    {
+        currentDate = currentDate.plusDays(1);
+        updateDate();
+    }
+    
+    @FXML 
+    public void minusOneDay()
+    {
+        currentDate = currentDate.minusDays(1);
+        updateDate();
+    }
     
     
     @FXML
@@ -141,6 +159,7 @@ public class MainScreenDocumentController implements Initializable
         ContentPane.getChildren().clear();
         ContentPane.getChildren().add(newContent);
     }
+
 
     
     

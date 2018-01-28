@@ -287,7 +287,7 @@ public class DiaryScreenDocumentController  implements Initializable
     public void initialize(URL url, ResourceBundle rb) 
     {
         //todays date into a localDate format 
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        //DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate Today = LocalDate.now();
         
         //showing todays information 
@@ -339,7 +339,7 @@ public class DiaryScreenDocumentController  implements Initializable
                 diary instanceOfDiary = new diary(localDate, bedNumber, localTime, name, age, hospitalNumber, speciality, extraInfo, notes, attendance);
                 allBookings.add(instanceOfDiary);             
             }
-            showResults(allBookings);
+           showResults(allBookings);
         }
         catch (SQLException e)
         {
@@ -388,7 +388,7 @@ public class DiaryScreenDocumentController  implements Initializable
         for(int i=0; i<allBookings.size(); i++)
         {
             diary singleBooking = allBookings.get(i);
-                        
+            
             switch(singleBooking.getBedNumber())
             {
                 case "1MA":
@@ -636,5 +636,6 @@ public class DiaryScreenDocumentController  implements Initializable
             }
         }
     }
+
     
 }

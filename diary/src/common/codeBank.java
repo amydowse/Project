@@ -5,6 +5,7 @@
  */
 package common;
 
+import diary.DiaryScreenDocumentController;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -13,7 +14,7 @@ import java.time.format.DateTimeFormatter;
  * @author amydo
  */
 public class codeBank 
-{
+{               
     public static String dateToString(LocalDate localDate)
     {
         DateTimeFormatter Stringformatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -27,4 +28,6 @@ public class codeBank
         LocalDate localDate = LocalDate.parse(date, formatter);
         return localDate;
     }
+    
 }
+
