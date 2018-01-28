@@ -105,7 +105,10 @@
       <TextField fx:id="txtAge1MA" alignment="CENTER" layoutX="340.0" layoutY="291.0" prefHeight="48.75" prefWidth="70.0" />
       <TextField fx:id="txtHospital1MA" alignment="CENTER" layoutX="407.0" layoutY="291.0" prefHeight="48.75" prefWidth="152.0" />
       <TextField fx:id="txtSpeciality1MA" alignment="CENTER" layoutX="556.0" layoutY="291.0" prefHeight="48.75" prefWidth="193.0" />
-      <TextField fx:id="txtNotes1MA" layoutX="746.0" layoutY="291.0" prefHeight="48.75" prefWidth="70.0" />
+      <TextField fx:id="txtNotes1MA" alignment="CENTER" layoutX="746.0" layoutY="291.0" prefHeight="48.75" prefWidth="70.0">
+         <font>
+            <Font size="25.0" />
+         </font></TextField>
       <TextField fx:id="txtExtra1MA" alignment="CENTER" editable="false" layoutX="813.0" layoutY="291.0" prefHeight="48.75" prefWidth="76.0" />
  
       
@@ -120,7 +123,10 @@
       <TextField fx:id="txtAge2MA" alignment="CENTER" layoutX="340.0" layoutY="337.0" prefHeight="48.75" prefWidth="70.0" />
       <TextField fx:id="txtHospital2MA" alignment="CENTER" layoutX="407.0" layoutY="337.0" prefHeight="48.75" prefWidth="152.0" />
       <TextField fx:id="txtSpeciality2MA" alignment="CENTER" layoutX="556.0" layoutY="337.0" prefHeight="48.75" prefWidth="193.0" />
-      <TextField fx:id="txtNotes2MA" layoutX="746.0" layoutY="337.0" prefHeight="48.75" prefWidth="70.0" />
+      <TextField fx:id="txtNotes2MA" alignment="CENTER" layoutX="746.0" layoutY="337.0" prefHeight="48.75" prefWidth="70.0">
+         <font>
+            <Font size="25.0" />
+         </font></TextField>
       <TextField fx:id="txtExtra2MA" alignment="CENTER" editable="false" layoutX="813.0" layoutY="337.0" prefHeight="48.75" prefWidth="76.0" />
 
       
@@ -135,7 +141,10 @@
       <TextField fx:id="txtAge3MA" alignment="CENTER" layoutX="340.0" layoutY="383.0" prefHeight="48.75" prefWidth="70.0" />
       <TextField fx:id="txtHospital3MA" alignment="CENTER" layoutX="407.0" layoutY="383.0" prefHeight="48.75" prefWidth="152.0" />
       <TextField fx:id="txtSpeciality3MA" alignment="CENTER" layoutX="556.0" layoutY="383.0" prefHeight="48.75" prefWidth="193.0" />
-      <TextField fx:id="txtNotes3MA" layoutX="746.0" layoutY="383.0" prefHeight="48.75" prefWidth="70.0" />
+      <TextField fx:id="txtNotes3MA" alignment="CENTER" layoutX="746.0" layoutY="383.0" prefHeight="48.75" prefWidth="70.0">
+         <font>
+            <Font size="25.0" />
+         </font></TextField>
       <TextField fx:id="txtExtra3MA" alignment="CENTER" editable="false" layoutX="813.0" layoutY="383.0" prefHeight="48.75" prefWidth="76.0" />
 
       
@@ -150,7 +159,10 @@
       <TextField fx:id="txtAge4MA" alignment="CENTER" layoutX="340.0" layoutY="429.0" prefHeight="48.75" prefWidth="70.0" />
       <TextField fx:id="txtHospital4MA" alignment="CENTER" layoutX="407.0" layoutY="429.0" prefHeight="48.75" prefWidth="152.0" />    
       <TextField fx:id="txtSpeciality4MA" alignment="CENTER" layoutX="556.0" layoutY="429.0" prefHeight="48.75" prefWidth="193.0" />
-      <TextField fx:id="txtNotes4MA" layoutX="746.0" layoutY="429.0" prefHeight="48.75" prefWidth="70.0" />
+      <TextField fx:id="txtNotes4MA" alignment="CENTER" layoutX="746.0" layoutY="429.0" prefHeight="48.75" prefWidth="70.0">
+         <font>
+            <Font size="25.0" />
+         </font></TextField>
       <TextField fx:id="txtExtra4MA" alignment="CENTER" editable="false" layoutX="813.0" layoutY="429.0" prefHeight="48.75" prefWidth="76.0" />
     
       
@@ -165,7 +177,10 @@
       <TextField fx:id="txtAgeEMA" alignment="CENTER" layoutX="340.0" layoutY="475.0" prefHeight="48.75" prefWidth="70.0" />        
       <TextField fx:id="txtHospitalEMA" alignment="CENTER" layoutX="407.0" layoutY="475.0" prefHeight="48.75" prefWidth="152.0" />       
       <TextField fx:id="txtSpecialityEMA" alignment="CENTER" layoutX="556.0" layoutY="475.0" prefHeight="48.75" prefWidth="193.0" />          
-      <TextField fx:id="txtNotesEMA" layoutX="746.0" layoutY="475.0" prefHeight="48.75" prefWidth="70.0" />       
+      <TextField fx:id="txtNotesEMA" alignment="CENTER" layoutX="746.0" layoutY="475.0" prefHeight="48.75" prefWidth="70.0">
+         <font>
+            <Font size="25.0" />
+         </font></TextField>       
       <TextField fx:id="txtExtraEMA" alignment="CENTER" editable="false" layoutX="813.0" layoutY="475.0" prefHeight="48.75" prefWidth="76.0" />       
       
       
@@ -225,7 +240,10 @@
       <TextField fx:id="txtAge1LA" alignment="CENTER" layoutX="339.0" layoutY="619.0" prefHeight="48.75" prefWidth="70.0" />
       <TextField fx:id="txtHospital1LA" alignment="CENTER" layoutX="406.0" layoutY="619.0" prefHeight="48.75" prefWidth="152.0" />
       <TextField fx:id="txtSpeciality1LA" alignment="CENTER" layoutX="555.0" layoutY="619.0" prefHeight="48.75" prefWidth="193.0" />
-      <TextField fx:id="txtNotes1LA" layoutX="745.0" layoutY="619.0" prefHeight="48.75" prefWidth="70.0" />
+      <TextField fx:id="txtNotes1LA" alignment="CENTER" layoutX="745.0" layoutY="619.0" prefHeight="48.75" prefWidth="70.0">
+         <font>
+            <Font size="25.0" />
+         </font></TextField>
       <TextField fx:id="txtExtra1LA" alignment="CENTER" editable="false" layoutX="812.0" layoutY="619.0" prefHeight="48.75" prefWidth="76.0" />
 
       
@@ -240,7 +258,10 @@
       <TextField fx:id="txtAge2LA" alignment="CENTER" layoutX="339.0" layoutY="665.0" prefHeight="48.75" prefWidth="70.0" />
       <TextField fx:id="txtHospital2LA" alignment="CENTER" layoutX="406.0" layoutY="665.0" prefHeight="48.75" prefWidth="152.0" />
       <TextField fx:id="txtSpeciality2LA" alignment="CENTER" layoutX="555.0" layoutY="665.0" prefHeight="48.755" prefWidth="193.0" />
-      <TextField fx:id="txtNotes2LA" layoutX="745.0" layoutY="665.0" prefHeight="48.75" prefWidth="70.0" />
+      <TextField fx:id="txtNotes2LA" alignment="CENTER" layoutX="745.0" layoutY="665.0" prefHeight="48.75" prefWidth="70.0">
+         <font>
+            <Font size="25.0" />
+         </font></TextField>
       <TextField fx:id="txtExtra2LA" alignment="CENTER" editable="false" layoutX="812.0" layoutY="665.0" prefHeight="48.75" prefWidth="76.0" />
 
       
@@ -255,7 +276,10 @@
       <TextField fx:id="txtAge3LA" alignment="CENTER" layoutX="339.0" layoutY="711.0" prefHeight="48.75" prefWidth="70.0" />
       <TextField fx:id="txtHospital3LA" alignment="CENTER" layoutX="406.0" layoutY="711.0" prefHeight="48.75" prefWidth="152.0" />
       <TextField fx:id="txtSpeciality3LA" alignment="CENTER" layoutX="555.0" layoutY="711.0" prefHeight="48.75" prefWidth="193.0" />
-      <TextField fx:id="txtNotes3LA" layoutX="745.0" layoutY="711.0" prefHeight="48.75" prefWidth="70.0" />
+      <TextField fx:id="txtNotes3LA" alignment="CENTER" layoutX="745.0" layoutY="711.0" prefHeight="48.75" prefWidth="70.0">
+         <font>
+            <Font size="25.0" />
+         </font></TextField>
       <TextField fx:id="txtExtra3LA" alignment="CENTER" editable="false" layoutX="812.0" layoutY="711.0" prefHeight="48.75" prefWidth="76.0" />
     
                           
@@ -270,7 +294,10 @@
       <TextField fx:id="txtAge4LA" alignment="CENTER" layoutX="340.0" layoutY="757.0" prefHeight="48.75" prefWidth="70.0" />
       <TextField fx:id="txtHospital4LA" alignment="CENTER" layoutX="407.0" layoutY="757.0" prefHeight="48.75" prefWidth="152.0" />   
       <TextField fx:id="txtSpeciality4LA" alignment="CENTER" layoutX="556.0" layoutY="757.0" prefHeight="48.75" prefWidth="193.0" />      
-      <TextField fx:id="txtNotes4LA" layoutX="746.0" layoutY="757.0" prefHeight="48.75" prefWidth="70.0" />
+      <TextField fx:id="txtNotes4LA" alignment="CENTER" layoutX="746.0" layoutY="757.0" prefHeight="48.75" prefWidth="70.0">
+         <font>
+            <Font size="25.0" />
+         </font></TextField>
       <TextField fx:id="txtExtra4LA" alignment="CENTER" editable="false" layoutX="813.0" layoutY="757.0" prefHeight="48.75" prefWidth="76.0" />
 
             
@@ -285,7 +312,10 @@
       <TextField fx:id="txtAge5LA" alignment="CENTER" layoutX="339.0" layoutY="805.0" prefHeight="48.75" prefWidth="70.0" />
       <TextField fx:id="txtHospital5LA" alignment="CENTER" layoutX="406.0" layoutY="805.0" prefHeight="48.75" prefWidth="152.0" />
       <TextField fx:id="txtSpeciality5LA" alignment="CENTER" layoutX="555.0" layoutY="805.0" prefHeight="48.75" prefWidth="193.0" />
-      <TextField fx:id="txtNotes5LA" layoutX="745.0" layoutY="805.0" prefHeight="48.75" prefWidth="70.0" />
+      <TextField fx:id="txtNotes5LA" alignment="CENTER" layoutX="745.0" layoutY="805.0" prefHeight="48.75" prefWidth="70.0">
+         <font>
+            <Font size="25.0" />
+         </font></TextField>
       <TextField fx:id="txtExtra5LA" alignment="CENTER" editable="false" layoutX="812.0" layoutY="805.0" prefHeight="48.75" prefWidth="76.0" />
 
               
@@ -300,7 +330,10 @@
       <TextField fx:id="txtAge6LA" alignment="CENTER" layoutX="339.0" layoutY="851.0" prefHeight="48.75" prefWidth="70.0" />      
       <TextField fx:id="txtHospital6LA" alignment="CENTER" layoutX="406.0" layoutY="851.0" prefHeight="48.75" prefWidth="152.0" />
       <TextField fx:id="txtSpeciality6LA" alignment="CENTER" layoutX="555.0" layoutY="851.0" prefHeight="48.75" prefWidth="193.0" />
-      <TextField fx:id="txtNotes6LA" layoutX="745.0" layoutY="851.0" prefHeight="48.75" prefWidth="70.0" />
+      <TextField fx:id="txtNotes6LA" alignment="CENTER" layoutX="745.0" layoutY="851.0" prefHeight="48.75" prefWidth="70.0">
+         <font>
+            <Font size="25.0" />
+         </font></TextField>
       <TextField fx:id="txtExtra6LA" alignment="CENTER" editable="false" layoutX="812.0" layoutY="851.0" prefHeight="48.75" prefWidth="76.0" />
      
               
@@ -315,7 +348,10 @@
       <TextField fx:id="txtAgeELA" alignment="CENTER" layoutX="340.0" layoutY="898.0" prefHeight="48.75" prefWidth="70.0" />       
       <TextField fx:id="txtHospitalELA" alignment="CENTER" layoutX="407.0" layoutY="898.0" prefHeight="48.75" prefWidth="152.0" />           
       <TextField fx:id="txtSpecialityELA" alignment="CENTER" layoutX="556.0" layoutY="898.0" prefHeight="48.75" prefWidth="193.0" />         
-      <TextField fx:id="txtNotesELA" layoutX="746.0" layoutY="898.0" prefHeight="48.75" prefWidth="70.0" />        
+      <TextField fx:id="txtNotesELA" alignment="CENTER" layoutX="746.0" layoutY="898.0" prefHeight="48.75" prefWidth="70.0">
+         <font>
+            <Font size="25.0" />
+         </font></TextField>        
       <TextField fx:id="txtExtraELA" alignment="CENTER" editable="false" layoutX="813.0" layoutY="898.0" prefHeight="48.75" prefWidth="76.0" />       
       
       
@@ -375,7 +411,10 @@
       <TextField fx:id="txtAge1MP" alignment="CENTER" layoutX="1228.0" layoutY="291.0" prefHeight="48.75" prefWidth="70.0" />       
       <TextField fx:id="txtHospital1MP" alignment="CENTER" layoutX="1295.0" layoutY="291.0" prefHeight="48.75" prefWidth="152.0" />      
       <TextField fx:id="txtSpeciality1MP" alignment="CENTER" layoutX="1444.0" layoutY="291.0" prefHeight="48.75" prefWidth="193.0" />      
-      <TextField fx:id="txtNotes1MP" layoutX="1634.0" layoutY="291.0" prefHeight="48.75" prefWidth="70.0" />       
+      <TextField fx:id="txtNotes1MP" alignment="CENTER" layoutX="1634.0" layoutY="291.0" prefHeight="48.75" prefWidth="70.0">
+         <font>
+            <Font size="25.0" />
+         </font></TextField>       
       <TextField fx:id="txtExtra1MP" alignment="CENTER" editable="false" layoutX="1701.0" layoutY="291.0" prefHeight="48.75" prefWidth="76.0" />      
 
       
@@ -390,7 +429,10 @@
       <TextField fx:id="txtAge2MP" alignment="CENTER" layoutX="1228.0" layoutY="337.0" prefHeight="48.75" prefWidth="70.0" />         
       <TextField fx:id="txtHospital2MP" alignment="CENTER" layoutX="1295.0" layoutY="337.0" prefHeight="48.75" prefWidth="152.0" />         
       <TextField fx:id="txtSpeciality2MP" alignment="CENTER" layoutX="1444.0" layoutY="337.0" prefHeight="48.75" prefWidth="193.0" />          
-      <TextField fx:id="txtNotes2MP" layoutX="1634.0" layoutY="337.0" prefHeight="48.75" prefWidth="70.0" />      
+      <TextField fx:id="txtNotes2MP" alignment="CENTER" layoutX="1634.0" layoutY="337.0" prefHeight="48.75" prefWidth="70.0">
+         <font>
+            <Font size="25.0" />
+         </font></TextField>      
       <TextField fx:id="txtExtra2MP" alignment="CENTER" editable="false" layoutX="1701.0" layoutY="337.0" prefHeight="48.75" prefWidth="76.0" />      
 
       
@@ -405,7 +447,10 @@
       <TextField fx:id="txtAge3MP" alignment="CENTER" layoutX="1228.0" layoutY="383.0" prefHeight="48.75" prefWidth="70.0" />            
       <TextField fx:id="txtHospital3MP" alignment="CENTER" layoutX="1295.0" layoutY="383.0" prefHeight="48.75" prefWidth="152.0" />            
       <TextField fx:id="txtSpeciality3MP" alignment="CENTER" layoutX="1444.0" layoutY="383.0" prefHeight="48.75" prefWidth="193.0" />             
-      <TextField fx:id="txtNotes3MP" layoutX="1634.0" layoutY="383.0" prefHeight="48.75" prefWidth="70.0" />      
+      <TextField fx:id="txtNotes3MP" alignment="CENTER" layoutX="1634.0" layoutY="383.0" prefHeight="48.75" prefWidth="70.0">
+         <font>
+            <Font size="25.0" />
+         </font></TextField>      
       <TextField fx:id="txtExtra3MP" alignment="CENTER" editable="false" layoutX="1701.0" layoutY="383.0" prefHeight="48.75" prefWidth="76.0" />      
 
       
@@ -420,7 +465,10 @@
       <TextField fx:id="txtAge4MP" alignment="CENTER" layoutX="1228.0" layoutY="429.0" prefHeight="48.75" prefWidth="70.0" />                  
       <TextField fx:id="txtHospital4MP" alignment="CENTER" layoutX="1295.0" layoutY="429.0" prefHeight="48.75" prefWidth="152.0" />                 
       <TextField fx:id="txtSpeciality4MP" alignment="CENTER" layoutX="1444.0" layoutY="429.0" prefHeight="48.75" prefWidth="193.0" />                      
-      <TextField fx:id="txtNotes4MP" layoutX="1634.0" layoutY="429.0" prefHeight="48.75" prefWidth="70.0" />      
+      <TextField fx:id="txtNotes4MP" alignment="CENTER" layoutX="1634.0" layoutY="429.0" prefHeight="48.75" prefWidth="70.0">
+         <font>
+            <Font size="25.0" />
+         </font></TextField>      
       <TextField fx:id="txtExtra4MP" alignment="CENTER" editable="false" layoutX="1701.0" layoutY="429.0" prefHeight="48.75" prefWidth="76.0" />      
          
       
@@ -435,7 +483,10 @@
       <TextField fx:id="txtAgeEMP" alignment="CENTER" layoutX="1228.0" layoutY="475.0" prefHeight="48.75" prefWidth="70.0" />         
       <TextField fx:id="txtHospitalEMP" alignment="CENTER" layoutX="1295.0" layoutY="475.0" prefHeight="48.75" prefWidth="152.0" />      
       <TextField fx:id="txtSpecialityEMP" alignment="CENTER" layoutX="1444.0" layoutY="475.0" prefHeight="48.75" prefWidth="193.0" />        
-      <TextField fx:id="txtNotesEMP" layoutX="1634.0" layoutY="475.0" prefHeight="48.75" prefWidth="70.0" />      
+      <TextField fx:id="txtNotesEMP" alignment="CENTER" layoutX="1634.0" layoutY="475.0" prefHeight="48.75" prefWidth="70.0">
+         <font>
+            <Font size="25.0" />
+         </font></TextField>      
       <TextField fx:id="txtExtraEMP" alignment="CENTER" editable="false" layoutX="1701.0" layoutY="475.0" prefHeight="48.75" prefWidth="76.0" />       
       
       
@@ -495,7 +546,10 @@
       <TextField fx:id="txtAge1LP" alignment="CENTER" layoutX="1228.0" layoutY="619.0" prefHeight="48.75" prefWidth="70.0" />
       <TextField fx:id="txtHospital1LP" alignment="CENTER" layoutX="1295.0" layoutY="619.0" prefHeight="48.75" prefWidth="152.0" />
       <TextField fx:id="txtSpeciality1LP" alignment="CENTER" layoutX="1444.0" layoutY="619.0" prefHeight="48.75" prefWidth="193.0" />
-      <TextField fx:id="txtNotes1LP" layoutX="1634.0" layoutY="619.0" prefHeight="48.75" prefWidth="70.0" />      
+      <TextField fx:id="txtNotes1LP" alignment="CENTER" layoutX="1634.0" layoutY="619.0" prefHeight="48.75" prefWidth="70.0">
+         <font>
+            <Font size="25.0" />
+         </font></TextField>      
       <TextField fx:id="txtExtra1LP" alignment="CENTER" editable="false" layoutX="1701.0" layoutY="619.0" prefHeight="48.75" prefWidth="76.0" />      
 
       
@@ -510,7 +564,10 @@
       <TextField fx:id="txtAge2LP" alignment="CENTER" layoutX="1228.0" layoutY="665.0" prefHeight="48.75" prefWidth="70.0" />
       <TextField fx:id="txtHospital2LP" alignment="CENTER" layoutX="1295.0" layoutY="665.0" prefHeight="48.75" prefWidth="152.0" />
       <TextField fx:id="txtSpeciality2LP" alignment="CENTER" layoutX="1444.0" layoutY="665.0" prefHeight="48.755" prefWidth="193.0" />
-      <TextField fx:id="txtNotes2LP" layoutX="1634.0" layoutY="665.0" prefHeight="48.75" prefWidth="70.0" />      
+      <TextField fx:id="txtNotes2LP" alignment="CENTER" layoutX="1634.0" layoutY="665.0" prefHeight="48.75" prefWidth="70.0">
+         <font>
+            <Font size="25.0" />
+         </font></TextField>      
       <TextField fx:id="txtExtra2LP" alignment="CENTER" editable="false" layoutX="1701.0" layoutY="665.0" prefHeight="48.75" prefWidth="76.0" />      
 
       
@@ -525,7 +582,10 @@
       <TextField fx:id="txtAge3LP" alignment="CENTER" layoutX="1228.0" layoutY="711.0" prefHeight="48.75" prefWidth="70.0" />
       <TextField fx:id="txtHospital3LP" alignment="CENTER" layoutX="1295.0" layoutY="711.0" prefHeight="48.75" prefWidth="152.0" />
       <TextField fx:id="txtSpeciality3LP" alignment="CENTER" layoutX="1444.0" layoutY="711.0" prefHeight="48.75" prefWidth="193.0" />
-      <TextField fx:id="txtNotes3LP" layoutX="1634.0" layoutY="711.0" prefHeight="48.75" prefWidth="70.0" />      
+      <TextField fx:id="txtNotes3LP" alignment="CENTER" layoutX="1634.0" layoutY="711.0" prefHeight="48.75" prefWidth="70.0">
+         <font>
+            <Font size="25.0" />
+         </font></TextField>      
       <TextField fx:id="txtExtra3LP" alignment="CENTER" editable="false" layoutX="1701.0" layoutY="711.0" prefHeight="48.75" prefWidth="76.0" />      
        
                      
@@ -540,7 +600,10 @@
       <TextField fx:id="txtAge4LP" alignment="CENTER" layoutX="1229.0" layoutY="757.0" prefHeight="48.75" prefWidth="70.0" />
       <TextField fx:id="txtHospital4LP" alignment="CENTER" layoutX="1296.0" layoutY="757.0" prefHeight="48.75" prefWidth="152.0" />
       <TextField fx:id="txtSpeciality4LP" alignment="CENTER" layoutX="1445.0" layoutY="757.0" prefHeight="48.75" prefWidth="193.0" />
-      <TextField fx:id="txtNotes4LP" layoutX="1635.0" layoutY="757.0" prefHeight="48.75" prefWidth="70.0" />     
+      <TextField fx:id="txtNotes4LP" alignment="CENTER" layoutX="1635.0" layoutY="757.0" prefHeight="48.75" prefWidth="70.0">
+         <font>
+            <Font size="25.0" />
+         </font></TextField>     
       <TextField fx:id="txtExtra4LP" alignment="CENTER" editable="false" layoutX="1702.0" layoutY="757.0" prefHeight="48.75" prefWidth="76.0" />      
            
                           
@@ -555,7 +618,10 @@
       <TextField fx:id="txtAge5LP" alignment="CENTER" layoutX="1228.0" layoutY="805.0" prefHeight="48.75" prefWidth="70.0" />
       <TextField fx:id="txtHospital5LP" alignment="CENTER" layoutX="1295.0" layoutY="805.0" prefHeight="48.75" prefWidth="152.0" />
       <TextField fx:id="txtSpeciality5LP" alignment="CENTER" layoutX="1444.0" layoutY="805.0" prefHeight="48.75" prefWidth="193.0" />
-      <TextField fx:id="txtNotes5LP" layoutX="1634.0" layoutY="805.0" prefHeight="48.75" prefWidth="70.0" />      
+      <TextField fx:id="txtNotes5LP" alignment="CENTER" layoutX="1634.0" layoutY="805.0" prefHeight="48.75" prefWidth="70.0">
+         <font>
+            <Font size="25.0" />
+         </font></TextField>      
       <TextField fx:id="txtExtra5LP" alignment="CENTER" editable="false" layoutX="1701.0" layoutY="805.0" prefHeight="48.75" prefWidth="76.0" />     
     
                       
@@ -570,7 +636,10 @@
       <TextField fx:id="txtAge6LP" alignment="CENTER" layoutX="1228.0" layoutY="851.0" prefHeight="48.75" prefWidth="70.0" />     
       <TextField fx:id="txtHospital6LP" alignment="CENTER" layoutX="1295.0" layoutY="851.0" prefHeight="48.75" prefWidth="152.0" />      
       <TextField fx:id="txtSpeciality6LP" alignment="CENTER" layoutX="1444.0" layoutY="851.0" prefHeight="48.75" prefWidth="193.0" />    
-      <TextField fx:id="txtNotes6LP" layoutX="1634.0" layoutY="851.0" prefHeight="48.75" prefWidth="70.0" />      
+      <TextField fx:id="txtNotes6LP" alignment="CENTER" layoutX="1634.0" layoutY="851.0" prefHeight="48.75" prefWidth="70.0">
+         <font>
+            <Font size="25.0" />
+         </font></TextField>      
       <TextField fx:id="txtExtra6LP" alignment="CENTER" editable="false" layoutX="1701.0" layoutY="851.0" prefHeight="48.75" prefWidth="76.0" />     
   
                       
@@ -585,7 +654,10 @@
       <TextField fx:id="txtAgeELP" alignment="CENTER" layoutX="1229.0" layoutY="898.0" prefHeight="48.75" prefWidth="70.0" />       
       <TextField fx:id="txtHospitalELP" alignment="CENTER" layoutX="1296.0" layoutY="898.0" prefHeight="48.75" prefWidth="152.0" />     
       <TextField fx:id="txtSpecialityELP" alignment="CENTER" layoutX="1445.0" layoutY="898.0" prefHeight="48.75" prefWidth="193.0" />   
-      <TextField fx:id="txtNotesELP" layoutX="1635.0" layoutY="898.0" prefHeight="48.75" prefWidth="70.0" /> 
+      <TextField fx:id="txtNotesELP" alignment="CENTER" layoutX="1635.0" layoutY="898.0" prefHeight="48.75" prefWidth="70.0">
+         <font>
+            <Font size="25.0" />
+         </font></TextField> 
       <TextField fx:id="txtExtraELP" alignment="CENTER" editable="false" layoutX="1702.0" layoutY="898.0" prefHeight="48.75" prefWidth="76.0" />  
       
    </children>
