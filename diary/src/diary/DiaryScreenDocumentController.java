@@ -32,7 +32,7 @@ public class DiaryScreenDocumentController  implements Initializable
     //The FXML elements 
     
     //Mokey House, AM, Bed 1
-    @FXML private  TextField txtOne = new TextField();
+    @FXML private  TextField txtOneMA = new TextField();
     @FXML private  TextField txtTime1MA = new TextField();
     @FXML private  TextField txtName1MA = new TextField();
     @FXML private  TextField txtAge1MA = new TextField();
@@ -42,7 +42,7 @@ public class DiaryScreenDocumentController  implements Initializable
     @FXML private  TextField txtExtra1MA = new TextField();
     
     //Monkey House, AM, Bed 2
-    @FXML private  TextField txtTwo = new TextField();
+    @FXML private  TextField txtTwoMA = new TextField();
     @FXML private  TextField txtTime2MA = new TextField();
     @FXML private  TextField txtName2MA = new TextField();
     @FXML private  TextField txtAge2MA = new TextField();
@@ -52,7 +52,7 @@ public class DiaryScreenDocumentController  implements Initializable
     @FXML private  TextField txtExtra2MA = new TextField();
     
     //Monkey House, AM, Bed 3
-    @FXML private  TextField txtThree = new TextField();
+    @FXML private  TextField txtThreeMA = new TextField();
     @FXML private  TextField txtTime3MA = new TextField();
     @FXML private  TextField txtName3MA = new TextField();
     @FXML private  TextField txtAge3MA = new TextField();
@@ -62,7 +62,7 @@ public class DiaryScreenDocumentController  implements Initializable
     @FXML private  TextField txtExtra3MA = new TextField();
     
     //Monkey House, AM, Bed 4
-    @FXML private  TextField txtFour = new TextField();
+    @FXML private  TextField txtFourMA = new TextField();
     @FXML private  TextField txtTime4MA = new TextField();
     @FXML private  TextField txtName4MA = new TextField();
     @FXML private  TextField txtAge4MA = new TextField();
@@ -84,7 +84,7 @@ public class DiaryScreenDocumentController  implements Initializable
     //----------------------------------------------------------------------
 
     //Leopards Den, AM, Bed 1
-   // @FXML private  TextField txtOne = new TextField();
+    @FXML private  TextField txtOneLA = new TextField();
     @FXML private  TextField txtTime1LA = new TextField();
     @FXML private  TextField txtName1LA = new TextField();
     @FXML private  TextField txtAge1LA = new TextField();
@@ -94,7 +94,7 @@ public class DiaryScreenDocumentController  implements Initializable
     @FXML private  TextField txtExtra1LA = new TextField();
     
     //Leopards Den, AM, Bed 2
-    //@FXML private  TextField txtTwo = new TextField();
+    @FXML private  TextField txtTwoLA = new TextField();
     @FXML private  TextField txtTime2LA = new TextField();
     @FXML private  TextField txtName2LA = new TextField();
     @FXML private  TextField txtAge2LA = new TextField();
@@ -104,7 +104,7 @@ public class DiaryScreenDocumentController  implements Initializable
     @FXML private  TextField txtExtra2LA = new TextField();
     
     //Leopards Den, AM, Bed 3
-    //@FXML private  TextField txtThree = new TextField();
+    @FXML private  TextField txtThreeLA = new TextField();
     @FXML private  TextField txtTime3LA = new TextField();
     @FXML private  TextField txtName3LA = new TextField();
     @FXML private  TextField txtAge3LA = new TextField();
@@ -114,7 +114,7 @@ public class DiaryScreenDocumentController  implements Initializable
     @FXML private  TextField txtExtra3LA = new TextField();
     
     //Leopards Den, AM, Bed 4
-    //@FXML private  TextField txtFour = new TextField();
+    @FXML private  TextField txtFourLA = new TextField();
     @FXML private  TextField txtTime4LA = new TextField();
     @FXML private  TextField txtName4LA = new TextField();
     @FXML private  TextField txtAge4LA = new TextField();
@@ -124,7 +124,7 @@ public class DiaryScreenDocumentController  implements Initializable
     @FXML private  TextField txtExtra4LA = new TextField(); 
     
     //Leopards Den, AM, Bed 5
-    //@FXML private  TextField txtFour = new TextField();
+    @FXML private  TextField txtFiveLA = new TextField();
     @FXML private  TextField txtTime5LA = new TextField();
     @FXML private  TextField txtName5LA = new TextField();
     @FXML private  TextField txtAge5LA = new TextField();
@@ -134,7 +134,7 @@ public class DiaryScreenDocumentController  implements Initializable
     @FXML private  TextField txtExtra5LA = new TextField(); 
     
     //Leopards Den, AM, Bed 6
-    //@FXML private  TextField txtFour = new TextField();
+    @FXML private  TextField txtSixLA = new TextField();
     @FXML private  TextField txtTime6LA = new TextField();
     @FXML private  TextField txtName6LA = new TextField();
     @FXML private  TextField txtAge6LA = new TextField();
@@ -144,7 +144,7 @@ public class DiaryScreenDocumentController  implements Initializable
     @FXML private  TextField txtExtra6LA = new TextField(); 
     
     //Leopards Den, AM, Bed Extra Line
-    //@FXML private  TextField txtSpareMA = new TextField();
+    @FXML private  TextField txtSpareLA = new TextField();
     @FXML private  TextField txtTimeELA = new TextField();
     @FXML private  TextField txtNameELA = new TextField();
     @FXML private  TextField txtAgeELA = new TextField();
@@ -156,7 +156,7 @@ public class DiaryScreenDocumentController  implements Initializable
     //----------------------------------------------------------------------    
     
     //Mokey House, PM, Bed 1
-    //@FXML private  TextField txtOne = new TextField();
+    @FXML private  TextField txtOneMP = new TextField();
     @FXML private  TextField txtTime1MP = new TextField();
     @FXML private  TextField txtName1MP = new TextField();
     @FXML private  TextField txtAge1MP = new TextField();
@@ -166,7 +166,7 @@ public class DiaryScreenDocumentController  implements Initializable
     @FXML private  TextField txtExtra1MP = new TextField();
     
     //Monkey House, PM, Bed 2
-    //@FXML private  TextField txtTwo = new TextField();
+    @FXML private  TextField txtTwoMP = new TextField();
     @FXML private  TextField txtTime2MP = new TextField();
     @FXML private  TextField txtName2MP = new TextField();
     @FXML private  TextField txtAge2MP = new TextField();
@@ -176,7 +176,7 @@ public class DiaryScreenDocumentController  implements Initializable
     @FXML private  TextField txtExtra2MP = new TextField();
     
     //Monkey House, PM, Bed 3
-    //@FXML private  TextField txtThree = new TextField();
+    @FXML private  TextField txtThreeMP = new TextField();
     @FXML private  TextField txtTime3MP = new TextField();
     @FXML private  TextField txtName3MP = new TextField();
     @FXML private  TextField txtAge3MP = new TextField();
@@ -186,7 +186,7 @@ public class DiaryScreenDocumentController  implements Initializable
     @FXML private  TextField txtExtra3MP = new TextField();
     
     //Monkey House, PM, Bed 4
-    //@FXML private  TextField txtFour = new TextField();
+    @FXML private  TextField txtFourMP = new TextField();
     @FXML private  TextField txtTime4MP = new TextField();
     @FXML private  TextField txtName4MP = new TextField();
     @FXML private  TextField txtAge4MP = new TextField();
@@ -196,7 +196,7 @@ public class DiaryScreenDocumentController  implements Initializable
     @FXML private  TextField txtExtra4MP = new TextField();   
     
     //Monkey House, PM, Bed Extra Line
-    //@FXML private  TextField txtSpareMA = new TextField();
+    @FXML private  TextField txtSpareMP = new TextField();
     @FXML private  TextField txtTimeEMP = new TextField();
     @FXML private  TextField txtNameEMP = new TextField();
     @FXML private  TextField txtAgeEMP = new TextField();
@@ -208,7 +208,7 @@ public class DiaryScreenDocumentController  implements Initializable
     //----------------------------------------------------------------------
 
     //Leopards Den, PM, Bed 1
-   // @FXML private  TextField txtOne = new TextField();
+    @FXML private  TextField txtOneLP = new TextField();
     @FXML private  TextField txtTime1LP = new TextField();
     @FXML private  TextField txtName1LP = new TextField();
     @FXML private  TextField txtAge1LP = new TextField();
@@ -218,7 +218,7 @@ public class DiaryScreenDocumentController  implements Initializable
     @FXML private  TextField txtExtra1LP = new TextField();
     
     //Leopards Den, PM, Bed 2
-    //@FXML private  TextField txtTwo = new TextField();
+    @FXML private  TextField txtTwoLP = new TextField();
     @FXML private  TextField txtTime2LP = new TextField();
     @FXML private  TextField txtName2LP = new TextField();
     @FXML private  TextField txtAge2LP = new TextField();
@@ -228,7 +228,7 @@ public class DiaryScreenDocumentController  implements Initializable
     @FXML private  TextField txtExtra2LP = new TextField();
     
     //Leopards Den, PM, Bed 3
-    //@FXML private  TextField txtThree = new TextField();
+    @FXML private  TextField txtThreeLP = new TextField();
     @FXML private  TextField txtTime3LP = new TextField();
     @FXML private  TextField txtName3LP = new TextField();
     @FXML private  TextField txtAge3LP = new TextField();
@@ -238,7 +238,7 @@ public class DiaryScreenDocumentController  implements Initializable
     @FXML private  TextField txtExtra3LP = new TextField();
     
     //Leopards Den, PM, Bed 4
-    //@FXML private  TextField txtFour = new TextField();
+    @FXML private  TextField txtFourLP = new TextField();
     @FXML private  TextField txtTime4LP = new TextField();
     @FXML private  TextField txtName4LP = new TextField();
     @FXML private  TextField txtAge4LP = new TextField();
@@ -248,7 +248,7 @@ public class DiaryScreenDocumentController  implements Initializable
     @FXML private  TextField txtExtra4LP = new TextField(); 
     
     //Leopards Den, PM, Bed 5
-    //@FXML private  TextField txtFour = new TextField();
+    @FXML private  TextField txtFiveLP = new TextField();
     @FXML private  TextField txtTime5LP = new TextField();
     @FXML private  TextField txtName5LP = new TextField();
     @FXML private  TextField txtAge5LP = new TextField();
@@ -258,7 +258,7 @@ public class DiaryScreenDocumentController  implements Initializable
     @FXML private  TextField txtExtra5LP = new TextField(); 
     
     //Leopards Den, PM, Bed 6
-    //@FXML private  TextField txtFour = new TextField();
+    @FXML private  TextField txtSixLP = new TextField();
     @FXML private  TextField txtTime6LP = new TextField();
     @FXML private  TextField txtName6LP = new TextField();
     @FXML private  TextField txtAge6LP = new TextField();
@@ -268,7 +268,7 @@ public class DiaryScreenDocumentController  implements Initializable
     @FXML private  TextField txtExtra6LP = new TextField(); 
     
     //Leopards Den, PM, Bed Extra Line
-    //@FXML private  TextField txtSpareMA = new TextField();
+    @FXML private  TextField txtSpareLP = new TextField();
     @FXML private  TextField txtTimeELP = new TextField();
     @FXML private  TextField txtNameELP = new TextField();
     @FXML private  TextField txtAgeELP = new TextField();
