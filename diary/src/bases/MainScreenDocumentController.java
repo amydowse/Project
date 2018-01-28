@@ -6,6 +6,8 @@
 package bases;
 
 import common.codeBank;
+import diary.DiaryScreenDocumentController;
+
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -20,6 +22,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.DatePicker;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -33,7 +36,6 @@ public class MainScreenDocumentController implements Initializable
     @FXML Pane Content;
     
     @FXML private Button btnHome = new Button();
-    @FXML private Button btnCalandar = new Button();
     @FXML private Button btnLeft = new Button();
     @FXML private Button btnRight = new Button();
     @FXML private Label lblDate = new Label();
@@ -43,6 +45,9 @@ public class MainScreenDocumentController implements Initializable
     @FXML private Button btnPreOp = new Button();
     @FXML private Button btnOncology = new Button();
     @FXML private Button btnNonBed = new Button();
+        
+    @FXML private DatePicker dpCalandar = new DatePicker();
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
@@ -63,6 +68,23 @@ public class MainScreenDocumentController implements Initializable
         
 
     }
+    
+    
+    @FXML
+    public void today()
+    {
+        //todays date into a localDate format 
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate Today = LocalDate.now();
+        
+        //showing todays information 
+        DiaryScreenDocumentController x = new DiaryScreenDocumentController();
+        x.showInformation(Today);
+    
+    }
+    
+    
+    
     
     @FXML
     public void showDiary() throws IOException

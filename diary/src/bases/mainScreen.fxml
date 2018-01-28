@@ -19,8 +19,8 @@
     <top>
         <Pane id="topBar" prefHeight="75.0" prefWidth="850.0" style="-fx-background-color: red;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
          <children>
+            <DatePicker fx:id="dpCalandar" editable="false" layoutX="1623.0" prefHeight="75.0" prefWidth="298.0" stylesheets="@datepickerStyle.css" />
             <Button fx:id="btnHome" mnemonicParsing="false" onAction="#Home" prefHeight="75.0" prefWidth="75.0" text="HOME" />
-            <Button fx:id="btnCalandar" layoutX="1845.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" text="CAL" />
             <Button fx:id="btnRight" layoutX="1770.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" text="→" />
             <Button fx:id="btnLeft" layoutX="1695.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" text="←" />
             <Label fx:id="lblDate" layoutX="90.0" layoutY="9.0" prefHeight="21.0" prefWidth="474.0" text="DATE">
@@ -28,15 +28,13 @@
                   <Font size="40.0" />
                </font>
             </Label>
-            <DatePicker fx:id="dpCalandar" editable="false" layoutX="1137.0" prefHeight="75.0" prefWidth="298.0" />
-            <Button fx:id="btnToday" layoutX="1620.0" layoutY="1.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" text="TODAY" />
+            <Button fx:id="btnToday" layoutX="1620.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" text="TODAY" />
          </children>
         </Pane>
     </top>
   
     <center>
-        <Pane fx:id="Content" prefHeight="500.0" prefWidth="334.0" style="-fx-background-color: white" BorderPane.alignment="CENTER">
-        </Pane>
+        <Pane fx:id="Content" prefHeight="500.0" prefWidth="334.0" style="-fx-background-color: white" BorderPane.alignment="CENTER" />
    </center> 
    
     <right>

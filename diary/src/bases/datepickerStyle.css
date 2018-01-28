@@ -1,0 +1,19 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 27-Jan-2018, 15:54:07
+    Author     : amydo
+
+    https://stackoverflow.com/questions/30631179/hide-calendar-button-on-datepicker - accessed 28/1
+*/
+
+.date-picker > .arrow-button {
+    -fx-padding: 28px;
+}
+
+.date-picker > .arrow-button > .arrow{
+    -fx-padding: 10px;
+}
