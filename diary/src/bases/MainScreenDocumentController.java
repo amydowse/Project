@@ -47,9 +47,7 @@ public class MainScreenDocumentController implements Initializable
     @FXML private Button btnNonBed = new Button();
         
     @FXML private DatePicker dpCalandar = new DatePicker();
-    
-    public static LocalDate currentDate = LocalDate.now();
-
+   
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
@@ -69,7 +67,7 @@ public class MainScreenDocumentController implements Initializable
     public void updateDate()
     {
         DateTimeFormatter Stringformatter = DateTimeFormatter.ofPattern("EEEE dd MMMM yyyy");
-        String stringDate = currentDate.format(Stringformatter);
+        String stringDate = codeBank.getCurrentDate().format(Stringformatter);
         lblDate.setText(stringDate);        
     }
     
@@ -79,7 +77,7 @@ public class MainScreenDocumentController implements Initializable
         //todays date into a localDate format 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate Today = LocalDate.now();
-        currentDate = Today;
+        codeBank.setCurrentDate(Today);
         updateDate();
         
         //showing todays information 
@@ -92,15 +90,19 @@ public class MainScreenDocumentController implements Initializable
     @FXML 
     public void plusOneDay()
     {
-        currentDate = currentDate.plusDays(1);
+        codeBank.setCurrentDate(codeBank.getCurrentDate().plusDays(1));
         updateDate();
+        DiaryScreenDocumentController x = new DiaryScreenDocumentController();
+        x.showInformation(codeBank.getCurrentDate());
     }
     
     @FXML 
     public void minusOneDay()
     {
-        currentDate = currentDate.minusDays(1);
+        codeBank.setCurrentDate(codeBank.getCurrentDate().minusDays(1));
         updateDate();
+        DiaryScreenDocumentController x = new DiaryScreenDocumentController();
+        x.showInformation(codeBank.getCurrentDate());
     }
     
     

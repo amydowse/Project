@@ -12,9 +12,23 @@ import java.time.format.DateTimeFormatter;
 /**
  *
  * @author amydo
+ * 
+ * https://stackoverflow.com/questions/42569204/is-it-possible-to-reload-the-same-fxml-controller-instance
  */
 public class codeBank 
-{               
+{    
+    private static LocalDate currentDate = LocalDate.now();
+    
+    public static void setCurrentDate(LocalDate newDate)
+    {
+        currentDate = newDate;
+    }
+    
+    public static LocalDate getCurrentDate()
+    {
+        return currentDate;
+    }
+    
     public static String dateToString(LocalDate localDate)
     {
         DateTimeFormatter Stringformatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");

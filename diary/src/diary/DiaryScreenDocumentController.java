@@ -2,6 +2,7 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
+https://stackoverflow.com/questions/42569204/is-it-possible-to-reload-the-same-fxml-controller-instance
  */
 package diary;
 
@@ -288,10 +289,9 @@ public class DiaryScreenDocumentController  implements Initializable
     {
         //todays date into a localDate format 
         //DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate Today = LocalDate.now();
         
         //showing todays information 
-        showInformation(Today);
+        showInformation(codeBank.getCurrentDate());
         
     }
     
@@ -339,7 +339,9 @@ public class DiaryScreenDocumentController  implements Initializable
                 diary instanceOfDiary = new diary(localDate, bedNumber, localTime, name, age, hospitalNumber, speciality, extraInfo, notes, attendance);
                 allBookings.add(instanceOfDiary);             
             }
+           System.out.println("Number of bookings: " + allBookings.size());
            showResults(allBookings);
+           c.close();
         }
         catch (SQLException e)
         {
@@ -385,13 +387,18 @@ public class DiaryScreenDocumentController  implements Initializable
     
     public void showResults(ArrayList<diary> allBookings)
     {
+        System.out.println("In show results");
+        
         for(int i=0; i<allBookings.size(); i++)
         {
             diary singleBooking = allBookings.get(i);
             
+            System.out.println(">>>>Bed number: " + singleBooking.getBedNumber());
+            
             switch(singleBooking.getBedNumber())
             {
                 case "1MA":
+                    System.out.println("IN 1MA");
                     txtTime1MA.setText((singleBooking.getTime()).toString());
                     txtName1MA.setText(singleBooking.getName());
                     txtAge1MA.setText(String.valueOf(singleBooking.getAge()));
@@ -631,7 +638,8 @@ public class DiaryScreenDocumentController  implements Initializable
                     txtExtraELP.setText(String.valueOf(singleBooking.getExtraInfo()));
                     attendanceColour(txtSpareLP, singleBooking.getAttendance());                     
                     break;
-                    
+                default:
+                    break;
                     
             }
         }
