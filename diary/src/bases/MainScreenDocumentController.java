@@ -47,14 +47,21 @@ public class MainScreenDocumentController implements Initializable
     @FXML private Button btnNonBed = new Button();
         
     @FXML private DatePicker dpCalandar = new DatePicker();
-   
+    
+    private DiaryScreenDocumentController DSDC;
+    private Pane x;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
+              
         ContentPane = this.Content;
         try 
         {
+            FXMLLoader DSL = new FXMLLoader(getClass().getResource("/diary/diaryScreen.fxml"));            
+            x = DSL.load();
+            DSDC = DSL.getController();
+           
             updateDate();
             showDiary();
         } 
@@ -92,8 +99,7 @@ public class MainScreenDocumentController implements Initializable
     {
         codeBank.setCurrentDate(codeBank.getCurrentDate().plusDays(1));
         updateDate();
-        DiaryScreenDocumentController x = new DiaryScreenDocumentController();
-        x.showInformation(codeBank.getCurrentDate());
+        DSDC.showInformation(codeBank.getCurrentDate());
     }
     
     @FXML 
@@ -101,18 +107,18 @@ public class MainScreenDocumentController implements Initializable
     {
         codeBank.setCurrentDate(codeBank.getCurrentDate().minusDays(1));
         updateDate();
-        DiaryScreenDocumentController x = new DiaryScreenDocumentController();
-        x.showInformation(codeBank.getCurrentDate());
+        DSDC.showInformation(codeBank.getCurrentDate());
     }
     
     
     @FXML
     public void showDiary() throws IOException
     {
-       Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/diary/diaryScreen.fxml"));
-       changeContentPane(newLoadedPane);    
+       //Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/diary/diaryScreen.fxml"));
+       changeContentPane(x);    
+        
     }
-    
+   
     @FXML
     public void showBlood() throws IOException
     {
