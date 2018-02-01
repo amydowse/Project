@@ -86,10 +86,8 @@ public class MainScreenDocumentController implements Initializable
         LocalDate Today = LocalDate.now();
         codeBank.setCurrentDate(Today);
         updateDate();
+        DSDC.showInformation(codeBank.getCurrentDate());
         
-        //showing todays information 
-        //codeBank.x.showInformation(currentDate);
-    
     }
     
     

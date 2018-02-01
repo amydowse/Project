@@ -296,7 +296,10 @@ public class DiaryScreenDocumentController  implements Initializable
     }
     
     public void showInformation(LocalDate SearchDate)
-    {
+    {   
+        allBookings.clear();
+        clearDiary();
+        
         try
         {
             // open a connection
@@ -317,7 +320,6 @@ public class DiaryScreenDocumentController  implements Initializable
             
             while(rs.next())
             { 
-                System.out.println("HERE");
                 //get String into LocalDate
                 String date = rs.getString("Date"); //LocalDate
                 LocalDate localDate = codeBank.stringToDate(date);
@@ -339,7 +341,6 @@ public class DiaryScreenDocumentController  implements Initializable
                 diary instanceOfDiary = new diary(localDate, bedNumber, localTime, name, age, hospitalNumber, speciality, extraInfo, notes, attendance);
                 allBookings.add(instanceOfDiary);             
             }
-           System.out.println("Number of bookings: " + allBookings.size());
            showResults(allBookings);
            c.close();
         }
@@ -350,55 +351,16 @@ public class DiaryScreenDocumentController  implements Initializable
     }
     
     
-    public String showNotes(TextField txt, int notes)
-    {
-        if(notes == 0)
-        {
-            return " ";
-        }
-        else if (notes == 1)
-        {
-            txt.setStyle(" -fx-text-fill: #FFD800"); //orange
-            return "O";
-        }
-        else
-        {
-            txt.setStyle(" -fx-text-fill: #00FF31"); //green
-            return "✓";
-        }
-    }
-    
-    public void attendanceColour(TextField txt, int attendance)
-    {
-        if(attendance == 0)
-        {
-            txt.setStyle(" -fx-background-color: #FFFFFF"); //white
-        }
-        else if (attendance == 1)
-        {
-            txt.setStyle(" -fx-background-color: #00FF31"); //green
-        }
-        else
-        {
-            txt.setStyle(" -fx-background-color: #FF0000"); //red
-        }
-    }
-    
     
     public void showResults(ArrayList<diary> allBookings)
     {
-        System.out.println("In show results");
-        
         for(int i=0; i<allBookings.size(); i++)
         {
             diary singleBooking = allBookings.get(i);
-            
-            System.out.println(">>>>Bed number: " + singleBooking.getBedNumber());
-            
+                       
             switch(singleBooking.getBedNumber())
             {
                 case "1MA":
-                    System.out.println("IN 1MA");
                     txtTime1MA.setText((singleBooking.getTime()).toString());
                     txtName1MA.setText(singleBooking.getName());
                     txtAge1MA.setText(String.valueOf(singleBooking.getAge()));
@@ -642,6 +604,263 @@ public class DiaryScreenDocumentController  implements Initializable
                     break;
                     
             }
+        }
+    }
+    
+    
+    public void clearDiary()
+    {  
+        txtTime1MA.setText("");
+        txtName1MA.setText("");
+        txtAge1MA.setText("");
+        txtHospital1MA.setText("");
+        txtSpeciality1MA.setText("");
+        txtNotes1MA.setText("");
+        txtExtra1MA.setText("");
+        attendanceColour(txtOneMA, 0);
+                 
+        txtTime2MA.setText("");
+        txtName2MA.setText("");
+        txtAge2MA.setText("");
+        txtHospital2MA.setText("");
+        txtSpeciality2MA.setText("");
+        txtNotes2MA.setText("");
+        txtExtra2MA.setText("");
+        attendanceColour(txtTwoMA, 0);
+      
+        txtTime3MA.setText("");
+        txtName3MA.setText("");
+        txtAge3MA.setText("");
+        txtHospital3MA.setText("");
+        txtSpeciality3MA.setText("");
+        txtNotes3MA.setText("");
+        txtExtra3MA.setText(""); 
+        attendanceColour(txtThreeMA, 0);
+                 
+        txtTime4MA.setText("");
+        txtName4MA.setText("");
+        txtAge4MA.setText("");
+        txtHospital4MA.setText("");
+        txtSpeciality4MA.setText("");
+        txtNotes4MA.setText("");
+        txtExtra4MA.setText("");
+        attendanceColour(txtFourMA, 0);
+                    
+        txtTimeEMA.setText("");
+        txtNameEMA.setText("");
+        txtAgeEMA.setText("");
+        txtHospitalEMA.setText("");
+        txtSpecialityEMA.setText("");
+        txtNotesEMA.setText("");
+        txtExtraEMA.setText("");
+        attendanceColour(txtSpareMA, 0);
+                  
+        txtTime1LA.setText("");
+        txtName1LA.setText("");
+        txtAge1LA.setText("");
+        txtHospital1LA.setText("");
+        txtSpeciality1LA.setText("");
+        txtNotes1LA.setText("");
+        txtExtra1LA.setText("");   
+        attendanceColour(txtOneLA, 0);
+                  
+        txtTime2LA.setText("");   
+        txtName2LA.setText("");   
+        txtAge2LA.setText("");   
+        txtHospital2LA.setText("");   
+        txtSpeciality2LA.setText("");   
+        txtNotes2LA.setText("");   
+        txtExtra2LA.setText("");   
+        attendanceColour(txtTwoLA, 0);
+                   
+        txtTime3LA.setText("");   
+        txtName3LA.setText("");   
+        txtAge3LA.setText("");   
+        txtHospital3LA.setText("");   
+        txtSpeciality3LA.setText("");   
+        txtNotes3LA.setText("");   
+        txtExtra3LA.setText("");     
+        attendanceColour(txtThreeLA, 0);
+                  
+        txtTime4LA.setText("");   
+        txtName4LA.setText("");   
+        txtAge4LA.setText("");   
+        txtHospital4LA.setText("");   
+        txtSpeciality4LA.setText("");   
+        txtNotes4LA.setText("");   
+        txtExtra4LA.setText("");     
+        attendanceColour(txtFourLA, 0);
+                   
+        txtTime5LA.setText("");   
+        txtName5LA.setText("");   
+        txtAge5LA.setText("");   
+        txtHospital5LA.setText("");   
+        txtSpeciality5LA.setText("");   
+        txtNotes5LA.setText("");   
+        txtExtra5LA.setText("");   
+        attendanceColour(txtFiveLA, 0);
+                    
+        txtTime6LA.setText("");   
+        txtName6LA.setText("");   
+        txtAge6LA.setText("");   
+        txtHospital6LA.setText("");   
+        txtSpeciality6LA.setText("");   
+        txtNotes6LA.setText("");   
+        txtExtra6LA.setText("");    
+        attendanceColour(txtSixLA, 0);
+                   
+        txtTimeELA.setText("");   
+        txtNameELA.setText("");   
+        txtAgeELA.setText("");   
+        txtHospitalELA.setText("");   
+        txtSpecialityELA.setText("");   
+        txtNotesELA.setText("");   
+        txtExtraELA.setText("");   
+        attendanceColour(txtSpareLA, 0);                    
+                    
+        txtTime1MP.setText("");   
+        txtName1MP.setText("");   
+        txtAge1MP.setText("");   
+        txtHospital1MP.setText("");   
+        txtSpeciality1MP.setText("");   
+        txtNotes1MP.setText("");   
+        txtExtra1MP.setText("");   
+        attendanceColour(txtOneMP, 0);                    
+                   
+        txtTime2MP.setText("");   
+        txtName2MP.setText("");   
+        txtAge2MP.setText("");   
+        txtHospital2MP.setText("");   
+        txtSpeciality2MP.setText("");   
+        txtNotes2MP.setText("");   
+        txtExtra2MP.setText("");   
+        attendanceColour(txtTwoMP, 0); 
+                  
+        txtTime3MP.setText("");   
+        txtName3MP.setText("");   
+        txtAge3MP.setText("");   
+        txtHospital3MP.setText("");   
+        txtSpeciality3MP.setText("");   
+        txtNotes3MP.setText("");   
+        txtExtra3MP.setText("");       
+        attendanceColour(txtThreeMP, 0); 
+                  
+        txtTime4MP.setText("");   
+        txtName4MP.setText("");   
+        txtAge4MP.setText("");   
+        txtHospital4MP.setText("");   
+        txtSpeciality4MP.setText("");   
+        txtNotes4MP.setText("");   
+        txtExtra4MP.setText("");   
+        attendanceColour(txtFourMP, 0); 
+                   
+        txtTimeEMP.setText("");   
+        txtNameEMP.setText("");   
+        txtAgeEMP.setText("");   
+        txtHospitalEMP.setText("");   
+        txtSpecialityEMP.setText("");   
+        txtNotesEMP.setText("");   
+        txtExtraEMP.setText("");    
+        attendanceColour(txtSpareMP, 0); 
+                   
+        txtTime1LP.setText("");   
+        txtName1LP.setText("");   
+        txtAge1LP.setText("");   
+        txtHospital1LP.setText("");   
+        txtSpeciality1LP.setText("");   
+        txtNotes1LP.setText("");   
+        txtExtra1LP.setText("");      
+        attendanceColour(txtOneLP, 0); 
+                   
+        txtTime2LP.setText("");   
+        txtName2LP.setText("");   
+        txtAge2LP.setText("");   
+        txtHospital2LP.setText("");   
+        txtSpeciality2LP.setText("");   
+        txtNotes2LP.setText("");   
+        txtExtra2LP.setText("");   
+        attendanceColour(txtTwoLP, 0); 
+                   
+        txtTime3LP.setText("");   
+        txtName3LP.setText("");   
+        txtAge3LP.setText("");   
+        txtHospital3LP.setText("");   
+        txtSpeciality3LP.setText("");   
+        txtNotes3LP.setText("");   
+        txtExtra3LP.setText("");   
+        attendanceColour(txtThreeLP, 0);
+
+        txtTime4LP.setText("");   
+        txtName4LP.setText("");   
+        txtAge4LP.setText("");   
+        txtHospital4LP.setText("");   
+        txtSpeciality4LP.setText("");   
+        txtNotes4LP.setText("");   
+        txtExtra4LP.setText("");   
+        attendanceColour(txtFourLP, 0);
+
+        txtTime5LP.setText("");   
+        txtName5LP.setText("");   
+        txtAge5LP.setText("");   
+        txtHospital5LP.setText("");   
+        txtSpeciality5LP.setText("");   
+        txtNotes5LP.setText("");   
+        txtExtra5LP.setText("");   
+        attendanceColour(txtFiveLP, 0);
+
+        txtTime6LP.setText("");   
+        txtName6LP.setText("");   
+        txtAge6LP.setText("");   
+        txtHospital6LP.setText("");   
+        txtSpeciality6LP.setText("");   
+        txtNotes6LP.setText("");   
+        txtExtra6LP.setText("");   
+        attendanceColour(txtSixLP, 0);
+
+        txtTimeELP.setText("");   
+        txtNameELP.setText("");   
+        txtAgeELP.setText("");   
+        txtHospitalELP.setText("");   
+        txtSpecialityELP.setText("");   
+        txtNotesELP.setText("");   
+        txtExtraELP.setText("");   
+        attendanceColour(txtSpareLP, 0);                     
+        
+    }
+    
+    
+    
+    public String showNotes(TextField txt, int notes)
+    {
+        if(notes == 0)
+        {
+            return " ";
+        }
+        else if (notes == 1)
+        {
+            txt.setStyle(" -fx-text-fill: #FFD800"); //orange
+            return "O";
+        }
+        else
+        {
+            txt.setStyle(" -fx-text-fill: #00FF31"); //green
+            return "✓";
+        }
+    }
+    
+    public void attendanceColour(TextField txt, int attendance)
+    {
+        if(attendance == 0)
+        {
+            txt.setStyle(" -fx-background-color: #FFFFFF"); //white
+        }
+        else if (attendance == 1)
+        {
+            txt.setStyle(" -fx-background-color: #00FF31"); //green
+        }
+        else
+        {
+            txt.setStyle(" -fx-background-color: #FF0000"); //red
         }
     }
 
