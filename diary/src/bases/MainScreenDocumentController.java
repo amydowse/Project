@@ -108,6 +108,15 @@ public class MainScreenDocumentController implements Initializable
         DSDC.showInformation(codeBank.getCurrentDate());
     }
     
+    @FXML
+    //method for date picker 
+    public void selectedDate()
+    {
+        codeBank.setCurrentDate(dpCalandar.getValue());
+        updateDate();
+        DSDC.showInformation(codeBank.getCurrentDate());
+    }
+    
     
     @FXML
     public void showDiary() throws IOException
