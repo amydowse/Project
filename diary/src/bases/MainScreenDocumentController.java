@@ -62,6 +62,8 @@ public class MainScreenDocumentController implements Initializable
             x = DSL.load();
             DSDC = DSL.getController();
            
+            codeBank.setCurrentDate(LocalDate.now());
+            
             updateDate();
             showDiary();
         } 
@@ -87,6 +89,8 @@ public class MainScreenDocumentController implements Initializable
         codeBank.setCurrentDate(Today);
         updateDate();
         DSDC.showInformation(codeBank.getCurrentDate());
+        DSDC.showStaff(codeBank.getCurrentDate());
+        DSDC.showNotes(codeBank.getCurrentDate());
         
     }
     
@@ -98,6 +102,8 @@ public class MainScreenDocumentController implements Initializable
         codeBank.setCurrentDate(codeBank.getCurrentDate().plusDays(1));
         updateDate();
         DSDC.showInformation(codeBank.getCurrentDate());
+        DSDC.showStaff(codeBank.getCurrentDate());
+        DSDC.showNotes(codeBank.getCurrentDate());
     }
     
     @FXML 
@@ -106,6 +112,8 @@ public class MainScreenDocumentController implements Initializable
         codeBank.setCurrentDate(codeBank.getCurrentDate().minusDays(1));
         updateDate();
         DSDC.showInformation(codeBank.getCurrentDate());
+        DSDC.showStaff(codeBank.getCurrentDate());
+        DSDC.showNotes(codeBank.getCurrentDate());
     }
     
     @FXML
@@ -163,6 +171,7 @@ public class MainScreenDocumentController implements Initializable
     public void Home() throws IOException
     {
         Parent root = FXMLLoader.load(getClass().getResource("/bases/startScreen.fxml"));
+        DSDC.save(codeBank.getCurrentDate());
         Scene scene = new Scene(root);
         bases.Start.stage.setScene(scene);
         

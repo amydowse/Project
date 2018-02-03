@@ -21,6 +21,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 
@@ -280,6 +281,20 @@ public class DiaryScreenDocumentController  implements Initializable
     
     private ArrayList<diary> allBookings = new ArrayList<diary>();
     
+    
+    //Top section
+    //put in fxml of staff and notes 
+    @FXML private TextField txtStaff1 = new TextField();
+    @FXML private TextField txtStaff2 = new TextField();
+    @FXML private TextField txtStaff3 = new TextField();
+    @FXML private TextField txtStaff4 = new TextField();
+    @FXML private TextField txtStaff5 = new TextField();
+    @FXML private TextField txtStaff6 = new TextField();
+    
+    @FXML private TextArea txtNotes = new TextArea();
+    
+    private ArrayList<workingStaff> staff = new ArrayList<workingStaff>();
+       
       
     //METHODS -----------------------------------------------------------------------
     
@@ -287,19 +302,138 @@ public class DiaryScreenDocumentController  implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
-        //todays date into a localDate format 
-        //DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        
-        //showing todays information 
         showInformation(codeBank.getCurrentDate());
-        
+        showStaff(codeBank.getCurrentDate());
+        //showNotes(codeBank.getCurrentDate());
+    }
+    
+    public void showStaff(LocalDate SearchDate)
+    {
+        try
+        {
+            // open a connection
+            Connection c = DatabaseConnector.activateConnection();
+            c.setAutoCommit( true ); 
+            ResultSet rs ;
+            
+            // when creating a statement object, you MUST use a connection object to call the instance method
+            Statement stmt = c.createStatement();
+            String stringDate = codeBank.dateToString(SearchDate);          
+            
+            //implement query
+            rs = stmt.executeQuery("SELECT * FROM staff, working WHERE working.Date = '" + stringDate + "' AND staff.ID = working.Staff_ID"); 
+                        
+            while(rs.next())
+            { 
+                String firstname = rs.getString("FirstName");
+                String lastname = rs.getString("LastName");
+                
+                workingStaff instanceOfWorkingStaff = new workingStaff(firstname, lastname);
+                staff.add(instanceOfWorkingStaff);
+                
+            }
+            printStaffNames(staff);
+            c.close();
+        }
+        catch (SQLException e)
+        {
+            
+        } 
+    }
+    
+    public void showNotes(LocalDate SearchDate)
+    {
+        try
+        {
+            // open a connection
+            Connection c = DatabaseConnector.activateConnection();
+            c.setAutoCommit( true ); 
+            ResultSet rs ;
+            
+            // when creating a statement object, you MUST use a connection object to call the instance method
+            Statement stmt = c.createStatement();
+            
+            String stringDate = codeBank.dateToString(SearchDate);
+            
+            
+            //implement query
+            rs = stmt.executeQuery("SELECT * FROM notes WHERE Date = '" + stringDate + "'" );
+            
+            while(rs.next())
+            { 
+                    txtNotes.setText("NOTES \n\n " + rs.getString("Notes")); 
+            }
+            c.close();
+        }
+        catch (SQLException e)
+        {
+            
+        }  
+    }
+    
+    
+    public void printStaffNames(ArrayList<workingStaff> staff)
+    {
+        if(staff.size()==1)
+        {
+            txtStaff1.setText(staff.get(0).getWorkName());
+        }
+        else if (staff.size() == 2)
+        {
+            txtStaff1.setText(staff.get(0).getWorkName());
+            txtStaff2.setText(staff.get(1).getWorkName());
+        }
+        else if (staff.size() == 3)
+        {
+            txtStaff1.setText(staff.get(0).getWorkName());
+            txtStaff2.setText(staff.get(1).getWorkName());
+            txtStaff3.setText(staff.get(2).getWorkName());
+        }
+        else if (staff.size() == 4)
+        {
+            txtStaff1.setText(staff.get(0).getWorkName());
+            txtStaff2.setText(staff.get(1).getWorkName());
+            txtStaff3.setText(staff.get(2).getWorkName());
+            txtStaff4.setText(staff.get(3).getWorkName());
+        }
+        else if (staff.size() == 5)
+        {
+            txtStaff1.setText(staff.get(0).getWorkName());
+            txtStaff2.setText(staff.get(1).getWorkName());
+            txtStaff3.setText(staff.get(2).getWorkName());
+            txtStaff4.setText(staff.get(3).getWorkName());
+            txtStaff5.setText(staff.get(4).getWorkName());
+        }
+        else if (staff.size() == 6)
+        {
+            txtStaff1.setText(staff.get(0).getWorkName());
+            txtStaff2.setText(staff.get(1).getWorkName());
+            txtStaff3.setText(staff.get(2).getWorkName());
+            txtStaff4.setText(staff.get(3).getWorkName());
+            txtStaff5.setText(staff.get(4).getWorkName());
+            txtStaff6.setText(staff.get(5).getWorkName());
+        }
+    }
+    
+    
+    
+    public void clearTopSection()
+    {
+        staff.clear();
+        txtNotes.setText("");
+        txtStaff1.setText("");
+        txtStaff2.setText("");
+        txtStaff3.setText("");
+        txtStaff4.setText("");
+        txtStaff5.setText("");
+        txtStaff6.setText("");
     }
     
     public void showInformation(LocalDate SearchDate)
     {   
         allBookings.clear();
         clearDiary();
-        
+        clearTopSection();
         try
         {
             // open a connection
@@ -865,4 +999,51 @@ public class DiaryScreenDocumentController  implements Initializable
     }
 
     
+    
+    public void save(LocalDate today)
+    {
+        System.out.println("IN SAVE");
+        try
+        {
+            // open a connection
+            Connection c = DatabaseConnector.activateConnection();
+            c.setAutoCommit( true ); 
+            
+            // when creating a statement object, you MUST use a connection object to call the instance method
+            Statement stmt = c.createStatement();
+            String stringDate = codeBank.dateToString(today);          
+            
+            //implement query
+            String sql = save1MA(stringDate);
+            
+            System.out.println(sql);
+            
+            stmt.executeUpdate(sql);
+                         
+            c.close();
+        }
+        catch (SQLException e)
+        {
+            
+        } 
+    }
+    
+    public String save1MA(String date)
+    {
+        System.out.println("IN 1MA SAVE");
+        return ("REPLACE INTO diary (Date, BedNumber, Time, Name, Age, HospitalNumber, Speciality, ExtraInfo, Notes, Attendance) VALUES('"      
+                                                                            + date + "','"
+                                                                            + "1MA" + "','"
+                                                                            + txtTime1MA.getText() + "','"
+                                                                            + txtName1MA.getText() + "','"
+                                                                            + txtAge1MA.getText() + "','"
+                                                                            + txtHospital1MA.getText() + "','"
+                                                                            + txtSpeciality1MA.getText() + "','"
+                                                                            + txtExtra1MA.getText() + "','"
+                                                                            + txtNotes1MA.getText() + "','"
+                                                                            + "X" + "')"
+                );
+    }   
+    
 }
+
