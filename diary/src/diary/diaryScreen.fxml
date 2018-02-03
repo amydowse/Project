@@ -4,6 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
+<?import java.util.ArrayList?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="975.0" prefWidth="1770.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="diary.DiaryScreenDocumentController">
    <children>
@@ -661,4 +662,38 @@
       <TextField fx:id="txtExtraELP" alignment="CENTER" editable="false" layoutX="1702.0" layoutY="898.0" prefHeight="48.75" prefWidth="76.0" />  
       
    </children>
+   
+   
+   
+   <fx:define>
+       <ArrayList fx:id="attendanceList">
+         <fx:reference source="txtOneMA"/>
+         <fx:reference source="txtTwoMA"/>
+         <fx:reference source="txtThreeMA"/>
+         <fx:reference source="txtFourMA"/>
+         <fx:reference source="txtSpareMA"/>
+         <fx:reference source="txtOneLA"/>
+         <fx:reference source="txtTwoLA"/>
+         <fx:reference source="txtThreeLA"/>
+         <fx:reference source="txtFourLA"/>
+         <fx:reference source="txtFiveLA"/>
+         <fx:reference source="txtSixLA"/>
+         <fx:reference source="txtSpareLA"/>
+         <fx:reference source="txtOneMP"/>
+         <fx:reference source="txtTwoMP"/>
+         <fx:reference source="txtThreeMP"/>
+         <fx:reference source="txtFourMP"/>
+         <fx:reference source="txtSpareMP"/>
+         <fx:reference source="txtOneLP"/>
+         <fx:reference source="txtTwoLP"/>
+         <fx:reference source="txtThreeLP"/>
+         <fx:reference source="txtFourLP"/>
+         <fx:reference source="txtFiveLP"/>
+         <fx:reference source="txtSixLP"/>
+         <fx:reference source="txtSpareLP"/>         
+       </ArrayList>
+   </fx:define>
+   
+   
+   
 </Pane>
