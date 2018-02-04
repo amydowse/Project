@@ -8,6 +8,7 @@ package diary;
 
 import common.DatabaseConnector;
 import common.codeBank;
+import java.awt.event.MouseEvent;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -21,6 +22,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -295,11 +297,15 @@ public class DiaryScreenDocumentController  implements Initializable
     @FXML private TextArea txtNotes = new TextArea();
     
     @FXML private List<TextField> attendanceList;
+    @FXML private List<TextField> notesList;
     
     private ArrayList<workingStaff> staff = new ArrayList<workingStaff>();
-       
+    
+    int[] attendanceArray = new int[24];
+    int[] notesArray = new int[24];
       
     //METHODS -----------------------------------------------------------------------
+     
     
     
     @Override
@@ -307,8 +313,110 @@ public class DiaryScreenDocumentController  implements Initializable
     {
         showInformation(codeBank.getCurrentDate());
         showStaff(codeBank.getCurrentDate());
-        //showNotes(codeBank.getCurrentDate());
+       
     }
+    
+   
+    
+    //Each method associated with the textfield for the bed numbers 
+    @FXML public void MA1Attendance(){change(0);}
+    @FXML public void MA2Attendance(){change(1);}
+    @FXML public void MA3Attendance(){change(2);}
+    @FXML public void MA4Attendance(){change(3);}
+    @FXML public void MAEAttendance(){change(4);}
+    @FXML public void LA1Attendance(){change(5);}
+    @FXML public void LA2Attendance(){change(6);}
+    @FXML public void LA3Attendance(){change(7);}
+    @FXML public void LA4Attendance(){change(8);}
+    @FXML public void LA5Attendance(){change(9);}
+    @FXML public void LA6Attendance(){change(10);}
+    @FXML public void LAEAttendance(){change(11);}
+    @FXML public void MP1Attendance(){change(12);}
+    @FXML public void MP2Attendance(){change(13);}
+    @FXML public void MP3Attendance(){change(14);}
+    @FXML public void MP4Attendance(){change(15);}
+    @FXML public void MPEAttendance(){change(16);}
+    @FXML public void LP1Attendance(){change(17);}
+    @FXML public void LP2Attendance(){change(18);}
+    @FXML public void LP3Attendance(){change(19);}
+    @FXML public void LP4Attendance(){change(20);}
+    @FXML public void LP5Attendance(){change(21);}
+    @FXML public void LP6Attendance(){change(22);}
+    @FXML public void LPEAttendance(){change(23);}
+    
+    
+    //Change the attendance colour when you click on it 
+    public void change(int arrayValue)
+    {
+        if(attendanceArray[arrayValue] == 0)
+        {
+            attendanceArray[arrayValue] = 1;
+        }
+        else if(attendanceArray[arrayValue] == 1)
+        {
+            attendanceArray[arrayValue] = 2;
+        }
+        else if(attendanceArray[arrayValue] == 2)
+        {
+            attendanceArray[arrayValue] = 0;
+        }
+        
+        attendanceColour(attendanceList.get(arrayValue),attendanceArray[arrayValue]);
+    }
+    
+    
+    //Each method associated with the textfield for notes
+    @FXML public void MA1Notes(){changeNotes(0);}
+    @FXML public void MA2Notes(){changeNotes(1);}
+    @FXML public void MA3Notes(){changeNotes(2);}
+    @FXML public void MA4Notes(){changeNotes(3);}
+    @FXML public void MAENotes(){changeNotes(4);}
+    @FXML public void LA1Notes(){changeNotes(5);}
+    @FXML public void LA2Notes(){changeNotes(6);}
+    @FXML public void LA3Notes(){changeNotes(7);}
+    @FXML public void LA4Notes(){changeNotes(8);}
+    @FXML public void LA5Notes(){changeNotes(9);}
+    @FXML public void LA6Notes(){changeNotes(10);}
+    @FXML public void LAENotes(){changeNotes(11);}
+    @FXML public void MP1Notes(){changeNotes(12);}
+    @FXML public void MP2Notes(){changeNotes(13);}
+    @FXML public void MP3Notes(){changeNotes(14);}
+    @FXML public void MP4Notes(){changeNotes(15);}
+    @FXML public void MPENotes(){changeNotes(16);}
+    @FXML public void LP1Notes(){changeNotes(17);}
+    @FXML public void LP2Notes(){changeNotes(18);}
+    @FXML public void LP3Notes(){changeNotes(19);}
+    @FXML public void LP4Notes(){changeNotes(20);}
+    @FXML public void LP5Notes(){changeNotes(21);}
+    @FXML public void LP6Notes(){changeNotes(22);}
+    @FXML public void LPENotes(){changeNotes(23);}
+    
+  //Change the attendance colour when you click on it 
+    public void changeNotes(int arrayValue)
+    {
+        if(notesArray[arrayValue] == 0)
+        {
+            notesArray[arrayValue] = 1;
+        }
+        else if(notesArray[arrayValue] == 1)
+        {
+            notesArray[arrayValue] = 2;
+        }
+        else if(notesArray[arrayValue] == 2)
+        {
+            notesArray[arrayValue] = 0;
+        }
+                
+        showNotes(notesList.get(arrayValue),notesArray[arrayValue]);
+    }  
+    
+    
+    
+    
+    
+    
+    
+    
     
     public void showStaff(LocalDate SearchDate)
     {
@@ -487,8 +595,7 @@ public class DiaryScreenDocumentController  implements Initializable
         }  
     }
     
-    
-    int[] attendanceArray = new int[24];
+  
     
     public void showResults(ArrayList<diary> allBookings)
     {
@@ -504,7 +611,7 @@ public class DiaryScreenDocumentController  implements Initializable
                     txtAge1MA.setText(String.valueOf(singleBooking.getAge()));
                     txtHospital1MA.setText(singleBooking.getHospitalNumber());
                     txtSpeciality1MA.setText(singleBooking.getSpeciality());
-                    txtNotes1MA.setText(showNotes(txtNotes1MA, singleBooking.getNotes()));
+                    notesArray[0]=singleBooking.getNotes();
                     txtExtra1MA.setText(String.valueOf(singleBooking.getExtraInfo()));
                     attendanceArray[0] = singleBooking.getAttendance();
                     break;
@@ -514,7 +621,7 @@ public class DiaryScreenDocumentController  implements Initializable
                     txtAge2MA.setText(String.valueOf(singleBooking.getAge()));
                     txtHospital2MA.setText(singleBooking.getHospitalNumber());
                     txtSpeciality2MA.setText(singleBooking.getSpeciality());
-                    txtNotes2MA.setText(showNotes(txtNotes2MA,singleBooking.getNotes()));
+                    notesArray[1]=singleBooking.getNotes();
                     txtExtra2MA.setText(String.valueOf(singleBooking.getExtraInfo()));
                     attendanceArray[1] = singleBooking.getAttendance();
                     break;
@@ -524,7 +631,7 @@ public class DiaryScreenDocumentController  implements Initializable
                     txtAge3MA.setText(String.valueOf(singleBooking.getAge()));
                     txtHospital3MA.setText(singleBooking.getHospitalNumber());
                     txtSpeciality3MA.setText(singleBooking.getSpeciality());
-                    txtNotes3MA.setText(showNotes(txtNotes3MA,singleBooking.getNotes()));
+                    notesArray[2]=singleBooking.getNotes();
                     txtExtra3MA.setText(String.valueOf(singleBooking.getExtraInfo()));  
                     attendanceArray[2] = singleBooking.getAttendance();
                     break;
@@ -534,7 +641,7 @@ public class DiaryScreenDocumentController  implements Initializable
                     txtAge4MA.setText(String.valueOf(singleBooking.getAge()));
                     txtHospital4MA.setText(singleBooking.getHospitalNumber());
                     txtSpeciality4MA.setText(singleBooking.getSpeciality());
-                    txtNotes4MA.setText(showNotes(txtNotes4MA,singleBooking.getNotes()));
+                    notesArray[3]=singleBooking.getNotes();
                     txtExtra4MA.setText(String.valueOf(singleBooking.getExtraInfo()));
                     attendanceArray[3] = singleBooking.getAttendance();
                     break;
@@ -544,7 +651,7 @@ public class DiaryScreenDocumentController  implements Initializable
                     txtAgeEMA.setText(String.valueOf(singleBooking.getAge()));
                     txtHospitalEMA.setText(singleBooking.getHospitalNumber());
                     txtSpecialityEMA.setText(singleBooking.getSpeciality());
-                    txtNotesEMA.setText(showNotes(txtNotesEMA,singleBooking.getNotes()));
+                    notesArray[4]=singleBooking.getNotes();
                     txtExtraEMA.setText(String.valueOf(singleBooking.getExtraInfo()));
                     attendanceArray[4] = singleBooking.getAttendance();
                     break;
@@ -554,7 +661,7 @@ public class DiaryScreenDocumentController  implements Initializable
                     txtAge1LA.setText(String.valueOf(singleBooking.getAge()));
                     txtHospital1LA.setText(singleBooking.getHospitalNumber());
                     txtSpeciality1LA.setText(singleBooking.getSpeciality());
-                    txtNotes1LA.setText(showNotes(txtNotes1LA,singleBooking.getNotes()));
+                    notesArray[5]=singleBooking.getNotes();
                     txtExtra1LA.setText(String.valueOf(singleBooking.getExtraInfo()));    
                     attendanceArray[5] = singleBooking.getAttendance();
                     break;
@@ -564,7 +671,7 @@ public class DiaryScreenDocumentController  implements Initializable
                     txtAge2LA.setText(String.valueOf(singleBooking.getAge()));
                     txtHospital2LA.setText(singleBooking.getHospitalNumber());
                     txtSpeciality2LA.setText(singleBooking.getSpeciality());
-                    txtNotes2LA.setText(showNotes(txtNotes2LA, singleBooking.getNotes()));
+                    notesArray[6]=singleBooking.getNotes();
                     txtExtra2LA.setText(String.valueOf(singleBooking.getExtraInfo())); 
                     attendanceArray[6] = singleBooking.getAttendance();
                     break;
@@ -574,7 +681,7 @@ public class DiaryScreenDocumentController  implements Initializable
                     txtAge3LA.setText(String.valueOf(singleBooking.getAge()));
                     txtHospital3LA.setText(singleBooking.getHospitalNumber());
                     txtSpeciality3LA.setText(singleBooking.getSpeciality());
-                    txtNotes3LA.setText(showNotes(txtNotes3LA, singleBooking.getNotes()));
+                    notesArray[7]=singleBooking.getNotes();
                     txtExtra3LA.setText(String.valueOf(singleBooking.getExtraInfo()));  
                     attendanceArray[7] = singleBooking.getAttendance();
                     break;
@@ -584,7 +691,7 @@ public class DiaryScreenDocumentController  implements Initializable
                     txtAge4LA.setText(String.valueOf(singleBooking.getAge()));
                     txtHospital4LA.setText(singleBooking.getHospitalNumber());
                     txtSpeciality4LA.setText(singleBooking.getSpeciality());
-                    txtNotes4LA.setText(showNotes(txtNotes4LA, singleBooking.getNotes()));
+                    notesArray[8]=singleBooking.getNotes();
                     txtExtra4LA.setText(String.valueOf(singleBooking.getExtraInfo()));  
                     attendanceArray[8] = singleBooking.getAttendance();
                     break;
@@ -594,7 +701,7 @@ public class DiaryScreenDocumentController  implements Initializable
                     txtAge5LA.setText(String.valueOf(singleBooking.getAge()));
                     txtHospital5LA.setText(singleBooking.getHospitalNumber());
                     txtSpeciality5LA.setText(singleBooking.getSpeciality());
-                    txtNotes5LA.setText(showNotes(txtNotes5LA, singleBooking.getNotes()));
+                    notesArray[9]=singleBooking.getNotes();
                     txtExtra5LA.setText(String.valueOf(singleBooking.getExtraInfo())); 
                     attendanceArray[9] = singleBooking.getAttendance();
                     break;
@@ -604,7 +711,7 @@ public class DiaryScreenDocumentController  implements Initializable
                     txtAge6LA.setText(String.valueOf(singleBooking.getAge()));
                     txtHospital6LA.setText(singleBooking.getHospitalNumber());
                     txtSpeciality6LA.setText(singleBooking.getSpeciality());
-                    txtNotes6LA.setText(showNotes(txtNotes6LA, singleBooking.getNotes()));
+                    notesArray[10]=singleBooking.getNotes();
                     txtExtra6LA.setText(String.valueOf(singleBooking.getExtraInfo()));  
                     attendanceArray[10] = singleBooking.getAttendance();
                     break;
@@ -614,7 +721,7 @@ public class DiaryScreenDocumentController  implements Initializable
                     txtAgeELA.setText(String.valueOf(singleBooking.getAge()));
                     txtHospitalELA.setText(singleBooking.getHospitalNumber());
                     txtSpecialityELA.setText(singleBooking.getSpeciality());
-                    txtNotesELA.setText(showNotes(txtNotesELA, singleBooking.getNotes()));
+                    notesArray[11]=singleBooking.getNotes();
                     txtExtraELA.setText(String.valueOf(singleBooking.getExtraInfo()));
                     attendanceArray[11] = singleBooking.getAttendance();                    
                     break;
@@ -624,7 +731,7 @@ public class DiaryScreenDocumentController  implements Initializable
                     txtAge1MP.setText(String.valueOf(singleBooking.getAge()));
                     txtHospital1MP.setText(singleBooking.getHospitalNumber());
                     txtSpeciality1MP.setText(singleBooking.getSpeciality());
-                    txtNotes1MP.setText(showNotes(txtNotes1MP, singleBooking.getNotes()));
+                    notesArray[12]=singleBooking.getNotes();
                     txtExtra1MP.setText(String.valueOf(singleBooking.getExtraInfo()));
                     attendanceArray[12] = singleBooking.getAttendance();                   
                     break;
@@ -634,7 +741,7 @@ public class DiaryScreenDocumentController  implements Initializable
                     txtAge2MP.setText(String.valueOf(singleBooking.getAge()));
                     txtHospital2MP.setText(singleBooking.getHospitalNumber());
                     txtSpeciality2MP.setText(singleBooking.getSpeciality());
-                    txtNotes2MP.setText(showNotes(txtNotes2MP, singleBooking.getNotes()));
+                    notesArray[13]=singleBooking.getNotes();
                     txtExtra2MP.setText(String.valueOf(singleBooking.getExtraInfo()));
                     attendanceArray[13] = singleBooking.getAttendance();
                     break;
@@ -644,7 +751,7 @@ public class DiaryScreenDocumentController  implements Initializable
                     txtAge3MP.setText(String.valueOf(singleBooking.getAge()));
                     txtHospital3MP.setText(singleBooking.getHospitalNumber());
                     txtSpeciality3MP.setText(singleBooking.getSpeciality());
-                    txtNotes3MP.setText(showNotes(txtNotes3MP, singleBooking.getNotes()));
+                    notesArray[14]=singleBooking.getNotes();
                     txtExtra3MP.setText(String.valueOf(singleBooking.getExtraInfo()));    
                     attendanceArray[14] = singleBooking.getAttendance(); 
                     break;
@@ -654,7 +761,7 @@ public class DiaryScreenDocumentController  implements Initializable
                     txtAge4MP.setText(String.valueOf(singleBooking.getAge()));
                     txtHospital4MP.setText(singleBooking.getHospitalNumber());
                     txtSpeciality4MP.setText(singleBooking.getSpeciality());
-                    txtNotes4MP.setText(showNotes(txtNotes4MP, singleBooking.getNotes()));
+                    notesArray[15]=singleBooking.getNotes();
                     txtExtra4MP.setText(String.valueOf(singleBooking.getExtraInfo()));
                     attendanceArray[15] = singleBooking.getAttendance();
                     break;
@@ -664,7 +771,7 @@ public class DiaryScreenDocumentController  implements Initializable
                     txtAgeEMP.setText(String.valueOf(singleBooking.getAge()));
                     txtHospitalEMP.setText(singleBooking.getHospitalNumber());
                     txtSpecialityEMP.setText(singleBooking.getSpeciality());
-                    txtNotesEMP.setText(showNotes(txtNotesEMP, singleBooking.getNotes()));
+                    notesArray[16]=singleBooking.getNotes();
                     txtExtraEMP.setText(String.valueOf(singleBooking.getExtraInfo())); 
                     attendanceArray[16] = singleBooking.getAttendance(); 
                     break;
@@ -674,7 +781,7 @@ public class DiaryScreenDocumentController  implements Initializable
                     txtAge1LP.setText(String.valueOf(singleBooking.getAge()));
                     txtHospital1LP.setText(singleBooking.getHospitalNumber());
                     txtSpeciality1LP.setText(singleBooking.getSpeciality());
-                    txtNotes1LP.setText(showNotes(txtNotes1LP, singleBooking.getNotes()));
+                    notesArray[17]=singleBooking.getNotes();
                     txtExtra1LP.setText(String.valueOf(singleBooking.getExtraInfo()));    
                     attendanceArray[17] = singleBooking.getAttendance();
                     break;
@@ -684,7 +791,7 @@ public class DiaryScreenDocumentController  implements Initializable
                     txtAge2LP.setText(String.valueOf(singleBooking.getAge()));
                     txtHospital2LP.setText(singleBooking.getHospitalNumber());
                     txtSpeciality2LP.setText(singleBooking.getSpeciality());
-                    txtNotes2LP.setText(showNotes(txtNotes2LP, singleBooking.getNotes()));
+                    notesArray[18]=singleBooking.getNotes();
                     txtExtra2LP.setText(String.valueOf(singleBooking.getExtraInfo())); 
                     attendanceArray[18] = singleBooking.getAttendance(); 
                     break;
@@ -694,7 +801,7 @@ public class DiaryScreenDocumentController  implements Initializable
                     txtAge3LP.setText(String.valueOf(singleBooking.getAge()));
                     txtHospital3LP.setText(singleBooking.getHospitalNumber());
                     txtSpeciality3LP.setText(singleBooking.getSpeciality());
-                    txtNotes3LP.setText(showNotes(txtNotes3LP, singleBooking.getNotes()));
+                    notesArray[19]=singleBooking.getNotes();
                     txtExtra3LP.setText(String.valueOf(singleBooking.getExtraInfo()));        
                     attendanceArray[19] = singleBooking.getAttendance();
                     break;
@@ -704,7 +811,7 @@ public class DiaryScreenDocumentController  implements Initializable
                     txtAge4LP.setText(String.valueOf(singleBooking.getAge()));
                     txtHospital4LP.setText(singleBooking.getHospitalNumber());
                     txtSpeciality4LP.setText(singleBooking.getSpeciality());
-                    txtNotes4LP.setText(showNotes(txtNotes4LP, singleBooking.getNotes()));
+                    notesArray[20]=singleBooking.getNotes();
                     txtExtra4LP.setText(String.valueOf(singleBooking.getExtraInfo()));  
                     attendanceArray[20] = singleBooking.getAttendance();
                     break;
@@ -714,7 +821,7 @@ public class DiaryScreenDocumentController  implements Initializable
                     txtAge5LP.setText(String.valueOf(singleBooking.getAge()));
                     txtHospital5LP.setText(singleBooking.getHospitalNumber());
                     txtSpeciality5LP.setText(singleBooking.getSpeciality());
-                    txtNotes5LP.setText(showNotes(txtNotes5LP, singleBooking.getNotes()));
+                    notesArray[21]=singleBooking.getNotes();
                     txtExtra5LP.setText(String.valueOf(singleBooking.getExtraInfo())); 
                     attendanceArray[21] = singleBooking.getAttendance(); 
                     break;
@@ -724,7 +831,7 @@ public class DiaryScreenDocumentController  implements Initializable
                     txtAge6LP.setText(String.valueOf(singleBooking.getAge()));
                     txtHospital6LP.setText(singleBooking.getHospitalNumber());
                     txtSpeciality6LP.setText(singleBooking.getSpeciality());
-                    txtNotes6LP.setText(showNotes(txtNotes6LP, singleBooking.getNotes()));
+                    notesArray[22]=singleBooking.getNotes();
                     txtExtra6LP.setText(String.valueOf(singleBooking.getExtraInfo())); 
                     attendanceArray[22] = singleBooking.getAttendance();
                     break;
@@ -734,7 +841,7 @@ public class DiaryScreenDocumentController  implements Initializable
                     txtAgeELP.setText(String.valueOf(singleBooking.getAge()));
                     txtHospitalELP.setText(singleBooking.getHospitalNumber());
                     txtSpecialityELP.setText(singleBooking.getSpeciality());
-                    txtNotesELP.setText(showNotes(txtNotesELP, singleBooking.getNotes()));
+                    notesArray[23]=singleBooking.getNotes();
                     txtExtraELP.setText(String.valueOf(singleBooking.getExtraInfo()));
                     attendanceArray[23] = singleBooking.getAttendance();                    
                     break;
@@ -749,6 +856,13 @@ public class DiaryScreenDocumentController  implements Initializable
         {
             attendanceColour(text, attendanceArray[count]);
             count++;
+        }
+        
+        int count2 = 0;
+        for(TextField text2 : notesList)
+        {
+            showNotes(text2, notesArray[count2]);
+            count2++;
         }
               
     }
@@ -765,7 +879,6 @@ public class DiaryScreenDocumentController  implements Initializable
         txtSpeciality1MA.setText("");
         txtNotes1MA.setText("");
         txtExtra1MA.setText("");
-        attendanceColour(txtOneMA, 0);
                  
         txtTime2MA.setText("");
         txtName2MA.setText("");
@@ -774,7 +887,6 @@ public class DiaryScreenDocumentController  implements Initializable
         txtSpeciality2MA.setText("");
         txtNotes2MA.setText("");
         txtExtra2MA.setText("");
-        attendanceColour(txtTwoMA, 0);
       
         txtTime3MA.setText("");
         txtName3MA.setText("");
@@ -783,7 +895,6 @@ public class DiaryScreenDocumentController  implements Initializable
         txtSpeciality3MA.setText("");
         txtNotes3MA.setText("");
         txtExtra3MA.setText(""); 
-        attendanceColour(txtThreeMA, 0);
                  
         txtTime4MA.setText("");
         txtName4MA.setText("");
@@ -792,7 +903,6 @@ public class DiaryScreenDocumentController  implements Initializable
         txtSpeciality4MA.setText("");
         txtNotes4MA.setText("");
         txtExtra4MA.setText("");
-        attendanceColour(txtFourMA, 0);
                     
         txtTimeEMA.setText("");
         txtNameEMA.setText("");
@@ -801,7 +911,6 @@ public class DiaryScreenDocumentController  implements Initializable
         txtSpecialityEMA.setText("");
         txtNotesEMA.setText("");
         txtExtraEMA.setText("");
-        attendanceColour(txtSpareMA, 0);
                   
         txtTime1LA.setText("");
         txtName1LA.setText("");
@@ -810,7 +919,6 @@ public class DiaryScreenDocumentController  implements Initializable
         txtSpeciality1LA.setText("");
         txtNotes1LA.setText("");
         txtExtra1LA.setText("");   
-        attendanceColour(txtOneLA, 0);
                   
         txtTime2LA.setText("");   
         txtName2LA.setText("");   
@@ -819,7 +927,6 @@ public class DiaryScreenDocumentController  implements Initializable
         txtSpeciality2LA.setText("");   
         txtNotes2LA.setText("");   
         txtExtra2LA.setText("");   
-        attendanceColour(txtTwoLA, 0);
                    
         txtTime3LA.setText("");   
         txtName3LA.setText("");   
@@ -828,7 +935,6 @@ public class DiaryScreenDocumentController  implements Initializable
         txtSpeciality3LA.setText("");   
         txtNotes3LA.setText("");   
         txtExtra3LA.setText("");     
-        attendanceColour(txtThreeLA, 0);
                   
         txtTime4LA.setText("");   
         txtName4LA.setText("");   
@@ -836,8 +942,7 @@ public class DiaryScreenDocumentController  implements Initializable
         txtHospital4LA.setText("");   
         txtSpeciality4LA.setText("");   
         txtNotes4LA.setText("");   
-        txtExtra4LA.setText("");     
-        attendanceColour(txtFourLA, 0);
+        txtExtra4LA.setText("");   
                    
         txtTime5LA.setText("");   
         txtName5LA.setText("");   
@@ -846,7 +951,6 @@ public class DiaryScreenDocumentController  implements Initializable
         txtSpeciality5LA.setText("");   
         txtNotes5LA.setText("");   
         txtExtra5LA.setText("");   
-        attendanceColour(txtFiveLA, 0);
                     
         txtTime6LA.setText("");   
         txtName6LA.setText("");   
@@ -855,7 +959,6 @@ public class DiaryScreenDocumentController  implements Initializable
         txtSpeciality6LA.setText("");   
         txtNotes6LA.setText("");   
         txtExtra6LA.setText("");    
-        attendanceColour(txtSixLA, 0);
                    
         txtTimeELA.setText("");   
         txtNameELA.setText("");   
@@ -863,8 +966,7 @@ public class DiaryScreenDocumentController  implements Initializable
         txtHospitalELA.setText("");   
         txtSpecialityELA.setText("");   
         txtNotesELA.setText("");   
-        txtExtraELA.setText("");   
-        attendanceColour(txtSpareLA, 0);                    
+        txtExtraELA.setText("");                       
                     
         txtTime1MP.setText("");   
         txtName1MP.setText("");   
@@ -872,8 +974,7 @@ public class DiaryScreenDocumentController  implements Initializable
         txtHospital1MP.setText("");   
         txtSpeciality1MP.setText("");   
         txtNotes1MP.setText("");   
-        txtExtra1MP.setText("");   
-        attendanceColour(txtOneMP, 0);                    
+        txtExtra1MP.setText("");                       
                    
         txtTime2MP.setText("");   
         txtName2MP.setText("");   
@@ -882,7 +983,6 @@ public class DiaryScreenDocumentController  implements Initializable
         txtSpeciality2MP.setText("");   
         txtNotes2MP.setText("");   
         txtExtra2MP.setText("");   
-        attendanceColour(txtTwoMP, 0); 
                   
         txtTime3MP.setText("");   
         txtName3MP.setText("");   
@@ -890,8 +990,7 @@ public class DiaryScreenDocumentController  implements Initializable
         txtHospital3MP.setText("");   
         txtSpeciality3MP.setText("");   
         txtNotes3MP.setText("");   
-        txtExtra3MP.setText("");       
-        attendanceColour(txtThreeMP, 0); 
+        txtExtra3MP.setText("");        
                   
         txtTime4MP.setText("");   
         txtName4MP.setText("");   
@@ -899,8 +998,7 @@ public class DiaryScreenDocumentController  implements Initializable
         txtHospital4MP.setText("");   
         txtSpeciality4MP.setText("");   
         txtNotes4MP.setText("");   
-        txtExtra4MP.setText("");   
-        attendanceColour(txtFourMP, 0); 
+        txtExtra4MP.setText("");    
                    
         txtTimeEMP.setText("");   
         txtNameEMP.setText("");   
@@ -908,8 +1006,7 @@ public class DiaryScreenDocumentController  implements Initializable
         txtHospitalEMP.setText("");   
         txtSpecialityEMP.setText("");   
         txtNotesEMP.setText("");   
-        txtExtraEMP.setText("");    
-        attendanceColour(txtSpareMP, 0); 
+        txtExtraEMP.setText("");     
                    
         txtTime1LP.setText("");   
         txtName1LP.setText("");   
@@ -918,7 +1015,6 @@ public class DiaryScreenDocumentController  implements Initializable
         txtSpeciality1LP.setText("");   
         txtNotes1LP.setText("");   
         txtExtra1LP.setText("");      
-        attendanceColour(txtOneLP, 0); 
                    
         txtTime2LP.setText("");   
         txtName2LP.setText("");   
@@ -927,7 +1023,6 @@ public class DiaryScreenDocumentController  implements Initializable
         txtSpeciality2LP.setText("");   
         txtNotes2LP.setText("");   
         txtExtra2LP.setText("");   
-        attendanceColour(txtTwoLP, 0); 
                    
         txtTime3LP.setText("");   
         txtName3LP.setText("");   
@@ -936,7 +1031,6 @@ public class DiaryScreenDocumentController  implements Initializable
         txtSpeciality3LP.setText("");   
         txtNotes3LP.setText("");   
         txtExtra3LP.setText("");   
-        attendanceColour(txtThreeLP, 0);
 
         txtTime4LP.setText("");   
         txtName4LP.setText("");   
@@ -945,7 +1039,6 @@ public class DiaryScreenDocumentController  implements Initializable
         txtSpeciality4LP.setText("");   
         txtNotes4LP.setText("");   
         txtExtra4LP.setText("");   
-        attendanceColour(txtFourLP, 0);
 
         txtTime5LP.setText("");   
         txtName5LP.setText("");   
@@ -954,7 +1047,6 @@ public class DiaryScreenDocumentController  implements Initializable
         txtSpeciality5LP.setText("");   
         txtNotes5LP.setText("");   
         txtExtra5LP.setText("");   
-        attendanceColour(txtFiveLP, 0);
 
         txtTime6LP.setText("");   
         txtName6LP.setText("");   
@@ -963,7 +1055,6 @@ public class DiaryScreenDocumentController  implements Initializable
         txtSpeciality6LP.setText("");   
         txtNotes6LP.setText("");   
         txtExtra6LP.setText("");   
-        attendanceColour(txtSixLP, 0);
 
         txtTimeELP.setText("");   
         txtNameELP.setText("");   
@@ -971,28 +1062,27 @@ public class DiaryScreenDocumentController  implements Initializable
         txtHospitalELP.setText("");   
         txtSpecialityELP.setText("");   
         txtNotesELP.setText("");   
-        txtExtraELP.setText("");   
-        attendanceColour(txtSpareLP, 0);                     
+        txtExtraELP.setText("");                        
         
     }
     
     
     
-    public String showNotes(TextField txt, int notes)
+    public void showNotes(TextField txt, int notes)
     {
         if(notes == 0)
         {
-            return " ";
+            txt.setText("-");
         }
         else if (notes == 1)
         {
+            txt.setText("O");
             txt.setStyle(" -fx-text-fill: #FFD800"); //orange
-            return "O";
         }
         else
-        {
+        {   
+            txt.setText("✓");
             txt.setStyle(" -fx-text-fill: #00FF31"); //green
-            return "✓";
         }
     }
     
@@ -1011,7 +1101,16 @@ public class DiaryScreenDocumentController  implements Initializable
             txt.setStyle(" -fx-background-color: #FF0000"); //red
         }
     }
-
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    //SAVING-----------------------------------------------------------------
     
     
     public void save(LocalDate today)
@@ -1055,7 +1154,7 @@ public class DiaryScreenDocumentController  implements Initializable
                                                                             + txtSpeciality1MA.getText() + "','"
                                                                             + txtExtra1MA.getText() + "','"
                                                                             + txtNotes1MA.getText() + "','"
-                                                                            + "X" + "')"
+                                                                            + attendanceArray[0] + "')"
                 );
     }   
     
