@@ -13,15 +13,34 @@ public class workingStaff
 {
     private String firstName;
     private String lastName;
+    private int ID;
+    private String shift;
     
-    public workingStaff(String firstName, String lastName)
+    public workingStaff(String firstName, String lastName, int ID, String shift)
     {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.ID = ID;
+        this.shift = shift;
     }
     
     public String getWorkName()
     {
         return firstName + " " + lastName.substring(0,1);
+    }
+    
+    public String getFirstName()
+    {
+        return firstName;
+    }
+    
+    public int getID()
+    {
+        return ID;
+    }
+    
+    public String getShift()
+    {
+        return shift;
     }
 }

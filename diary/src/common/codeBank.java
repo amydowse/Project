@@ -17,7 +17,7 @@ import java.time.format.DateTimeFormatter;
  */
 public class codeBank 
 {    
-    private static LocalDate currentDate = LocalDate.now();
+    private static LocalDate currentDate;
     
     public static void setCurrentDate(LocalDate newDate)
     {

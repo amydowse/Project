@@ -5,6 +5,8 @@
  */
 package bases;
 
+import common.codeBank;
+import java.time.LocalDate;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -43,6 +45,7 @@ public class Start extends Application
         stage.setResizable(false);
         stage.setMaximized(true);
         stage.show();
+        codeBank.setCurrentDate(LocalDate.now());
     }
 
     

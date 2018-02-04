@@ -8,14 +8,6 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="975.0" prefWidth="1770.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="diary.DiaryScreenDocumentController">
    <children>
-       
-      <!-- The top section of the diary - the staff working and general notes  -->
-      <TextField fx:id="txtStaff1" prefHeight="48.75" prefWidth="442.5" />
-      <TextField fx:id="txtStaff2" layoutY="49.0" prefHeight="48.75" prefWidth="442.5" />
-      <TextField fx:id="txtStaff3" layoutY="98.0" prefHeight="48.75" prefWidth="442.5" />
-      <TextField fx:id="txtStaff6" layoutX="442.0" layoutY="98.0" prefHeight="48.75" prefWidth="442.5" />
-      <TextField fx:id="txtStaff5" layoutX="442.0" layoutY="49.0" prefHeight="48.75" prefWidth="442.5" />
-      <TextField fx:id="txtStaff4" layoutX="442.0" prefHeight="48.75" prefWidth="442.5" />
       <TextArea fx:id="txtNotes" layoutX="885.0" prefHeight="146.25" prefWidth="885.0" promptText="NOTES" />
       
       
@@ -732,11 +724,23 @@
          <font>
             <Font size="25.0" />
          </font></TextField>
+      <ChoiceBox fx:id="cbStaff1" layoutY="-1.0" prefHeight="49.0" prefWidth="373.0" />
+      <ChoiceBox fx:id="cbShift1" layoutX="372.0" layoutY="-1.0" prefHeight="49.0" prefWidth="70.0" />
+      <ChoiceBox fx:id="cbShift2" layoutX="372.0" layoutY="48.0" prefHeight="49.0" prefWidth="70.0" />
+      <ChoiceBox fx:id="cbStaff2" layoutY="48.0" prefHeight="49.0" prefWidth="373.0" />
+      <ChoiceBox fx:id="cbShift3" layoutX="372.0" layoutY="97.0" prefHeight="49.0" prefWidth="70.0" />
+      <ChoiceBox fx:id="cbStaff3" layoutY="97.0" prefHeight="49.0" prefWidth="373.0" />
+      <ChoiceBox fx:id="cbStaff6" layoutX="444.0" layoutY="97.0" prefHeight="49.0" prefWidth="373.0" />
+      <ChoiceBox fx:id="cbShift6" layoutX="816.0" layoutY="97.0" prefHeight="49.0" prefWidth="70.0" />
+      <ChoiceBox fx:id="cbStaff5" layoutX="444.0" layoutY="48.0" prefHeight="49.0" prefWidth="373.0" />
+      <ChoiceBox fx:id="cbShift5" layoutX="816.0" layoutY="48.0" prefHeight="49.0" prefWidth="70.0" />
+      <ChoiceBox fx:id="cbShift4" layoutX="816.0" layoutY="-1.0" prefHeight="49.0" prefWidth="70.0" />
+      <ChoiceBox fx:id="cbStaff4" layoutX="444.0" layoutY="-1.0" prefHeight="49.0" prefWidth="373.0" />
       
       
    </children>
 
-    <fx:define>
+<fx:define>
        <ArrayList fx:id="attendanceList">
          <fx:reference source="txtOneMA"/>
          <fx:reference source="txtTwoMA"/>
@@ -818,7 +822,8 @@
         <fx:reference source="txtExtraELP"/>
        </ArrayList>
        
-   </fx:define>
+   </fx:define>  
+
 
    
 </Pane>

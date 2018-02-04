@@ -47,6 +47,7 @@ public class DialogController implements Initializable
     {
         System.out.println("Stop");
         MainScreenDocumentController.DSDC.updateArray(arrayValue, txtExtraInfo.getText());
+        txtExtraInfo.setText("");
     }
 
 }
