@@ -430,14 +430,32 @@ public class DiaryScreenDocumentController  implements Initializable
     
     //Each method associated with the pop-up for extra information 
     @FXML public void MA1Extra(){showExtraInfo(0, txtName1MA.getText(), txtTime1MA.getText());}   
+    @FXML public void MA2Extra(){showExtraInfo(0, txtName2MA.getText(), txtTime2MA.getText());}     
+    @FXML public void MA3Extra(){showExtraInfo(0, txtName3MA.getText(), txtTime3MA.getText());}    
+    @FXML public void MA4Extra(){showExtraInfo(0, txtName4MA.getText(), txtTime4MA.getText());}    
+    @FXML public void MAEExtra(){showExtraInfo(0, txtNameEMA.getText(), txtTimeEMA.getText());}    
     
+    @FXML public void LA1Extra(){showExtraInfo(0, txtName1LA.getText(), txtTime1LA.getText());}  
+    @FXML public void LA2Extra(){showExtraInfo(0, txtName2LA.getText(), txtTime2LA.getText());} 
+    @FXML public void LA3Extra(){showExtraInfo(0, txtName3LA.getText(), txtTime3LA.getText());} 
+    @FXML public void LA4Extra(){showExtraInfo(0, txtName4LA.getText(), txtTime4LA.getText());} 
+    @FXML public void LA5Extra(){showExtraInfo(0, txtName5LA.getText(), txtTime5LA.getText());} 
+    @FXML public void LA6Extra(){showExtraInfo(0, txtName6LA.getText(), txtTime6LA.getText());} 
+    @FXML public void LAEExtra(){showExtraInfo(0, txtNameELA.getText(), txtTimeELA.getText());} 
     
+    @FXML public void MP1Extra(){showExtraInfo(0, txtName1MP.getText(), txtTime1MP.getText());}   
+    @FXML public void MP2Extra(){showExtraInfo(0, txtName2MP.getText(), txtTime2MP.getText());}     
+    @FXML public void MP3Extra(){showExtraInfo(0, txtName3MP.getText(), txtTime3MP.getText());}    
+    @FXML public void MP4Extra(){showExtraInfo(0, txtName4MP.getText(), txtTime4MP.getText());}    
+    @FXML public void MPEExtra(){showExtraInfo(0, txtNameEMP.getText(), txtTimeEMP.getText());}    
     
-    
-    
-    
-    
-    
+    @FXML public void LP1Extra(){showExtraInfo(0, txtName1LP.getText(), txtTime1LP.getText());}  
+    @FXML public void LP2Extra(){showExtraInfo(0, txtName2LP.getText(), txtTime2LP.getText());} 
+    @FXML public void LP3Extra(){showExtraInfo(0, txtName3LP.getText(), txtTime3LP.getText());} 
+    @FXML public void LP4Extra(){showExtraInfo(0, txtName4LP.getText(), txtTime4LP.getText());} 
+    @FXML public void LP5Extra(){showExtraInfo(0, txtName5LP.getText(), txtTime5LP.getText());} 
+    @FXML public void LP6Extra(){showExtraInfo(0, txtName6LP.getText(), txtTime6LP.getText());} 
+    @FXML public void LPEExtra(){showExtraInfo(0, txtNameELP.getText(), txtTimeELP.getText());}    
     
     private DialogController DC;
     private Pane x;
@@ -458,9 +476,11 @@ public class DiaryScreenDocumentController  implements Initializable
             
             final Scene scene = new Scene(x, 400, 200);
             stage.setScene(scene);
+            stage.setOnHidden(e -> DC.shutdown());
             stage.show();
+                       
+            DC.showInformation(arrayValue, extraArray[arrayValue], name, time);
             
-            DC.showInformation(extraArray[arrayValue], name, time);   
         } 
         catch (IOException ex) 
         {
@@ -468,12 +488,14 @@ public class DiaryScreenDocumentController  implements Initializable
         }
     }
     
+    public void updateArray(int arrayValue, String text)
+    {
+        extraArray[arrayValue] = text;
+    }
+    
     
     public void extraInfo(TextField txt, String info)
-    {
-        System.out.println("IN");
-        System.out.println(info);
-        
+    {        
         if(info.equals("") || info.equals(null))
         {
             txt.setText("");
@@ -1157,6 +1179,7 @@ public class DiaryScreenDocumentController  implements Initializable
         if(notes == 0)
         {
             txt.setText("-");
+            txt.setStyle(" -fx-text-fill: #000000"); //black
         }
         else if (notes == 1)
         {
@@ -1211,10 +1234,9 @@ public class DiaryScreenDocumentController  implements Initializable
             String stringDate = codeBank.dateToString(today);          
             
             //implement query
-            String sql = save1MA(stringDate);
+            String sql;
             
-            System.out.println(sql);
-            
+            sql = save1MA(stringDate);
             stmt.executeUpdate(sql);
                          
             c.close();
@@ -1225,9 +1247,12 @@ public class DiaryScreenDocumentController  implements Initializable
         } 
     }
     
+    
+    
+    
+    //EACH SAVING METHOD FOR EACH ROW --------------------------------------------------------------------------------------------
     public String save1MA(String date)
     {
-        System.out.println("IN 1MA SAVE");
         return ("REPLACE INTO diary (Date, BedNumber, Time, Name, Age, HospitalNumber, Speciality, ExtraInfo, Notes, Attendance) VALUES('"      
                                                                             + date + "','"
                                                                             + "1MA" + "','"
@@ -1236,8 +1261,8 @@ public class DiaryScreenDocumentController  implements Initializable
                                                                             + txtAge1MA.getText() + "','"
                                                                             + txtHospital1MA.getText() + "','"
                                                                             + txtSpeciality1MA.getText() + "','"
-                                                                            + txtExtra1MA.getText() + "','"
-                                                                            + txtNotes1MA.getText() + "','"
+                                                                            + extraArray[0] + "','"
+                                                                            + notesArray[0] + "','"
                                                                             + attendanceArray[0] + "')"
                 );
     }   

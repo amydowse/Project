@@ -131,7 +131,7 @@
          <font>
             <Font size="25.0" />
          </font></TextField>
-      <TextField fx:id="txtExtra2MA" alignment="CENTER" editable="false" layoutX="813.0" layoutY="337.0" prefHeight="48.75" prefWidth="76.0" promptText="+">
+      <TextField fx:id="txtExtra2MA" alignment="CENTER" editable="false" layoutX="813.0" layoutY="337.0" onMouseClicked="#MA2Extra" prefHeight="48.75" prefWidth="76.0" promptText="+">
          <font>
             <Font size="25.0" />
          </font></TextField>
@@ -152,7 +152,7 @@
          <font>
             <Font size="25.0" />
          </font></TextField>
-      <TextField fx:id="txtExtra3MA" alignment="CENTER" editable="false" layoutX="813.0" layoutY="383.0" prefHeight="48.75" prefWidth="76.0" promptText="+">
+      <TextField fx:id="txtExtra3MA" alignment="CENTER" editable="false" layoutX="813.0" layoutY="383.0" onMouseClicked="#MA3Extra" prefHeight="48.75" prefWidth="76.0" promptText="+">
          <font>
             <Font size="25.0" />
          </font></TextField>
@@ -173,7 +173,7 @@
          <font>
             <Font size="25.0" />
          </font></TextField>
-      <TextField fx:id="txtExtra4MA" alignment="CENTER" editable="false" layoutX="813.0" layoutY="429.0" prefHeight="48.75" prefWidth="76.0" promptText="+">
+      <TextField fx:id="txtExtra4MA" alignment="CENTER" editable="false" layoutX="813.0" layoutY="429.0" onMouseClicked="#MA4Extra" prefHeight="48.75" prefWidth="76.0" promptText="+">
          <font>
             <Font size="25.0" />
          </font></TextField>
@@ -194,7 +194,7 @@
          <font>
             <Font size="25.0" />
          </font></TextField>       
-      <TextField fx:id="txtExtraEMA" alignment="CENTER" editable="false" layoutX="813.0" layoutY="475.0" prefHeight="48.75" prefWidth="76.0" promptText="+">
+      <TextField fx:id="txtExtraEMA" alignment="CENTER" editable="false" layoutX="813.0" layoutY="475.0" onMouseClicked="#MAEExtra" prefHeight="48.75" prefWidth="76.0" promptText="+">
          <font>
             <Font size="25.0" />
          </font></TextField>       
@@ -260,7 +260,7 @@
          <font>
             <Font size="25.0" />
          </font></TextField>
-      <TextField fx:id="txtExtra1LA" alignment="CENTER" editable="false" layoutX="812.0" layoutY="619.0" prefHeight="48.75" prefWidth="76.0" promptText="+">
+      <TextField fx:id="txtExtra1LA" alignment="CENTER" editable="false" layoutX="812.0" layoutY="619.0" onMouseClicked="#LA1Extra" prefHeight="48.75" prefWidth="76.0" promptText="+">
          <font>
             <Font size="25.0" />
          </font></TextField>
@@ -281,7 +281,7 @@
          <font>
             <Font size="25.0" />
          </font></TextField>
-      <TextField fx:id="txtExtra2LA" alignment="CENTER" editable="false" layoutX="812.0" layoutY="665.0" prefHeight="48.75" prefWidth="76.0" promptText="+">
+      <TextField fx:id="txtExtra2LA" alignment="CENTER" editable="false" layoutX="812.0" layoutY="665.0" onMouseClicked="#LA2Extra" prefHeight="48.75" prefWidth="76.0" promptText="+">
          <font>
             <Font size="25.0" />
          </font></TextField>
@@ -302,7 +302,7 @@
          <font>
             <Font size="25.0" />
          </font></TextField>
-      <TextField fx:id="txtExtra3LA" alignment="CENTER" editable="false" layoutX="812.0" layoutY="711.0" prefHeight="48.75" prefWidth="76.0" promptText="+">
+      <TextField fx:id="txtExtra3LA" alignment="CENTER" editable="false" layoutX="812.0" layoutY="711.0" onMouseClicked="#LA3Extra" prefHeight="48.75" prefWidth="76.0" promptText="+">
          <font>
             <Font size="25.0" />
          </font></TextField>
@@ -323,7 +323,7 @@
          <font>
             <Font size="25.0" />
          </font></TextField>
-      <TextField fx:id="txtExtra4LA" alignment="CENTER" editable="false" layoutX="813.0" layoutY="757.0" prefHeight="48.75" prefWidth="76.0" promptText="+">
+      <TextField fx:id="txtExtra4LA" alignment="CENTER" editable="false" layoutX="813.0" layoutY="757.0" onMouseClicked="#LA4Extra" prefHeight="48.75" prefWidth="76.0" promptText="+">
          <font>
             <Font size="25.0" />
          </font></TextField>
@@ -344,7 +344,7 @@
          <font>
             <Font size="25.0" />
          </font></TextField>
-      <TextField fx:id="txtExtra5LA" alignment="CENTER" editable="false" layoutX="812.0" layoutY="805.0" prefHeight="48.75" prefWidth="76.0" promptText="+">
+      <TextField fx:id="txtExtra5LA" alignment="CENTER" editable="false" layoutX="812.0" layoutY="805.0" onMouseClicked="#LA5Extra" prefHeight="48.75" prefWidth="76.0" promptText="+">
          <font>
             <Font size="25.0" />
          </font></TextField>
@@ -365,7 +365,7 @@
          <font>
             <Font size="25.0" />
          </font></TextField>
-      <TextField fx:id="txtExtra6LA" alignment="CENTER" editable="false" layoutX="812.0" layoutY="851.0" prefHeight="48.75" prefWidth="76.0" promptText="+">
+      <TextField fx:id="txtExtra6LA" alignment="CENTER" editable="false" layoutX="812.0" layoutY="851.0" onMouseClicked="#LA6Extra" prefHeight="48.75" prefWidth="76.0" promptText="+">
          <font>
             <Font size="25.0" />
          </font></TextField>
@@ -386,7 +386,7 @@
          <font>
             <Font size="25.0" />
          </font></TextField>        
-      <TextField fx:id="txtExtraELA" alignment="CENTER" editable="false" layoutX="813.0" layoutY="898.0" prefHeight="48.75" prefWidth="76.0" promptText="+">
+      <TextField fx:id="txtExtraELA" alignment="CENTER" editable="false" layoutX="813.0" layoutY="898.0" onMouseClicked="#LAEExtra" prefHeight="48.75" prefWidth="76.0" promptText="+">
          <font>
             <Font size="25.0" />
          </font></TextField>       
@@ -452,7 +452,7 @@
          <font>
             <Font size="25.0" />
          </font></TextField>       
-      <TextField fx:id="txtExtra1MP" alignment="CENTER" editable="false" layoutX="1701.0" layoutY="291.0" prefHeight="48.75" prefWidth="76.0" promptText="+">
+      <TextField fx:id="txtExtra1MP" alignment="CENTER" editable="false" layoutX="1701.0" layoutY="291.0" onMouseClicked="#MP1Extra" prefHeight="48.75" prefWidth="76.0" promptText="+">
          <font>
             <Font size="25.0" />
          </font></TextField>      
@@ -473,7 +473,7 @@
          <font>
             <Font size="25.0" />
          </font></TextField>      
-      <TextField fx:id="txtExtra2MP" alignment="CENTER" editable="false" layoutX="1701.0" layoutY="337.0" prefHeight="48.75" prefWidth="76.0" promptText="+">
+      <TextField fx:id="txtExtra2MP" alignment="CENTER" editable="false" layoutX="1701.0" layoutY="337.0" onMouseClicked="#MP2Extra" prefHeight="48.75" prefWidth="76.0" promptText="+">
          <font>
             <Font size="25.0" />
          </font></TextField>      
@@ -494,7 +494,7 @@
          <font>
             <Font size="25.0" />
          </font></TextField>      
-      <TextField fx:id="txtExtra3MP" alignment="CENTER" editable="false" layoutX="1701.0" layoutY="383.0" prefHeight="48.75" prefWidth="76.0" promptText="+">
+      <TextField fx:id="txtExtra3MP" alignment="CENTER" editable="false" layoutX="1701.0" layoutY="383.0" onMouseClicked="#MP3Extra" prefHeight="48.75" prefWidth="76.0" promptText="+">
          <font>
             <Font size="25.0" />
          </font></TextField>      
@@ -515,7 +515,7 @@
          <font>
             <Font size="25.0" />
          </font></TextField>      
-      <TextField fx:id="txtExtra4MP" alignment="CENTER" editable="false" layoutX="1701.0" layoutY="429.0" prefHeight="48.75" prefWidth="76.0" promptText="+">
+      <TextField fx:id="txtExtra4MP" alignment="CENTER" editable="false" layoutX="1701.0" layoutY="429.0" onMouseClicked="#MP4Extra" prefHeight="48.75" prefWidth="76.0" promptText="+">
          <font>
             <Font size="25.0" />
          </font></TextField>      
@@ -536,7 +536,7 @@
          <font>
             <Font size="25.0" />
          </font></TextField>      
-      <TextField fx:id="txtExtraEMP" alignment="CENTER" editable="false" layoutX="1701.0" layoutY="475.0" prefHeight="48.75" prefWidth="76.0" promptText="+">
+      <TextField fx:id="txtExtraEMP" alignment="CENTER" editable="false" layoutX="1701.0" layoutY="475.0" onMouseClicked="#MPEExtra" prefHeight="48.75" prefWidth="76.0" promptText="+">
          <font>
             <Font size="25.0" />
          </font></TextField>       
@@ -602,7 +602,7 @@
          <font>
             <Font size="25.0" />
          </font></TextField>      
-      <TextField fx:id="txtExtra1LP" alignment="CENTER" editable="false" layoutX="1701.0" layoutY="619.0" prefHeight="48.75" prefWidth="76.0" promptText="+">
+      <TextField fx:id="txtExtra1LP" alignment="CENTER" editable="false" layoutX="1701.0" layoutY="619.0" onMouseClicked="#LP1Extra" prefHeight="48.75" prefWidth="76.0" promptText="+">
          <font>
             <Font size="25.0" />
          </font></TextField>      
@@ -623,7 +623,7 @@
          <font>
             <Font size="25.0" />
          </font></TextField>      
-      <TextField fx:id="txtExtra2LP" alignment="CENTER" editable="false" layoutX="1701.0" layoutY="665.0" prefHeight="48.75" prefWidth="76.0" promptText="+">
+      <TextField fx:id="txtExtra2LP" alignment="CENTER" editable="false" layoutX="1701.0" layoutY="665.0" onMouseClicked="#LP2Extra" prefHeight="48.75" prefWidth="76.0" promptText="+">
          <font>
             <Font size="25.0" />
          </font></TextField>      
@@ -644,7 +644,7 @@
          <font>
             <Font size="25.0" />
          </font></TextField>      
-      <TextField fx:id="txtExtra3LP" alignment="CENTER" editable="false" layoutX="1701.0" layoutY="711.0" prefHeight="48.75" prefWidth="76.0" promptText="+">
+      <TextField fx:id="txtExtra3LP" alignment="CENTER" editable="false" layoutX="1701.0" layoutY="711.0" onMouseClicked="#LP3Extra" prefHeight="48.75" prefWidth="76.0" promptText="+">
          <font>
             <Font size="25.0" />
          </font></TextField>      
@@ -665,7 +665,7 @@
          <font>
             <Font size="25.0" />
          </font></TextField>     
-      <TextField fx:id="txtExtra4LP" alignment="CENTER" editable="false" layoutX="1702.0" layoutY="757.0" prefHeight="48.75" prefWidth="76.0" promptText="+">
+      <TextField fx:id="txtExtra4LP" alignment="CENTER" editable="false" layoutX="1702.0" layoutY="757.0" onMouseClicked="#LP4Extra" prefHeight="48.75" prefWidth="76.0" promptText="+">
          <font>
             <Font size="25.0" />
          </font></TextField>      
@@ -686,7 +686,7 @@
          <font>
             <Font size="25.0" />
          </font></TextField>      
-      <TextField fx:id="txtExtra5LP" alignment="CENTER" editable="false" layoutX="1701.0" layoutY="805.0" prefHeight="48.75" prefWidth="76.0" promptText="+">
+      <TextField fx:id="txtExtra5LP" alignment="CENTER" editable="false" layoutX="1701.0" layoutY="805.0" onMouseClicked="#LP5Extra" prefHeight="48.75" prefWidth="76.0" promptText="+">
          <font>
             <Font size="25.0" />
          </font></TextField>     
@@ -707,7 +707,7 @@
          <font>
             <Font size="25.0" />
          </font></TextField>      
-      <TextField fx:id="txtExtra6LP" alignment="CENTER" editable="false" layoutX="1701.0" layoutY="851.0" prefHeight="48.75" prefWidth="76.0" promptText="+">
+      <TextField fx:id="txtExtra6LP" alignment="CENTER" editable="false" layoutX="1701.0" layoutY="851.0" onMouseClicked="#LP6Extra" prefHeight="48.75" prefWidth="76.0" promptText="+">
          <font>
             <Font size="25.0" />
          </font></TextField>     
@@ -728,7 +728,7 @@
          <font>
             <Font size="25.0" />
          </font></TextField> 
-      <TextField fx:id="txtExtraELP" alignment="CENTER" editable="false" layoutX="1702.0" layoutY="898.0" prefHeight="48.75" prefWidth="76.0" promptText="+">
+      <TextField fx:id="txtExtraELP" alignment="CENTER" editable="false" layoutX="1702.0" layoutY="898.0" onMouseClicked="#LPEExtra" prefHeight="48.75" prefWidth="76.0" promptText="+">
          <font>
             <Font size="25.0" />
          </font></TextField>

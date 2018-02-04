@@ -48,7 +48,7 @@ public class MainScreenDocumentController implements Initializable
         
     @FXML private DatePicker dpCalandar = new DatePicker();
     
-    private DiaryScreenDocumentController DSDC;
+    public static DiaryScreenDocumentController DSDC;
     private Pane x;
     
     @Override

@@ -7,8 +7,10 @@ package diary;
 
 import common.codeBank;
 import diary.DiaryScreenDocumentController;
+import bases.MainScreenDocumentController;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -26,18 +28,25 @@ public class DialogController implements Initializable
     @FXML private Label lblName = new Label();
     @FXML private Label lblTime = new Label();
     
+    private int arrayValue;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
-        System.out.println("In here");
     }
     
-    public void showInformation(String text, String name, String time)
+    public void showInformation(int arrayValue, String text, String name, String time)
     {
+        this.arrayValue = arrayValue;
         txtExtraInfo.setText(text);
         lblName.setText(name);
         lblTime.setText(time);
+    }
+    
+    public void shutdown() 
+    {
+        System.out.println("Stop");
+        MainScreenDocumentController.DSDC.updateArray(arrayValue, txtExtraInfo.getText());
     }
 
 }
