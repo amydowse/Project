@@ -43,5 +43,15 @@ public class codeBank
         return localDate;
     }
     
+    public static String[] newStringArray()
+    {
+        String[] array = new String[24];
+        for(int i=0; i<array.length; i++)
+        {
+            array[i] = "";
+        }
+        return array;
+    }
+    
 }
 
