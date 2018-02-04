@@ -324,6 +324,7 @@ public class DiaryScreenDocumentController  implements Initializable
     int[] attendanceArray = new int[24];
     int[] notesArray = new int[24];
     String[] extraArray = codeBank.newStringArray();
+    private Boolean notes = false;
    
       
     //METHODS -----------------------------------------------------------------------
@@ -650,8 +651,8 @@ public class DiaryScreenDocumentController  implements Initializable
             
             while(rs.next())
             { 
-                    System.out.println(rs.getString("Notes"));
-                    txtNotes.setText("NOTES \n\n " + rs.getString("Notes")); 
+                    notes = true;
+                    txtNotes.setText("NOTES \n\n" + rs.getString("Notes")); 
             }
             c.close();
         }
@@ -708,6 +709,7 @@ public class DiaryScreenDocumentController  implements Initializable
     
     public void clearTopSection()
     {
+        notes = false;
         staff.clear();
         txtNotes.setText("");
         
@@ -1360,6 +1362,7 @@ public class DiaryScreenDocumentController  implements Initializable
                stmt.executeUpdate(queries[i]);
             }
             
+                        
             String[] staffQueries = new String[6];
             staffQueries[0] = saveStaff1(stringDate);
             staffQueries[1] = saveStaff2(stringDate);
@@ -1393,14 +1396,60 @@ public class DiaryScreenDocumentController  implements Initializable
     
     public String saveNotes(String date)
     {
-        String lines[] = txtNotes.getText().split("\\r?\\n");
-                
-        return "REPLACE INTO notes (Date, Notes) VALUES ('" + date + "','" + lines[2] + "')" ;
+        if(notes)
+        {
+            if(txtNotes.getText().equals("") || txtNotes.getText().trim().equals("NOTES"))
+            {
+                System.out.println("BLANK");
+                return "DELETE FROM notes WHERE Date = '" + date + "'" ;
+            }
+            else
+            {
+                String lines[] = txtNotes.getText().split("\\r?\\n");
+                return "REPLACE INTO notes (Date, Notes) VALUES ('" + date + "','" + lines[2] + "')" ;
+            }
+        }
+        else
+        {
+            return "INSERT INTO notes (Date, Notes) VALUES ('" + date + "','" + txtNotes.getText() + "')" ;
+        }
     }
     
     
     
-    public String saveStaff1(String date)
+    public void replacingStaff(String date, int value)
+    {
+
+        try
+        {
+            // open a connection
+            Connection c = DatabaseConnector.activateConnection();
+            c.setAutoCommit( true ); 
+            
+            // when creating a statement object, you MUST use a connection object to call the instance method
+            Statement stmt = c.createStatement();
+            
+            String sql ="DELETE FROM working WHERE Date = '" + date + "' AND Staff_ID = '" + staff.get(value).getID() + "'";   
+            
+            stmt.executeUpdate(sql);                 
+                    
+            c.close();
+        }
+        catch (SQLException e)
+        {
+            
+        } 
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+   public String saveStaff1(String date)
     {      
         if(!cbStaff1.getValue().toString().equals(""))
         {
@@ -1409,6 +1458,11 @@ public class DiaryScreenDocumentController  implements Initializable
             int second = line.indexOf(")");
             String ID = line.substring(first+1, second);
             String Shift = cbShift1.getValue().toString();
+            
+            if(staff.size() >= 1)
+            {
+                replacingStaff(date, 0);
+            }
             
             return "REPLACE INTO working (Staff_ID, Date, Shift) VALUES (' "
                                                                 + ID + "','"
@@ -1437,6 +1491,11 @@ public class DiaryScreenDocumentController  implements Initializable
             int second = line.indexOf(")");
             String ID = line.substring(first+1, second);
             String Shift = cbShift2.getValue().toString();
+            
+            if(staff.size() >= 2)
+            {
+                replacingStaff(date, 1);
+            }
             
             return "REPLACE INTO working (Staff_ID, Date, Shift) VALUES (' "
                                                                 + ID + "','"
@@ -1467,6 +1526,11 @@ public class DiaryScreenDocumentController  implements Initializable
             String ID = line.substring(first+1, second);
             String Shift = cbShift3.getValue().toString();
             
+            if(staff.size() >= 3)
+            {
+                replacingStaff(date, 2);
+            }
+            
             return "REPLACE INTO working (Staff_ID, Date, Shift) VALUES (' "
                                                                 + ID + "','"
                                                                 + date + "','"
@@ -1494,6 +1558,11 @@ public class DiaryScreenDocumentController  implements Initializable
             int second = line.indexOf(")");
             String ID = line.substring(first+1, second);
             String Shift = cbShift4.getValue().toString();
+            
+            if(staff.size() >= 4)
+            {
+                replacingStaff(date, 3);
+            }
             
             return "REPLACE INTO working (Staff_ID, Date, Shift) VALUES (' "
                                                                 + ID + "','"
@@ -1523,6 +1592,11 @@ public class DiaryScreenDocumentController  implements Initializable
             String ID = line.substring(first+1, second);
             String Shift = cbShift5.getValue().toString();
             
+            if(staff.size() >= 5)
+            {
+                replacingStaff(date, 4);
+            }
+            
             return "REPLACE INTO working (Staff_ID, Date, Shift) VALUES (' "
                                                                 + ID + "','"
                                                                 + date + "','"
@@ -1551,6 +1625,11 @@ public class DiaryScreenDocumentController  implements Initializable
             String ID = line.substring(first+1, second);
             String Shift = cbShift6.getValue().toString();
             
+            if(staff.size() == 6)
+            {
+                replacingStaff(date, 5);
+            }
+            
             return "REPLACE INTO working (Staff_ID, Date, Shift) VALUES (' "
                                                                 + ID + "','"
                                                                 + date + "','"
@@ -1558,7 +1637,7 @@ public class DiaryScreenDocumentController  implements Initializable
         }
         else
         {
-            if(staff.size() >= 6)
+            if(staff.size() == 6)
             {
                 return "DELETE FROM working WHERE Date = '" + date + "' AND Staff_ID = '" + staff.get(5).getID() + "'";
             }
@@ -1568,6 +1647,18 @@ public class DiaryScreenDocumentController  implements Initializable
             }
         }
     }    
+      
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
