@@ -336,7 +336,7 @@ public class DiaryScreenDocumentController  implements Initializable
         fillStaffDropDowns();
         showInformation(codeBank.getCurrentDate());
         showStaff(codeBank.getCurrentDate());
-       
+        showNotes(codeBank.getCurrentDate());
     }
     
    
@@ -643,15 +643,14 @@ public class DiaryScreenDocumentController  implements Initializable
             
             // when creating a statement object, you MUST use a connection object to call the instance method
             Statement stmt = c.createStatement();
-            
             String stringDate = codeBank.dateToString(SearchDate);
-            
             
             //implement query
             rs = stmt.executeQuery("SELECT * FROM notes WHERE Date = '" + stringDate + "'" );
             
             while(rs.next())
             { 
+                    System.out.println(rs.getString("Notes"));
                     txtNotes.setText("NOTES \n\n " + rs.getString("Notes")); 
             }
             c.close();
@@ -725,9 +724,7 @@ public class DiaryScreenDocumentController  implements Initializable
         cbShift4.setValue("");
         cbShift5.setValue("");
         cbShift6.setValue("");
-        
-        
-        //NEED TO CLEAR THE STAFF BOXES
+       
     }
     
     //Getting the main diary information 
@@ -1377,9 +1374,7 @@ public class DiaryScreenDocumentController  implements Initializable
             }
             
             //implement query - SAVING NOTES AT TOP
-            String sql = "REPLACE INTO notes (Date, Notes) VALUES (' "
-                                                            + stringDate + "','"
-                                                            + txtNotes.getText() + "')"   ;            
+            String sql = saveNotes(stringDate);               
             stmt.executeUpdate(sql);        
                     
             c.close();
@@ -1394,11 +1389,16 @@ public class DiaryScreenDocumentController  implements Initializable
     
     
     
-    
-    
-    
-    
     //EACH SAVING METHOD FOR EACH MEMBER OF STAFF ------------------------------------------------------------------------------
+    
+    public String saveNotes(String date)
+    {
+        String lines[] = txtNotes.getText().split("\\r?\\n");
+                
+        return "REPLACE INTO notes (Date, Notes) VALUES ('" + date + "','" + lines[2] + "')" ;
+    }
+    
+    
     
     public String saveStaff1(String date)
     {      
