@@ -5,11 +5,16 @@
  */
 package bases;
 
+import common.DatabaseConnector;
 import common.codeBank;
 import diary.DiaryScreenDocumentController;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
@@ -66,12 +71,169 @@ public class MainScreenDocumentController implements Initializable
             
             updateDate();
             showDiary();
+            updateButtons();
         } 
         catch (IOException ex) 
         {
             Logger.getLogger(MainScreenDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void updateButtons()
+    {
+        updateDiaryButton();
+        updateBloodButton();
+        updatePreopButton();
+        updateOncologyButton();
+        updateNonBedButton();
+    }
+    
+    public void updateDiaryButton()
+    {
+        try
+        {
+            // open a connection
+            Connection c = DatabaseConnector.activateConnection();
+            c.setAutoCommit( true ); 
+            ResultSet rs ;
+            
+            // when creating a statement object, you MUST use a connection object to call the instance method
+            Statement stmt = c.createStatement();          
+            
+            //implement query
+            String date = codeBank.dateToString(codeBank.getCurrentDate());
+            rs = stmt.executeQuery("SELECT count(*) AS total FROM diary WHERE Date ='" + date + "'"); 
+                
+            while(rs.next())
+            { 
+                btnDiary.setText("Diary\n\n"+rs.getInt("total") + " booked");
+            }
+            c.close();
+        }
+        catch (SQLException e)
+        {
+            
+        } 
+    }
+    
+    public void updateBloodButton()
+    {
+        try
+        {
+            // open a connection
+            Connection c = DatabaseConnector.activateConnection();
+            c.setAutoCommit( true ); 
+            ResultSet rs ;
+            
+            // when creating a statement object, you MUST use a connection object to call the instance method
+            Statement stmt = c.createStatement();          
+            
+            //implement query
+            String date = codeBank.dateToString(codeBank.getCurrentDate());
+            rs = stmt.executeQuery("SELECT count(*) AS total FROM blood WHERE Date ='" + date + "'"); 
+                
+            while(rs.next())
+            { 
+                btnBlood.setText("Blood Clinic\n\n"+rs.getInt("total") + " booked");
+            }
+            c.close();
+        }
+        catch (SQLException e)
+        {
+            
+        } 
+    }
+    
+    public void updatePreopButton()
+    {
+        try
+        {
+            // open a connection
+            Connection c = DatabaseConnector.activateConnection();
+            c.setAutoCommit( true ); 
+            ResultSet rs ;
+            
+            // when creating a statement object, you MUST use a connection object to call the instance method
+            Statement stmt = c.createStatement();          
+            
+            //implement query
+            String date = codeBank.dateToString(codeBank.getCurrentDate());
+            rs = stmt.executeQuery("SELECT count(*) AS total FROM preop WHERE Date ='" + date + "'"); 
+                
+            while(rs.next())
+            { 
+                btnPreOp.setText("Preop\n\n"+rs.getInt("total") + " booked");
+            }
+            c.close();
+        }
+        catch (SQLException e)
+        {
+            
+        } 
+    }
+    
+    public void updateOncologyButton()
+    {
+        try
+        {
+            // open a connection
+            Connection c = DatabaseConnector.activateConnection();
+            c.setAutoCommit( true ); 
+            ResultSet rs ;
+            
+            // when creating a statement object, you MUST use a connection object to call the instance method
+            Statement stmt = c.createStatement();          
+            
+            //implement query
+            String date = codeBank.dateToString(codeBank.getCurrentDate());
+            rs = stmt.executeQuery("SELECT count(*) AS total FROM oncology WHERE Date ='" + date + "'"); 
+                
+            while(rs.next())
+            { 
+                btnOncology.setText("Oncology\n\n"+rs.getInt("total") + " booked");
+            }
+            c.close();
+        }
+        catch (SQLException e)
+        {
+            
+        } 
+    }
+    
+    public void updateNonBedButton()
+    {
+        try
+        {
+            // open a connection
+            Connection c = DatabaseConnector.activateConnection();
+            c.setAutoCommit( true ); 
+            ResultSet rs ;
+            
+            // when creating a statement object, you MUST use a connection object to call the instance method
+            Statement stmt = c.createStatement();          
+            
+            //implement query
+            String date = codeBank.dateToString(codeBank.getCurrentDate());
+            rs = stmt.executeQuery("SELECT count(*) AS total FROM nonbed WHERE Date ='" + date + "'"); 
+                
+            while(rs.next())
+            { 
+                btnNonBed.setText("Non-bed\n\n"+rs.getInt("total") + " booked");
+            }
+            c.close();
+        }
+        catch (SQLException e)
+        {
+            
+        } 
+    }
+    
+    
+    
+    
+    
+    
+    
     
     public void updateDate()
     {
@@ -88,19 +250,18 @@ public class MainScreenDocumentController implements Initializable
         LocalDate Today = LocalDate.now();
         codeBank.setCurrentDate(Today);
         updateDate();
+        updateButtons();
         DSDC.showInformation(codeBank.getCurrentDate());
         DSDC.showStaff(codeBank.getCurrentDate());
-        DSDC.showNotes(codeBank.getCurrentDate());
-        
+        DSDC.showNotes(codeBank.getCurrentDate()); 
     }
-    
-    
     
     @FXML 
     public void plusOneDay()
     {
         codeBank.setCurrentDate(codeBank.getCurrentDate().plusDays(1));
         updateDate();
+        updateButtons();
         DSDC.showInformation(codeBank.getCurrentDate());
         DSDC.showStaff(codeBank.getCurrentDate());
         DSDC.showNotes(codeBank.getCurrentDate());
@@ -111,6 +272,7 @@ public class MainScreenDocumentController implements Initializable
     {
         codeBank.setCurrentDate(codeBank.getCurrentDate().minusDays(1));
         updateDate();
+        updateButtons();
         DSDC.showInformation(codeBank.getCurrentDate());
         DSDC.showStaff(codeBank.getCurrentDate());
         DSDC.showNotes(codeBank.getCurrentDate());
@@ -122,6 +284,7 @@ public class MainScreenDocumentController implements Initializable
     {
         codeBank.setCurrentDate(dpCalandar.getValue());
         updateDate();
+        updateButtons();
         DSDC.showInformation(codeBank.getCurrentDate());
     }
     

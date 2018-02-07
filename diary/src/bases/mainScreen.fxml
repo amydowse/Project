@@ -40,11 +40,11 @@
     <right>
         <Pane fx:id="navigaion" prefHeight="500.0" prefWidth="150.0" style="-fx-background-color: pink;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnNonBed" layoutY="780.0" mnemonicParsing="false" onAction="#showNonbed" prefHeight="195.0" prefWidth="150.0" text="Non-bed" />
-            <Button fx:id="btnPreOP" layoutY="390.0" mnemonicParsing="false" onAction="#showPreop" prefHeight="195.0" prefWidth="150.0" text="Pre-op" />
-            <Button fx:id="btnBlood" layoutY="195.0" mnemonicParsing="false" onAction="#showBlood" prefHeight="195.0" prefWidth="150.0" text="Blood Clinic" />
-            <Button fx:id="btnOncology" layoutY="585.0" mnemonicParsing="false" onAction="#showOncology" prefHeight="195.0" prefWidth="150.0" text="Oncology" />
-            <Button fx:id="btnDiary" mnemonicParsing="false" onAction="#showDiary" prefHeight="195.0" prefWidth="150.0" text="Diary" />
+            <Button fx:id="btnNonBed" layoutY="780.0" mnemonicParsing="false" onAction="#showNonbed" prefHeight="195.0" prefWidth="150.0" text="Non-bed" stylesheets="@buttonStyle.css"/>
+            <Button fx:id="btnPreOp" layoutY="390.0" mnemonicParsing="false" onAction="#showPreop" prefHeight="195.0" prefWidth="150.0" text="Pre-op" stylesheets="@buttonStyle.css" />
+            <Button fx:id="btnBlood" layoutY="195.0" mnemonicParsing="false" onAction="#showBlood" prefHeight="195.0" prefWidth="150.0" text="Blood Clinic" stylesheets="@buttonStyle.css"/>
+            <Button fx:id="btnOncology" layoutY="585.0" mnemonicParsing="false" onAction="#showOncology" prefHeight="195.0" prefWidth="150.0" text="Oncology" stylesheets="@buttonStyle.css" />
+            <Button fx:id="btnDiary" mnemonicParsing="false" onAction="#showDiary" prefHeight="195.0" prefWidth="150.0" text="Diary" stylesheets="@buttonStyle.css"  />
          </children></Pane>
    </right> 
  
