@@ -253,6 +253,7 @@ public class MainScreenDocumentController implements Initializable
     @FXML
     public void today()
     {
+        DSDC.save(codeBank.getCurrentDate());
         //todays date into a localDate format 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate Today = LocalDate.now();
@@ -270,6 +271,7 @@ public class MainScreenDocumentController implements Initializable
     @FXML 
     public void plusOneDay()
     {
+        DSDC.save(codeBank.getCurrentDate());
         codeBank.setCurrentDate(codeBank.getCurrentDate().plusDays(1));
         updateDate();
         updateButtons();
@@ -283,6 +285,7 @@ public class MainScreenDocumentController implements Initializable
     @FXML 
     public void minusOneDay()
     {
+        DSDC.save(codeBank.getCurrentDate());
         codeBank.setCurrentDate(codeBank.getCurrentDate().minusDays(1));
         updateDate();
         updateButtons();
@@ -297,6 +300,7 @@ public class MainScreenDocumentController implements Initializable
     //method for date picker 
     public void selectedDate()
     {
+        DSDC.save(codeBank.getCurrentDate());
         codeBank.setCurrentDate(dpCalandar.getValue());
         updateDate();
         updateButtons();
@@ -320,6 +324,7 @@ public class MainScreenDocumentController implements Initializable
     @FXML
     public void showBlood() throws IOException
     {
+       DSDC.save(codeBank.getCurrentDate());
        Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/blood/bloodScreen.fxml"));
        changeContentPane(newLoadedPane);
         
@@ -328,6 +333,7 @@ public class MainScreenDocumentController implements Initializable
     @FXML
     public void showPreop() throws IOException
     {
+        DSDC.save(codeBank.getCurrentDate());
         changeContentPane(PreopPane); 
         
     }
@@ -335,6 +341,7 @@ public class MainScreenDocumentController implements Initializable
     @FXML
     public void showOncology() throws IOException
     {
+       DSDC.save(codeBank.getCurrentDate());
        Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/oncology/oncologyScreen.fxml"));
        changeContentPane(newLoadedPane);
         
@@ -343,6 +350,7 @@ public class MainScreenDocumentController implements Initializable
     @FXML
     public void showNonbed() throws IOException
     {
+       DSDC.save(codeBank.getCurrentDate());
        Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/nonbed/nonbedScreen.fxml"));
        changeContentPane(newLoadedPane);
         

@@ -336,6 +336,7 @@ public class PreopScreenDocumentController implements Initializable
                     switch(count)
                     {
                         case 0: 
+                            txtTimeU1.setText(singleBooking.getTime().toString());
                             txtNameU1.setText(singleBooking.getName());
                             txtAgeU1.setText(String.valueOf(singleBooking.getAge()));
                             txtHospitalU1.setText(singleBooking.getHospitalNumber());
@@ -346,6 +347,7 @@ public class PreopScreenDocumentController implements Initializable
                             count++;
                             break;
                         case 1: 
+                            txtTimeU2.setText(singleBooking.getTime().toString());
                             txtNameU2.setText(singleBooking.getName());
                             txtAgeU2.setText(String.valueOf(singleBooking.getAge()));
                             txtHospitalU2.setText(singleBooking.getHospitalNumber());
@@ -356,6 +358,7 @@ public class PreopScreenDocumentController implements Initializable
                             count++;
                             break;
                         case 2: 
+                            txtTimeU3.setText(singleBooking.getTime().toString());
                             txtNameU3.setText(singleBooking.getName());
                             txtAgeU3.setText(String.valueOf(singleBooking.getAge()));
                             txtHospitalU3.setText(singleBooking.getHospitalNumber());
@@ -397,6 +400,87 @@ public class PreopScreenDocumentController implements Initializable
     //Clear all of the textboxes
     public void clearInformation()
     {
+        allBookings.clear();
+        attendanceArray = new int[11];
+        notesArray = new int[11];
+        extraArray = codeBank.newStringArray(11);
+       
+        txtNameA1.setText("");
+        txtAgeA1.setText("");
+        txtHospitalA1.setText("");
+        txtSpecialityA1.setText("");
+        txtInformationA1.setText("");
+        txtNotesA1.setText("");
+        
+        txtNameA2.setText("");
+        txtAgeA2.setText("");
+        txtHospitalA2.setText("");
+        txtSpecialityA2.setText("");
+        txtInformationA2.setText("");
+        txtNotesA2.setText("");
+        
+        txtNameA3.setText("");
+        txtAgeA3.setText("");
+        txtHospitalA3.setText("");
+        txtSpecialityA3.setText("");
+        txtInformationA3.setText("");
+        txtNotesA3.setText("");
+        
+        txtNameA4.setText("");
+        txtAgeA4.setText("");
+        txtHospitalA4.setText("");
+        txtSpecialityA4.setText("");
+        txtInformationA4.setText("");
+        txtNotesA4.setText("");
+        
+        txtNameP1.setText("");
+        txtAgeP1.setText("");
+        txtHospitalP1.setText("");
+        txtSpecialityP1.setText("");
+        txtInformationP1.setText("");
+        txtNotesP1.setText("");
+        
+        txtNameP2.setText("");
+        txtAgeP2.setText("");
+        txtHospitalP2.setText("");
+        txtSpecialityP2.setText("");
+        txtInformationP2.setText("");
+        txtNotesP2.setText("");
+        
+        txtNameP3.setText("");
+        txtAgeP3.setText("");
+        txtHospitalP3.setText("");
+        txtSpecialityP3.setText("");
+        txtInformationP3.setText("");
+        txtNotesP3.setText("");
+        
+        txtNameP4.setText("");
+        txtAgeP4.setText("");
+        txtHospitalP4.setText("");
+        txtSpecialityP4.setText("");
+        txtInformationP4.setText("");
+        txtNotesP4.setText("");
+        
+        txtNameU1.setText("");
+        txtAgeU1.setText("");
+        txtHospitalU1.setText("");
+        txtSpecialityU1.setText("");
+        txtInformationU1.setText("");
+        txtNotesU1.setText("");
+        
+        txtNameU2.setText("");
+        txtAgeU2.setText("");
+        txtHospitalU2.setText("");
+        txtSpecialityU2.setText("");
+        txtInformationU2.setText("");
+        txtNotesU2.setText("");
+        
+        txtNameU3.setText("");
+        txtAgeU3.setText("");
+        txtHospitalU3.setText("");
+        txtSpecialityU3.setText("");
+        txtInformationU3.setText("");
+        txtNotesU3.setText("");
         
     }
     
