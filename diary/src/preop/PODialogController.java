@@ -18,7 +18,7 @@ import javafx.scene.control.TextArea;
  * @author amydo
  */
 
-public class DialogController implements Initializable
+public class PODialogController implements Initializable
 {
     
     @FXML private TextArea txtExtraInfo = new TextArea();
@@ -42,7 +42,6 @@ public class DialogController implements Initializable
     
     public void shutdown() 
     {
-        System.out.println("Stop");
         MainScreenDocumentController.PSDC.updateArray(arrayValue, txtExtraInfo.getText());
         txtExtraInfo.setText("");
     }

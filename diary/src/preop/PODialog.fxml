@@ -5,7 +5,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="preop.DialogController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="preop.PODialogController">
    <children>
       <TextArea fx:id="txtExtraInfo" layoutX="25.0" layoutY="25.0" prefHeight="150.0" prefWidth="250.0" promptText="Extra Information" />
       <Label fx:id="lblName" alignment="CENTER" contentDisplay="RIGHT" layoutX="282.0" layoutY="60.0" prefHeight="21.0" prefWidth="108.0" text="Name" />

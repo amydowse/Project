@@ -572,7 +572,7 @@ public class PreopScreenDocumentController implements Initializable
     @FXML public void U2Extra(){showExtraInfo(9, txtNameU2.getText(), txtTimeU2.getText());} 
     @FXML public void U3Extra(){showExtraInfo(10, txtNameU3.getText(), txtTimeU3.getText());} 
    
-    private DialogController DC;
+    private PODialogController PDC;
     private Pane x;
     
     public void showExtraInfo(int arrayValue, String name, String time)
@@ -584,21 +584,21 @@ public class PreopScreenDocumentController implements Initializable
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Extra Information");
             
-            FXMLLoader DL = new FXMLLoader(getClass().getResource("/diary/Dialog.fxml"));           
+            FXMLLoader DL = new FXMLLoader(getClass().getResource("/preop/PODialog.fxml"));           
             x = DL.load();
-            DC = DL.getController();
+            PDC = DL.getController();
             
             final Scene scene = new Scene(x, 400, 200);
             stage.setScene(scene);
-            stage.setOnHidden(e -> DC.shutdown());
+            stage.setOnHidden(e -> PDC.shutdown());
             stage.show();
                        
-            DC.showInformation(arrayValue, extraArray[arrayValue], name, time);
+            PDC.showInformation(arrayValue, extraArray[arrayValue], name, time);
             
         } 
         catch (IOException ex) 
         {
-            Logger.getLogger(DiaryScreenDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+           
         }
     }
     
