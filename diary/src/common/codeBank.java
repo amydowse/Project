@@ -44,9 +44,9 @@ public class codeBank
         return localDate;
     }
     
-    public static String[] newStringArray()
+    public static String[] newStringArray(int size)
     {
-        String[] array = new String[24];
+        String[] array = new String[size];
         for(int i=0; i<array.length; i++)
         {
             array[i] = "";
@@ -74,6 +74,38 @@ public class codeBank
             txt.setStyle(" -fx-text-fill: #00FF31"); //green
         }
     }
+    
+    //Showing the correct colour for attendance 
+    public static void attendanceColour(TextField txt, int attendance)
+    {
+        if(attendance == 0)
+        {
+            txt.setStyle(" -fx-background-color: #FFFFFF"); //white
+        }
+        else if (attendance == 1)
+        {
+            txt.setStyle(" -fx-background-color: #00FF31"); //green
+        }
+        else
+        {
+            txt.setStyle(" -fx-background-color: #FF0000"); //red
+        }
+    }
+    
+    public static void extraInfo(TextField txt, String info)
+    {        
+        if(info.equals("") || info.equals(null))
+        {
+            txt.setText("");
+            txt.setStyle("-fx-font-weight: regular");
+        }
+        else
+        {
+            txt.setText("+");
+            txt.setStyle("-fx-font-weight: bold");
+        }
+    }
+    
     
     
     

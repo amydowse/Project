@@ -31,6 +31,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import preop.PreopScreenDocumentController;
 /**
  *
  * @author amydo
@@ -54,7 +55,10 @@ public class MainScreenDocumentController implements Initializable
     @FXML private DatePicker dpCalandar = new DatePicker();
     
     public static DiaryScreenDocumentController DSDC;
-    private Pane x;
+    public static PreopScreenDocumentController PSDC;
+    
+    private Pane DiaryPane;
+    private Pane PreopPane;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
@@ -64,8 +68,12 @@ public class MainScreenDocumentController implements Initializable
         try 
         {
             FXMLLoader DSL = new FXMLLoader(getClass().getResource("/diary/diaryScreen.fxml"));            
-            x = DSL.load();
+            DiaryPane = DSL.load();
             DSDC = DSL.getController();
+            
+            FXMLLoader PSL = new FXMLLoader(getClass().getResource("/preop/preopScreen.fxml"));
+            PreopPane = PSL.load();
+            PSDC = PSL.getController();
            
             codeBank.setCurrentDate(LocalDate.now());
             
@@ -249,11 +257,14 @@ public class MainScreenDocumentController implements Initializable
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate Today = LocalDate.now();
         codeBank.setCurrentDate(Today);
+        
         updateDate();
+        
         updateButtons();
         DSDC.showInformation(codeBank.getCurrentDate());
         DSDC.showStaff(codeBank.getCurrentDate());
         DSDC.showNotes(codeBank.getCurrentDate()); 
+        PSDC.loadInformation();
     }
     
     @FXML 
@@ -262,9 +273,11 @@ public class MainScreenDocumentController implements Initializable
         codeBank.setCurrentDate(codeBank.getCurrentDate().plusDays(1));
         updateDate();
         updateButtons();
+        
         DSDC.showInformation(codeBank.getCurrentDate());
         DSDC.showStaff(codeBank.getCurrentDate());
         DSDC.showNotes(codeBank.getCurrentDate());
+        PSDC.loadInformation();
     }
     
     @FXML 
@@ -273,9 +286,11 @@ public class MainScreenDocumentController implements Initializable
         codeBank.setCurrentDate(codeBank.getCurrentDate().minusDays(1));
         updateDate();
         updateButtons();
+        
         DSDC.showInformation(codeBank.getCurrentDate());
         DSDC.showStaff(codeBank.getCurrentDate());
         DSDC.showNotes(codeBank.getCurrentDate());
+        PSDC.loadInformation();
     }
     
     @FXML
@@ -285,16 +300,20 @@ public class MainScreenDocumentController implements Initializable
         codeBank.setCurrentDate(dpCalandar.getValue());
         updateDate();
         updateButtons();
+        
         DSDC.showInformation(codeBank.getCurrentDate());
+        PSDC.loadInformation();
     }
+    
+    
+    
     
     
     @FXML
     public void showDiary() throws IOException
     {
        //Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/diary/diaryScreen.fxml"));
-       codeBank.setCurrentDate(LocalDate.now());
-       changeContentPane(x);    
+        changeContentPane(DiaryPane);    
         
     }
    
@@ -309,8 +328,7 @@ public class MainScreenDocumentController implements Initializable
     @FXML
     public void showPreop() throws IOException
     {
-       Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/preop/preopScreen.fxml"));
-       changeContentPane(newLoadedPane);
+        changeContentPane(PreopPane); 
         
     }
     

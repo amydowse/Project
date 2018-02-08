@@ -323,7 +323,7 @@ public class DiaryScreenDocumentController  implements Initializable
     
     int[] attendanceArray = new int[24];
     int[] notesArray = new int[24];
-    String[] extraArray = codeBank.newStringArray();
+    String[] extraArray = codeBank.newStringArray(11);
     private Boolean notes = false;
    
       
@@ -388,7 +388,7 @@ public class DiaryScreenDocumentController  implements Initializable
             attendanceArray[arrayValue] = 0;
         }
         
-        attendanceColour(attendanceList.get(arrayValue),attendanceArray[arrayValue]);
+        codeBank.attendanceColour(attendanceList.get(arrayValue),attendanceArray[arrayValue]);
     }
     
     
@@ -506,19 +506,7 @@ public class DiaryScreenDocumentController  implements Initializable
     }
     
     
-    public void extraInfo(TextField txt, String info)
-    {        
-        if(info.equals("") || info.equals(null))
-        {
-            txt.setText("");
-            txt.setStyle("-fx-font-weight: regular");
-        }
-        else
-        {
-            txt.setText("+");
-            txt.setStyle("-fx-font-weight: bold");
-        }
-    }
+ 
     
     
     
@@ -1012,7 +1000,7 @@ public class DiaryScreenDocumentController  implements Initializable
         int count = 0;
         for(TextField text : attendanceList)
         {
-            attendanceColour(text, attendanceArray[count]);
+            codeBank.attendanceColour(text, attendanceArray[count]);
             count++;
         }
         
@@ -1026,7 +1014,7 @@ public class DiaryScreenDocumentController  implements Initializable
         int count3 = 0;
         for(TextField text3 : extraList)
         {
-            extraInfo(text3, extraArray[count3]);
+            codeBank.extraInfo(text3, extraArray[count3]);
             count3++;
         }
               
@@ -1071,10 +1059,9 @@ public class DiaryScreenDocumentController  implements Initializable
     //Resetting the main diary 
     public void clearDiary()
     {
-        System.out.println("CLEARING THE DIARY SECTION-------------");
         attendanceArray = new int[24];
         notesArray = new int[24];
-        extraArray = codeBank.newStringArray();
+        extraArray = codeBank.newStringArray(24);
         
         txtTime1MA.setText("");
         txtName1MA.setText("");
@@ -1083,9 +1070,7 @@ public class DiaryScreenDocumentController  implements Initializable
         txtSpeciality1MA.setText("");
         txtNotes1MA.setText("");
         txtExtra1MA.setText("");
-            
-        System.out.println("CLEARING 1MA-------------");
-        
+                
         txtTime2MA.setText("");
         txtName2MA.setText("");
         txtAge2MA.setText("");
@@ -1094,8 +1079,6 @@ public class DiaryScreenDocumentController  implements Initializable
         txtNotes2MA.setText("");
         txtExtra2MA.setText("");
       
-        System.out.println("CLEARING 2MA-------------");
-        
         txtTime3MA.setText("");
         txtName3MA.setText("");
         txtAge3MA.setText("");
@@ -1274,49 +1257,8 @@ public class DiaryScreenDocumentController  implements Initializable
         
     }
     
-    /*
-    //Showing the correct symbol in the notes column 
-    public void showNotes(TextField txt, int notes)
-    {
-        if(notes == 0)
-        {
-            txt.setText("-");
-            txt.setStyle(" -fx-text-fill: #000000"); //black
-        }
-        else if (notes == 1)
-        {
-            txt.setText("O");
-            txt.setStyle(" -fx-text-fill: #FFD800"); //orange
-        }
-        else
-        {   
-            txt.setText("✓");
-            txt.setStyle(" -fx-text-fill: #00FF31"); //green
-        }
-    }
-    */
-    //Showing the correct colour for attendance 
-    public void attendanceColour(TextField txt, int attendance)
-    {
-        if(attendance == 0)
-        {
-            txt.setStyle(" -fx-background-color: #FFFFFF"); //white
-        }
-        else if (attendance == 1)
-        {
-            txt.setStyle(" -fx-background-color: #00FF31"); //green
-        }
-        else
-        {
-            txt.setStyle(" -fx-background-color: #FF0000"); //red
-        }
-    }
-    
-  
-    
-    
-    
-    
+   
+   
     
     
     
