@@ -609,4 +609,308 @@ public class PreopScreenDocumentController implements Initializable
     
     
     
+    
+    
+    public void save(LocalDate today)
+    {
+        System.out.println("IN SAVE FOR PREOP");
+        try
+        {
+            // open a connection
+            Connection c = DatabaseConnector.activateConnection();
+            c.setAutoCommit( true ); 
+            
+            // when creating a statement object, you MUST use a connection object to call the instance method
+            Statement stmt = c.createStatement();
+            
+            String stringDate = codeBank.dateToString(today);          
+            
+            
+            //implement query - SAVING EACH LINE                       
+            String[] queries = new String[11];
+            queries[0] = saveA1(stringDate);
+            queries[1] = saveA2(stringDate);
+            queries[2] = saveA3(stringDate);
+            queries[3] = saveA4(stringDate);
+            queries[4] = saveP1(stringDate);
+            queries[5] = saveP2(stringDate);
+            queries[6] = saveP3(stringDate);
+            queries[7] = saveP4(stringDate);
+            queries[8] = saveU1(stringDate);
+            queries[9] = saveU2(stringDate);
+            queries[10] = saveU3(stringDate);
+            
+            for(int i=0; i<queries.length; i++)
+            {
+               stmt.executeUpdate(queries[i]);
+            }
+                  
+            c.close();
+        }
+        catch (SQLException e)
+        {
+            
+        } 
+    }
+    
+    
+    
+    //THE SAVE METHODS FOR EACH ROW 
+    
+    public String saveA1(String date)
+    {
+        if(!txtNameA1.getText().equals("") & !txtAgeA1.getText().equals("") & !txtHospitalA1.getText().equals("") & !txtSpecialityA1.getText().equals(""))
+        {
+            return ("REPLACE INTO preop (Date, Time, Name, Age, HospitalNumber, Speciality, ExtraInfo, Notes, Attendance) VALUES('"      
+                                                                                + date + "','"
+                                                                                + "08:00" + "','"
+                                                                                + txtNameA1.getText() + "','"
+                                                                                + txtAgeA1.getText() + "','"
+                                                                                + txtHospitalA1.getText() + "','"
+                                                                                + txtSpecialityA1.getText() + "','"
+                                                                                + extraArray[0] + "','"
+                                                                                + notesArray[0] + "','"
+                                                                                + attendanceArray[0] + "')"
+                    );
+        }
+        else
+        {
+            return "";
+        }
+    }
+    
+    public String saveA2(String date)
+    {
+        if(!txtNameA2.getText().equals("") & !txtAgeA2.getText().equals("") & !txtHospitalA2.getText().equals("") & !txtSpecialityA2.getText().equals(""))
+        {
+            return ("REPLACE INTO preop (Date, Time, Name, Age, HospitalNumber, Speciality, ExtraInfo, Notes, Attendance) VALUES('"      
+                                                                                + date + "','"
+                                                                                + "08:30" + "','"
+                                                                                + txtNameA2.getText() + "','"
+                                                                                + txtAgeA2.getText() + "','"
+                                                                                + txtHospitalA2.getText() + "','"
+                                                                                + txtSpecialityA2.getText() + "','"
+                                                                                + extraArray[1] + "','"
+                                                                                + notesArray[1] + "','"
+                                                                                + attendanceArray[1] + "')"
+                    );
+        }
+        else
+        {
+            return "";
+        }
+    }    
+
+    public String saveA3(String date)
+    {
+        if(!txtNameA3.getText().equals("") & !txtAgeA3.getText().equals("") & !txtHospitalA3.getText().equals("") & !txtSpecialityA3.getText().equals(""))
+        {
+            return ("REPLACE INTO preop (Date, Time, Name, Age, HospitalNumber, Speciality, ExtraInfo, Notes, Attendance) VALUES('"      
+                                                                                + date + "','"
+                                                                                + "09:00" + "','"
+                                                                                + txtNameA3.getText() + "','"
+                                                                                + txtAgeA3.getText() + "','"
+                                                                                + txtHospitalA3.getText() + "','"
+                                                                                + txtSpecialityA3.getText() + "','"
+                                                                                + extraArray[2] + "','"
+                                                                                + notesArray[2] + "','"
+                                                                                + attendanceArray[2] + "')"
+                    );
+        }
+        else
+        {
+            return "";
+        }
+    }        
+    
+    public String saveA4(String date)
+    {
+        if(!txtNameA4.getText().equals("") & !txtAgeA4.getText().equals("") & !txtHospitalA4.getText().equals("") & !txtSpecialityA4.getText().equals(""))
+        {
+            return ("REPLACE INTO preop (Date, Time, Name, Age, HospitalNumber, Speciality, ExtraInfo, Notes, Attendance) VALUES('"      
+                                                                                + date + "','"
+                                                                                + "09:30" + "','"
+                                                                                + txtNameA4.getText() + "','"
+                                                                                + txtAgeA4.getText() + "','"
+                                                                                + txtHospitalA4.getText() + "','"
+                                                                                + txtSpecialityA4.getText() + "','"
+                                                                                + extraArray[3] + "','"
+                                                                                + notesArray[3] + "','"
+                                                                                + attendanceArray[3] + "')"
+                    );
+        }
+        else
+        {
+            return "";
+        }
+    }       
+    
+    
+    
+    public String saveP1(String date)
+    {
+        if(!txtNameP1.getText().equals("") & !txtAgeP1.getText().equals("") & !txtHospitalP1.getText().equals("") & !txtSpecialityP1.getText().equals(""))
+        {
+            return ("REPLACE INTO preop (Date, Time, Name, Age, HospitalNumber, Speciality, ExtraInfo, Notes, Attendance) VALUES('"      
+                                                                                + date + "','"
+                                                                                + "14:00" + "','"
+                                                                                + txtNameP1.getText() + "','"
+                                                                                + txtAgeP1.getText() + "','"
+                                                                                + txtHospitalP1.getText() + "','"
+                                                                                + txtSpecialityP1.getText() + "','"
+                                                                                + extraArray[4] + "','"
+                                                                                + notesArray[4] + "','"
+                                                                                + attendanceArray[4] + "')"
+                    );
+        }
+        else
+        {
+            return "";
+        }
+    }
+    
+    public String saveP2(String date)
+    {
+        if(!txtNameP2.getText().equals("") & !txtAgeP2.getText().equals("") & !txtHospitalP2.getText().equals("") & !txtSpecialityP2.getText().equals(""))
+        {
+            return ("REPLACE INTO preop (Date, Time, Name, Age, HospitalNumber, Speciality, ExtraInfo, Notes, Attendance) VALUES('"      
+                                                                                + date + "','"
+                                                                                + "14:30" + "','"
+                                                                                + txtNameP2.getText() + "','"
+                                                                                + txtAgeP2.getText() + "','"
+                                                                                + txtHospitalP2.getText() + "','"
+                                                                                + txtSpecialityP2.getText() + "','"
+                                                                                + extraArray[5] + "','"
+                                                                                + notesArray[5] + "','"
+                                                                                + attendanceArray[5] + "')"
+                    );
+        }
+        else
+        {
+            return "";
+        }
+    }    
+
+    public String saveP3(String date)
+    {
+        if(!txtNameP3.getText().equals("") & !txtAgeP3.getText().equals("") & !txtHospitalP3.getText().equals("") & !txtSpecialityP3.getText().equals(""))
+        {
+            return ("REPLACE INTO preop (Date, Time, Name, Age, HospitalNumber, Speciality, ExtraInfo, Notes, Attendance) VALUES('"      
+                                                                                + date + "','"
+                                                                                + "15:00" + "','"
+                                                                                + txtNameP3.getText() + "','"
+                                                                                + txtAgeP3.getText() + "','"
+                                                                                + txtHospitalP3.getText() + "','"
+                                                                                + txtSpecialityP3.getText() + "','"
+                                                                                + extraArray[6] + "','"
+                                                                                + notesArray[6] + "','"
+                                                                                + attendanceArray[6] + "')"
+                    );
+        }
+        else
+        {
+            return "";
+        }
+    }        
+    
+    public String saveP4(String date)
+    {
+        if(!txtNameP4.getText().equals("") & !txtAgeP4.getText().equals("") & !txtHospitalP4.getText().equals("") & !txtSpecialityP4.getText().equals(""))
+        {
+            return ("REPLACE INTO preop (Date, Time, Name, Age, HospitalNumber, Speciality, ExtraInfo, Notes, Attendance) VALUES('"      
+                                                                                + date + "','"
+                                                                                + "15:30" + "','"
+                                                                                + txtNameP4.getText() + "','"
+                                                                                + txtAgeP4.getText() + "','"
+                                                                                + txtHospitalP4.getText() + "','"
+                                                                                + txtSpecialityP4.getText() + "','"
+                                                                                + extraArray[7] + "','"
+                                                                                + notesArray[7] + "','"
+                                                                                + attendanceArray[7] + "')"
+                    );
+        }
+        else
+        {
+            return "";
+        }
+    }  
+    
+    
+    
+    
+    
+    public String saveU1(String date)
+    {
+        if(!txtTimeU1.getText().equals("") & !txtNameU1.getText().equals("") & !txtAgeU1.getText().equals("") & !txtHospitalU1.getText().equals("") & !txtSpecialityU1.getText().equals(""))
+        {
+            return ("REPLACE INTO preop (Date, Time, Name, Age, HospitalNumber, Speciality, ExtraInfo, Notes, Attendance) VALUES('"      
+                                                                                + date + "','"
+                                                                                + txtTimeU1.getText() + "','"
+                                                                                + txtNameU1.getText() + "','"
+                                                                                + txtAgeU1.getText() + "','"
+                                                                                + txtHospitalU1.getText() + "','"
+                                                                                + txtSpecialityU1.getText() + "','"
+                                                                                + extraArray[8] + "','"
+                                                                                + notesArray[8] + "','"
+                                                                                + attendanceArray[8] + "')"
+                    );
+        }
+        else
+        {
+            return "";
+        }
+    }
+    
+    
+    public String saveU2(String date)
+    {
+        if(!txtTimeU2.getText().equals("") & !txtNameU2.getText().equals("") & !txtAgeU2.getText().equals("") & !txtHospitalU2.getText().equals("") & !txtSpecialityU2.getText().equals(""))
+        {
+            return ("REPLACE INTO preop (Date, Time, Name, Age, HospitalNumber, Speciality, ExtraInfo, Notes, Attendance) VALUES('"      
+                                                                                + date + "','"
+                                                                                + txtTimeU2.getText() + "','"
+                                                                                + txtNameU2.getText() + "','"
+                                                                                + txtAgeU2.getText() + "','"
+                                                                                + txtHospitalU2.getText() + "','"
+                                                                                + txtSpecialityU2.getText() + "','"
+                                                                                + extraArray[9] + "','"
+                                                                                + notesArray[9] + "','"
+                                                                                + attendanceArray[9] + "')"
+                    );
+        }
+        else
+        {
+            return "";
+        }
+    }
+    
+    
+    
+    public String saveU3(String date)
+    {
+        if(!txtTimeU3.getText().equals("") & !txtNameU3.getText().equals("") & !txtAgeU3.getText().equals("") & !txtHospitalU3.getText().equals("") & !txtSpecialityU3.getText().equals(""))
+        {
+            return ("REPLACE INTO preop (Date, Time, Name, Age, HospitalNumber, Speciality, ExtraInfo, Notes, Attendance) VALUES('"      
+                                                                                + date + "','"
+                                                                                + txtTimeU3.getText() + "','"
+                                                                                + txtNameU3.getText() + "','"
+                                                                                + txtAgeU3.getText() + "','"
+                                                                                + txtHospitalU3.getText() + "','"
+                                                                                + txtSpecialityU3.getText() + "','"
+                                                                                + extraArray[10] + "','"
+                                                                                + notesArray[10] + "','"
+                                                                                + attendanceArray[10] + "')"
+                    );
+        }
+        else
+        {
+            return "";
+        }
+    }
+    
+    
+    
+    
+    
+    
 } //END OF CLASS

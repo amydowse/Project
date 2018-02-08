@@ -254,6 +254,8 @@ public class MainScreenDocumentController implements Initializable
     public void today()
     {
         DSDC.save(codeBank.getCurrentDate());
+        PSDC.save(codeBank.getCurrentDate());
+        
         //todays date into a localDate format 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate Today = LocalDate.now();
@@ -272,6 +274,8 @@ public class MainScreenDocumentController implements Initializable
     public void plusOneDay()
     {
         DSDC.save(codeBank.getCurrentDate());
+        PSDC.save(codeBank.getCurrentDate());
+        
         codeBank.setCurrentDate(codeBank.getCurrentDate().plusDays(1));
         updateDate();
         updateButtons();
@@ -286,6 +290,8 @@ public class MainScreenDocumentController implements Initializable
     public void minusOneDay()
     {
         DSDC.save(codeBank.getCurrentDate());
+        PSDC.save(codeBank.getCurrentDate());
+        
         codeBank.setCurrentDate(codeBank.getCurrentDate().minusDays(1));
         updateDate();
         updateButtons();
@@ -301,6 +307,8 @@ public class MainScreenDocumentController implements Initializable
     public void selectedDate()
     {
         DSDC.save(codeBank.getCurrentDate());
+        PSDC.save(codeBank.getCurrentDate());
+        
         codeBank.setCurrentDate(dpCalandar.getValue());
         updateDate();
         updateButtons();
