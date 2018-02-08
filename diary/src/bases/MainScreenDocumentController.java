@@ -293,6 +293,7 @@ public class MainScreenDocumentController implements Initializable
     public void showDiary() throws IOException
     {
        //Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/diary/diaryScreen.fxml"));
+       codeBank.setCurrentDate(LocalDate.now());
        changeContentPane(x);    
         
     }
@@ -335,6 +336,7 @@ public class MainScreenDocumentController implements Initializable
     {
         Parent root = FXMLLoader.load(getClass().getResource("/bases/startScreen.fxml"));
         DSDC.save(codeBank.getCurrentDate());
+        codeBank.setCurrentDate(LocalDate.now());
         Scene scene = new Scene(root);
         bases.Start.stage.setScene(scene);
         

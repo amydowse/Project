@@ -333,14 +333,17 @@ public class DiaryScreenDocumentController  implements Initializable
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
-    {
-        fillStaffDropDowns();
+    {    
         showInformation(codeBank.getCurrentDate());
         showStaff(codeBank.getCurrentDate());
         showNotes(codeBank.getCurrentDate());
+        fillStaffDropDowns();  
     }
     
-   
+     
+    
+    
+    
     
     //Each method associated with the textfield for the bed numbers 
     @FXML public void MA1Attendance(){change(0);}
@@ -431,7 +434,7 @@ public class DiaryScreenDocumentController  implements Initializable
             notesArray[arrayValue] = 0;
         }
                 
-        showNotes(notesList.get(arrayValue),notesArray[arrayValue]);
+        codeBank.showNotes(notesList.get(arrayValue),notesArray[arrayValue]);
     }  
     
     
@@ -519,21 +522,6 @@ public class DiaryScreenDocumentController  implements Initializable
     
     
     
-
-
-
-
-
-
-
-
-
-    
-    
-    
-    
-    
-    
     public void fillStaffDropDowns()
     {
         try
@@ -594,16 +582,7 @@ public class DiaryScreenDocumentController  implements Initializable
     }
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+   
     
     
     public void showStaff(LocalDate SearchDate)
@@ -716,34 +695,13 @@ public class DiaryScreenDocumentController  implements Initializable
     
     
     
-    public void clearTopSection()
-    {
-        notes = false;
-        staff.clear();
-        txtNotes.setText("");
-        
-        cbStaff1.setValue("");
-        cbStaff2.setValue("");
-        cbStaff3.setValue("");
-        cbStaff4.setValue("");
-        cbStaff5.setValue("");
-        cbStaff6.setValue("");
-        
-        cbShift1.setValue("");
-        cbShift2.setValue("");
-        cbShift3.setValue("");
-        cbShift4.setValue("");
-        cbShift5.setValue("");
-        cbShift6.setValue("");
-       
-    }
+    
     
     //Getting the main diary information 
     public void showInformation(LocalDate SearchDate)
     {   
-        allBookings.clear();
-        clearDiary();
-        clearTopSection();
+        clearAll();
+        
         try
         {
             // open a connection
@@ -1061,7 +1019,7 @@ public class DiaryScreenDocumentController  implements Initializable
         int count2 = 0;
         for(TextField text2 : notesList)
         {
-            showNotes(text2, notesArray[count2]);
+            codeBank.showNotes(text2, notesArray[count2]);
             count2++;
         }
         
@@ -1074,9 +1032,46 @@ public class DiaryScreenDocumentController  implements Initializable
               
     }
     
+    
+    
+    
+    public void clearAll()
+    {
+        clearTopSection();
+        clearDiary();
+        allBookings.clear();
+    }
+    
+    
+    
+    
+    public void clearTopSection()
+    {
+        notes = false;
+        staff.clear();
+        txtNotes.setText("");
+        
+        cbStaff1.setValue("");
+        cbStaff2.setValue("");
+        cbStaff3.setValue("");
+        cbStaff4.setValue("");
+        cbStaff5.setValue("");
+        cbStaff6.setValue("");
+        
+        cbShift1.setValue("");
+        cbShift2.setValue("");
+        cbShift3.setValue("");
+        cbShift4.setValue("");
+        cbShift5.setValue("");
+        cbShift6.setValue("");
+       
+    }
+    
+    
     //Resetting the main diary 
     public void clearDiary()
     {
+        System.out.println("CLEARING THE DIARY SECTION-------------");
         attendanceArray = new int[24];
         notesArray = new int[24];
         extraArray = codeBank.newStringArray();
@@ -1088,7 +1083,9 @@ public class DiaryScreenDocumentController  implements Initializable
         txtSpeciality1MA.setText("");
         txtNotes1MA.setText("");
         txtExtra1MA.setText("");
-                 
+            
+        System.out.println("CLEARING 1MA-------------");
+        
         txtTime2MA.setText("");
         txtName2MA.setText("");
         txtAge2MA.setText("");
@@ -1097,6 +1094,8 @@ public class DiaryScreenDocumentController  implements Initializable
         txtNotes2MA.setText("");
         txtExtra2MA.setText("");
       
+        System.out.println("CLEARING 2MA-------------");
+        
         txtTime3MA.setText("");
         txtName3MA.setText("");
         txtAge3MA.setText("");
@@ -1275,7 +1274,7 @@ public class DiaryScreenDocumentController  implements Initializable
         
     }
     
-    
+    /*
     //Showing the correct symbol in the notes column 
     public void showNotes(TextField txt, int notes)
     {
@@ -1295,7 +1294,7 @@ public class DiaryScreenDocumentController  implements Initializable
             txt.setStyle(" -fx-text-fill: #00FF31"); //green
         }
     }
-    
+    */
     //Showing the correct colour for attendance 
     public void attendanceColour(TextField txt, int attendance)
     {
@@ -1480,7 +1479,7 @@ public class DiaryScreenDocumentController  implements Initializable
         }
         else
         {
-            if(staff.get(0) != null)
+            if(staff.size() == 1 && staff.get(0) != null)
             {
                 return "DELETE FROM working WHERE Date = '" + date + "' AND Staff_ID = '" + staff.get(0).getID() + "'";
             }

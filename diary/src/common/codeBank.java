@@ -8,6 +8,7 @@ package common;
 import diary.DiaryScreenDocumentController;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import javafx.scene.control.TextField;
 
 /**
  *
@@ -52,6 +53,29 @@ public class codeBank
         }
         return array;
     }
+    
+    
+        //Showing the correct symbol in the notes column 
+    public static void showNotes(TextField txt, int notes)
+    {
+        if(notes == 0)
+        {
+            txt.setText("-");
+            txt.setStyle(" -fx-text-fill: #000000"); //black
+        }
+        else if (notes == 1)
+        {
+            txt.setText("O");
+            txt.setStyle(" -fx-text-fill: #FFD800"); //orange
+        }
+        else
+        {   
+            txt.setText("✓");
+            txt.setStyle(" -fx-text-fill: #00FF31"); //green
+        }
+    }
+    
+    
     
 }
 

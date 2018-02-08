@@ -27,7 +27,7 @@ public class DatabaseConnector
             // create a connection to the database
             c = DriverManager.getConnection(url);
             
-            System.out.println("Connection to SQLite has been established.");
+           // System.out.println("Connection to SQLite has been established.");
            //Class.forName("org.sqlite.JDBC");
           // c = DriverManager.getConnection("jdbc:sqlite:diaryDatabase.db");
           
