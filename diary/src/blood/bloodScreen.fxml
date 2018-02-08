@@ -5,7 +5,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="975.0" prefWidth="1770.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="975.0" prefWidth="1770.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="blood.BloodScreenDocumentController">
    <children>
        
       <Label layoutX="46.0" layoutY="43.0" text="BLOOD CLINIC">
@@ -26,7 +26,7 @@
         <columns>
           <TableColumn fx:id="tblColTime" prefWidth="132.0" text="Time" />
           <TableColumn fx:id="tblColName" prefWidth="256.0" text="Name" />
-            <TableColumn fx:id="tobColDOB" prefWidth="128.0" text="Date of Birth" />
+            <TableColumn fx:id="tblColDOB" prefWidth="128.0" text="Date of Birth" />
             <TableColumn fx:id="tblColNHS" prefWidth="161.0" text="NHS Number" />
             <TableColumn fx:id="tblColNumber" prefWidth="184.0" text="Contact Number" />
             <TableColumn fx:id="tblColForm" prefWidth="186.0" text="Form" />
