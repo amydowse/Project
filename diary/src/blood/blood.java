@@ -141,5 +141,10 @@ public class blood
     {
         this.bookedBy = bookedBy;
     }    
+    
+    public void setAttendance(int attendance)
+    {
+        this.attendance = attendance;
+    }
 }
 

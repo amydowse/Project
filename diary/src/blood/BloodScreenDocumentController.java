@@ -195,9 +195,7 @@ public class BloodScreenDocumentController implements Initializable
                 String previous = rs.getString("Previous");
                 String bookedBy = rs.getString("BookedBy");
                 Integer attendance = rs.getInt("Attendance");
-                
-                System.out.println("ATTENDANCE..." + attendance);
-                                 
+                                                 
                 blood y = new blood(Date, Time, name, DOB, NHSNumber, number, form, extraInfo, previous, bookedBy, attendance);
                 specificBookings.add(y);
                 
@@ -323,6 +321,7 @@ public class BloodScreenDocumentController implements Initializable
             
             //https://stackoverflow.com/questions/27281370/javafx-tableview-format-one-cell-based-on-the-value-of-another-in-the-row accessed 10/2/18
             tblColTime.setCellValueFactory(new PropertyValueFactory<blood, String>("Time"));
+            
             tblColTime.setCellFactory(new Callback<TableColumn<blood, LocalTime>, 
             TableCell<blood, LocalTime>>()
             {
@@ -337,7 +336,7 @@ public class BloodScreenDocumentController implements Initializable
                         {
                             if (!empty)
                             {
-                                int currentIndex = indexProperty().getValue() < 0 ? 0: indexProperty().getValue();
+                                int currentIndex = indexProperty().getValue();
                                 blood type = param.getTableView().getItems().get(currentIndex);
                                 
                                 if(type.getAttendance() == 1)
@@ -350,7 +349,7 @@ public class BloodScreenDocumentController implements Initializable
                                     setText(type.getTime().toString());
                                     setStyle("-fx-background-color: red");
                                 }
-                                else 
+                                else if(type.getAttendance() == 0)
                                 {
                                     setText(type.getTime().toString());
                                     setStyle("-fx-background-color: white");
@@ -361,55 +360,29 @@ public class BloodScreenDocumentController implements Initializable
                 }
             });
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-           
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-             
             tblClinic.getItems().addAll(allBookings);
+            
+            
+            
+            tblClinic.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) ->
+            {
+                if(((blood)newSelection).getAttendance() == 1)
+                {
+                    ((blood)newSelection).setAttendance(2);
+                }
+                else if (((blood)newSelection).getAttendance() == 2)
+                {
+                    ((blood)newSelection).setAttendance(0);
+                }
+                else if(((blood)newSelection).getAttendance() == 0)
+                {
+                    ((blood)newSelection).setAttendance(1);
+                }
+                
+                
+            });
+            
+            
             
             c.close();
         }
@@ -417,6 +390,7 @@ public class BloodScreenDocumentController implements Initializable
         {
                  
         }
+      
         
         //LocalTime:        plusMinutes()       http://tutorials.jenkov.com/java-date-time/localtime.html
         //Time range:       .compareTo()        https://docs.oracle.com/javase/8/docs/api/java/time/LocalTime.html#compareTo-java.time.LocalTime-
