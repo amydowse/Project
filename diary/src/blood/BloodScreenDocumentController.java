@@ -34,8 +34,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableColumn.CellEditEvent;
+import javafx.scene.control.TableRow;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
 import javafx.util.Callback;
 
 /**
@@ -136,7 +138,7 @@ public class BloodScreenDocumentController implements Initializable
                 String breakEndS = rs.getString("BreakEnd");
                 LocalTime breakEnd = LocalTime.parse(breakEndS, DateTimeFormatter.ISO_LOCAL_TIME);
                 
-                blood x = new blood(null, startTime, "", "", "", "", "", "", "", "", -1); 
+                blood x = new blood(null, startTime, "", "", "", "", "", "", "", "", 0); 
                 previousTime = startTime;
                 allTimes.add(x);
                 
@@ -146,12 +148,12 @@ public class BloodScreenDocumentController implements Initializable
                     
                     if(previousTime.compareTo(breakStart) < 0)
                     {
-                        x = new blood(null, previousTime, "", "", "", "", "", "", "", "", -1); 
+                        x = new blood(null, previousTime, "", "", "", "", "", "", "", "", 0); 
                         allTimes.add(x);
                     }
                     else if (previousTime.compareTo(breakEnd) >= 0)
                     {
-                        x = new blood(null, previousTime, "", "", "", "", "", "", "", "", -1); 
+                        x = new blood(null, previousTime, "", "", "", "", "", "", "", "", 0); 
                         allTimes.add(x);
                     }
                     
@@ -193,6 +195,8 @@ public class BloodScreenDocumentController implements Initializable
                 String previous = rs.getString("Previous");
                 String bookedBy = rs.getString("BookedBy");
                 Integer attendance = rs.getInt("Attendance");
+                
+                System.out.println("ATTENDANCE..." + attendance);
                                  
                 blood y = new blood(Date, Time, name, DOB, NHSNumber, number, form, extraInfo, previous, bookedBy, attendance);
                 specificBookings.add(y);
@@ -213,9 +217,10 @@ public class BloodScreenDocumentController implements Initializable
             
             allBookings = FXCollections.observableArrayList(allTimes);
     
-            tblColTime.setCellValueFactory(new PropertyValueFactory<blood, String>("Time"));
             
             
+            
+                       
             //https://docs.oracle.com/javafx/2/ui_controls/table-view.htm accessed 10/2/18
             tblColName.setCellValueFactory(new PropertyValueFactory<blood, String>("Name"));
             tblColName.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -230,10 +235,8 @@ public class BloodScreenDocumentController implements Initializable
             );
             
             
-            
-            
             tblColDOB.setCellValueFactory(new PropertyValueFactory<blood, String>("DateOfBirth"));
-            tblColDOB.setCellFactory(TextFieldTableCell.forTableColumn());
+            tblColDOB.setCellFactory(TextFieldTableCell.forTableColumn());        
             tblColDOB.setOnEditCommit(
                     new EventHandler<CellEditEvent<blood, String>>() {
                 @Override
@@ -316,6 +319,118 @@ public class BloodScreenDocumentController implements Initializable
                 }
             }
             );
+            
+            
+            tblColTime.setCellValueFactory(new PropertyValueFactory<blood, String>("Time"));
+            tblColTime.setCellFactory(new Callback<TableColumn<blood, LocalTime>, 
+            TableCell<blood, LocalTime>>()
+            {
+                @Override
+                public TableCell<blood, LocalTime> call(
+                        TableColumn<blood, LocalTime> param)
+                {
+                    return new TableCell<blood, LocalTime>()
+                    {
+                        @Override
+                        protected void updateItem(LocalTime item, boolean empty)
+                        {
+                            if (!empty)
+                            {
+                                int currentIndex = indexProperty().getValue() < 0 ? 0: indexProperty().getValue();
+                                blood type = param.getTableView().getItems().get(currentIndex);
+                                
+                                if(type.getAttendance() == 1)
+                                {
+                                    setText(type.getTime().toString());
+                                    setStyle("-fx-background-color: green");
+                                } 
+                                else if(type.getAttendance() == 2)
+                                {
+                                    setText(type.getTime().toString());
+                                    setStyle("-fx-background-color: red");
+                                }
+                                else 
+                                {
+                                    setText(type.getTime().toString());
+                                    setStyle("-fx-background-color: white");
+                                }
+                            }
+                        }
+                    };
+                }
+            });
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+//            
+//            tblClinic.setRowFactory(new Callback<TableView<blood>, TableRow<blood>>(){
+//            //There can define some colors.
+//            int color = 0;
+//            String colors[] = new String[]{"red","blue","green"};
+//            @Override
+//            public TableRow<blood> call(TableView<blood> param) {
+//                final TableRow<blood> row = new TableRow<blood>() {
+//                    @Override
+//                    protected void updateItem(blood item, boolean empty) {
+//                        super.updateItem(item, empty);
+//                        //there write your code to stylize row
+//                        if(getIndex() > -1){
+//                            String color = colors[getIndex() % 3];
+//                            setStyle("-fx-background-color: "+ color + ";");
+//
+//                        }
+//                    }
+//                };
+//                return row;
+//            }
+//        });
+//            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
              
             tblClinic.getItems().addAll(allBookings);
             
