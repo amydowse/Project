@@ -22,6 +22,7 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -51,14 +52,14 @@ public class BloodScreenDocumentController implements Initializable
     @FXML TableColumn tblColForm;
     @FXML TableColumn tblColNotes;
     @FXML TableColumn tblColPrevious;
-    @FXML TableColumn tblColBooked;    
+    @FXML TableColumn tblColBooked;  
+    @FXML Button btnTest = new Button();
     
     ObservableList<blood> allBookings;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
-    {
-               
+    {       
         ArrayList<blood> allTimes = new ArrayList<blood>();
         ArrayList<blood> specificBookings = new ArrayList<blood>();
         LocalTime previousTime;
@@ -105,7 +106,7 @@ public class BloodScreenDocumentController implements Initializable
                 String breakEndS = rs.getString("BreakEnd");
                 LocalTime breakEnd = LocalTime.parse(breakEndS, DateTimeFormatter.ISO_LOCAL_TIME);
                 
-                blood x = new blood(null, startTime, null, null, null, null, null, null, null, null, -1); 
+                blood x = new blood(null, startTime, "", "", "", "", "", "", "", "", -1); 
                 previousTime = startTime;
                 allTimes.add(x);
                 
@@ -115,12 +116,12 @@ public class BloodScreenDocumentController implements Initializable
                     
                     if(previousTime.compareTo(breakStart) < 0)
                     {
-                        x = new blood(null, previousTime, null, null, null, null, null, null, null, null, -1); 
+                        x = new blood(null, previousTime, "", "", "", "", "", "", "", "", -1); 
                         allTimes.add(x);
                     }
                     else if (previousTime.compareTo(breakEnd) >= 0)
                     {
-                        x = new blood(null, previousTime, null, null, null, null, null, null, null, null, -1); 
+                        x = new blood(null, previousTime, "", "", "", "", "", "", "", "", -1); 
                         allTimes.add(x);
                     }
                     
@@ -152,10 +153,9 @@ public class BloodScreenDocumentController implements Initializable
                 
                 String time = rs.getString("Time");
                 LocalTime Time = LocalTime.parse(time, DateTimeFormatter.ISO_LOCAL_TIME);
-                
+                System.out.println("TIME>>>>>>>>>>>>>>>>>> "+ Time);
                 
                 String name = rs.getString("Name");
-                
                 String DOB = rs.getString("DateOfBirth");
                 String NHSNumber = rs.getString("NHSNumber");
                 String number = rs.getString("ContactNumber");
@@ -169,12 +169,13 @@ public class BloodScreenDocumentController implements Initializable
                 specificBookings.add(y);
                 
             }
+            
                 
             for (int T = 0; T<allTimes.size(); T++)
             {
                 for(int B=0; B<specificBookings.size(); B++)
                 {
-                    if(allTimes.get(T).getTime() == specificBookings.get(B).getTime())
+                    if(allTimes.get(T).getTime().compareTo(specificBookings.get(B).getTime()) == 0)
                     {
                         allTimes.set(T, specificBookings.get(B));
                     }
@@ -184,6 +185,7 @@ public class BloodScreenDocumentController implements Initializable
             allBookings = FXCollections.observableArrayList(allTimes);
     
             tblColTime.setCellValueFactory(new PropertyValueFactory<blood, String>("Time"));
+            
             
             //https://docs.oracle.com/javafx/2/ui_controls/table-view.htm accessed 10/2/18
             tblColName.setCellValueFactory(new PropertyValueFactory<blood, String>("Name"));
@@ -309,13 +311,12 @@ public class BloodScreenDocumentController implements Initializable
         
         for (blood appointment : allBookings)
         {
-            if(appointment.equals(null))
+            if(appointment.getName().equals(""))
             {
                 System.out.println("empty");
             }
             else
             {
-                System.out.println("SAVING...." + appointment.getName());
                 saveToDatabase(appointment);
             }
         }
@@ -332,7 +333,10 @@ public class BloodScreenDocumentController implements Initializable
             // when creating a statement object, you MUST use a connection object to call the instance method
             Statement stmt = c.createStatement();
             
-             String date = codeBank.dateToString(codeBank.getCurrentDate());
+            String date = codeBank.dateToString(codeBank.getCurrentDate());
+            
+            System.out.println("SAVING THE NAME...." + appointment.getName());
+            
             String sql = "REPLACE INTO blood (Date, Time, Name, DateOfBirth, NHSNumber, ContactNumber, Form, ExtraInfo, Previous, BookedBy, Attendance) VALUES('"
                                                                                                                 + date + "','"
                                                                                                                 + appointment.getTime() + "','"
@@ -343,7 +347,7 @@ public class BloodScreenDocumentController implements Initializable
                                                                                                                 + appointment.getForm() + "','"
                                                                                                                 + appointment.getExtraInfo() + "','"
                                                                                                                 + appointment.getPrevious() + "','"
-                                                                                                                + appointment.getBookedBy() + "')";
+                                                                                                                + appointment.getBookedBy() + "','1')";
             
             stmt.executeUpdate(sql);                 
                     
@@ -356,7 +360,6 @@ public class BloodScreenDocumentController implements Initializable
         
                 
     }
-    
     
     
 }//END OF CLASS

@@ -262,6 +262,7 @@ public class MainScreenDocumentController implements Initializable
     {
         DSDC.save(codeBank.getCurrentDate());
         PSDC.save(codeBank.getCurrentDate());
+        BSDC.save();
         
         //todays date into a localDate format 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -282,6 +283,7 @@ public class MainScreenDocumentController implements Initializable
     {
         DSDC.save(codeBank.getCurrentDate());
         PSDC.save(codeBank.getCurrentDate());
+        BSDC.save();
         
         codeBank.setCurrentDate(codeBank.getCurrentDate().plusDays(1));
         updateDate();
@@ -298,6 +300,7 @@ public class MainScreenDocumentController implements Initializable
     {
         DSDC.save(codeBank.getCurrentDate());
         PSDC.save(codeBank.getCurrentDate());
+        BSDC.save();
         
         codeBank.setCurrentDate(codeBank.getCurrentDate().minusDays(1));
         updateDate();
@@ -315,6 +318,7 @@ public class MainScreenDocumentController implements Initializable
     {
         DSDC.save(codeBank.getCurrentDate());
         PSDC.save(codeBank.getCurrentDate());
+        BSDC.save();
         
         codeBank.setCurrentDate(dpCalandar.getValue());
         updateDate();
@@ -332,6 +336,10 @@ public class MainScreenDocumentController implements Initializable
     public void showDiary() throws IOException
     {
        //Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/diary/diaryScreen.fxml"));
+        DSDC.save(codeBank.getCurrentDate());
+        PSDC.save(codeBank.getCurrentDate());
+        BSDC.save();
+        updateButtons();
         changeContentPane(DiaryPane);    
         
     }
@@ -340,7 +348,10 @@ public class MainScreenDocumentController implements Initializable
     public void showBlood() throws IOException
     {
        DSDC.save(codeBank.getCurrentDate());
-        changeContentPane(BloodPane); 
+       PSDC.save(codeBank.getCurrentDate());
+       BSDC.save();
+       updateButtons();
+       changeContentPane(BloodPane); 
         
     }
     
@@ -348,6 +359,9 @@ public class MainScreenDocumentController implements Initializable
     public void showPreop() throws IOException
     {
         DSDC.save(codeBank.getCurrentDate());
+        PSDC.save(codeBank.getCurrentDate());
+        BSDC.save();
+        updateButtons();
         changeContentPane(PreopPane); 
         
     }
@@ -356,6 +370,9 @@ public class MainScreenDocumentController implements Initializable
     public void showOncology() throws IOException
     {
        DSDC.save(codeBank.getCurrentDate());
+       PSDC.save(codeBank.getCurrentDate());
+       BSDC.save();
+       updateButtons();
        Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/oncology/oncologyScreen.fxml"));
        changeContentPane(newLoadedPane);
         
@@ -365,6 +382,9 @@ public class MainScreenDocumentController implements Initializable
     public void showNonbed() throws IOException
     {
        DSDC.save(codeBank.getCurrentDate());
+       PSDC.save(codeBank.getCurrentDate());
+       BSDC.save();
+       updateButtons();
        Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/nonbed/nonbedScreen.fxml"));
        changeContentPane(newLoadedPane);
         
@@ -376,6 +396,7 @@ public class MainScreenDocumentController implements Initializable
     {
         Parent root = FXMLLoader.load(getClass().getResource("/bases/startScreen.fxml"));
         DSDC.save(codeBank.getCurrentDate());
+        PSDC.save(codeBank.getCurrentDate());
         BSDC.save();
         codeBank.setCurrentDate(LocalDate.now());
         Scene scene = new Scene(root);

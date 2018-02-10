@@ -35,6 +35,7 @@
             <TableColumn fx:id="tblColBooked" prefWidth="164.0" text="Booked By" />
         </columns>
       </TableView>
+     
 
    </children>
 </Pane>
