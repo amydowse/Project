@@ -23,6 +23,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
@@ -56,7 +57,7 @@ public class BloodScreenDocumentController implements Initializable
     @FXML TableColumn tblColNotes;
     @FXML TableColumn tblColPrevious;
     @FXML TableColumn tblColBooked;  
-    @FXML Button btnTest = new Button();
+    @FXML ChoiceBox cbStaff = new ChoiceBox();
     
     ObservableList<blood> allBookings;
     LocalTime previousTime;
@@ -73,6 +74,11 @@ public class BloodScreenDocumentController implements Initializable
     
     public void showInformation()
     {
+        cbStaff.valueProperty().set(null);
+        
+        fillStaffDropDowns();
+        showStaff(codeBank.getCurrentDate());
+                
         tblClinic.getItems().clear();
         
         if(allBookings != null)
@@ -450,6 +456,85 @@ public class BloodScreenDocumentController implements Initializable
         } 
         
                 
+    }
+    
+    
+    
+    
+    
+        public void fillStaffDropDowns()
+        {
+        try
+        {
+            // open a connection
+            Connection c = DatabaseConnector.activateConnection();
+            c.setAutoCommit( true ); 
+            ResultSet rs ;
+            
+            // when creating a statement object, you MUST use a connection object to call the instance method
+            Statement stmt = c.createStatement();
+            String stringDate = codeBank.dateToString(codeBank.getCurrentDate());          
+            
+            //implement query
+            rs = stmt.executeQuery("SELECT * FROM staff, working WHERE working.Date = '" + stringDate + "' AND staff.ID = working.Staff_ID"); 
+                        
+            ObservableList<String> workingStaff = FXCollections.observableArrayList();
+            
+            while(rs.next())
+            { 
+                String firstname = rs.getString("FirstName");
+                int ID = rs.getInt("ID");
+                
+                String text = "(" +ID + ") " + firstname;
+                
+                workingStaff.add(text);
+            }
+            
+            cbStaff.setItems(workingStaff);
+            
+            c.close();
+        }
+        catch (SQLException e)
+        {
+            
+        }   
+        
+    }
+        
+        
+        
+    public void showStaff(LocalDate SearchDate)
+    {
+        try
+        {
+            // open a connection
+            Connection c = DatabaseConnector.activateConnection();
+            c.setAutoCommit( true ); 
+            ResultSet rs ;
+            
+            // when creating a statement object, you MUST use a connection object to call the instance method
+            Statement stmt = c.createStatement();
+            String stringDate = codeBank.dateToString(SearchDate);          
+            
+            //implement query
+            rs = stmt.executeQuery("SELECT * FROM staff, specificworking WHERE specificworking.Date = '" + stringDate + "' AND staff.ID = specificworking.ID"); 
+                        
+            while(rs.next())
+            { 
+                String firstname = rs.getString("FirstName");
+                int ID = rs.getInt("ID");
+                
+                String text = "(" +ID + ") " + firstname;
+                
+                cbStaff.setValue(text);
+                
+            }
+            c.close();
+        }
+        catch (SQLException e)
+        {
+            
+        } 
     }
     
     
