@@ -56,13 +56,37 @@ public class BloodScreenDocumentController implements Initializable
     @FXML Button btnTest = new Button();
     
     ObservableList<blood> allBookings;
+    LocalTime previousTime;
+    ArrayList<blood> allTimes = new ArrayList<blood>();
+    ArrayList<blood> specificBookings = new ArrayList<blood>();
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
-    {       
-        ArrayList<blood> allTimes = new ArrayList<blood>();
-        ArrayList<blood> specificBookings = new ArrayList<blood>();
-        LocalTime previousTime;
+    {     
+        showInformation();
+    }
+    
+    public void showInformation()
+    {
+        tblClinic.getItems().clear();
+        
+        if(allBookings != null)
+        {
+            allBookings.clear();
+        }
+        
+        if(allTimes != null)
+        {
+            allTimes.clear();
+        }
+        
+        if(specificBookings != null)
+        {
+            specificBookings.clear();
+        }
+        
+        
         
         tblClinic.setEditable(true);
         tblColName.setEditable(true);
@@ -73,7 +97,7 @@ public class BloodScreenDocumentController implements Initializable
         tblColNotes.setEditable(true);
         tblColPrevious.setEditable(true);
         tblColBooked.setEditable(true);
-        
+         
         try
         {
             Connection c = DatabaseConnector.activateConnection();
@@ -84,6 +108,8 @@ public class BloodScreenDocumentController implements Initializable
             //make localdate into string
             LocalDate currentDate = codeBank.getCurrentDate();
             String day = currentDate.getDayOfWeek().name();
+            
+            System.out.println(currentDate);
             System.out.println(day);
             
             //implement query
@@ -153,7 +179,6 @@ public class BloodScreenDocumentController implements Initializable
                 
                 String time = rs.getString("Time");
                 LocalTime Time = LocalTime.parse(time, DateTimeFormatter.ISO_LOCAL_TIME);
-                System.out.println("TIME>>>>>>>>>>>>>>>>>> "+ Time);
                 
                 String name = rs.getString("Name");
                 String DOB = rs.getString("DateOfBirth");
@@ -199,6 +224,9 @@ public class BloodScreenDocumentController implements Initializable
                 }
             }
             );
+            
+            
+            
             
             tblColDOB.setCellValueFactory(new PropertyValueFactory<blood, String>("DateOfBirth"));
             tblColDOB.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -307,15 +335,9 @@ public class BloodScreenDocumentController implements Initializable
     
     public void save()
     {
-        System.out.println("SAVING");
-        
         for (blood appointment : allBookings)
         {
-            if(appointment.getName().equals(""))
-            {
-                System.out.println("empty");
-            }
-            else
+            if(!appointment.getName().equals(""))
             {
                 saveToDatabase(appointment);
             }
@@ -334,9 +356,7 @@ public class BloodScreenDocumentController implements Initializable
             Statement stmt = c.createStatement();
             
             String date = codeBank.dateToString(codeBank.getCurrentDate());
-            
-            System.out.println("SAVING THE NAME...." + appointment.getName());
-            
+                        
             String sql = "REPLACE INTO blood (Date, Time, Name, DateOfBirth, NHSNumber, ContactNumber, Form, ExtraInfo, Previous, BookedBy, Attendance) VALUES('"
                                                                                                                 + date + "','"
                                                                                                                 + appointment.getTime() + "','"

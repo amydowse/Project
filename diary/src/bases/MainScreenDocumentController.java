@@ -270,12 +270,13 @@ public class MainScreenDocumentController implements Initializable
         codeBank.setCurrentDate(Today);
         
         updateDate();
-        
         updateButtons();
+        
         DSDC.showInformation(codeBank.getCurrentDate());
         DSDC.showStaff(codeBank.getCurrentDate());
-        DSDC.showNotes(codeBank.getCurrentDate()); 
+        DSDC.showNotes(codeBank.getCurrentDate());
         PSDC.loadInformation();
+        BSDC.showInformation();
     }
     
     @FXML 
@@ -293,6 +294,7 @@ public class MainScreenDocumentController implements Initializable
         DSDC.showStaff(codeBank.getCurrentDate());
         DSDC.showNotes(codeBank.getCurrentDate());
         PSDC.loadInformation();
+        BSDC.showInformation();
     }
     
     @FXML 
@@ -310,6 +312,7 @@ public class MainScreenDocumentController implements Initializable
         DSDC.showStaff(codeBank.getCurrentDate());
         DSDC.showNotes(codeBank.getCurrentDate());
         PSDC.loadInformation();
+        BSDC.showInformation();
     }
     
     @FXML
@@ -325,7 +328,10 @@ public class MainScreenDocumentController implements Initializable
         updateButtons();
         
         DSDC.showInformation(codeBank.getCurrentDate());
+        DSDC.showStaff(codeBank.getCurrentDate());
+        DSDC.showNotes(codeBank.getCurrentDate());
         PSDC.loadInformation();
+        BSDC.showInformation();
     }
     
     

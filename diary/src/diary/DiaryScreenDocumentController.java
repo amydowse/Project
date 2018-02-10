@@ -1267,7 +1267,6 @@ public class DiaryScreenDocumentController  implements Initializable
     
     public void save(LocalDate today)
     {
-        System.out.println("IN SAVE");
         try
         {
             // open a connection
