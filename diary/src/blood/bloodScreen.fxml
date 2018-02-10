@@ -22,7 +22,7 @@
       
       <TextField fx:id="txtNurse" layoutX="129.0" layoutY="116.0" prefHeight="48.75" prefWidth="306.0" />
       
-      <TableView fx:id="tblClinic" layoutX="46.0" layoutY="206.0" prefHeight="749.0" prefWidth="1690.0">
+      <TableView fx:id="tblClinic" layoutX="46.0" layoutY="206.0" prefHeight="749.0" prefWidth="1690.0" stylesheets="@tableStyle.css">
         <columns>
           <TableColumn fx:id="tblColTime" prefWidth="132.0" text="Time" />
           <TableColumn fx:id="tblColName" prefWidth="256.0" text="Name" />

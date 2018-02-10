@@ -12,7 +12,7 @@ import java.time.LocalTime;
  *
  * @author amydo
  */
-public class blood extends basicBlood
+public class blood 
 {
     private LocalDate date;
     private LocalTime time;
@@ -22,13 +22,13 @@ public class blood extends basicBlood
     private String number;
     private String form;
     private String extraInfo;
-    private int previous;
+    private String previous;
     private String bookedBy;
     private int attendance;
     
-    public blood(LocalDate date, LocalTime time, String name, String DOB, String NHSNumber, String number, String form, String extraInfo, int previous, String bookedBy, int attendance)
+    public blood(LocalDate date, LocalTime time, String name, String DOB, String NHSNumber, String number, String form, String extraInfo, String previous, String bookedBy, int attendance)
     {
-        super(time);
+        this.time = time;
         this.date = date;
         this.name = name;
         this.DateOfBirth = DOB;
@@ -50,7 +50,7 @@ public class blood extends basicBlood
     
     public LocalTime getTime()
     {
-        return super.getTime();
+        return time;
     }
     
     public String getName()
@@ -83,7 +83,7 @@ public class blood extends basicBlood
         return extraInfo;
     }
 
-    public int getPervious()
+    public String getPrevious()
     {
         return previous;
     }
@@ -98,4 +98,48 @@ public class blood extends basicBlood
         return attendance;
     }
     
+    
+    
+    
+    
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+    
+    public void setDOB(String DOB)
+    {
+        this.DateOfBirth = DOB;
+    }
+   
+    public void setNHS(String NHS)
+    {
+        this.NHSNumber = NHS;
+    }   
+    
+    public void setNumber(String number)
+    {
+        this.number = number;
+    }
+    
+    public void setForm(String form)
+    {
+        this.form = form;
+    }
+
+    public void setExtra(String extra)
+    {
+        this.extraInfo = extra;
+    }  
+    
+    public void setPrevious(String previous)
+    {
+        this.previous = previous;
+    }
+    
+    public void setBooked(String bookedBy)
+    {
+        this.bookedBy = bookedBy;
+    }    
 }
+

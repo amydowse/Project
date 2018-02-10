@@ -19,11 +19,22 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ContentDisplay;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.control.TableColumn.CellDataFeatures;
+import javafx.scene.control.TableColumn.CellEditEvent;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.util.Callback;
 
 /**
  *
@@ -42,13 +53,25 @@ public class BloodScreenDocumentController implements Initializable
     @FXML TableColumn tblColPrevious;
     @FXML TableColumn tblColBooked;    
     
+    ObservableList<blood> allBookings;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
                
-        ArrayList<basicBlood> allTimes = new ArrayList<basicBlood>();
+        ArrayList<blood> allTimes = new ArrayList<blood>();
         ArrayList<blood> specificBookings = new ArrayList<blood>();
         LocalTime previousTime;
+        
+        tblClinic.setEditable(true);
+        tblColName.setEditable(true);
+        tblColDOB.setEditable(true);
+        tblColNHS.setEditable(true);
+        tblColNumber.setEditable(true);
+        tblColForm.setEditable(true);
+        tblColNotes.setEditable(true);
+        tblColPrevious.setEditable(true);
+        tblColBooked.setEditable(true);
         
         try
         {
@@ -82,7 +105,7 @@ public class BloodScreenDocumentController implements Initializable
                 String breakEndS = rs.getString("BreakEnd");
                 LocalTime breakEnd = LocalTime.parse(breakEndS, DateTimeFormatter.ISO_LOCAL_TIME);
                 
-                basicBlood x = new basicBlood(startTime);
+                blood x = new blood(null, startTime, null, null, null, null, null, null, null, null, -1); 
                 previousTime = startTime;
                 allTimes.add(x);
                 
@@ -92,12 +115,12 @@ public class BloodScreenDocumentController implements Initializable
                     
                     if(previousTime.compareTo(breakStart) < 0)
                     {
-                        x = new basicBlood(previousTime); 
+                        x = new blood(null, previousTime, null, null, null, null, null, null, null, null, -1); 
                         allTimes.add(x);
                     }
                     else if (previousTime.compareTo(breakEnd) >= 0)
                     {
-                        x = new basicBlood(previousTime); 
+                        x = new blood(null, previousTime, null, null, null, null, null, null, null, null, -1); 
                         allTimes.add(x);
                     }
                     
@@ -138,7 +161,7 @@ public class BloodScreenDocumentController implements Initializable
                 String number = rs.getString("ContactNumber");
                 String form = rs.getString("Form");
                 String extraInfo = rs.getString("ExtraInfo");
-                Integer previous = rs.getInt("Previous");
+                String previous = rs.getString("Previous");
                 String bookedBy = rs.getString("BookedBy");
                 Integer attendance = rs.getInt("Attendance");
                                  
@@ -158,17 +181,107 @@ public class BloodScreenDocumentController implements Initializable
                 }
             }    
             
-            ObservableList<basicBlood> allBookings = FXCollections.observableArrayList(allTimes);
-                
-            tblColTime.setCellValueFactory(new PropertyValueFactory("Time"));
-            tblColName.setCellValueFactory(new PropertyValueFactory("Name"));
-            tblColDOB.setCellValueFactory(new PropertyValueFactory("DateOfBirth"));
-            tblColNHS.setCellValueFactory(new PropertyValueFactory("NHSNumber"));
-            tblColNumber.setCellValueFactory(new PropertyValueFactory("Number"));
-            tblColForm.setCellValueFactory(new PropertyValueFactory("Form"));
-            tblColNotes.setCellValueFactory(new PropertyValueFactory("Notes"));
-            tblColPrevious.setCellValueFactory(new PropertyValueFactory("Previous"));
-            tblColBooked.setCellValueFactory(new PropertyValueFactory("BookedBy"));    
+            allBookings = FXCollections.observableArrayList(allTimes);
+    
+            tblColTime.setCellValueFactory(new PropertyValueFactory<blood, String>("Time"));
+            
+            //https://docs.oracle.com/javafx/2/ui_controls/table-view.htm accessed 10/2/18
+            tblColName.setCellValueFactory(new PropertyValueFactory<blood, String>("Name"));
+            tblColName.setCellFactory(TextFieldTableCell.forTableColumn());
+            tblColName.setOnEditCommit(
+                    new EventHandler<CellEditEvent<blood, String>>() {
+                @Override
+                public void handle(CellEditEvent<blood, String> t) {
+                    ((blood) t.getTableView().getItems().get(
+                            t.getTablePosition().getRow())).setName(t.getNewValue());
+                }
+            }
+            );
+            
+            tblColDOB.setCellValueFactory(new PropertyValueFactory<blood, String>("DateOfBirth"));
+            tblColDOB.setCellFactory(TextFieldTableCell.forTableColumn());
+            tblColDOB.setOnEditCommit(
+                    new EventHandler<CellEditEvent<blood, String>>() {
+                @Override
+                public void handle(CellEditEvent<blood, String> t) {
+                    ((blood) t.getTableView().getItems().get(
+                            t.getTablePosition().getRow())).setDOB(t.getNewValue());
+                }
+            }
+            );
+            
+            
+            tblColNHS.setCellValueFactory(new PropertyValueFactory<blood, String>("NHSNumber"));
+            tblColNHS.setCellFactory(TextFieldTableCell.forTableColumn());
+            tblColNHS.setOnEditCommit(
+                    new EventHandler<CellEditEvent<blood, String>>() {
+                @Override
+                public void handle(CellEditEvent<blood, String> t) {
+                    ((blood) t.getTableView().getItems().get(
+                            t.getTablePosition().getRow())).setNHS(t.getNewValue());
+                }
+            }
+            );
+            
+            tblColNumber.setCellValueFactory(new PropertyValueFactory<blood, String>("Number"));
+            tblColNumber.setCellFactory(TextFieldTableCell.forTableColumn());
+            tblColNumber.setOnEditCommit(
+                    new EventHandler<CellEditEvent<blood, String>>() {
+                @Override
+                public void handle(CellEditEvent<blood, String> t) {
+                    ((blood) t.getTableView().getItems().get(
+                            t.getTablePosition().getRow())).setNumber(t.getNewValue());
+                }
+            }
+            );
+            
+            tblColForm.setCellValueFactory(new PropertyValueFactory<blood, String>("Form"));
+            tblColForm.setCellFactory(TextFieldTableCell.forTableColumn());
+            tblColForm.setOnEditCommit(
+                    new EventHandler<CellEditEvent<blood, String>>() {
+                @Override
+                public void handle(CellEditEvent<blood, String> t) {
+                    ((blood) t.getTableView().getItems().get(
+                            t.getTablePosition().getRow())).setForm(t.getNewValue());
+                }
+            }
+            );
+            
+            tblColNotes.setCellValueFactory(new PropertyValueFactory<blood, String>("Notes"));
+            tblColNotes.setCellFactory(TextFieldTableCell.forTableColumn());
+            tblColNotes.setOnEditCommit(
+                    new EventHandler<CellEditEvent<blood, String>>() {
+                @Override
+                public void handle(CellEditEvent<blood, String> t) {
+                    ((blood) t.getTableView().getItems().get(
+                            t.getTablePosition().getRow())).setExtra(t.getNewValue());
+                }
+            }
+            );
+            
+            tblColPrevious.setCellValueFactory(new PropertyValueFactory<blood, String>("Previous"));
+            tblColPrevious.setCellFactory(TextFieldTableCell.forTableColumn());
+            tblColPrevious.setOnEditCommit(
+                    new EventHandler<CellEditEvent<blood, String>>() {
+                @Override
+                public void handle(CellEditEvent<blood, String> t) {
+                    ((blood) t.getTableView().getItems().get(
+                            t.getTablePosition().getRow())).setPrevious(t.getNewValue());
+                }
+            }
+            );
+            
+            tblColBooked.setCellValueFactory(new PropertyValueFactory<blood, String>("BookedBy"));   
+            tblColBooked.setCellFactory(TextFieldTableCell.forTableColumn());
+            tblColBooked.setOnEditCommit(
+                    new EventHandler<CellEditEvent<blood, String>>() {
+                @Override
+                public void handle(CellEditEvent<blood, String> t) {
+                    ((blood) t.getTableView().getItems().get(
+                            t.getTablePosition().getRow())).setBooked(t.getNewValue());
+                }
+            }
+            );
              
             tblClinic.getItems().addAll(allBookings);
             
@@ -185,74 +298,69 @@ public class BloodScreenDocumentController implements Initializable
         //list of basicBlood that store just the times of all possible appointments
         //replace with blood objects when there is an actual booking 
         //if instance of basicBblood - show just time
-        //if isntace of blood - show all informaiton 
+        //if isntace of blood - show all informaiton
+           
+    }
+    
+    
+    public void save()
+    {
+        System.out.println("SAVING");
         
-        
-        /*
+        for (blood appointment : allBookings)
+        {
+            if(appointment.equals(null))
+            {
+                System.out.println("empty");
+            }
+            else
+            {
+                System.out.println("SAVING...." + appointment.getName());
+                saveToDatabase(appointment);
+            }
+        }
+    }
+    
+    public void saveToDatabase(blood appointment)
+    {
         try
         {
+            // open a connection
             Connection c = DatabaseConnector.activateConnection();
             c.setAutoCommit( true ); 
-            ResultSet rs ;
-            Statement stmt = c.createStatement();    
             
-            //make localdate into string
-            String stringDate = codeBank.dateToString(codeBank.getCurrentDate());
+            // when creating a statement object, you MUST use a connection object to call the instance method
+            Statement stmt = c.createStatement();
             
-            //implement query
-            rs = stmt.executeQuery("SELECT * FROM blood WHERE Date = '" + stringDate + "'" );
-                
-            while(rs.next())
-            {
-                String date = rs.getString("Date");
-                LocalDate Date = codeBank.stringToDate(date);
-                
-                String time = rs.getString("Time");
-                LocalTime Time = LocalTime.parse(time, DateTimeFormatter.ISO_LOCAL_TIME);
-                
-                String name = rs.getString("Name");
-                
-                String DOB = rs.getString("DateOfBirth");
-                String NHSNumber = rs.getString("NHSNumber");
-                String number = rs.getString("ContactNumber");
-                String form = rs.getString("Form");
-                String extraInfo = rs.getString("ExtraInfo");
-                Integer previous = rs.getInt("Previous");
-                String bookedBy = rs.getString("BookedBy");
-                Integer attendance = rs.getInt("Attendance");
-                                 
-                blood x = new blood(Date, Time, name, DOB, NHSNumber, number, form, extraInfo, previous, bookedBy, attendance);
-                allBookings.add(x);
-                
-            }
-                        
-            tblColTime.setCellValueFactory(new PropertyValueFactory("Time"));
-            tblColName.setCellValueFactory(new PropertyValueFactory("Name"));
-            tblColDOB.setCellValueFactory(new PropertyValueFactory("DateOfBirth"));
-            tblColNHS.setCellValueFactory(new PropertyValueFactory("NHSNumber"));
-            tblColNumber.setCellValueFactory(new PropertyValueFactory("Number"));
-            tblColForm.setCellValueFactory(new PropertyValueFactory("Form"));
-            tblColNotes.setCellValueFactory(new PropertyValueFactory("Notes"));
-            tblColPrevious.setCellValueFactory(new PropertyValueFactory("Previous"));
-            tblColBooked.setCellValueFactory(new PropertyValueFactory("BookedBy"));
-
-            tblClinic.getItems().addAll(allBookings);
-
+             String date = codeBank.dateToString(codeBank.getCurrentDate());
+            String sql = "REPLACE INTO blood (Date, Time, Name, DateOfBirth, NHSNumber, ContactNumber, Form, ExtraInfo, Previous, BookedBy, Attendance) VALUES('"
+                                                                                                                + date + "','"
+                                                                                                                + appointment.getTime() + "','"
+                                                                                                                + appointment.getName() + "','"
+                                                                                                                + appointment.getDateOfBirth() + "','"
+                                                                                                                + appointment.getNHSNumber() + "','"
+                                                                                                                + appointment.getNumber() + "','"
+                                                                                                                + appointment.getForm() + "','"
+                                                                                                                + appointment.getExtraInfo() + "','"
+                                                                                                                + appointment.getPrevious() + "','"
+                                                                                                                + appointment.getBookedBy() + "')";
             
-                tableReg.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> 
-                {
+            stmt.executeUpdate(sql);                 
                     
-                });
-             
-        
             c.close();
         }
         catch (SQLException e)
         {
             
-        }
-        */
-           
+        } 
+        
+                
     }
     
-}
+    
+    
+}//END OF CLASS
+
+
+
+

@@ -5,6 +5,7 @@
  */
 package bases;
 
+import blood.BloodScreenDocumentController;
 import common.DatabaseConnector;
 import common.codeBank;
 import diary.DiaryScreenDocumentController;
@@ -56,9 +57,11 @@ public class MainScreenDocumentController implements Initializable
     
     public static DiaryScreenDocumentController DSDC;
     public static PreopScreenDocumentController PSDC;
+    public static BloodScreenDocumentController BSDC;
     
     private Pane DiaryPane;
     private Pane PreopPane;
+    private Pane BloodPane;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
@@ -74,6 +77,10 @@ public class MainScreenDocumentController implements Initializable
             FXMLLoader PSL = new FXMLLoader(getClass().getResource("/preop/preopScreen.fxml"));
             PreopPane = PSL.load();
             PSDC = PSL.getController();
+            
+            FXMLLoader BSL = new FXMLLoader(getClass().getResource("/blood/bloodScreen.fxml"));
+            BloodPane = BSL.load();
+            BSDC = BSL.getController();
            
             codeBank.setCurrentDate(LocalDate.now());
             
@@ -370,6 +377,7 @@ public class MainScreenDocumentController implements Initializable
     {
         Parent root = FXMLLoader.load(getClass().getResource("/bases/startScreen.fxml"));
         DSDC.save(codeBank.getCurrentDate());
+        BSDC.save();
         codeBank.setCurrentDate(LocalDate.now());
         Scene scene = new Scene(root);
         bases.Start.stage.setScene(scene);
