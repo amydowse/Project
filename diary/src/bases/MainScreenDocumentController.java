@@ -340,8 +340,7 @@ public class MainScreenDocumentController implements Initializable
     public void showBlood() throws IOException
     {
        DSDC.save(codeBank.getCurrentDate());
-       Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/blood/bloodScreen.fxml"));
-       changeContentPane(newLoadedPane);
+        changeContentPane(BloodPane); 
         
     }
     
