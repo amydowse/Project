@@ -321,6 +321,7 @@ public class BloodScreenDocumentController implements Initializable
             );
             
             
+            //https://stackoverflow.com/questions/27281370/javafx-tableview-format-one-cell-based-on-the-value-of-another-in-the-row accessed 10/2/18
             tblColTime.setCellValueFactory(new PropertyValueFactory<blood, String>("Time"));
             tblColTime.setCellFactory(new Callback<TableColumn<blood, LocalTime>, 
             TableCell<blood, LocalTime>>()
@@ -389,31 +390,7 @@ public class BloodScreenDocumentController implements Initializable
             
             
             
-            
-//            
-//            tblClinic.setRowFactory(new Callback<TableView<blood>, TableRow<blood>>(){
-//            //There can define some colors.
-//            int color = 0;
-//            String colors[] = new String[]{"red","blue","green"};
-//            @Override
-//            public TableRow<blood> call(TableView<blood> param) {
-//                final TableRow<blood> row = new TableRow<blood>() {
-//                    @Override
-//                    protected void updateItem(blood item, boolean empty) {
-//                        super.updateItem(item, empty);
-//                        //there write your code to stylize row
-//                        if(getIndex() > -1){
-//                            String color = colors[getIndex() % 3];
-//                            setStyle("-fx-background-color: "+ color + ";");
-//
-//                        }
-//                    }
-//                };
-//                return row;
-//            }
-//        });
-//            
-            
+           
             
             
             
@@ -486,7 +463,8 @@ public class BloodScreenDocumentController implements Initializable
                                                                                                                 + appointment.getForm() + "','"
                                                                                                                 + appointment.getExtraInfo() + "','"
                                                                                                                 + appointment.getPrevious() + "','"
-                                                                                                                + appointment.getBookedBy() + "','1')";
+                                                                                                                + appointment.getBookedBy() + "','"
+                                                                                                                + appointment.getAttendance() + "')";
             
             stmt.executeUpdate(sql);                 
                     
