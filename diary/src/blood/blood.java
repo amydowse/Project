@@ -12,7 +12,7 @@ import java.time.LocalTime;
  *
  * @author amydo
  */
-public class blood 
+public class blood extends basicBlood
 {
     private LocalDate date;
     private LocalTime time;
@@ -28,8 +28,8 @@ public class blood
     
     public blood(LocalDate date, LocalTime time, String name, String DOB, String NHSNumber, String number, String form, String extraInfo, int previous, String bookedBy, int attendance)
     {
+        super(time);
         this.date = date;
-        this.time = time;
         this.name = name;
         this.DateOfBirth = DOB;
         this.NHSNumber = NHSNumber;
@@ -50,7 +50,7 @@ public class blood
     
     public LocalTime getTime()
     {
-        return time;
+        return super.getTime();
     }
     
     public String getName()
