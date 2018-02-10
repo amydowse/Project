@@ -24,6 +24,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
@@ -64,6 +65,7 @@ public class BloodScreenDocumentController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {     
+        tblClinic.setPlaceholder(new Label("There is no blood clinic scheduled for this day"));
         showInformation();
     }
     
@@ -114,6 +116,8 @@ public class BloodScreenDocumentController implements Initializable
             
             //implement query
             rs = stmt.executeQuery("SELECT * FROM template WHERE Day = '" + day + "'" );
+            
+
                 
             while(rs.next())
             {
