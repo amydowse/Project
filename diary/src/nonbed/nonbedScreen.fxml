@@ -5,7 +5,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="975.0" prefWidth="1770.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="975.0" prefWidth="1770.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nonbed.NonbedScreenDocumentController">
    <children>
        
       <Label layoutX="46.0" layoutY="43.0" text="NON-BED BOOKINGS">
@@ -20,17 +20,17 @@
          </font>
       </Label>
       
-      <TextField fx:id="txtNurse" layoutX="129.0" layoutY="116.0" prefHeight="48.75" prefWidth="306.0" />
+      <ChoiceBox fx:id="cbStaff" layoutX="129.0" layoutY="116.0" prefHeight="48.75" prefWidth="306.0" />
       
-      <TableView fx:id="tblClinic" layoutX="46.0" layoutY="206.0" prefHeight="749.0" prefWidth="1690.0">
+      <TableView fx:id="tblClinic" layoutX="46.0" layoutY="206.0" prefHeight="749.0" prefWidth="1690.0" stylesheets="@tableStyle.css">
          <columns>
             <TableColumn fx:id="tblColTime" prefWidth="132.0" text="Time" />
             <TableColumn fx:id="tblColName" prefWidth="256.0" text="Name" />
-            <TableColumn fx:id="tobColAge" prefWidth="128.0" text="Age" />
-            <TableColumn fx:id="tblColHopsital" prefWidth="161.0" text="Hospital Number" />
-            <TableColumn fx:id="tblColNumber" prefWidth="184.0" text="Contact Number" />
-            <TableColumn fx:id="tblColReason" prefWidth="671.0" text="Reason" />
-            <TableColumn fx:id="tblColDuration" prefWidth="157.0" text="Duration" />
+            <TableColumn fx:id="tblColAge" prefWidth="128.0" text="Age" />
+            <TableColumn fx:id="tblColHospital" prefWidth="161.0" text="Hospital Number" />
+            <TableColumn fx:id="tblColReason" prefWidth="751.0" text="Reason" />
+            <TableColumn fx:id="tblColDuration" prefWidth="142.0" text="Duration" />
+            <TableColumn fx:id="tblColNotes" prefWidth="119.0" text="Notes" />
          </columns>
       </TableView>
 

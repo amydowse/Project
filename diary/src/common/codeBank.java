@@ -6,8 +6,14 @@
 package common;
 
 import diary.DiaryScreenDocumentController;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.TextField;
 
 /**
@@ -106,6 +112,40 @@ public class codeBank
         }
     }
     
+    
+    
+    public static ObservableList<String> fillStaffDropDowns() 
+    {
+        ObservableList<String> workingStaff = FXCollections.observableArrayList();
+        try 
+        {
+            // open a connection
+            Connection c = DatabaseConnector.activateConnection();
+            c.setAutoCommit(true);
+            ResultSet rs;
+
+            // when creating a statement object, you MUST use a connection object to call the instance method
+            Statement stmt = c.createStatement();
+            String stringDate = codeBank.dateToString(codeBank.getCurrentDate());
+
+            //implement query
+            rs = stmt.executeQuery("SELECT * FROM staff, working WHERE working.Date = '" + stringDate + "' AND staff.ID = working.Staff_ID");
+
+            while (rs.next()) {
+                String firstname = rs.getString("FirstName");
+                int ID = rs.getInt("ID");
+
+                String text = "(" + ID + ") " + firstname;
+
+                workingStaff.add(text);
+            }
+
+        } catch (SQLException e) 
+        {
+
+        }
+        return workingStaff;
+    }
     
     
     
