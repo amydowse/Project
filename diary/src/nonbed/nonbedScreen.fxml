@@ -33,6 +33,7 @@
             <TableColumn fx:id="tblColNotes" prefWidth="119.0" text="Notes" />
          </columns>
       </TableView>
+      <Button fx:id="btnSave" layoutX="699.0" layoutY="110.0"   onAction="#save" mnemonicParsing="false" text="Button" />
 
       
    </children>

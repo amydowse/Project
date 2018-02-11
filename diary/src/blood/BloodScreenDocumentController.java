@@ -26,6 +26,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
@@ -38,6 +39,7 @@ import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableRow;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
 import javafx.util.Callback;
 
@@ -57,6 +59,7 @@ public class BloodScreenDocumentController implements Initializable
     @FXML TableColumn tblColNotes;
     @FXML TableColumn tblColPrevious;
     @FXML TableColumn tblColBooked;  
+    @FXML TableColumn tblColAtt;
     @FXML ChoiceBox cbStaff = new ChoiceBox();
     
     ObservableList<String> workingStaff;
@@ -328,15 +331,19 @@ public class BloodScreenDocumentController implements Initializable
             );
             
             
-            //https://stackoverflow.com/questions/27281370/javafx-tableview-format-one-cell-based-on-the-value-of-another-in-the-row accessed 10/2/18
-            tblColTime.setCellValueFactory(new PropertyValueFactory<blood, String>("Time"));
             
-            tblColTime.setCellFactory(new Callback<TableColumn<blood, LocalTime>, 
-            TableCell<blood, LocalTime>>()
-            {
+            
+            
+            //-----------------------------------------------------------------------------------------
+            
+            
+            
+            //https://stackoverflow.com/questions/27281370/javafx-tableview-format-one-cell-based-on-the-value-of-another-in-the-row accessed 10/2/18
+            tblColAtt.setCellValueFactory(new PropertyValueFactory<blood, String>("Att"));
+            tblColAtt.setCellFactory(new Callback<TableColumn<blood, LocalTime>, TableCell<blood, LocalTime>>()
+            {  
                 @Override
-                public TableCell<blood, LocalTime> call(
-                        TableColumn<blood, LocalTime> param)
+                public TableCell<blood, LocalTime> call(TableColumn<blood, LocalTime> param)
                 {
                     return new TableCell<blood, LocalTime>()
                     {
@@ -350,17 +357,14 @@ public class BloodScreenDocumentController implements Initializable
                                 
                                 if(type.getAttendance() == 1)
                                 {
-                                    setText(type.getTime().toString());
                                     setStyle("-fx-background-color: green");
                                 } 
                                 else if(type.getAttendance() == 2)
                                 {
-                                    setText(type.getTime().toString());
                                     setStyle("-fx-background-color: red");
                                 }
                                 else if(type.getAttendance() == 0)
                                 {
-                                    setText(type.getTime().toString());
                                     setStyle("-fx-background-color: white");
                                 }
                             }
@@ -369,29 +373,121 @@ public class BloodScreenDocumentController implements Initializable
                 }
             });
             
-            tblClinic.getItems().addAll(allBookings);
             
-            
-            
-            tblClinic.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) ->
+            tblColTime.setCellValueFactory(new PropertyValueFactory<blood, String>("Time"));   
+            tblColTime.setCellFactory(tc -> {TableCell<blood, LocalTime> cell = new TableCell<blood, LocalTime>() 
             {
-                if(((blood)newSelection).getAttendance() == 1)
+                @Override
+                protected void updateItem(LocalTime item, boolean empty) 
                 {
-                    ((blood)newSelection).setAttendance(2);
+                    super.updateItem(item, empty) ;
+                    setText(empty ? null : item.toString());
                 }
-                else if (((blood)newSelection).getAttendance() == 2)
+            };
+            cell.setOnMouseClicked(e -> {
+                if (! cell.isEmpty()) 
                 {
-                    ((blood)newSelection).setAttendance(0);
+                    LocalTime userId = cell.getItem();
+                    //System.out.println(userId.toString());
+                    changeAttendance(userId);
                 }
-                else if(((blood)newSelection).getAttendance() == 0)
-                {
-                    ((blood)newSelection).setAttendance(1);
-                }
-                
                 
             });
+            return cell ;
+        });
             
             
+            
+            
+            
+            
+            
+//            tblColTime.setCellFactory(column -> {
+//                return new TableCell<blood, LocalTime>() 
+//                {
+//                    @Override
+//                    protected void updateItem(LocalTime item, boolean empty) 
+//                    {
+//                        super.updateItem(item, empty);
+//
+//                        setText(empty ? "" : getItem().toString());
+//                        setGraphic(null);
+//                        
+//                        int attendance;
+//                        for(blood x : allBookings)
+//                        {
+//                            if(x.getTime() == item)
+//                            {
+//                                attendance = x.getAttendance();
+//                            }
+//                            
+//                            TableRow<blood> currentRow = getTableRow();
+//
+//                            if (!isEmpty()) 
+//                            {
+//
+//                                if (item.equals(1)) 
+//                                {
+//                                    currentRow.setStyle("-fx-background-color:lightcoral");
+//                                } 
+//                                else 
+//                                {
+//                                    currentRow.setStyle("-fx-background-color:lightgreen");
+//                                }
+//                            }
+//                        }
+//
+//                        
+//                        
+//                    }
+//                };
+//            });
+//            
+//            
+//           
+//            //https://stackoverflow.com/questions/35562037/how-to-set-click-event-for-a-cell-of-a-table-column-in-a-tableview accessed 11/2/1
+//            tblColTime.setCellFactory(tc -> {TableCell<blood, LocalTime> cell = new TableCell<blood, LocalTime>() 
+//            {
+//                @Override
+//                protected void updateItem(LocalTime item, boolean empty) 
+//                {
+//                    super.updateItem(item, empty) ;
+//                    setText(empty ? null : item.toString());
+//                }
+//            };
+//            cell.setOnMouseClicked(e -> {
+//                if (! cell.isEmpty()) 
+//                {
+//                    LocalTime userId = cell.getItem();
+//                    System.out.println(userId.toString());
+//                    changeAttendance(userId);
+//                }
+//                
+//            });
+//            return cell ;
+//        });
+//            
+//            tblClinic.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) ->
+//            {
+//                if(((blood)newSelection).getAttendance() == 1)
+//                {
+//                    ((blood)newSelection).setAttendance(2);
+//                }
+//                else if (((blood)newSelection).getAttendance() == 2)
+//                {
+//                    ((blood)newSelection).setAttendance(0);
+//                }
+//                else if(((blood)newSelection).getAttendance() == 0)
+//                {
+//                    ((blood)newSelection).setAttendance(1);
+//                }
+//                
+//                
+//            });
+            
+            
+            
+            tblClinic.getItems().addAll(allBookings);
             
             c.close();
         }
@@ -409,6 +505,45 @@ public class BloodScreenDocumentController implements Initializable
         //if instance of basicBblood - show just time
         //if isntace of blood - show all informaiton
            
+    }
+    
+    
+    
+    public void changeAttendance(LocalTime time)
+    {
+        System.out.println("GOT IN " + time);
+        for(blood x : allBookings)
+        {
+            System.out.println(x.getTime());
+            if(x.getTime().equals(time))
+            {
+                if(x.getAttendance() == 0)
+                {
+                    x.setAttendance(1);
+                    save();
+                    showInformation();
+                }
+                else if (x.getAttendance() == 1)
+                {
+                    x.setAttendance(2);
+                    save();
+                    showInformation();
+                }
+                else
+                {
+                    x.setAttendance(0);
+                    save();
+                    showInformation();
+                }
+            }
+        }
+    }
+    
+    
+    
+    public void printRow(blood item)
+    {
+        System.out.println(item.getName());
     }
     
     

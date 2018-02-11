@@ -22,6 +22,7 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -47,6 +48,8 @@ public class NonbedScreenDocumentController implements Initializable
     @FXML TableColumn tblColReason;
     @FXML TableColumn tblColDuration;
     @FXML TableColumn tblColNotes;
+    
+    @FXML Button btnSave = new Button();
     
     @FXML ChoiceBox cbStaff = new ChoiceBox();
     
@@ -284,21 +287,7 @@ public class NonbedScreenDocumentController implements Initializable
                 );
                 
                 tblColNotes.setCellValueFactory(new PropertyValueFactory<nonbed, Integer>("Notes"));
-//                tblColNotes.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-//                tblColNotes.setOnEditCommit(
-//                        new EventHandler<TableColumn.CellEditEvent<nonbed, Integer>>() {
-//                    @Override
-//                    public void handle(TableColumn.CellEditEvent<nonbed, Integer> t) {
-//                        ((nonbed) t.getTableView().getItems().get(
-//                                t.getTablePosition().getRow())).setNotes(t.getNewValue());
-//                    }
-//                }
-//                );
-                
-                
-                
-                
-            
+   
         }
         catch(SQLException e)
         {
@@ -347,8 +336,71 @@ public class NonbedScreenDocumentController implements Initializable
             
         } 
     }
+
+
+@FXML
+public void save()
+    {
+        for (nonbed appointment : allBookings)
+        {
+            System.out.println("SAVING A NEW NON BED THING");
+            if(!appointment.getName().equals(""))
+            {
+                saveToDatabase(appointment);
+            }
+        }
+    }
     
-    
+    public void saveToDatabase(nonbed appointment)
+    {
+        try
+        {
+            int notes;
+            if (appointment.getNotes() == "✔") 
+            {
+                notes = 0;
+            } 
+            else if (appointment.getNotes() == "O") 
+            {
+                notes = 1;
+            }
+            else 
+            {
+                notes = 2;
+            }
+
+            // open a connection
+            Connection c = DatabaseConnector.activateConnection();
+            c.setAutoCommit( true ); 
+            
+            // when creating a statement object, you MUST use a connection object to call the instance method
+            Statement stmt = c.createStatement();
+            
+            String date = codeBank.dateToString(codeBank.getCurrentDate());
+                        
+            String sql = "REPLACE INTO nonbed (Date, Time, Name, Age, HospitalNumber, Reason, Duration, Notes, Attendance) VALUES('"
+                                                                                                                + date + "','"
+                                                                                                                + appointment.getTime() + "','"
+                                                                                                                + appointment.getName() + "','"
+                                                                                                                + appointment.getAge() + "','"
+                                                                                                                + appointment.getHospital() + "','"
+                                                                                                                + appointment.getReason() + "','"
+                                                                                                                + appointment.getDuration() + "','"
+                                                                                                                + notes + "','"
+                                                                                                                + appointment.getAttendance() + "')";
+            
+            stmt.executeUpdate(sql);                 
+                    
+            c.close();
+        }
+        catch (SQLException e)
+        {
+            
+        } 
+        
+                
+    }
+        
     
     
     
