@@ -374,6 +374,7 @@ public class BloodScreenDocumentController implements Initializable
             });
             
             
+             //https://stackoverflow.com/questions/35562037/how-to-set-click-event-for-a-cell-of-a-table-column-in-a-tableview accessed 11/2/1
             tblColTime.setCellValueFactory(new PropertyValueFactory<blood, String>("Time"));   
             tblColTime.setCellFactory(tc -> {TableCell<blood, LocalTime> cell = new TableCell<blood, LocalTime>() 
             {
@@ -388,103 +389,12 @@ public class BloodScreenDocumentController implements Initializable
                 if (! cell.isEmpty()) 
                 {
                     LocalTime userId = cell.getItem();
-                    //System.out.println(userId.toString());
                     changeAttendance(userId);
                 }
                 
             });
             return cell ;
         });
-            
-            
-            
-            
-            
-            
-            
-//            tblColTime.setCellFactory(column -> {
-//                return new TableCell<blood, LocalTime>() 
-//                {
-//                    @Override
-//                    protected void updateItem(LocalTime item, boolean empty) 
-//                    {
-//                        super.updateItem(item, empty);
-//
-//                        setText(empty ? "" : getItem().toString());
-//                        setGraphic(null);
-//                        
-//                        int attendance;
-//                        for(blood x : allBookings)
-//                        {
-//                            if(x.getTime() == item)
-//                            {
-//                                attendance = x.getAttendance();
-//                            }
-//                            
-//                            TableRow<blood> currentRow = getTableRow();
-//
-//                            if (!isEmpty()) 
-//                            {
-//
-//                                if (item.equals(1)) 
-//                                {
-//                                    currentRow.setStyle("-fx-background-color:lightcoral");
-//                                } 
-//                                else 
-//                                {
-//                                    currentRow.setStyle("-fx-background-color:lightgreen");
-//                                }
-//                            }
-//                        }
-//
-//                        
-//                        
-//                    }
-//                };
-//            });
-//            
-//            
-//           
-//            //https://stackoverflow.com/questions/35562037/how-to-set-click-event-for-a-cell-of-a-table-column-in-a-tableview accessed 11/2/1
-//            tblColTime.setCellFactory(tc -> {TableCell<blood, LocalTime> cell = new TableCell<blood, LocalTime>() 
-//            {
-//                @Override
-//                protected void updateItem(LocalTime item, boolean empty) 
-//                {
-//                    super.updateItem(item, empty) ;
-//                    setText(empty ? null : item.toString());
-//                }
-//            };
-//            cell.setOnMouseClicked(e -> {
-//                if (! cell.isEmpty()) 
-//                {
-//                    LocalTime userId = cell.getItem();
-//                    System.out.println(userId.toString());
-//                    changeAttendance(userId);
-//                }
-//                
-//            });
-//            return cell ;
-//        });
-//            
-//            tblClinic.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) ->
-//            {
-//                if(((blood)newSelection).getAttendance() == 1)
-//                {
-//                    ((blood)newSelection).setAttendance(2);
-//                }
-//                else if (((blood)newSelection).getAttendance() == 2)
-//                {
-//                    ((blood)newSelection).setAttendance(0);
-//                }
-//                else if(((blood)newSelection).getAttendance() == 0)
-//                {
-//                    ((blood)newSelection).setAttendance(1);
-//                }
-//                
-//                
-//            });
-            
             
             
             tblClinic.getItems().addAll(allBookings);
@@ -511,32 +421,26 @@ public class BloodScreenDocumentController implements Initializable
     
     public void changeAttendance(LocalTime time)
     {
-        System.out.println("GOT IN " + time);
         for(blood x : allBookings)
         {
-            System.out.println(x.getTime());
             if(x.getTime().equals(time))
             {
                 if(x.getAttendance() == 0)
                 {
                     x.setAttendance(1);
-                    save();
-                    showInformation();
                 }
                 else if (x.getAttendance() == 1)
                 {
                     x.setAttendance(2);
-                    save();
-                    showInformation();
                 }
                 else
                 {
                     x.setAttendance(0);
-                    save();
-                    showInformation();
                 }
             }
         }
+        save();
+        showInformation();
     }
     
     
