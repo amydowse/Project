@@ -25,6 +25,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
@@ -53,8 +54,7 @@ public class NonbedScreenDocumentController implements Initializable
     @FXML TableColumn tblColAtt1;
     @FXML TableColumn tblColAtt2;
     
-    @FXML Button btnSave = new Button();
-    
+      
     @FXML ChoiceBox cbStaff = new ChoiceBox();
     
     ObservableList<String> workingStaff; 
@@ -63,24 +63,31 @@ public class NonbedScreenDocumentController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
+        tblClinic.setPlaceholder(new Label("There is no non-bed appointments scheduled for this day"));
+        
+        workingStaff = codeBank.fillStaffDropDowns();
+        cbStaff.getItems().add(workingStaff);
         showInformation();
     }
+    
+    
+    
+    
     
     public void showInformation()
     {
         cbStaff.valueProperty().set(null);
         
-        cbStaff.setItems(codeBank.fillStaffDropDowns());
+        cbStaff.setItems(workingStaff);
         showStaff(codeBank.getCurrentDate());
-                
+        
         tblClinic.getItems().clear();
         
         if(allBookings != null)
         {
             allBookings.clear();
         }
-        
-        
+             
         tblClinic.setEditable(true);
         tblColTime.setEditable(true);
         tblColName.setEditable(true);
@@ -134,7 +141,7 @@ public class NonbedScreenDocumentController implements Initializable
                 allBookings.add(x);
                 
             }
-                allBookings.add(new nonbed(codeBank.getCurrentDate(), LocalTime.MIDNIGHT, "", -1, "", "", -1, "-", 0));
+              
                 tblClinic.getItems().addAll(allBookings);
                 
                 
@@ -209,14 +216,6 @@ public class NonbedScreenDocumentController implements Initializable
                         }
                 );
             
-
-            
-            
-            
-            
-            //----------------GOOD----------------------------------------------------------------------------
-            
-            
             tblColNotes.setCellValueFactory(new PropertyValueFactory<nonbed, String>("Notes"));
             tblColNotes.setCellFactory(tc -> {
                 TableCell<nonbed, String> cell = new TableCell<nonbed, String>() {
@@ -239,22 +238,6 @@ public class NonbedScreenDocumentController implements Initializable
             });
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------     
-                
                 tblColName.setCellValueFactory(new PropertyValueFactory<nonbed, String>("Name"));
                 tblColName.setCellFactory(TextFieldTableCell.forTableColumn());
                 tblColName.setOnEditCommit(

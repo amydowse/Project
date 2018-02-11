@@ -35,7 +35,6 @@
             <TableColumn fx:id="tblColNotes" text="Notes" />
          </columns>
       </TableView>
-      <Button fx:id="btnSave" layoutX="699.0" layoutY="110.0" mnemonicParsing="false" onAction="#save" text="Button" />
 
       
    </children>

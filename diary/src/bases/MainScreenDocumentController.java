@@ -32,6 +32,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import nonbed.NonbedScreenDocumentController;
 import preop.PreopScreenDocumentController;
 /**
  *
@@ -58,10 +59,12 @@ public class MainScreenDocumentController implements Initializable
     public static DiaryScreenDocumentController DSDC;
     public static PreopScreenDocumentController PSDC;
     public static BloodScreenDocumentController BSDC;
+    public static NonbedScreenDocumentController NSDC;
     
     private Pane DiaryPane;
     private Pane PreopPane;
     private Pane BloodPane;
+    private Pane NonbedPane;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
@@ -81,6 +84,10 @@ public class MainScreenDocumentController implements Initializable
             FXMLLoader BSL = new FXMLLoader(getClass().getResource("/blood/bloodScreen.fxml"));
             BloodPane = BSL.load();
             BSDC = BSL.getController();
+            
+            FXMLLoader NSL = new FXMLLoader(getClass().getResource("/nonbed/nonbedScreen.fxml"));
+            NonbedPane = NSL.load();
+            NSDC = NSL.getController();
            
             codeBank.setCurrentDate(LocalDate.now());
             
@@ -263,6 +270,7 @@ public class MainScreenDocumentController implements Initializable
         DSDC.save(codeBank.getCurrentDate());
         PSDC.save(codeBank.getCurrentDate());
         BSDC.save();
+        NSDC.save();
         
         //todays date into a localDate format 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -277,6 +285,7 @@ public class MainScreenDocumentController implements Initializable
         DSDC.showNotes(codeBank.getCurrentDate());
         PSDC.loadInformation();
         BSDC.showInformation();
+        NSDC.showInformation();
     }
     
     @FXML 
@@ -285,6 +294,7 @@ public class MainScreenDocumentController implements Initializable
         DSDC.save(codeBank.getCurrentDate());
         PSDC.save(codeBank.getCurrentDate());
         BSDC.save();
+        NSDC.save();
         
         codeBank.setCurrentDate(codeBank.getCurrentDate().plusDays(1));
         updateDate();
@@ -295,6 +305,7 @@ public class MainScreenDocumentController implements Initializable
         DSDC.showNotes(codeBank.getCurrentDate());
         PSDC.loadInformation();
         BSDC.showInformation();
+        NSDC.showInformation();
     }
     
     @FXML 
@@ -303,6 +314,7 @@ public class MainScreenDocumentController implements Initializable
         DSDC.save(codeBank.getCurrentDate());
         PSDC.save(codeBank.getCurrentDate());
         BSDC.save();
+        NSDC.save();
         
         codeBank.setCurrentDate(codeBank.getCurrentDate().minusDays(1));
         updateDate();
@@ -313,6 +325,7 @@ public class MainScreenDocumentController implements Initializable
         DSDC.showNotes(codeBank.getCurrentDate());
         PSDC.loadInformation();
         BSDC.showInformation();
+        NSDC.showInformation();
     }
     
     @FXML
@@ -322,6 +335,7 @@ public class MainScreenDocumentController implements Initializable
         DSDC.save(codeBank.getCurrentDate());
         PSDC.save(codeBank.getCurrentDate());
         BSDC.save();
+        NSDC.save();
         
         codeBank.setCurrentDate(dpCalandar.getValue());
         updateDate();
@@ -332,6 +346,7 @@ public class MainScreenDocumentController implements Initializable
         DSDC.showNotes(codeBank.getCurrentDate());
         PSDC.loadInformation();
         BSDC.showInformation();
+        NSDC.showInformation();
     }
     
     
@@ -345,6 +360,7 @@ public class MainScreenDocumentController implements Initializable
         DSDC.save(codeBank.getCurrentDate());
         PSDC.save(codeBank.getCurrentDate());
         BSDC.save();
+        NSDC.save();
         updateButtons();
         changeContentPane(DiaryPane);    
         
@@ -356,6 +372,7 @@ public class MainScreenDocumentController implements Initializable
        DSDC.save(codeBank.getCurrentDate());
        PSDC.save(codeBank.getCurrentDate());
        BSDC.save();
+       NSDC.save();
        updateButtons();
        changeContentPane(BloodPane); 
         
@@ -367,6 +384,7 @@ public class MainScreenDocumentController implements Initializable
         DSDC.save(codeBank.getCurrentDate());
         PSDC.save(codeBank.getCurrentDate());
         BSDC.save();
+        NSDC.save();
         updateButtons();
         changeContentPane(PreopPane); 
         
@@ -378,6 +396,7 @@ public class MainScreenDocumentController implements Initializable
        DSDC.save(codeBank.getCurrentDate());
        PSDC.save(codeBank.getCurrentDate());
        BSDC.save();
+       NSDC.save();
        updateButtons();
        Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/oncology/oncologyScreen.fxml"));
        changeContentPane(newLoadedPane);
@@ -390,9 +409,9 @@ public class MainScreenDocumentController implements Initializable
        DSDC.save(codeBank.getCurrentDate());
        PSDC.save(codeBank.getCurrentDate());
        BSDC.save();
+       NSDC.save();
        updateButtons();
-       Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/nonbed/nonbedScreen.fxml"));
-       changeContentPane(newLoadedPane);
+       changeContentPane(NonbedPane);
         
     }
     
@@ -404,6 +423,7 @@ public class MainScreenDocumentController implements Initializable
         DSDC.save(codeBank.getCurrentDate());
         PSDC.save(codeBank.getCurrentDate());
         BSDC.save();
+        NSDC.save();
         codeBank.setCurrentDate(LocalDate.now());
         Scene scene = new Scene(root);
         bases.Start.stage.setScene(scene);
