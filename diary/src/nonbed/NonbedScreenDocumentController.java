@@ -17,6 +17,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+import javafx.beans.property.ReadOnlyIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -26,6 +27,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
@@ -48,6 +50,7 @@ public class NonbedScreenDocumentController implements Initializable
     @FXML TableColumn tblColReason;
     @FXML TableColumn tblColDuration;
     @FXML TableColumn tblColNotes;
+    @FXML TableColumn tblColAtt;
     
     @FXML Button btnSave = new Button();
     
@@ -114,15 +117,15 @@ public class NonbedScreenDocumentController implements Initializable
                 String notes;
                 if(Notes==0)
                 {
-                    notes = "✔";
+                    notes = "-";
                 }
-                else if (Attendance == 1)
+                else if (Notes == 1)
                 {
                     notes = "O";
                 }
                 else
                 {
-                    notes = "-";
+                    notes = "✔";
                 }
                 
                       
@@ -135,25 +138,15 @@ public class NonbedScreenDocumentController implements Initializable
                 
                 
   
-                tblColTime.setCellValueFactory(new PropertyValueFactory<nonbed, LocalTime>("Time"));
-                tblColTime.setCellFactory(TextFieldTableCell.forTableColumn(new LocalTimeStringConverter()));
-                tblColTime.setOnEditCommit(
-                        new EventHandler<TableColumn.CellEditEvent<nonbed, LocalTime>>() {
-                    @Override
-                    public void handle(TableColumn.CellEditEvent<nonbed, LocalTime> t) {
-                        ((nonbed) t.getTableView().getItems().get(
-                                t.getTablePosition().getRow())).setTime(t.getNewValue());          
-                    }
-                }
-                );
                 
                 
-            tblColTime.setCellFactory(new Callback<TableColumn<nonbed, LocalTime>, 
-            TableCell<nonbed, LocalTime>>()
-            {
+                
+                //https://stackoverflow.com/questions/27281370/javafx-tableview-format-one-cell-based-on-the-value-of-another-in-the-row accessed 10/2/18
+            tblColAtt.setCellValueFactory(new PropertyValueFactory<nonbed, String>("Att"));
+            tblColAtt.setCellFactory(new Callback<TableColumn<nonbed, LocalTime>, TableCell<nonbed, LocalTime>>()
+            {  
                 @Override
-                public TableCell<nonbed, LocalTime> call(
-                        TableColumn<nonbed, LocalTime> param)
+                public TableCell<nonbed, LocalTime> call(TableColumn<nonbed, LocalTime> param)
                 {
                     return new TableCell<nonbed, LocalTime>()
                     {
@@ -167,17 +160,14 @@ public class NonbedScreenDocumentController implements Initializable
                                 
                                 if(type.getAttendance() == 1)
                                 {
-                                    setText(type.getTime().toString());
                                     setStyle("-fx-background-color: green");
                                 } 
                                 else if(type.getAttendance() == 2)
                                 {
-                                    setText(type.getTime().toString());
                                     setStyle("-fx-background-color: red");
                                 }
                                 else if(type.getAttendance() == 0)
                                 {
-                                    setText(type.getTime().toString());
                                     setStyle("-fx-background-color: white");
                                 }
                             }
@@ -186,42 +176,31 @@ public class NonbedScreenDocumentController implements Initializable
                 }
             });
             
-            tblClinic.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) ->
+            
+             //https://stackoverflow.com/questions/35562037/how-to-set-click-event-for-a-cell-of-a-table-column-in-a-tableview accessed 11/2/1
+            tblColTime.setCellValueFactory(new PropertyValueFactory<nonbed, String>("Time"));   
+            tblColTime.setCellFactory(tc -> {TableCell<nonbed, LocalTime> cell = new TableCell<nonbed, LocalTime>() 
             {
-                if(((nonbed)newSelection).getNotes() == "✔")
+                @Override
+                protected void updateItem(LocalTime item, boolean empty) 
                 {
-                    ((nonbed)newSelection).setNotes("O");
+                    super.updateItem(item, empty) ;
+                    setText(empty ? null : item.toString());
                 }
-                else if (((nonbed)newSelection).getNotes() == "O")
+            };
+            cell.setOnMouseClicked(e -> {
+                if (! cell.isEmpty()) 
                 {
-                    ((nonbed)newSelection).setNotes("-");
+                    LocalTime userId = cell.getItem();
+                    changeAttendance(userId);
                 }
-                else if(((nonbed)newSelection).getNotes() == "-")
-                {
-                    ((nonbed)newSelection).setNotes("✔");
-                }
-                
                 
             });
-            
-            tblClinic.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) ->
-            {
-                if(((nonbed)newSelection).getAttendance() == 1)
-                {
-                    ((nonbed)newSelection).setAttendance(2);
-                }
-                else if (((nonbed)newSelection).getAttendance() == 2)
-                {
-                    ((nonbed)newSelection).setAttendance(0);
-                }
-                else if(((nonbed)newSelection).getAttendance() == 0)
-                {
-                    ((nonbed)newSelection).setAttendance(1);
-                }
+            return cell ;
+        });
                 
                 
-            });
-            
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------     
                 
                 tblColName.setCellValueFactory(new PropertyValueFactory<nonbed, String>("Name"));
                 tblColName.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -286,7 +265,27 @@ public class NonbedScreenDocumentController implements Initializable
                 }
                 );
                 
-                tblColNotes.setCellValueFactory(new PropertyValueFactory<nonbed, Integer>("Notes"));
+                tblColNotes.setCellValueFactory(new PropertyValueFactory<nonbed, String>("Notes"));
+                tblColNotes.setCellFactory(tc -> {
+                TableCell<nonbed, String> cell = new TableCell<nonbed, String>() {
+                    @Override
+                    protected void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        setText(empty ? null : item.toString());
+                    }
+                };
+                cell.setOnMouseClicked(e -> {
+                    if (!cell.isEmpty()) 
+                    {
+                        String userId = cell.getItem();
+                        int row = cell.getIndex();
+                        changeNotes(row, userId);
+                        //System.out.println(row + " --- " + userId);
+                    }
+
+                });
+                return cell;
+            });
    
         }
         catch(SQLException e)
@@ -295,6 +294,52 @@ public class NonbedScreenDocumentController implements Initializable
     }
     
     
+    
+    public void changeNotes(int index, String att)
+    {
+        if(att.equals("✔"))
+        {
+            allBookings.get(index).setNotes("-");
+        }
+        else if (att.equals("-"))
+        {
+            allBookings.get(index).setNotes("O");
+        }
+        else
+        {
+            allBookings.get(index).setNotes("✔");
+        }
+        save();
+        showInformation();
+        
+    }
+    
+    
+    
+    
+    public void changeAttendance(LocalTime time)
+    {
+        for(nonbed x : allBookings)
+        {
+            if(x.getTime().equals(time))
+            {
+                if(x.getAttendance() == 0)
+                {
+                    x.setAttendance(1);
+                }
+                else if (x.getAttendance() == 1)
+                {
+                    x.setAttendance(2);
+                }
+                else
+                {
+                    x.setAttendance(0);
+                }
+            }
+        }
+        save();
+        showInformation();
+    }
     
     
     
@@ -358,7 +403,7 @@ public void save()
             int notes;
             if (appointment.getNotes() == "✔") 
             {
-                notes = 0;
+                notes = 2;
             } 
             else if (appointment.getNotes() == "O") 
             {
@@ -366,7 +411,7 @@ public void save()
             }
             else 
             {
-                notes = 2;
+                notes = 0;
             }
 
             // open a connection

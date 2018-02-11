@@ -32,10 +32,10 @@
             <TableColumn fx:id="tblColDOB" prefWidth="128.0" text="Date of Birth" />
             <TableColumn fx:id="tblColNHS" prefWidth="161.0" text="NHS Number" />
             <TableColumn fx:id="tblColNumber" prefWidth="184.0" text="Contact Number" />
-            <TableColumn fx:id="tblColForm" prefWidth="186.0" text="Form" />
-            <TableColumn fx:id="tblColNotes" prefWidth="297.0" text="Notes" />
-            <TableColumn fx:id="tblColPrevious" prefWidth="181.0" text="Previous Attendance" />
-            <TableColumn fx:id="tblColBooked" prefWidth="164.0" text="Booked By" />
+            <TableColumn fx:id="tblColForm" prefWidth="156.0" text="Form" />
+            <TableColumn fx:id="tblColNotes" prefWidth="315.0" text="Notes" />
+            <TableColumn fx:id="tblColPrevious" prefWidth="184.0" text="Previous Attendance" />
+            <TableColumn fx:id="tblColBooked" prefWidth="104.0" text="Booked By" />
         </columns>
       </TableView>
      
