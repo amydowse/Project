@@ -393,6 +393,10 @@ public void save()
             {
                 saveToDatabase(appointment);
             }
+            else
+            {
+                deleteFromDatabase(appointment);
+            }
         }
     }
     
@@ -446,6 +450,33 @@ public void save()
                 
     }
         
+    
+    public void deleteFromDatabase(nonbed appointment)
+    {
+        try
+        {
+            // open a connection
+            Connection c = DatabaseConnector.activateConnection();
+            c.setAutoCommit( true ); 
+            
+            // when creating a statement object, you MUST use a connection object to call the instance method
+            Statement stmt = c.createStatement();
+            
+            String date = codeBank.dateToString(codeBank.getCurrentDate());
+         
+            String sql = "DELETE FROM nonbed WHERE Date = '" + date + "' AND Time = '" + appointment.getTime() + "'";
+            
+            stmt.executeUpdate(sql);                 
+                    
+            c.close();
+        }
+        catch (SQLException e)
+        {
+            
+        } 
+        
+                
+    }
     
     
     

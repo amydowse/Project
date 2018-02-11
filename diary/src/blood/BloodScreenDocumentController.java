@@ -73,8 +73,9 @@ public class BloodScreenDocumentController implements Initializable
     public void initialize(URL url, ResourceBundle rb) 
     {     
         tblClinic.setPlaceholder(new Label("There is no blood clinic scheduled for this day"));
-        workingStaff = codeBank.fillStaffDropDowns();
         
+        workingStaff = codeBank.fillStaffDropDowns();
+        cbStaff.getItems().add(workingStaff);
         showInformation();
     }
     
@@ -84,7 +85,7 @@ public class BloodScreenDocumentController implements Initializable
         
         cbStaff.setItems(workingStaff);
         showStaff(codeBank.getCurrentDate());
-                
+        
         tblClinic.getItems().clear();
         
         if(allBookings != null)
@@ -445,11 +446,7 @@ public class BloodScreenDocumentController implements Initializable
     
     
     
-    public void printRow(blood item)
-    {
-        System.out.println(item.getName());
-    }
-    
+  
     
     public void save()
     {
@@ -458,6 +455,10 @@ public class BloodScreenDocumentController implements Initializable
             if(!appointment.getName().equals(""))
             {
                 saveToDatabase(appointment);
+            }
+            else
+            {
+                deleteFromDatabase(appointment);
             }
         }
     }
@@ -487,6 +488,35 @@ public class BloodScreenDocumentController implements Initializable
                                                                                                                 + appointment.getPrevious() + "','"
                                                                                                                 + appointment.getBookedBy() + "','"
                                                                                                                 + appointment.getAttendance() + "')";
+            
+            stmt.executeUpdate(sql);                 
+                    
+            c.close();
+        }
+        catch (SQLException e)
+        {
+            
+        } 
+        
+                
+    }
+    
+    
+    
+    public void deleteFromDatabase(blood appointment)
+    {
+        try
+        {
+            // open a connection
+            Connection c = DatabaseConnector.activateConnection();
+            c.setAutoCommit( true ); 
+            
+            // when creating a statement object, you MUST use a connection object to call the instance method
+            Statement stmt = c.createStatement();
+            
+            String date = codeBank.dateToString(codeBank.getCurrentDate());
+         
+            String sql = "DELETE FROM blood WHERE Date = '" + date + "' AND Time = '" + appointment.getTime() + "'";
             
             stmt.executeUpdate(sql);                 
                     

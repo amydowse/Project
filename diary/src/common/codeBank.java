@@ -114,8 +114,10 @@ public class codeBank
     
     
     
+    
     public static ObservableList<String> fillStaffDropDowns() 
     {
+        System.out.println("Fill method");
         ObservableList<String> workingStaff = FXCollections.observableArrayList();
         try 
         {
@@ -131,7 +133,9 @@ public class codeBank
             //implement query
             rs = stmt.executeQuery("SELECT * FROM staff, working WHERE working.Date = '" + stringDate + "' AND staff.ID = working.Staff_ID");
 
-            while (rs.next()) {
+            while (rs.next()) 
+            {
+                System.out.println("inside while");
                 String firstname = rs.getString("FirstName");
                 int ID = rs.getInt("ID");
 
