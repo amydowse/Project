@@ -59,7 +59,8 @@ public class BloodScreenDocumentController implements Initializable
     @FXML TableColumn tblColNotes;
     @FXML TableColumn tblColPrevious;
     @FXML TableColumn tblColBooked;  
-    @FXML TableColumn tblColAtt;
+    @FXML TableColumn tblColAtt1;
+    @FXML TableColumn tblColAtt2;
     @FXML ChoiceBox cbStaff = new ChoiceBox();
     
     ObservableList<String> workingStaff;
@@ -338,33 +339,52 @@ public class BloodScreenDocumentController implements Initializable
             //-----------------------------------------------------------------------------------------
             
             
+             //https://stackoverflow.com/questions/35562037/how-to-set-click-event-for-a-cell-of-a-table-column-in-a-tableview accessed 11/2/1
+            tblColTime.setCellValueFactory(new PropertyValueFactory<blood, String>("Time"));   
+            
+            
             
             //https://stackoverflow.com/questions/27281370/javafx-tableview-format-one-cell-based-on-the-value-of-another-in-the-row accessed 10/2/18
-            tblColAtt.setCellValueFactory(new PropertyValueFactory<blood, String>("Att"));
-            tblColAtt.setCellFactory(new Callback<TableColumn<blood, LocalTime>, TableCell<blood, LocalTime>>()
-            {  
+            tblColAtt1.setCellValueFactory(new PropertyValueFactory<blood, Integer>("Att"));
+            tblColAtt1.setCellFactory(tc -> {
+                TableCell<blood, Integer> cell = new TableCell<blood, Integer>()  {
+                    @Override
+                    protected void updateItem(Integer item, boolean empty) {
+                        super.updateItem(item, empty);
+                        //setText(empty ? null : item.toString());
+                    }
+                };
+                cell.setOnMouseClicked(e -> {
+                    if (!cell.isEmpty()) {
+                        Integer userId = cell.getItem();
+                        int row = cell.getIndex();
+                        changeAttendance(row);
+                        //System.out.println(row + " --- " + userId);
+                    }
+
+                });
+                return cell;
+            });
+            
+            tblColAtt2.setCellFactory(new Callback<TableColumn<blood, LocalTime>, TableCell<blood, LocalTime>>() {
                 @Override
-                public TableCell<blood, LocalTime> call(TableColumn<blood, LocalTime> param)
-                {
-                    return new TableCell<blood, LocalTime>()
-                    {
+                public TableCell<blood, LocalTime> call(TableColumn<blood, LocalTime> param) {
+                    return new TableCell<blood, LocalTime>() {
                         @Override
-                        protected void updateItem(LocalTime item, boolean empty)
-                        {
-                            if (!empty)
-                            {
+                        protected void updateItem(LocalTime item, boolean empty) {
+                            if (!empty) {
                                 int currentIndex = indexProperty().getValue();
                                 blood type = param.getTableView().getItems().get(currentIndex);
-                                
-                                if(type.getAttendance() == 1)
+
+                                if (type.getAttendance() == 1) 
                                 {
                                     setStyle("-fx-background-color: green");
                                 } 
-                                else if(type.getAttendance() == 2)
+                                else if (type.getAttendance() == 2) 
                                 {
                                     setStyle("-fx-background-color: red");
-                                }
-                                else if(type.getAttendance() == 0)
+                                } 
+                                else if (type.getAttendance() == 0) 
                                 {
                                     setStyle("-fx-background-color: white");
                                 }
@@ -375,27 +395,9 @@ public class BloodScreenDocumentController implements Initializable
             });
             
             
-             //https://stackoverflow.com/questions/35562037/how-to-set-click-event-for-a-cell-of-a-table-column-in-a-tableview accessed 11/2/1
-            tblColTime.setCellValueFactory(new PropertyValueFactory<blood, String>("Time"));   
-            tblColTime.setCellFactory(tc -> {TableCell<blood, LocalTime> cell = new TableCell<blood, LocalTime>() 
-            {
-                @Override
-                protected void updateItem(LocalTime item, boolean empty) 
-                {
-                    super.updateItem(item, empty) ;
-                    setText(empty ? null : item.toString());
-                }
-            };
-            cell.setOnMouseClicked(e -> {
-                if (! cell.isEmpty()) 
-                {
-                    LocalTime userId = cell.getItem();
-                    changeAttendance(userId);
-                }
-                
-            });
-            return cell ;
-        });
+            
+            
+            
             
             
             tblClinic.getItems().addAll(allBookings);
@@ -420,26 +422,21 @@ public class BloodScreenDocumentController implements Initializable
     
     
     
-    public void changeAttendance(LocalTime time)
+    public void changeAttendance(int index)
     {
-        for(blood x : allBookings)
+        if(allBookings.get(index).getAttendance() == 0)
         {
-            if(x.getTime().equals(time))
-            {
-                if(x.getAttendance() == 0)
-                {
-                    x.setAttendance(1);
-                }
-                else if (x.getAttendance() == 1)
-                {
-                    x.setAttendance(2);
-                }
-                else
-                {
-                    x.setAttendance(0);
-                }
-            }
+            allBookings.get(index).setAttendance(1);
         }
+        else if(allBookings.get(index).getAttendance() == 1)
+        {
+            allBookings.get(index).setAttendance(2);
+        }
+        else
+        {
+            allBookings.get(index).setAttendance(0);
+        }
+            
         save();
         showInformation();
     }

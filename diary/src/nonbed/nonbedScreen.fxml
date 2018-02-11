@@ -24,14 +24,15 @@
       
       <TableView fx:id="tblClinic" layoutX="46.0" layoutY="206.0" prefHeight="749.0" prefWidth="1690.0" stylesheets="@tableStyle.css">
          <columns>
-            <TableColumn fx:id="tblColAtt" prefWidth="37.0" />
-            <TableColumn fx:id="tblColTime" prefWidth="227.0" text="Time" />
+            <TableColumn fx:id="tblColAtt1" prefWidth="25.0" />
+            <TableColumn fx:id="tblColAtt2" prefWidth="25.0" />
+            <TableColumn fx:id="tblColTime" prefWidth="253.0" text="Time" />
             <TableColumn fx:id="tblColName" prefWidth="256.0" text="Name" />
             <TableColumn fx:id="tblColAge" prefWidth="128.0" text="Age" />
             <TableColumn fx:id="tblColHospital" prefWidth="161.0" text="Hospital Number" />
-            <TableColumn fx:id="tblColReason" prefWidth="700.0" text="Reason" />
-            <TableColumn fx:id="tblColDuration" prefWidth="104.0" text="Duration" />
-            <TableColumn fx:id="tblColNotes" prefWidth="76.0" text="Notes" />
+            <TableColumn fx:id="tblColReason" prefWidth="652.0" text="Reason" />
+            <TableColumn fx:id="tblColDuration" prefWidth="109.0" text="Duration" />
+            <TableColumn fx:id="tblColNotes" text="Notes" />
          </columns>
       </TableView>
       <Button fx:id="btnSave" layoutX="699.0" layoutY="110.0" mnemonicParsing="false" onAction="#save" text="Button" />

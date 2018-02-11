@@ -26,16 +26,17 @@
       
       <TableView fx:id="tblClinic" layoutX="46.0" layoutY="206.0" prefHeight="749.0" prefWidth="1690.0" stylesheets="@tableStyle.css">
         <columns>
-            <TableColumn fx:id="tblColAtt" prefWidth="32.0" />
+            <TableColumn fx:id="tblColAtt1" prefWidth="25.0" />
+            <TableColumn fx:id="tblColAtt2" prefWidth="25.0" />
           <TableColumn fx:id="tblColTime" prefWidth="169.0" text="Time" />
           <TableColumn fx:id="tblColName" prefWidth="256.0" text="Name" />
             <TableColumn fx:id="tblColDOB" prefWidth="128.0" text="Date of Birth" />
             <TableColumn fx:id="tblColNHS" prefWidth="161.0" text="NHS Number" />
             <TableColumn fx:id="tblColNumber" prefWidth="184.0" text="Contact Number" />
             <TableColumn fx:id="tblColForm" prefWidth="156.0" text="Form" />
-            <TableColumn fx:id="tblColNotes" prefWidth="315.0" text="Notes" />
-            <TableColumn fx:id="tblColPrevious" prefWidth="184.0" text="Previous Attendance" />
-            <TableColumn fx:id="tblColBooked" prefWidth="104.0" text="Booked By" />
+            <TableColumn fx:id="tblColNotes" prefWidth="309.0" text="Notes" />
+            <TableColumn fx:id="tblColPrevious" prefWidth="160.0" text="Previous Attendance" />
+            <TableColumn fx:id="tblColBooked" prefWidth="116.0" text="Booked By" />
         </columns>
       </TableView>
      
