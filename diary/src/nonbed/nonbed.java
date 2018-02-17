@@ -14,6 +14,7 @@ import java.time.LocalTime;
  */
 public class nonbed 
 {
+    private int ID;
     private LocalDate date;
     private LocalTime time;
     private String name;
@@ -24,8 +25,9 @@ public class nonbed
     private String notes;
     private int attendance;
     
-    public nonbed(LocalDate date, LocalTime time, String name, int age, String hospital, String reason, int duration, String notes, int attendance)
+    public nonbed(int ID, LocalDate date, LocalTime time, String name, int age, String hospital, String reason, int duration, String notes, int attendance)
     {
+        this.ID = ID;
         this.date = date;
         this.time = time;
         this.name = name;
@@ -39,6 +41,11 @@ public class nonbed
     
     
     //GETTERS
+    public int getID()
+    {
+        return ID;
+    }
+    
     public LocalTime getTime()
     {
         return time;

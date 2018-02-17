@@ -63,7 +63,7 @@ public class NonbedScreenDocumentController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
-        tblClinic.setPlaceholder(new Label("There is no non-bed appointments scheduled for this day"));
+        //tblClinic.setPlaceholder(new Label("There is no non-bed appointments scheduled for this day"));
         
         workingStaff = codeBank.fillStaffDropDowns();
         cbStaff.getItems().add(workingStaff);
@@ -111,6 +111,7 @@ public class NonbedScreenDocumentController implements Initializable
                             
             while(rs.next())
             {
+                int ID = rs.getInt("ID");
                 String time = rs.getString("Time");
                 LocalTime Time = LocalTime.parse(time, DateTimeFormatter.ISO_LOCAL_TIME);
                 
@@ -137,12 +138,14 @@ public class NonbedScreenDocumentController implements Initializable
                 }
                 
                       
-                nonbed x = new nonbed(codeBank.getCurrentDate(), Time, Name, Age, Hospital, Reason, Duration,  notes, Attendance); 
+                nonbed x = new nonbed(ID, codeBank.getCurrentDate(), Time, Name, Age, Hospital, Reason, Duration, notes, Attendance); 
                 allBookings.add(x);
                 
             }
               
-                tblClinic.getItems().addAll(allBookings);
+            allBookings.add(new nonbed(-1, codeBank.getCurrentDate(), LocalTime.MIDNIGHT, "NEW BOOKING", 0, "", "", 0, "", 0));
+            
+            tblClinic.getItems().addAll(allBookings);
                 
                 
   
@@ -206,12 +209,12 @@ public class NonbedScreenDocumentController implements Initializable
             tblColTime.setCellValueFactory(new PropertyValueFactory<nonbed, String>("Time"));
             tblColTime.setCellFactory(TextFieldTableCell.forTableColumn(new LocalTimeStringConverter()));
             tblColTime.setOnEditCommit(
-                        new EventHandler<TableColumn.CellEditEvent<nonbed, Integer>>() 
+                        new EventHandler<TableColumn.CellEditEvent<nonbed, LocalTime>>() 
                         {
                             @Override
-                            public void handle(TableColumn.CellEditEvent<nonbed, Integer> t) 
+                            public void handle(TableColumn.CellEditEvent<nonbed, LocalTime> t) 
                             {
-                                ((nonbed) t.getTableView().getItems().get(t.getTablePosition().getRow())).setAge(t.getNewValue());
+                                ((nonbed) t.getTableView().getItems().get(t.getTablePosition().getRow())).setTime(t.getNewValue());
                             }
                         }
                 );
@@ -394,15 +397,18 @@ public class NonbedScreenDocumentController implements Initializable
     }
 
 
-@FXML
-public void save()
+    @FXML
+    public void save()
     {
         for (nonbed appointment : allBookings)
         {
-            System.out.println("SAVING A NEW NON BED THING");
+            System.out.println(appointment.getID() + " " + appointment.getName());
             if(!appointment.getName().equals(""))
             {
-                saveToDatabase(appointment);
+                if(!appointment.getName().equals("NEW BOOKING"))
+                {
+                    saveToDatabase(appointment);
+                }
             }
             else
             {
@@ -410,11 +416,19 @@ public void save()
             }
         }
     }
+
     
     public void saveToDatabase(nonbed appointment)
     {
         try
         {
+            // open a connection
+            Connection c = DatabaseConnector.activateConnection();
+            c.setAutoCommit( true ); 
+            
+            // when creating a statement object, you MUST use a connection object to call the instance method
+            Statement stmt = c.createStatement();
+            
             int notes;
             if (appointment.getNotes() == "✔") 
             {
@@ -428,17 +442,10 @@ public void save()
             {
                 notes = 0;
             }
-
-            // open a connection
-            Connection c = DatabaseConnector.activateConnection();
-            c.setAutoCommit( true ); 
-            
-            // when creating a statement object, you MUST use a connection object to call the instance method
-            Statement stmt = c.createStatement();
-            
+                       
             String date = codeBank.dateToString(codeBank.getCurrentDate());
                         
-            String sql = "REPLACE INTO nonbed (Date, Time, Name, Age, HospitalNumber, Reason, Duration, Notes, Attendance) VALUES('"
+            String sql = "REPLACE INTO nonbed (Date, Time, Name, Age, HospitalNumber, Reason, Duration, Notes, Attendance, ID) VALUES('"
                                                                                                                 + date + "','"
                                                                                                                 + appointment.getTime() + "','"
                                                                                                                 + appointment.getName() + "','"
@@ -447,7 +454,8 @@ public void save()
                                                                                                                 + appointment.getReason() + "','"
                                                                                                                 + appointment.getDuration() + "','"
                                                                                                                 + notes + "','"
-                                                                                                                + appointment.getAttendance() + "')";
+                                                                                                                + appointment.getAttendance() + "','"
+                                                                                                                + appointment.getID() + "')";
             
             stmt.executeUpdate(sql);                 
                     
