@@ -77,7 +77,7 @@
   
 
         <!-- APPOINTMENT 1 -->
-        <TextField fx:id="txtAttendance1" alignment="CENTER" editable="false" layoutX="46.0" layoutY="254.0" prefHeight="48.0" prefWidth="45.0">
+        <TextField fx:id="txtAttendance1" alignment="CENTER" editable="false" layoutX="46.0" layoutY="254.0" onMouseClicked="#Attendance1" prefHeight="48.0" prefWidth="45.0">
             <font>
                 <Font size="20.0" />
             </font>
@@ -109,7 +109,7 @@
             </font>
         </TextField>
         <TextArea fx:id="txtReason1" layoutX="1242.0" layoutY="254.0" prefHeight="49.0" prefWidth="373.0" />
-        <TextField fx:id="txtNotes1" alignment="CENTER" editable="false" layoutX="1614.0" layoutY="254.0" prefHeight="48.0" prefWidth="111.0">
+        <TextField fx:id="txtNotes1" alignment="CENTER" editable="false" layoutX="1614.0" layoutY="254.0" onMouseClicked="#Notes1" prefHeight="48.0" prefWidth="111.0">
             <font>
                 <Font size="20.0" />
             </font>
@@ -118,7 +118,7 @@
 
 
         <!-- APPOINTMENT 2 -->
-        <TextField fx:id="txtAttendance2" alignment="CENTER" editable="false" layoutX="46.0" layoutY="302.0" prefHeight="48.0" prefWidth="45.0">
+        <TextField fx:id="txtAttendance2" alignment="CENTER" editable="false" layoutX="46.0" layoutY="302.0" onMouseClicked="#Attendance2" prefHeight="48.0" prefWidth="45.0">
             <font>
                 <Font size="20.0" />
             </font>
@@ -150,7 +150,7 @@
             </font>
         </TextField>
         <TextArea fx:id="txtReason2" layoutX="1242.0" layoutY="301.0" prefHeight="49.0" prefWidth="373.0" />
-        <TextField fx:id="txtNotes2" alignment="CENTER" editable="false" layoutX="1614.0" layoutY="302.0" prefHeight="48.0" prefWidth="111.0">
+        <TextField fx:id="txtNotes2" alignment="CENTER" editable="false" layoutX="1614.0" layoutY="302.0" onMouseClicked="#Notes2" prefHeight="48.0" prefWidth="111.0">
             <font>
                 <Font size="20.0" />
             </font>
@@ -159,7 +159,7 @@
 
 
         <!-- APPOINTMENT 3 -->
-        <TextField fx:id="txtAttendance3" alignment="CENTER" editable="false" layoutX="46.0" layoutY="350.0" prefHeight="48.0" prefWidth="45.0">
+        <TextField fx:id="txtAttendance3" alignment="CENTER" editable="false" layoutX="46.0" layoutY="350.0" onMouseClicked="#Attendance3" prefHeight="48.0" prefWidth="45.0">
             <font>
                 <Font size="20.0" />
             </font>
@@ -191,7 +191,7 @@
             </font>
         </TextField>               
         <TextArea fx:id="txtReason3" layoutX="1242.0" layoutY="350.0" prefHeight="49.0" prefWidth="373.0" />       
-        <TextField fx:id="txtNotes3" alignment="CENTER" editable="false" layoutX="1614.0" layoutY="350.0" prefHeight="48.0" prefWidth="111.0">
+        <TextField fx:id="txtNotes3" alignment="CENTER" editable="false" layoutX="1614.0" layoutY="350.0" onMouseClicked="#Notes3" prefHeight="48.0" prefWidth="111.0">
             <font>
                 <Font size="20.0" />
             </font>
@@ -201,7 +201,7 @@
         
         
         <!-- APPOINTMENT 4 -->                                       
-        <TextField fx:id="txtAttendance4" alignment="CENTER" editable="false" layoutX="46.0" layoutY="398.0" prefHeight="48.0" prefWidth="45.0">
+        <TextField fx:id="txtAttendance4" alignment="CENTER" editable="false" layoutX="46.0" layoutY="398.0" onMouseClicked="#Attendance4" prefHeight="48.0" prefWidth="45.0">
             <font>
                 <Font size="20.0" />
             </font>
@@ -233,7 +233,7 @@
             </font>
         </TextField>    
         <TextArea fx:id="txtReason4" layoutX="1242.0" layoutY="397.0" prefHeight="49.0" prefWidth="373.0" />
-        <TextField fx:id="txtNotes4" alignment="CENTER" editable="false" layoutX="1614.0" layoutY="398.0" prefHeight="48.0" prefWidth="111.0">
+        <TextField fx:id="txtNotes4" alignment="CENTER" editable="false" layoutX="1614.0" layoutY="398.0" onMouseClicked="#Notes4" prefHeight="48.0" prefWidth="111.0">
             <font>
                 <Font size="20.0" />
             </font>
@@ -241,141 +241,18 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-        <TextField fx:id="txtNotes5" alignment="CENTER" editable="false" layoutX="1614.0" layoutY="446.0" prefHeight="48.0" prefWidth="111.0">
+        <!-- APPOINTMENT 5 --> 
+        <TextField fx:id="txtAttendance5" alignment="CENTER" editable="false" layoutX="46.0" layoutY="446.0" onMouseClicked="#Attendance5" prefHeight="48.0" prefWidth="45.0">
             <font>
                 <Font size="20.0" />
             </font>
         </TextField>
-        <TextField fx:id="txtNotes6" alignment="CENTER" editable="false" layoutX="1614.0" layoutY="494.0" prefHeight="48.0" prefWidth="111.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
-        <TextField fx:id="txtNotes8" alignment="CENTER" editable="false" layoutX="1614.0" layoutY="590.0" prefHeight="48.0" prefWidth="111.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
-        <TextField fx:id="txtNotes7" alignment="CENTER" editable="false" layoutX="1614.0" layoutY="542.0" prefHeight="48.0" prefWidth="111.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
-        <TextField fx:id="txtAttendance7" alignment="CENTER" editable="false" layoutX="46.0" layoutY="542.0" prefHeight="48.0" prefWidth="45.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
-        <TextField fx:id="txtWristband7" alignment="CENTER" editable="false" layoutX="1083.0" layoutY="542.0" prefHeight="48.0" prefWidth="159.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
-        <TextField fx:id="txtNumber7" alignment="CENTER" editable="false" layoutX="879.0" layoutY="542.0" prefHeight="48.0" prefWidth="204.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
-        <TextField fx:id="txtHospital7" alignment="CENTER" editable="false" layoutX="675.0" layoutY="542.0" prefHeight="48.0" prefWidth="204.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
-        <TextField fx:id="txtAge7" alignment="CENTER" editable="false" layoutX="516.0" layoutY="542.0" prefHeight="48.0" prefWidth="159.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
-        <TextField fx:id="txtTime7" alignment="CENTER" layoutX="89.0" layoutY="542.0" prefHeight="48.0" prefWidth="142.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
-        <ChoiceBox fx:id="cbName7" layoutX="231.0" layoutY="542.0" prefHeight="48.0" prefWidth="285.0" />
-        <ChoiceBox fx:id="cbName8" layoutX="231.0" layoutY="590.0" prefHeight="48.0" prefWidth="285.0" />
-        <TextField fx:id="txtTime8" alignment="CENTER" layoutX="89.0" layoutY="590.0" prefHeight="48.0" prefWidth="142.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
-        <TextField fx:id="txtAge8" alignment="CENTER" editable="false" layoutX="516.0" layoutY="590.0" prefHeight="48.0" prefWidth="159.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
-        <TextField fx:id="txtHospital8" alignment="CENTER" editable="false" layoutX="675.0" layoutY="590.0" prefHeight="48.0" prefWidth="204.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
-        <TextField fx:id="txtNumber8" alignment="CENTER" editable="false" layoutX="879.0" layoutY="590.0" prefHeight="48.0" prefWidth="204.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
-        <TextField fx:id="txtWristband8" alignment="CENTER" editable="false" layoutX="1083.0" layoutY="590.0" prefHeight="48.0" prefWidth="159.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
-        <TextField fx:id="txtAttendance8" alignment="CENTER" editable="false" layoutX="46.0" layoutY="590.0" prefHeight="48.0" prefWidth="45.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
-        <TextArea fx:id="txtReason7" layoutX="1242.0" layoutY="542.0" prefHeight="49.0" prefWidth="373.0" />
-        <TextArea fx:id="txtReason8" layoutX="1242.0" layoutY="589.0" prefHeight="49.0" prefWidth="373.0" />
-        <TextArea fx:id="txtReason6" layoutX="1242.0" layoutY="493.0" prefHeight="49.0" prefWidth="373.0" />
-        <TextArea fx:id="txtReason5" layoutX="1242.0" layoutY="446.0" prefHeight="49.0" prefWidth="373.0" />
-        <TextField fx:id="txtAttendance6" alignment="CENTER" editable="false" layoutX="46.0" layoutY="494.0" prefHeight="48.0" prefWidth="45.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
-        <TextField fx:id="txtWristband6" alignment="CENTER" editable="false" layoutX="1083.0" layoutY="494.0" prefHeight="48.0" prefWidth="159.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
-        <TextField fx:id="txtNumber6" alignment="CENTER" editable="false" layoutX="879.0" layoutY="494.0" prefHeight="48.0" prefWidth="204.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
-        <TextField fx:id="txtHospital6" alignment="CENTER" editable="false" layoutX="675.0" layoutY="494.0" prefHeight="48.0" prefWidth="204.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
-        <TextField fx:id="txtAge6" alignment="CENTER" editable="false" layoutX="516.0" layoutY="494.0" prefHeight="48.0" prefWidth="159.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
-        <TextField fx:id="txtTime6" alignment="CENTER" layoutX="89.0" layoutY="494.0" prefHeight="48.0" prefWidth="142.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
-        <ChoiceBox fx:id="cbName6" layoutX="231.0" layoutY="494.0" prefHeight="48.0" prefWidth="285.0" />
-        <ChoiceBox fx:id="cbName5" layoutX="231.0" layoutY="446.0" prefHeight="48.0" prefWidth="285.0" />
         <TextField fx:id="txtTime5" alignment="CENTER" layoutX="89.0" layoutY="446.0" prefHeight="48.0" prefWidth="142.0">
             <font>
                 <Font size="20.0" />
             </font>
         </TextField>
+        <ChoiceBox fx:id="cbName5" layoutX="231.0" layoutY="446.0" prefHeight="48.0" prefWidth="285.0" />
         <TextField fx:id="txtAge5" alignment="CENTER" editable="false" layoutX="516.0" layoutY="446.0" prefHeight="48.0" prefWidth="159.0">
             <font>
                 <Font size="20.0" />
@@ -396,32 +273,146 @@
                 <Font size="20.0" />
             </font>
         </TextField>
-        <TextField fx:id="txtAttendance5" alignment="CENTER" editable="false" layoutX="46.0" layoutY="446.0" prefHeight="48.0" prefWidth="45.0">
+        <TextArea fx:id="txtReason5" layoutX="1242.0" layoutY="446.0" prefHeight="49.0" prefWidth="373.0" />
+        <TextField fx:id="txtNotes5" alignment="CENTER" editable="false" layoutX="1614.0" layoutY="446.0" onMouseClicked="#Notes5" prefHeight="48.0" prefWidth="111.0">
             <font>
                 <Font size="20.0" />
             </font>
         </TextField>
-        <TextField fx:id="txtAttendance9" alignment="CENTER" editable="false" layoutX="46.0" layoutY="638.0" prefHeight="48.0" prefWidth="45.0">
+
+
+
+
+        <!-- APPOINTMENT 6 --> 
+        <TextField fx:id="txtAttendance6" alignment="CENTER" editable="false" layoutX="46.0" layoutY="494.0" onMouseClicked="#Attendance6" prefHeight="48.0" prefWidth="45.0">
             <font>
                 <Font size="20.0" />
             </font>
         </TextField>
-        <TextField fx:id="txtWristband9" alignment="CENTER" editable="false" layoutX="1083.0" layoutY="638.0" prefHeight="48.0" prefWidth="159.0">
+        <TextField fx:id="txtTime6" alignment="CENTER" layoutX="89.0" layoutY="494.0" prefHeight="48.0" prefWidth="142.0">
             <font>
                 <Font size="20.0" />
             </font>
         </TextField>
-        <TextField fx:id="txtNumber9" alignment="CENTER" editable="false" layoutX="879.0" layoutY="638.0" prefHeight="48.0" prefWidth="204.0">
+        <ChoiceBox fx:id="cbName6" layoutX="231.0" layoutY="494.0" prefHeight="48.0" prefWidth="285.0" /> 
+        <TextField fx:id="txtAge6" alignment="CENTER" editable="false" layoutX="516.0" layoutY="494.0" prefHeight="48.0" prefWidth="159.0">
             <font>
                 <Font size="20.0" />
             </font>
         </TextField>
-        <TextField fx:id="txtHospital9" alignment="CENTER" editable="false" layoutX="675.0" layoutY="638.0" prefHeight="48.0" prefWidth="204.0">
+        <TextField fx:id="txtHospital6" alignment="CENTER" editable="false" layoutX="675.0" layoutY="494.0" prefHeight="48.0" prefWidth="204.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>   
+        <TextField fx:id="txtNumber6" alignment="CENTER" editable="false" layoutX="879.0" layoutY="494.0" prefHeight="48.0" prefWidth="204.0">
             <font>
                 <Font size="20.0" />
             </font>
         </TextField>
-        <TextField fx:id="txtAge9" alignment="CENTER" editable="false" layoutX="516.0" layoutY="638.0" prefHeight="48.0" prefWidth="159.0">
+        <TextField fx:id="txtWristband6" alignment="CENTER" editable="false" layoutX="1083.0" layoutY="494.0" prefHeight="48.0" prefWidth="159.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>    
+        <TextArea fx:id="txtReason6" layoutX="1242.0" layoutY="493.0" prefHeight="49.0" prefWidth="373.0" />            
+        <TextField fx:id="txtNotes6" alignment="CENTER" editable="false" layoutX="1614.0" layoutY="494.0" onMouseClicked="#Notes6" prefHeight="48.0" prefWidth="111.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>      
+        
+       
+        
+        
+        <!-- APPOINTMENT 7 --> 
+        <TextField fx:id="txtAttendance7" alignment="CENTER" editable="false" layoutX="46.0" layoutY="542.0" onMouseClicked="#Attendance7" prefHeight="48.0" prefWidth="45.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="txtTime7" alignment="CENTER" layoutX="89.0" layoutY="542.0" prefHeight="48.0" prefWidth="142.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>
+        <ChoiceBox fx:id="cbName7" layoutX="231.0" layoutY="542.0" prefHeight="48.0" prefWidth="285.0" />
+        <TextField fx:id="txtAge7" alignment="CENTER" editable="false" layoutX="516.0" layoutY="542.0" prefHeight="48.0" prefWidth="159.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="txtHospital7" alignment="CENTER" editable="false" layoutX="675.0" layoutY="542.0" prefHeight="48.0" prefWidth="204.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="txtNumber7" alignment="CENTER" editable="false" layoutX="879.0" layoutY="542.0" prefHeight="48.0" prefWidth="204.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="txtWristband7" alignment="CENTER" editable="false" layoutX="1083.0" layoutY="542.0" prefHeight="48.0" prefWidth="159.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>
+        <TextArea fx:id="txtReason7" layoutX="1242.0" layoutY="542.0" prefHeight="49.0" prefWidth="373.0" /> 
+       <TextField fx:id="txtNotes7" alignment="CENTER" editable="false" layoutX="1614.0" layoutY="542.0" onMouseClicked="#Notes7" prefHeight="48.0" prefWidth="111.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>  
+             
+        
+        
+        
+        
+        
+        <!-- APPOINTMENT 8 --> 
+        <TextField fx:id="txtAttendance8" alignment="CENTER" editable="false" layoutX="46.0" layoutY="590.0" onMouseClicked="#Attendance8" prefHeight="48.0" prefWidth="45.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="txtTime8" alignment="CENTER" layoutX="89.0" layoutY="590.0" prefHeight="48.0" prefWidth="142.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>
+        <ChoiceBox fx:id="cbName8" layoutX="231.0" layoutY="590.0" prefHeight="48.0" prefWidth="285.0" />
+        <TextField fx:id="txtAge8" alignment="CENTER" editable="false" layoutX="516.0" layoutY="590.0" prefHeight="48.0" prefWidth="159.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="txtHospital8" alignment="CENTER" editable="false" layoutX="675.0" layoutY="590.0" prefHeight="48.0" prefWidth="204.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="txtNumber8" alignment="CENTER" editable="false" layoutX="879.0" layoutY="590.0" prefHeight="48.0" prefWidth="204.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="txtWristband8" alignment="CENTER" editable="false" layoutX="1083.0" layoutY="590.0" prefHeight="48.0" prefWidth="159.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>
+        <TextArea fx:id="txtReason8" layoutX="1242.0" layoutY="589.0" prefHeight="49.0" prefWidth="373.0" />
+        <TextField fx:id="txtNotes8" alignment="CENTER" editable="false" layoutX="1614.0" layoutY="590.0" onMouseClicked="#Notes8" prefHeight="48.0" prefWidth="111.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>
+        
+
+
+
+        <!-- APPOINTMENT 9 --> 
+        <TextField fx:id="txtAttendance9" alignment="CENTER" editable="false" layoutX="46.0" layoutY="638.0" onMouseClicked="#Attendance9" prefHeight="48.0" prefWidth="45.0">
             <font>
                 <Font size="20.0" />
             </font>
@@ -432,12 +423,48 @@
             </font>
         </TextField>
         <ChoiceBox fx:id="cbName9" layoutX="231.0" layoutY="638.0" prefHeight="48.0" prefWidth="285.0" />
-        <ChoiceBox fx:id="cbName10" layoutX="231.0" layoutY="686.0" prefHeight="48.0" prefWidth="285.0" />
+        <TextField fx:id="txtAge9" alignment="CENTER" editable="false" layoutX="516.0" layoutY="638.0" prefHeight="48.0" prefWidth="159.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="txtHospital9" alignment="CENTER" editable="false" layoutX="675.0" layoutY="638.0" prefHeight="48.0" prefWidth="204.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="txtNumber9" alignment="CENTER" editable="false" layoutX="879.0" layoutY="638.0" prefHeight="48.0" prefWidth="204.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="txtWristband9" alignment="CENTER" editable="false" layoutX="1083.0" layoutY="638.0" prefHeight="48.0" prefWidth="159.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>
+        <TextArea fx:id="txtReason9" layoutX="1242.0" layoutY="638.0" prefHeight="49.0" prefWidth="373.0" />
+        <TextField fx:id="txtNotes9" alignment="CENTER" editable="false" layoutX="1614.0" layoutY="638.0" onMouseClicked="#Notes9" prefHeight="48.0" prefWidth="111.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>
+        
+    
+    
+    
+        <!-- APPOINTMENT 10 --> 
+        <TextField fx:id="txtAttendance10" alignment="CENTER" editable="false" layoutX="46.0" layoutY="686.0" onMouseClicked="#Attendance10" prefHeight="48.0" prefWidth="45.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>
         <TextField fx:id="txtTime10" alignment="CENTER" layoutX="89.0" layoutY="686.0" prefHeight="48.0" prefWidth="142.0">
             <font>
                 <Font size="20.0" />
             </font>
         </TextField>
+        <ChoiceBox fx:id="cbName10" layoutX="231.0" layoutY="686.0" prefHeight="48.0" prefWidth="285.0" />
         <TextField fx:id="txtAge10" alignment="CENTER" editable="false" layoutX="516.0" layoutY="686.0" prefHeight="48.0" prefWidth="159.0">
             <font>
                 <Font size="20.0" />
@@ -458,52 +485,29 @@
                 <Font size="20.0" />
             </font>
         </TextField>
-        <TextField fx:id="txtAttendance10" alignment="CENTER" editable="false" layoutX="46.0" layoutY="686.0" prefHeight="48.0" prefWidth="45.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
-        <TextArea fx:id="txtReason9" layoutX="1242.0" layoutY="638.0" prefHeight="49.0" prefWidth="373.0" />
         <TextArea fx:id="txtReason10" layoutX="1242.0" layoutY="685.0" prefHeight="49.0" prefWidth="373.0" />
-        <TextArea fx:id="txtReason12" layoutX="1242.0" layoutY="781.0" prefHeight="49.0" prefWidth="373.0" />
-        <TextArea fx:id="txtReason11" layoutX="1242.0" layoutY="734.0" prefHeight="49.0" prefWidth="373.0" />
-        <TextField fx:id="txtAttendance12" alignment="CENTER" editable="false" layoutX="46.0" layoutY="782.0" prefHeight="48.0" prefWidth="45.0">
+        <TextField fx:id="txtNotes10" alignment="CENTER" editable="false" layoutX="1614.0" layoutY="686.0" onMouseClicked="#Notes10" prefHeight="48.0" prefWidth="111.0">
             <font>
                 <Font size="20.0" />
             </font>
         </TextField>
-        <TextField fx:id="txtWristband12" alignment="CENTER" editable="false" layoutX="1083.0" layoutY="782.0" prefHeight="48.0" prefWidth="159.0">
+        
+        
+        
+        
+        
+        <!-- APPOINTMENT 11 --> 
+        <TextField fx:id="txtAttendance11" alignment="CENTER" editable="false" layoutX="46.0" layoutY="734.0" onMouseClicked="#Attendance11" prefHeight="48.0" prefWidth="45.0">
             <font>
                 <Font size="20.0" />
             </font>
         </TextField>
-        <TextField fx:id="txtNumber12" alignment="CENTER" editable="false" layoutX="879.0" layoutY="782.0" prefHeight="48.0" prefWidth="204.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
-        <TextField fx:id="txtHospital12" alignment="CENTER" editable="false" layoutX="675.0" layoutY="782.0" prefHeight="48.0" prefWidth="204.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
-        <TextField fx:id="txtAge12" alignment="CENTER" editable="false" layoutX="516.0" layoutY="782.0" prefHeight="48.0" prefWidth="159.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
-        <TextField fx:id="txtTime12" alignment="CENTER" layoutX="89.0" layoutY="782.0" prefHeight="48.0" prefWidth="142.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
-        <ChoiceBox fx:id="cbName12" layoutX="231.0" layoutY="782.0" prefHeight="48.0" prefWidth="285.0" />
-        <ChoiceBox fx:id="cbName11" layoutX="231.0" layoutY="734.0" prefHeight="48.0" prefWidth="285.0" />
         <TextField fx:id="txtTime11" alignment="CENTER" layoutX="89.0" layoutY="734.0" prefHeight="48.0" prefWidth="142.0">
             <font>
                 <Font size="20.0" />
             </font>
         </TextField>
+        <ChoiceBox fx:id="cbName11" layoutX="231.0" layoutY="734.0" prefHeight="48.0" prefWidth="285.0" />
         <TextField fx:id="txtAge11" alignment="CENTER" editable="false" layoutX="516.0" layoutY="734.0" prefHeight="48.0" prefWidth="159.0">
             <font>
                 <Font size="20.0" />
@@ -524,32 +528,63 @@
                 <Font size="20.0" />
             </font>
         </TextField>
-        <TextField fx:id="txtAttendance11" alignment="CENTER" editable="false" layoutX="46.0" layoutY="734.0" prefHeight="48.0" prefWidth="45.0">
+        <TextArea fx:id="txtReason11" layoutX="1242.0" layoutY="734.0" prefHeight="49.0" prefWidth="373.0" />
+        <TextField fx:id="txtNotes11" alignment="CENTER" editable="false" layoutX="1614.0" layoutY="734.0" onMouseClicked="#Notes11" prefHeight="48.0" prefWidth="111.0">
             <font>
                 <Font size="20.0" />
             </font>
         </TextField>
-        <TextField fx:id="txtAttendance13" alignment="CENTER" editable="false" layoutX="46.0" layoutY="830.0" prefHeight="48.0" prefWidth="45.0">
+        
+        
+        
+        
+        <!-- APPOINTMENT 12 -->
+        <TextField fx:id="txtAttendance12" alignment="CENTER" editable="false" layoutX="46.0" layoutY="782.0" onMouseClicked="#Attendance12" prefHeight="48.0" prefWidth="45.0">
             <font>
                 <Font size="20.0" />
             </font>
         </TextField>
-        <TextField fx:id="txtWristband13" alignment="CENTER" editable="false" layoutX="1083.0" layoutY="830.0" prefHeight="48.0" prefWidth="159.0">
+        <TextField fx:id="txtTime12" alignment="CENTER" layoutX="89.0" layoutY="782.0" prefHeight="48.0" prefWidth="142.0">
             <font>
                 <Font size="20.0" />
             </font>
         </TextField>
-        <TextField fx:id="txtNumber13" alignment="CENTER" editable="false" layoutX="879.0" layoutY="830.0" prefHeight="48.0" prefWidth="204.0">
+        <ChoiceBox fx:id="cbName12" layoutX="231.0" layoutY="782.0" prefHeight="48.0" prefWidth="285.0" />
+        <TextField fx:id="txtAge12" alignment="CENTER" editable="false" layoutX="516.0" layoutY="782.0" prefHeight="48.0" prefWidth="159.0">
             <font>
                 <Font size="20.0" />
             </font>
         </TextField>
-        <TextField fx:id="txtHospital13" alignment="CENTER" editable="false" layoutX="675.0" layoutY="830.0" prefHeight="48.0" prefWidth="204.0">
+        <TextField fx:id="txtHospital12" alignment="CENTER" editable="false" layoutX="675.0" layoutY="782.0" prefHeight="48.0" prefWidth="204.0">
             <font>
                 <Font size="20.0" />
             </font>
         </TextField>
-        <TextField fx:id="txtAge13" alignment="CENTER" editable="false" layoutX="516.0" layoutY="830.0" prefHeight="48.0" prefWidth="159.0">
+        <TextField fx:id="txtNumber12" alignment="CENTER" editable="false" layoutX="879.0" layoutY="782.0" prefHeight="48.0" prefWidth="204.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="txtWristband12" alignment="CENTER" editable="false" layoutX="1083.0" layoutY="782.0" prefHeight="48.0" prefWidth="159.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>
+        <TextArea fx:id="txtReason12" layoutX="1242.0" layoutY="781.0" prefHeight="49.0" prefWidth="373.0" />
+        <TextField fx:id="txtNotes12" alignment="CENTER" editable="false" layoutX="1614.0" layoutY="782.0"  onMouseClicked="#Notes12" prefHeight="48.0" prefWidth="111.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>
+        
+        
+        
+        
+        
+        
+        
+        <!-- APPOINTMENT 13 -->
+        <TextField fx:id="txtAttendance13" alignment="CENTER" editable="false" layoutX="46.0" layoutY="830.0" onMouseClicked="#Attendance13" prefHeight="48.0" prefWidth="45.0">
             <font>
                 <Font size="20.0" />
             </font>
@@ -560,12 +595,49 @@
             </font>
         </TextField>
         <ChoiceBox fx:id="cbName13" layoutX="231.0" layoutY="830.0" prefHeight="48.0" prefWidth="285.0" />
-        <ChoiceBox fx:id="cbName14" layoutX="231.0" layoutY="878.0" prefHeight="48.0" prefWidth="285.0" />
+        <TextField fx:id="txtAge13" alignment="CENTER" editable="false" layoutX="516.0" layoutY="830.0" prefHeight="48.0" prefWidth="159.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="txtHospital13" alignment="CENTER" editable="false" layoutX="675.0" layoutY="830.0" prefHeight="48.0" prefWidth="204.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="txtNumber13" alignment="CENTER" editable="false" layoutX="879.0" layoutY="830.0" prefHeight="48.0" prefWidth="204.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="txtWristband13" alignment="CENTER" editable="false" layoutX="1083.0" layoutY="830.0" prefHeight="48.0" prefWidth="159.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>
+        <TextArea fx:id="txtReason13" layoutX="1242.0" layoutY="830.0" prefHeight="49.0" prefWidth="373.0" />
+        <TextField fx:id="txtNotes13" alignment="CENTER" editable="false" layoutX="1614.0" layoutY="830.0" onMouseClicked="#Notes13" prefHeight="48.0" prefWidth="111.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>
+        
+        
+        
+        
+        
+        <!-- APPOINTMENT 14 -->
+        <TextField fx:id="txtAttendance14" alignment="CENTER" editable="false" layoutX="46.0" layoutY="878.0" onMouseClicked="#Attendance14" prefHeight="48.0" prefWidth="45.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>
         <TextField fx:id="txtTime14" alignment="CENTER" layoutX="89.0" layoutY="878.0" prefHeight="48.0" prefWidth="142.0">
             <font>
                 <Font size="20.0" />
             </font>
         </TextField>
+        <ChoiceBox fx:id="cbName14" layoutX="231.0" layoutY="878.0" prefHeight="48.0" prefWidth="285.0" />
         <TextField fx:id="txtAge14" alignment="CENTER" editable="false" layoutX="516.0" layoutY="878.0" prefHeight="48.0" prefWidth="159.0">
             <font>
                 <Font size="20.0" />
@@ -586,46 +658,19 @@
                 <Font size="20.0" />
             </font>
         </TextField>
-        <TextField fx:id="txtAttendance14" alignment="CENTER" editable="false" layoutX="46.0" layoutY="878.0" prefHeight="48.0" prefWidth="45.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
-        <TextArea fx:id="txtReason13" layoutX="1242.0" layoutY="830.0" prefHeight="49.0" prefWidth="373.0" />
         <TextArea fx:id="txtReason14" layoutX="1242.0" layoutY="877.0" prefHeight="49.0" prefWidth="373.0" />
-        <TextField fx:id="txtNotes13" alignment="CENTER" editable="false" layoutX="1614.0" layoutY="830.0" prefHeight="48.0" prefWidth="111.0">
+        <TextField fx:id="txtNotes14" alignment="CENTER" editable="false" layoutX="1614.0" layoutY="878.0" onMouseClicked="#Notes14" prefHeight="48.0" prefWidth="111.0">
             <font>
                 <Font size="20.0" />
             </font>
         </TextField>
-        <TextField fx:id="txtNotes14" alignment="CENTER" editable="false" layoutX="1614.0" layoutY="878.0" prefHeight="48.0" prefWidth="111.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
-        <TextField fx:id="txtNotes12" alignment="CENTER" editable="false" layoutX="1614.0" layoutY="782.0" prefHeight="48.0" prefWidth="111.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
-        <TextField fx:id="txtNotes11" alignment="CENTER" editable="false" layoutX="1614.0" layoutY="734.0" prefHeight="48.0" prefWidth="111.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
-        <TextField fx:id="txtNotes10" alignment="CENTER" editable="false" layoutX="1614.0" layoutY="686.0" prefHeight="48.0" prefWidth="111.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
-        <TextField fx:id="txtNotes9" alignment="CENTER" editable="false" layoutX="1614.0" layoutY="638.0" prefHeight="48.0" prefWidth="111.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
-     
-
+        
+        
     </children>
+    
+    
+    
+    
     
     
     

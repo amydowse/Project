@@ -371,20 +371,20 @@ public class OncologyScreenDocumentController implements Initializable
     
     
     //Each method associated with the textfield for the bed numbers 
-    @FXML public void 1Attendance(){change(0);}
-    @FXML public void 2Attendance(){change(1);}
-    @FXML public void 3Attendance(){change(2);}
-    @FXML public void 4Attendance(){change(3);}
-    @FXML public void 5Attendance(){change(4);}
-    @FXML public void 6Attendance(){change(5);}
-    @FXML public void 7Attendance(){change(6);}
-    @FXML public void 8Attendance(){change(7);}
-    @FXML public void 9Attendance(){change(8);}
-    @FXML public void 10Attendance(){change(9);}
-    @FXML public void 11Attendance(){change(10);}
-    @FXML public void 12Attendance(){change(11);}
-    @FXML public void 13Attendance(){change(12);}
-    @FXML public void 14Attendance(){change(13);}
+    @FXML public void Attendance1(){change(0);}
+    @FXML public void Attendance2(){change(1);}
+    @FXML public void Attendance3(){change(2);}
+    @FXML public void Attendance4(){change(3);}
+    @FXML public void Attendance5(){change(4);}
+    @FXML public void Attendance6(){change(5);}
+    @FXML public void Attendance7(){change(6);}
+    @FXML public void Attendance8(){change(7);}
+    @FXML public void Attendance9(){change(8);}
+    @FXML public void Attendance10(){change(9);}
+    @FXML public void Attendance11(){change(10);}
+    @FXML public void Attendance12(){change(11);}
+    @FXML public void Attendance13(){change(12);}
+    @FXML public void Attendance14(){change(13);}
    
     
     //Change the attendance colour when you click on it 
@@ -406,6 +406,43 @@ public class OncologyScreenDocumentController implements Initializable
         codeBank.attendanceColour(attendanceList.get(arrayValue),attendanceArray[arrayValue]);
     }
     
+    
+    
+     //Each method associated with the textfield for notes
+    @FXML public void Notes1(){changeNotes(0);}
+    @FXML public void Notes2(){changeNotes(1);}
+    @FXML public void Notes3(){changeNotes(2);}
+    @FXML public void Notes4(){changeNotes(3);}
+    @FXML public void Notes5(){changeNotes(4);}
+    @FXML public void Notes6(){changeNotes(5);}
+    @FXML public void Notes7(){changeNotes(6);}
+    @FXML public void Notes8(){changeNotes(7);}
+    @FXML public void Notes9(){changeNotes(8);}
+    @FXML public void Notes10(){changeNotes(9);}
+    @FXML public void Notes11(){changeNotes(10);}
+    @FXML public void Notes12(){changeNotes(11);}
+    @FXML public void Notes13(){changeNotes(12);}
+    @FXML public void Notes14(){changeNotes(13);}
+  
+    
+  //Change the attendance colour when you click on it 
+    public void changeNotes(int arrayValue)
+    {
+        if(notesArray[arrayValue] == 0)
+        {
+            notesArray[arrayValue] = 1;
+        }
+        else if(notesArray[arrayValue] == 1)
+        {
+            notesArray[arrayValue] = 2;
+        }
+        else if(notesArray[arrayValue] == 2)
+        {
+            notesArray[arrayValue] = 0;
+        }
+                
+        codeBank.showNotes(notesList.get(arrayValue),notesArray[arrayValue]);
+    }  
     
     
     
