@@ -277,7 +277,7 @@ public class MainScreenDocumentController implements Initializable
         DSDC.save(codeBank.getCurrentDate());
         PSDC.save(codeBank.getCurrentDate());
         BSDC.save();
-        NSDC.save();
+        NSDC.save(codeBank.getCurrentDate());
         OSDC.save(codeBank.getCurrentDate());
         
         //todays date into a localDate format 
@@ -293,7 +293,7 @@ public class MainScreenDocumentController implements Initializable
         DSDC.showNotes(codeBank.getCurrentDate());
         PSDC.loadInformation();
         BSDC.showInformation();
-        NSDC.showInformation();
+        NSDC.showInformation(codeBank.getCurrentDate());
         OSDC.showInformation(codeBank.getCurrentDate());
     }
     
@@ -303,7 +303,7 @@ public class MainScreenDocumentController implements Initializable
         DSDC.save(codeBank.getCurrentDate());
         PSDC.save(codeBank.getCurrentDate());
         BSDC.save();
-        NSDC.save();
+        NSDC.save(codeBank.getCurrentDate());
         OSDC.save(codeBank.getCurrentDate());
         
         codeBank.setCurrentDate(codeBank.getCurrentDate().plusDays(1));
@@ -315,7 +315,7 @@ public class MainScreenDocumentController implements Initializable
         DSDC.showNotes(codeBank.getCurrentDate());
         PSDC.loadInformation();
         BSDC.showInformation();
-        NSDC.showInformation();
+        NSDC.showInformation(codeBank.getCurrentDate());
         OSDC.showInformation(codeBank.getCurrentDate());
     }
     
@@ -325,7 +325,7 @@ public class MainScreenDocumentController implements Initializable
         DSDC.save(codeBank.getCurrentDate());
         PSDC.save(codeBank.getCurrentDate());
         BSDC.save();
-        NSDC.save();
+        NSDC.save(codeBank.getCurrentDate());
         OSDC.save(codeBank.getCurrentDate());
         
         codeBank.setCurrentDate(codeBank.getCurrentDate().minusDays(1));
@@ -337,7 +337,7 @@ public class MainScreenDocumentController implements Initializable
         DSDC.showNotes(codeBank.getCurrentDate());
         PSDC.loadInformation();
         BSDC.showInformation();
-        NSDC.showInformation();
+        NSDC.showInformation(codeBank.getCurrentDate());
         OSDC.showInformation(codeBank.getCurrentDate());
     }
     
@@ -348,7 +348,7 @@ public class MainScreenDocumentController implements Initializable
         DSDC.save(codeBank.getCurrentDate());
         PSDC.save(codeBank.getCurrentDate());
         BSDC.save();
-        NSDC.save();
+        NSDC.save(codeBank.getCurrentDate());
         OSDC.save(codeBank.getCurrentDate());
         
         codeBank.setCurrentDate(dpCalandar.getValue());
@@ -360,7 +360,7 @@ public class MainScreenDocumentController implements Initializable
         DSDC.showNotes(codeBank.getCurrentDate());
         PSDC.loadInformation();
         BSDC.showInformation();
-        NSDC.showInformation();
+        NSDC.showInformation(codeBank.getCurrentDate());
         OSDC.showInformation(codeBank.getCurrentDate());
     }
     
@@ -375,7 +375,7 @@ public class MainScreenDocumentController implements Initializable
         DSDC.save(codeBank.getCurrentDate());
         PSDC.save(codeBank.getCurrentDate());
         BSDC.save();
-        NSDC.save();
+        NSDC.save(codeBank.getCurrentDate());
         OSDC.save(codeBank.getCurrentDate());
         updateButtons();
         changeContentPane(DiaryPane);    
@@ -388,7 +388,7 @@ public class MainScreenDocumentController implements Initializable
        DSDC.save(codeBank.getCurrentDate());
        PSDC.save(codeBank.getCurrentDate());
        BSDC.save();
-       NSDC.save();
+       NSDC.save(codeBank.getCurrentDate());
        OSDC.save(codeBank.getCurrentDate());
        updateButtons();
        changeContentPane(BloodPane); 
@@ -401,7 +401,7 @@ public class MainScreenDocumentController implements Initializable
         DSDC.save(codeBank.getCurrentDate());
         PSDC.save(codeBank.getCurrentDate());
         BSDC.save();
-        NSDC.save();
+        NSDC.save(codeBank.getCurrentDate());
         OSDC.save(codeBank.getCurrentDate());
         updateButtons();
         changeContentPane(PreopPane); 
@@ -414,7 +414,7 @@ public class MainScreenDocumentController implements Initializable
        DSDC.save(codeBank.getCurrentDate());
        PSDC.save(codeBank.getCurrentDate());
        BSDC.save();
-       NSDC.save();
+       NSDC.save(codeBank.getCurrentDate());
        OSDC.save(codeBank.getCurrentDate());
        updateButtons();
        changeContentPane(OncologyPane);
@@ -427,7 +427,7 @@ public class MainScreenDocumentController implements Initializable
        DSDC.save(codeBank.getCurrentDate());
        PSDC.save(codeBank.getCurrentDate());
        BSDC.save();
-       NSDC.save();
+       NSDC.save(codeBank.getCurrentDate());
        OSDC.save(codeBank.getCurrentDate());
        updateButtons();
        changeContentPane(NonbedPane);
@@ -442,7 +442,7 @@ public class MainScreenDocumentController implements Initializable
         DSDC.save(codeBank.getCurrentDate());
         PSDC.save(codeBank.getCurrentDate());
         BSDC.save();
-        NSDC.save();
+        NSDC.save(codeBank.getCurrentDate());
         OSDC.save(codeBank.getCurrentDate());
         codeBank.setCurrentDate(LocalDate.now());
         Scene scene = new Scene(root);

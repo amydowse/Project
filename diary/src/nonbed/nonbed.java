@@ -12,38 +12,37 @@ import java.time.LocalTime;
  *
  * @author amydo
  */
-public class nonbed 
+public class nonbed implements Comparable<nonbed>
 {
-    private int ID;
+    int position;
     private LocalDate date;
     private LocalTime time;
     private String name;
     private int age;
     private String hospital;
+    private String procedure;
     private String reason;
-    private int duration;
-    private String notes;
+    private int notes;
     private int attendance;
     
-    public nonbed(int ID, LocalDate date, LocalTime time, String name, int age, String hospital, String reason, int duration, String notes, int attendance)
+    public nonbed(LocalDate date, LocalTime time, String name, int age, String hospital, String procedure, String reason, int notes, int attendance)
     {
-        this.ID = ID;
         this.date = date;
         this.time = time;
         this.name = name;
         this.age = age;
         this.hospital = hospital;
+        this.procedure = procedure;
         this.reason = reason;
-        this.duration = duration;
         this.notes = notes;
         this.attendance = attendance;
     }
     
     
     //GETTERS
-    public int getID()
+    public int getPosition()
     {
-        return ID;
+        return position;
     }
     
     public LocalTime getTime()
@@ -66,17 +65,17 @@ public class nonbed
         return hospital;
     }
     
+    public String getProcudure()
+    {
+        return procedure;
+    }
+    
     public String getReason()
     {
         return reason;
     }
-    
-    public int getDuration()
-    {
-        return duration;
-    }
-    
-    public String getNotes()
+   
+    public int getNotes()
     {
         return notes;
     }
@@ -89,7 +88,12 @@ public class nonbed
     
     
     
-     //SETTERS
+    //SETTERS
+    public void setPosition(int position)
+    {
+        this.position = position;
+    }
+    
     public void setTime(LocalTime time)
     {
         this.time = time;
@@ -110,17 +114,17 @@ public class nonbed
         this.hospital = hospital;
     }
     
+    public void setProcedure(String procedure)
+    {
+        this.procedure = procedure;
+    }
+    
     public void setReason(String reason)
     {
         this.reason = reason;
     }
-    
-    public void setDuration(int duration)
-    {
-        this.duration = duration;
-    }
-    
-    public void setNotes(String notes)
+      
+    public void setNotes(int notes)
     {
         this.notes = notes;
     }
@@ -128,6 +132,12 @@ public class nonbed
     public void setAttendance(int attendance)
     {
         this.attendance = attendance;
+    }
+
+    @Override
+    public int compareTo(nonbed o) 
+    {
+        return getTime().compareTo(o.getTime());
     }
 }
 
