@@ -1027,5 +1027,43 @@ public class OncologyScreenDocumentController implements Initializable
     
     
     
+    @FXML
+    public void LoadPatient1()
+    {
+        String patient = cbName1.getValue().toString();
+        
+        try
+        {
+            // open a connection
+            Connection c = DatabaseConnector.activateConnection();
+            c.setAutoCommit( true ); 
+            ResultSet rs;
+            // when creating a statement object, you MUST use a connection object to call the instance method
+            Statement stmt = c.createStatement();
+            
+            rs = stmt.executeQuery("SELECT * FROM regular WHERE Name = '" + patient + "'");
+            
+            while(rs.next())
+            { 
+                String dob = rs.getString("DateOfBirth");
+                LocalDate dobDate = codeBank.stringToDate(dob);
+                Period period = Period.between(dobDate, LocalDate.now());
+                txtAge1.setText(""+period.getYears()); 
+        
+                txtHospital1.setText(rs.getString("HospitalNumber"));
+                txtNumber1.setText(rs.getString("Number"));
+                txtWristband1.setText(rs.getString("Wristband"));
+            }
+            
+                    
+            c.close();
+        }
+        catch (SQLException e)
+        {
+            
+        } 
+    }
+    
+    
     
 }//END OF CLASS

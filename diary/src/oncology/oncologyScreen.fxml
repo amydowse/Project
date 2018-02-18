@@ -87,7 +87,7 @@
                 <Font size="20.0" />
             </font>
         </TextField>        
-        <ChoiceBox fx:id="cbName1" layoutX="231.0" layoutY="254.0" prefHeight="48.0" prefWidth="285.0" />        
+        <ChoiceBox fx:id="cbName1" layoutX="231.0" layoutY="254.0" onAction="#LoadPatient1" prefHeight="48.0" prefWidth="285.0" />        
         <TextField fx:id="txtAge1" alignment="CENTER" editable="false" layoutX="516.0" layoutY="254.0" prefHeight="48.0" prefWidth="159.0">
             <font>
                 <Font size="20.0" />
