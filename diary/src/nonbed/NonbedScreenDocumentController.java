@@ -337,7 +337,7 @@ public class NonbedScreenDocumentController implements Initializable
         timeList.get(i).setText("");
         nameList.get(i).setText("");
         ageList.get(i).setText("");
-        txtHospital1.setText("");
+        hospitalList.get(i).setText("");
         procedureList.get(i).setValue("");
         reasonList.get(i).setText("");
         txtReason1.setText("");
@@ -360,7 +360,8 @@ public class NonbedScreenDocumentController implements Initializable
     public void deleteOption(int i)
     {
         TextField time = timeList.get(i);
-        TextField hospital = hospitalList.get(i);
+        TextField name = nameList.get(i);
+        TextField age = ageList.get(i);
         ChoiceBox procedure = procedureList.get(i);
 
         //https://stackoverflow.com/questions/32980159/javafx-append-to-right-click-menu-for-textfield accessed 18/2
@@ -377,7 +378,7 @@ public class NonbedScreenDocumentController implements Initializable
                     // when creating a statement object, you MUST use a connection object to call the instance method
                     Statement stmt = c.createStatement();
 
-                    String sql = "DELETE FROM nonbed WHERE Date = '" + codeBank.dateToString(codeBank.getCurrentDate()) + "' AND Time = '" + time.getText() + "' AND HospitalNumber = '" + hospital.getText() + "' AND Reason ='" + procedure.getValue() + "'";
+                    String sql = "DELETE FROM nonbed WHERE Date = '" + codeBank.dateToString(codeBank.getCurrentDate()) + "' AND Time = '" + time.getText() + "' AND Age = '" + age.getText() + "'AND Name ='" + name.getText() + "' AND Procedure ='" + procedure.getValue() + "'";
 
                     stmt.executeUpdate(sql);
 
