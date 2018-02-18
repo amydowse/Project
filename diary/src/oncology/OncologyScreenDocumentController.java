@@ -286,6 +286,140 @@ public class OncologyScreenDocumentController implements Initializable
                     notesArray[1] = singleBooking.getNotes();
                     attendanceArray[1] = singleBooking.getAttendance();
                     break;
+                case 3:
+                    txtTime3.setText((singleBooking.getTime()).toString());
+                    cbName3.setValue((singleBooking.getName()));
+                    txtAge3.setText(""+singleBooking.getAge());
+                    txtHospital3.setText(singleBooking.getHospitalNumber());
+                    txtNumber3.setText(singleBooking.getNumber());
+                    txtWristband3.setText(singleBooking.getWristband());
+                    txtReason3.setText(singleBooking.getReason());
+                    notesArray[2] = singleBooking.getNotes();
+                    attendanceArray[2] = singleBooking.getAttendance();
+                    break;
+                case 4:
+                    txtTime4.setText((singleBooking.getTime()).toString());
+                    cbName4.setValue((singleBooking.getName()));
+                    txtAge4.setText(""+singleBooking.getAge());
+                    txtHospital4.setText(singleBooking.getHospitalNumber());
+                    txtNumber4.setText(singleBooking.getNumber());
+                    txtWristband4.setText(singleBooking.getWristband());
+                    txtReason4.setText(singleBooking.getReason());
+                    notesArray[3] = singleBooking.getNotes();
+                    attendanceArray[3] = singleBooking.getAttendance();
+                    break;
+                case 5:
+                    txtTime5.setText((singleBooking.getTime()).toString());
+                    cbName5.setValue((singleBooking.getName()));
+                    txtAge5.setText(""+singleBooking.getAge());
+                    txtHospital5.setText(singleBooking.getHospitalNumber());
+                    txtNumber5.setText(singleBooking.getNumber());
+                    txtWristband5.setText(singleBooking.getWristband());
+                    txtReason5.setText(singleBooking.getReason());
+                    notesArray[4] = singleBooking.getNotes();
+                    attendanceArray[4] = singleBooking.getAttendance();
+                    break;
+                case 6:
+                    txtTime6.setText((singleBooking.getTime()).toString());
+                    cbName6.setValue((singleBooking.getName()));
+                    txtAge6.setText(""+singleBooking.getAge());
+                    txtHospital6.setText(singleBooking.getHospitalNumber());
+                    txtNumber6.setText(singleBooking.getNumber());
+                    txtWristband6.setText(singleBooking.getWristband());
+                    txtReason6.setText(singleBooking.getReason());
+                    notesArray[5] = singleBooking.getNotes();
+                    attendanceArray[5] = singleBooking.getAttendance();
+                    break;
+                case 7:
+                    txtTime7.setText((singleBooking.getTime()).toString());
+                    cbName7.setValue((singleBooking.getName()));
+                    txtAge7.setText(""+singleBooking.getAge());
+                    txtHospital7.setText(singleBooking.getHospitalNumber());
+                    txtNumber7.setText(singleBooking.getNumber());
+                    txtWristband7.setText(singleBooking.getWristband());
+                    txtReason7.setText(singleBooking.getReason());
+                    notesArray[6] = singleBooking.getNotes();
+                    attendanceArray[6] = singleBooking.getAttendance();
+                    break;
+                case 8:
+                    txtTime8.setText((singleBooking.getTime()).toString());
+                    cbName8.setValue((singleBooking.getName()));
+                    txtAge8.setText(""+singleBooking.getAge());
+                    txtHospital8.setText(singleBooking.getHospitalNumber());
+                    txtNumber8.setText(singleBooking.getNumber());
+                    txtWristband8.setText(singleBooking.getWristband());
+                    txtReason8.setText(singleBooking.getReason());
+                    notesArray[7] = singleBooking.getNotes();
+                    attendanceArray[7] = singleBooking.getAttendance();
+                    break;
+                case 9:
+                    txtTime9.setText((singleBooking.getTime()).toString());
+                    cbName9.setValue((singleBooking.getName()));
+                    txtAge9.setText(""+singleBooking.getAge());
+                    txtHospital9.setText(singleBooking.getHospitalNumber());
+                    txtNumber9.setText(singleBooking.getNumber());
+                    txtWristband9.setText(singleBooking.getWristband());
+                    txtReason9.setText(singleBooking.getReason());
+                    notesArray[8] = singleBooking.getNotes();
+                    attendanceArray[8] = singleBooking.getAttendance();
+                    break;
+                case 10:
+                    txtTime10.setText((singleBooking.getTime()).toString());
+                    cbName10.setValue((singleBooking.getName()));
+                    txtAge10.setText(""+singleBooking.getAge());
+                    txtHospital10.setText(singleBooking.getHospitalNumber());
+                    txtNumber10.setText(singleBooking.getNumber());
+                    txtWristband10.setText(singleBooking.getWristband());
+                    txtReason10.setText(singleBooking.getReason());
+                    notesArray[9] = singleBooking.getNotes();
+                    attendanceArray[9] = singleBooking.getAttendance();
+                    break;
+                case 11:
+                    txtTime11.setText((singleBooking.getTime()).toString());
+                    cbName11.setValue((singleBooking.getName()));
+                    txtAge11.setText(""+singleBooking.getAge());
+                    txtHospital11.setText(singleBooking.getHospitalNumber());
+                    txtNumber11.setText(singleBooking.getNumber());
+                    txtWristband11.setText(singleBooking.getWristband());
+                    txtReason11.setText(singleBooking.getReason());
+                    notesArray[10] = singleBooking.getNotes();
+                    attendanceArray[10] = singleBooking.getAttendance();
+                    break;    
+                case 12:
+                    txtTime12.setText((singleBooking.getTime()).toString());
+                    cbName12.setValue((singleBooking.getName()));
+                    txtAge12.setText(""+singleBooking.getAge());
+                    txtHospital12.setText(singleBooking.getHospitalNumber());
+                    txtNumber12.setText(singleBooking.getNumber());
+                    txtWristband12.setText(singleBooking.getWristband());
+                    txtReason12.setText(singleBooking.getReason());
+                    notesArray[11] = singleBooking.getNotes();
+                    attendanceArray[11] = singleBooking.getAttendance();
+                    break;   
+                case 13:
+                    txtTime13.setText((singleBooking.getTime()).toString());
+                    cbName13.setValue((singleBooking.getName()));
+                    txtAge13.setText(""+singleBooking.getAge());
+                    txtHospital13.setText(singleBooking.getHospitalNumber());
+                    txtNumber13.setText(singleBooking.getNumber());
+                    txtWristband13.setText(singleBooking.getWristband());
+                    txtReason13.setText(singleBooking.getReason());
+                    notesArray[12] = singleBooking.getNotes();
+                    attendanceArray[12] = singleBooking.getAttendance();
+                    break; 
+                case 14:
+                    txtTime14.setText((singleBooking.getTime()).toString());
+                    cbName14.setValue((singleBooking.getName()));
+                    txtAge14.setText(""+singleBooking.getAge());
+                    txtHospital14.setText(singleBooking.getHospitalNumber());
+                    txtNumber14.setText(singleBooking.getNumber());
+                    txtWristband14.setText(singleBooking.getWristband());
+                    txtReason14.setText(singleBooking.getReason());
+                    notesArray[13] = singleBooking.getNotes();
+                    attendanceArray[13] = singleBooking.getAttendance();
+                    break; 
+                default:
+                    break;    
             }
              
         }
@@ -449,9 +583,449 @@ public class OncologyScreenDocumentController implements Initializable
     
     public void clearAll()
     {
+        attendanceArray = new int[14];
+        notesArray = new int[14];
+        allBookings.clear();
+        
+        txtTime1.setText("");
+        cbName1.setValue("");
+        txtAge1.setText("");
+        txtHospital1.setText("");
+        txtNumber1.setText("");
+        txtWristband1.setText("");
+        txtReason1.setText("");
+        
+        txtTime2.setText("");
+        cbName2.setValue("");
+        txtAge2.setText("");
+        txtHospital2.setText("");
+        txtNumber2.setText("");
+        txtWristband2.setText("");
+        txtReason2.setText("");
+
+        txtTime3.setText("");
+        cbName3.setValue("");
+        txtAge3.setText("");
+        txtHospital3.setText("");
+        txtNumber3.setText("");
+        txtWristband3.setText("");
+        txtReason3.setText("");
+
+        txtTime4.setText("");
+        cbName4.setValue("");
+        txtAge4.setText("");
+        txtHospital4.setText("");
+        txtNumber4.setText("");
+        txtWristband4.setText("");
+        txtReason4.setText("");
+
+        txtTime5.setText("");
+        cbName5.setValue("");
+        txtAge5.setText("");
+        txtHospital5.setText("");
+        txtNumber5.setText("");
+        txtWristband5.setText("");
+        txtReason5.setText("");
+
+        txtTime6.setText("");
+        cbName6.setValue("");
+        txtAge6.setText("");
+        txtHospital6.setText("");
+        txtNumber6.setText("");
+        txtWristband6.setText("");
+        txtReason6.setText("");
+
+        txtTime7.setText("");
+        cbName7.setValue("");
+        txtAge7.setText("");
+        txtHospital7.setText("");
+        txtNumber7.setText("");
+        txtWristband7.setText("");
+        txtReason7.setText("");
+
+        txtTime8.setText("");
+        cbName8.setValue("");
+        txtAge8.setText("");
+        txtHospital8.setText("");
+        txtNumber8.setText("");
+        txtWristband8.setText("");
+        txtReason8.setText("");
+
+        txtTime9.setText("");
+        cbName9.setValue("");
+        txtAge9.setText("");
+        txtHospital9.setText("");
+        txtNumber9.setText("");
+        txtWristband9.setText("");
+        txtReason9.setText("");
+
+        txtTime10.setText("");
+        cbName10.setValue("");
+        txtAge10.setText("");
+        txtHospital10.setText("");
+        txtNumber10.setText("");
+        txtWristband10.setText("");
+        txtReason10.setText("");
+
+        txtTime11.setText("");
+        cbName11.setValue("");
+        txtAge11.setText("");
+        txtHospital11.setText("");
+        txtNumber11.setText("");
+        txtWristband11.setText("");
+        txtReason11.setText("");
+
+        txtTime12.setText("");
+        cbName12.setValue("");
+        txtAge12.setText("");
+        txtHospital12.setText("");
+        txtNumber12.setText("");
+        txtWristband12.setText("");
+        txtReason12.setText("");
+
+        txtTime13.setText("");
+        cbName13.setValue("");
+        txtAge13.setText("");
+        txtHospital13.setText("");
+        txtNumber13.setText("");
+        txtWristband13.setText("");
+        txtReason13.setText("");
+
+        txtTime14.setText("");
+        cbName14.setValue("");
+        txtAge14.setText("");
+        txtHospital14.setText("");
+        txtNumber14.setText("");
+        txtWristband14.setText("");
+        txtReason14.setText("");
+                    
+        
         
     }
     
     
     
-}
+    public void save(LocalDate today)
+    {
+        try
+        {
+            // open a connection
+            Connection c = DatabaseConnector.activateConnection();
+            c.setAutoCommit( true ); 
+            
+            // when creating a statement object, you MUST use a connection object to call the instance method
+            Statement stmt = c.createStatement();
+            
+            String stringDate = codeBank.dateToString(today);          
+            
+            //implement query - SAVING EACH LINE                       
+            String[] queries = new String[14];
+            queries[0] = save1(stringDate);
+            queries[1] = save2(stringDate);
+            queries[2] = save3(stringDate);
+            queries[3] = save4(stringDate);
+            queries[4] = save5(stringDate);
+            queries[5] = save6(stringDate);
+            queries[6] = save7(stringDate);
+            queries[7] = save8(stringDate);
+            queries[8] = save9(stringDate);
+            queries[9] = save10(stringDate);
+            queries[10] = save11(stringDate);
+            queries[11] = save12(stringDate);
+            queries[12] = save13(stringDate);
+            queries[13] = save14(stringDate);
+            
+            
+            for(int i=0; i<queries.length; i++)
+            {
+               stmt.executeUpdate(queries[i]);
+            }
+              
+                    
+            c.close();
+        }
+        catch (SQLException e)
+        {
+            
+        } 
+    }
+    
+    
+    
+    
+    
+    public String save1(String date)
+    {
+        if(!txtTime1.getText().equals("") & !cbName1.getValue().equals("") & !txtReason1.getText().equals(""))
+        {
+            return ("REPLACE INTO oncology (Date, Time, Regular_HospitalNumber, Reason, Notes, Attendance) VALUES('"      
+                                                                                + date + "','"
+                                                                                + txtTime1.getText() + "','"
+                                                                                + txtHospital1.getText() + "','"
+                                                                                + txtReason1.getText() + "','"
+                                                                                + notesArray[0] + "','"
+                                                                                + attendanceArray[0] + "')"
+                    );
+        }
+        else
+        {
+            return "";
+        } 
+    } 
+    
+    public String save2(String date)
+    {
+        if(!txtTime2.getText().equals("") & !cbName2.getValue().equals("") & !txtReason2.getText().equals(""))
+        {
+            return ("REPLACE INTO oncology (Date, Time, Regular_HospitalNumber, Reason, Notes, Attendance) VALUES('"      
+                                                                                + date + "','"
+                                                                                + txtTime2.getText() + "','"
+                                                                                + txtHospital2.getText() + "','"
+                                                                                + txtReason2.getText() + "','"
+                                                                                + notesArray[1] + "','"
+                                                                                + attendanceArray[1] + "')"
+                    );
+        }
+        else
+        {
+            return "";
+        } 
+    } 
+    
+    public String save3(String date)
+    {
+        if(!txtTime3.getText().equals("") & !cbName3.getValue().equals("") & !txtReason3.getText().equals(""))
+        {
+            return ("REPLACE INTO oncology (Date, Time, Regular_HospitalNumber, Reason, Notes, Attendance) VALUES('"      
+                                                                                + date + "','"
+                                                                                + txtTime3.getText() + "','"
+                                                                                + txtHospital3.getText() + "','"
+                                                                                + txtReason3.getText() + "','"
+                                                                                + notesArray[2] + "','"
+                                                                                + attendanceArray[2] + "')"
+                    );
+        }
+        else
+        {
+            return "";
+        } 
+    } 
+    
+    public String save4(String date)
+    {
+        if(!txtTime4.getText().equals("") & !cbName4.getValue().equals("") & !txtReason4.getText().equals(""))
+        {
+            return ("REPLACE INTO oncology (Date, Time, Regular_HospitalNumber, Reason, Notes, Attendance) VALUES('"      
+                                                                                + date + "','"
+                                                                                + txtTime4.getText() + "','"
+                                                                                + txtHospital4.getText() + "','"
+                                                                                + txtReason4.getText() + "','"
+                                                                                + notesArray[3] + "','"
+                                                                                + attendanceArray[3] + "')"
+                    );
+        }
+        else
+        {
+            return "";
+        } 
+    } 
+    
+    public String save5(String date)
+    {
+        if(!txtTime5.getText().equals("") & !cbName5.getValue().equals("") & !txtReason5.getText().equals(""))
+        {
+            return ("REPLACE INTO oncology (Date, Time, Regular_HospitalNumber, Reason, Notes, Attendance) VALUES('"      
+                                                                                + date + "','"
+                                                                                + txtTime5.getText() + "','"
+                                                                                + txtHospital5.getText() + "','"
+                                                                                + txtReason5.getText() + "','"
+                                                                                + notesArray[4] + "','"
+                                                                                + attendanceArray[4] + "')"
+                    );
+        }
+        else
+        {
+            return "";
+        } 
+    } 
+    
+    public String save6(String date)
+    {
+        if(!txtTime6.getText().equals("") & !cbName6.getValue().equals("") & !txtReason6.getText().equals(""))
+        {
+            return ("REPLACE INTO oncology (Date, Time, Regular_HospitalNumber, Reason, Notes, Attendance) VALUES('"      
+                                                                                + date + "','"
+                                                                                + txtTime6.getText() + "','"
+                                                                                + txtHospital6.getText() + "','"
+                                                                                + txtReason6.getText() + "','"
+                                                                                + notesArray[5] + "','"
+                                                                                + attendanceArray[5] + "')"
+                    );
+        }
+        else
+        {
+            return "";
+        } 
+    } 
+    
+    public String save7(String date)
+    {
+        if(!txtTime7.getText().equals("") & !cbName7.getValue().equals("") & !txtReason7.getText().equals(""))
+        {
+            return ("REPLACE INTO oncology (Date, Time, Regular_HospitalNumber, Reason, Notes, Attendance) VALUES('"      
+                                                                                + date + "','"
+                                                                                + txtTime7.getText() + "','"
+                                                                                + txtHospital7.getText() + "','"
+                                                                                + txtReason7.getText() + "','"
+                                                                                + notesArray[6] + "','"
+                                                                                + attendanceArray[6] + "')"
+                    );
+        }
+        else
+        {
+            return "";
+        } 
+    } 
+    
+    public String save8(String date)
+    {
+        if(!txtTime8.getText().equals("") & !cbName8.getValue().equals("") & !txtReason8.getText().equals(""))
+        {
+            return ("REPLACE INTO oncology (Date, Time, Regular_HospitalNumber, Reason, Notes, Attendance) VALUES('"      
+                                                                                + date + "','"
+                                                                                + txtTime8.getText() + "','"
+                                                                                + txtHospital8.getText() + "','"
+                                                                                + txtReason8.getText() + "','"
+                                                                                + notesArray[7] + "','"
+                                                                                + attendanceArray[7] + "')"
+                    );
+        }
+        else
+        {
+            return "";
+        } 
+    } 
+    
+    
+    public String save9(String date)
+    {
+        if(!txtTime9.getText().equals("") & !cbName9.getValue().equals("") & !txtReason9.getText().equals(""))
+        {
+            return ("REPLACE INTO oncology (Date, Time, Regular_HospitalNumber, Reason, Notes, Attendance) VALUES('"      
+                                                                                + date + "','"
+                                                                                + txtTime9.getText() + "','"
+                                                                                + txtHospital9.getText() + "','"
+                                                                                + txtReason9.getText() + "','"
+                                                                                + notesArray[8] + "','"
+                                                                                + attendanceArray[8] + "')"
+                    );
+        }
+        else
+        {
+            return "";
+        } 
+    } 
+    
+    
+    public String save10(String date)
+    {
+        if(!txtTime10.getText().equals("") & !cbName10.getValue().equals("") & !txtReason10.getText().equals(""))
+        {
+            return ("REPLACE INTO oncology (Date, Time, Regular_HospitalNumber, Reason, Notes, Attendance) VALUES('"      
+                                                                                + date + "','"
+                                                                                + txtTime10.getText() + "','"
+                                                                                + txtHospital10.getText() + "','"
+                                                                                + txtReason10.getText() + "','"
+                                                                                + notesArray[9] + "','"
+                                                                                + attendanceArray[9] + "')"
+                    );
+        }
+        else
+        {
+            return "";
+        } 
+    } 
+    
+    
+    public String save11(String date)
+    {
+        if(!txtTime11.getText().equals("") & !cbName11.getValue().equals("") & !txtReason11.getText().equals(""))
+        {
+            return ("REPLACE INTO oncology (Date, Time, Regular_HospitalNumber, Reason, Notes, Attendance) VALUES('"      
+                                                                                + date + "','"
+                                                                                + txtTime11.getText() + "','"
+                                                                                + txtHospital11.getText() + "','"
+                                                                                + txtReason11.getText() + "','"
+                                                                                + notesArray[10] + "','"
+                                                                                + attendanceArray[10] + "')"
+                    );
+        }
+        else
+        {
+            return "";
+        } 
+    } 
+    
+    
+    public String save12(String date)
+    {
+        if(!txtTime12.getText().equals("") & !cbName12.getValue().equals("") & !txtReason12.getText().equals(""))
+        {
+            return ("REPLACE INTO oncology (Date, Time, Regular_HospitalNumber, Reason, Notes, Attendance) VALUES('"      
+                                                                                + date + "','"
+                                                                                + txtTime12.getText() + "','"
+                                                                                + txtHospital12.getText() + "','"
+                                                                                + txtReason12.getText() + "','"
+                                                                                + notesArray[11] + "','"
+                                                                                + attendanceArray[11] + "')"
+                    );
+        }
+        else
+        {
+            return "";
+        } 
+    } 
+    
+    
+    public String save13(String date)
+    {
+        if(!txtTime13.getText().equals("") & !cbName13.getValue().equals("") & !txtReason13.getText().equals(""))
+        {
+            return ("REPLACE INTO oncology (Date, Time, Regular_HospitalNumber, Reason, Notes, Attendance) VALUES('"      
+                                                                                + date + "','"
+                                                                                + txtTime13.getText() + "','"
+                                                                                + txtHospital13.getText() + "','"
+                                                                                + txtReason13.getText() + "','"
+                                                                                + notesArray[12] + "','"
+                                                                                + attendanceArray[12] + "')"
+                    );
+        }
+        else
+        {
+            return "";
+        } 
+    } 
+    
+    public String save14(String date)
+    {
+        if(!txtTime14.getText().equals("") & !cbName14.getValue().equals("") & !txtReason14.getText().equals(""))
+        {
+            return ("REPLACE INTO oncology (Date, Time, Regular_HospitalNumber, Reason, Notes, Attendance) VALUES('"      
+                                                                                + date + "','"
+                                                                                + txtTime14.getText() + "','"
+                                                                                + txtHospital14.getText() + "','"
+                                                                                + txtReason14.getText() + "','"
+                                                                                + notesArray[13] + "','"
+                                                                                + attendanceArray[13] + "')"
+                    );
+        }
+        else
+        {
+            return "";
+        } 
+    } 
+    
+    
+    
+    
+}//END OF CLASS
