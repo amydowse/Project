@@ -128,7 +128,7 @@
                 <Font size="20.0" />
             </font>
         </TextField>
-        <ChoiceBox fx:id="cbName2" layoutX="231.0" layoutY="302.0" prefHeight="48.0" prefWidth="285.0" />
+        <ChoiceBox fx:id="cbName2" layoutX="231.0" layoutY="302.0" onAction="#LoadPatient2" prefHeight="48.0" prefWidth="285.0" />
         <TextField fx:id="txtAge2" alignment="CENTER" editable="false" layoutX="516.0" layoutY="302.0" prefHeight="48.0" prefWidth="159.0">
             <font>
                 <Font size="20.0" />
@@ -169,7 +169,7 @@
                 <Font size="20.0" />
             </font>
         </TextField>        
-        <ChoiceBox fx:id="cbName3" layoutX="231.0" layoutY="350.0" prefHeight="48.0" prefWidth="285.0" />        
+        <ChoiceBox fx:id="cbName3" layoutX="231.0" layoutY="350.0" onAction="#LoadPatient3" prefHeight="48.0" prefWidth="285.0" />        
         <TextField fx:id="txtAge3" alignment="CENTER" editable="false" layoutX="516.0" layoutY="350.0" prefHeight="48.0" prefWidth="159.0">
             <font>
                 <Font size="20.0" />
@@ -211,7 +211,7 @@
                 <Font size="20.0" />
             </font>
         </TextField>
-        <ChoiceBox fx:id="cbName4" layoutX="231.0" layoutY="398.0" prefHeight="48.0" prefWidth="285.0" />        
+        <ChoiceBox fx:id="cbName4" layoutX="231.0" layoutY="398.0" onAction="#LoadPatient4" prefHeight="48.0" prefWidth="285.0" />        
         <TextField fx:id="txtAge4" alignment="CENTER" editable="false" layoutX="516.0" layoutY="398.0" prefHeight="48.0" prefWidth="159.0">
             <font>
                 <Font size="20.0" />
@@ -252,7 +252,7 @@
                 <Font size="20.0" />
             </font>
         </TextField>
-        <ChoiceBox fx:id="cbName5" layoutX="231.0" layoutY="446.0" prefHeight="48.0" prefWidth="285.0" />
+        <ChoiceBox fx:id="cbName5" layoutX="231.0" layoutY="446.0" onAction="#LoadPatient5" prefHeight="48.0" prefWidth="285.0" />
         <TextField fx:id="txtAge5" alignment="CENTER" editable="false" layoutX="516.0" layoutY="446.0" prefHeight="48.0" prefWidth="159.0">
             <font>
                 <Font size="20.0" />
@@ -294,7 +294,7 @@
                 <Font size="20.0" />
             </font>
         </TextField>
-        <ChoiceBox fx:id="cbName6" layoutX="231.0" layoutY="494.0" prefHeight="48.0" prefWidth="285.0" /> 
+        <ChoiceBox fx:id="cbName6" layoutX="231.0" layoutY="494.0" onAction="#LoadPatient6" prefHeight="48.0" prefWidth="285.0" /> 
         <TextField fx:id="txtAge6" alignment="CENTER" editable="false" layoutX="516.0" layoutY="494.0" prefHeight="48.0" prefWidth="159.0">
             <font>
                 <Font size="20.0" />
@@ -336,7 +336,7 @@
                 <Font size="20.0" />
             </font>
         </TextField>
-        <ChoiceBox fx:id="cbName7" layoutX="231.0" layoutY="542.0" prefHeight="48.0" prefWidth="285.0" />
+        <ChoiceBox fx:id="cbName7" layoutX="231.0" layoutY="542.0" onAction="#LoadPatient7" prefHeight="48.0" prefWidth="285.0" />
         <TextField fx:id="txtAge7" alignment="CENTER" editable="false" layoutX="516.0" layoutY="542.0" prefHeight="48.0" prefWidth="159.0">
             <font>
                 <Font size="20.0" />
@@ -380,7 +380,7 @@
                 <Font size="20.0" />
             </font>
         </TextField>
-        <ChoiceBox fx:id="cbName8" layoutX="231.0" layoutY="590.0" prefHeight="48.0" prefWidth="285.0" />
+        <ChoiceBox fx:id="cbName8" layoutX="231.0" layoutY="590.0" onAction="#LoadPatient8" prefHeight="48.0" prefWidth="285.0" />
         <TextField fx:id="txtAge8" alignment="CENTER" editable="false" layoutX="516.0" layoutY="590.0" prefHeight="48.0" prefWidth="159.0">
             <font>
                 <Font size="20.0" />
@@ -422,7 +422,7 @@
                 <Font size="20.0" />
             </font>
         </TextField>
-        <ChoiceBox fx:id="cbName9" layoutX="231.0" layoutY="638.0" prefHeight="48.0" prefWidth="285.0" />
+        <ChoiceBox fx:id="cbName9" layoutX="231.0" layoutY="638.0" onAction="#LoadPatient9" prefHeight="48.0" prefWidth="285.0" />
         <TextField fx:id="txtAge9" alignment="CENTER" editable="false" layoutX="516.0" layoutY="638.0" prefHeight="48.0" prefWidth="159.0">
             <font>
                 <Font size="20.0" />
@@ -464,7 +464,7 @@
                 <Font size="20.0" />
             </font>
         </TextField>
-        <ChoiceBox fx:id="cbName10" layoutX="231.0" layoutY="686.0" prefHeight="48.0" prefWidth="285.0" />
+        <ChoiceBox fx:id="cbName10" layoutX="231.0" layoutY="686.0" onAction="#LoadPatient10" prefHeight="48.0" prefWidth="285.0" />
         <TextField fx:id="txtAge10" alignment="CENTER" editable="false" layoutX="516.0" layoutY="686.0" prefHeight="48.0" prefWidth="159.0">
             <font>
                 <Font size="20.0" />
@@ -507,7 +507,7 @@
                 <Font size="20.0" />
             </font>
         </TextField>
-        <ChoiceBox fx:id="cbName11" layoutX="231.0" layoutY="734.0" prefHeight="48.0" prefWidth="285.0" />
+        <ChoiceBox fx:id="cbName11" layoutX="231.0" layoutY="734.0" onAction="#LoadPatient11" prefHeight="48.0" prefWidth="285.0" />
         <TextField fx:id="txtAge11" alignment="CENTER" editable="false" layoutX="516.0" layoutY="734.0" prefHeight="48.0" prefWidth="159.0">
             <font>
                 <Font size="20.0" />
@@ -549,7 +549,7 @@
                 <Font size="20.0" />
             </font>
         </TextField>
-        <ChoiceBox fx:id="cbName12" layoutX="231.0" layoutY="782.0" prefHeight="48.0" prefWidth="285.0" />
+        <ChoiceBox fx:id="cbName12" layoutX="231.0" layoutY="782.0" onAction="#LoadPatient12" prefHeight="48.0" prefWidth="285.0" />
         <TextField fx:id="txtAge12" alignment="CENTER" editable="false" layoutX="516.0" layoutY="782.0" prefHeight="48.0" prefWidth="159.0">
             <font>
                 <Font size="20.0" />
@@ -594,7 +594,7 @@
                 <Font size="20.0" />
             </font>
         </TextField>
-        <ChoiceBox fx:id="cbName13" layoutX="231.0" layoutY="830.0" prefHeight="48.0" prefWidth="285.0" />
+        <ChoiceBox fx:id="cbName13" layoutX="231.0" layoutY="830.0" onAction="#LoadPatient13" prefHeight="48.0" prefWidth="285.0" />
         <TextField fx:id="txtAge13" alignment="CENTER" editable="false" layoutX="516.0" layoutY="830.0" prefHeight="48.0" prefWidth="159.0">
             <font>
                 <Font size="20.0" />
@@ -637,7 +637,7 @@
                 <Font size="20.0" />
             </font>
         </TextField>
-        <ChoiceBox fx:id="cbName14" layoutX="231.0" layoutY="878.0" prefHeight="48.0" prefWidth="285.0" />
+        <ChoiceBox fx:id="cbName14" layoutX="231.0" layoutY="878.0" onAction="#LoadPatient14" prefHeight="48.0" prefWidth="285.0" />
         <TextField fx:id="txtAge14" alignment="CENTER" editable="false" layoutX="516.0" layoutY="878.0" prefHeight="48.0" prefWidth="159.0">
             <font>
                 <Font size="20.0" />
@@ -707,6 +707,74 @@
             <fx:reference source="txtNotes12"/>
             <fx:reference source="txtNotes13"/>
             <fx:reference source="txtNotes14"/>            
+        </ArrayList>
+        
+        <ArrayList fx:id="ageList">
+            <fx:reference source="txtAge1"/>
+            <fx:reference source="txtAge2"/>      
+            <fx:reference source="txtAge3"/>
+            <fx:reference source="txtAge4"/>
+            <fx:reference source="txtAge5"/>
+            <fx:reference source="txtAge6"/>
+            <fx:reference source="txtAge7"/>
+            <fx:reference source="txtAge8"/>
+            <fx:reference source="txtAge9"/>
+            <fx:reference source="txtAge10"/>
+            <fx:reference source="txtAge11"/>
+            <fx:reference source="txtAge12"/>
+            <fx:reference source="txtAge13"/>
+            <fx:reference source="txtAge14"/>            
+        </ArrayList>
+        
+        <ArrayList fx:id="hospitalList">
+            <fx:reference source="txtHospital1"/>
+            <fx:reference source="txtHospital2"/>      
+            <fx:reference source="txtHospital3"/>
+            <fx:reference source="txtHospital4"/>
+            <fx:reference source="txtHospital5"/>
+            <fx:reference source="txtHospital6"/>
+            <fx:reference source="txtHospital7"/>
+            <fx:reference source="txtHospital8"/>
+            <fx:reference source="txtHospital9"/>
+            <fx:reference source="txtHospital10"/>
+            <fx:reference source="txtHospital11"/>
+            <fx:reference source="txtHospital12"/>
+            <fx:reference source="txtHospital13"/>
+            <fx:reference source="txtHospital14"/>            
+        </ArrayList>
+        
+        <ArrayList fx:id="numberList">
+            <fx:reference source="txtNumber1"/>
+            <fx:reference source="txtNumber2"/>      
+            <fx:reference source="txtNumber3"/>
+            <fx:reference source="txtNumber4"/>
+            <fx:reference source="txtNumber5"/>
+            <fx:reference source="txtNumber6"/>
+            <fx:reference source="txtNumber7"/>
+            <fx:reference source="txtNumber8"/>
+            <fx:reference source="txtNumber9"/>
+            <fx:reference source="txtNumber10"/>
+            <fx:reference source="txtNumber11"/>
+            <fx:reference source="txtNumber12"/>
+            <fx:reference source="txtNumber13"/>
+            <fx:reference source="txtNumber14"/>            
+        </ArrayList>
+        
+        <ArrayList fx:id="wristbandList">
+            <fx:reference source="txtWristband1"/>
+            <fx:reference source="txtWristband2"/>      
+            <fx:reference source="txtWristband3"/>
+            <fx:reference source="txtWristband4"/>
+            <fx:reference source="txtWristband5"/>
+            <fx:reference source="txtWristband6"/>
+            <fx:reference source="txtWristband7"/>
+            <fx:reference source="txtWristband8"/>
+            <fx:reference source="txtWristband9"/>
+            <fx:reference source="txtWristband10"/>
+            <fx:reference source="txtWristband11"/>
+            <fx:reference source="txtWristband12"/>
+            <fx:reference source="txtWristband13"/>
+            <fx:reference source="txtWristband14"/>            
         </ArrayList>
     
     
