@@ -21,10 +21,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
@@ -182,18 +186,24 @@ public class OncologyScreenDocumentController implements Initializable
     @FXML private List<TextField> hospitalList;
     @FXML private List<TextField> numberList;
     @FXML private List<TextField> wristbandList;
+    @FXML private List<TextField> timeList;
     
     int[] attendanceArray = new int[14];
     int[] notesArray = new int[14];
     
     ArrayList<oncology> allBookings = new ArrayList<oncology>();
     
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
         showInformation(codeBank.getCurrentDate());
         fillDropDowns();
+        delete();
+        
     }
+    
+    
     
     public void showInformation(LocalDate date)
     {
@@ -590,7 +600,25 @@ public class OncologyScreenDocumentController implements Initializable
         attendanceArray = new int[14];
         notesArray = new int[14];
         allBookings.clear();
-        
+     
+        clear1();
+        clear2();
+        clear3();
+        clear4();
+        clear5();
+        clear6();
+        clear7();
+        clear8();
+        clear9();
+        clear10();
+        clear11();
+        clear12();
+        clear13();
+        clear14();
+    }
+    
+    public void clear1()
+    {
         txtTime1.setText("");
         cbName1.setValue("");
         txtAge1.setText("");
@@ -598,7 +626,15 @@ public class OncologyScreenDocumentController implements Initializable
         txtNumber1.setText("");
         txtWristband1.setText("");
         txtReason1.setText("");
+        attendanceArray[0] = 0;
+        notesArray[0] = 0;
+        codeBank.attendanceColour(txtAttendance1, 0);
+        codeBank.showNotes(txtNotes1, 0);
         
+    }
+     
+    public void clear2()
+    {
         txtTime2.setText("");
         cbName2.setValue("");
         txtAge2.setText("");
@@ -606,7 +642,14 @@ public class OncologyScreenDocumentController implements Initializable
         txtNumber2.setText("");
         txtWristband2.setText("");
         txtReason2.setText("");
+        attendanceArray[1] = 0;
+        notesArray[1] = 0;
+        codeBank.attendanceColour(txtAttendance2, 0);
+        codeBank.showNotes(txtNotes2, 0);
+    }
 
+    public void clear3()
+    {
         txtTime3.setText("");
         cbName3.setValue("");
         txtAge3.setText("");
@@ -614,7 +657,14 @@ public class OncologyScreenDocumentController implements Initializable
         txtNumber3.setText("");
         txtWristband3.setText("");
         txtReason3.setText("");
-
+        attendanceArray[2] = 0;
+        notesArray[2] = 0;
+        codeBank.attendanceColour(txtAttendance3, 0);
+        codeBank.showNotes(txtNotes3, 0);
+    }
+    
+    public void clear4()
+    {
         txtTime4.setText("");
         cbName4.setValue("");
         txtAge4.setText("");
@@ -622,7 +672,14 @@ public class OncologyScreenDocumentController implements Initializable
         txtNumber4.setText("");
         txtWristband4.setText("");
         txtReason4.setText("");
+        attendanceArray[3] = 0;
+        notesArray[3] = 0;
+        codeBank.attendanceColour(txtAttendance4, 0);
+        codeBank.showNotes(txtNotes4, 0);
+    }
 
+    public void clear5()
+    {
         txtTime5.setText("");
         cbName5.setValue("");
         txtAge5.setText("");
@@ -630,7 +687,14 @@ public class OncologyScreenDocumentController implements Initializable
         txtNumber5.setText("");
         txtWristband5.setText("");
         txtReason5.setText("");
+        attendanceArray[4] = 0;
+        notesArray[4] = 0;
+        codeBank.attendanceColour(txtAttendance5, 0);
+        codeBank.showNotes(txtNotes5, 0);
+    }
 
+    public void clear6()
+    {
         txtTime6.setText("");
         cbName6.setValue("");
         txtAge6.setText("");
@@ -638,7 +702,14 @@ public class OncologyScreenDocumentController implements Initializable
         txtNumber6.setText("");
         txtWristband6.setText("");
         txtReason6.setText("");
+        attendanceArray[5] = 0;
+        notesArray[5] = 0;
+        codeBank.attendanceColour(txtAttendance6, 0);
+        codeBank.showNotes(txtNotes6, 0);
+    }
 
+    public void clear7()
+    {
         txtTime7.setText("");
         cbName7.setValue("");
         txtAge7.setText("");
@@ -646,7 +717,14 @@ public class OncologyScreenDocumentController implements Initializable
         txtNumber7.setText("");
         txtWristband7.setText("");
         txtReason7.setText("");
+        attendanceArray[6] = 0;
+        notesArray[6] = 0;
+        codeBank.attendanceColour(txtAttendance7, 0);
+        codeBank.showNotes(txtNotes7, 0);
+    }
 
+    public void clear8()
+    {
         txtTime8.setText("");
         cbName8.setValue("");
         txtAge8.setText("");
@@ -654,7 +732,14 @@ public class OncologyScreenDocumentController implements Initializable
         txtNumber8.setText("");
         txtWristband8.setText("");
         txtReason8.setText("");
+        attendanceArray[7] = 0;
+        notesArray[7] = 0;
+        codeBank.attendanceColour(txtAttendance8, 0);
+        codeBank.showNotes(txtNotes8, 0);
+    }
 
+    public void clear9()
+    {
         txtTime9.setText("");
         cbName9.setValue("");
         txtAge9.setText("");
@@ -662,7 +747,14 @@ public class OncologyScreenDocumentController implements Initializable
         txtNumber9.setText("");
         txtWristband9.setText("");
         txtReason9.setText("");
-
+        attendanceArray[8] = 0;
+        notesArray[8] = 0;
+        codeBank.attendanceColour(txtAttendance9, 0);
+        codeBank.showNotes(txtNotes9, 0);
+    }
+    
+    public void clear10()
+    {
         txtTime10.setText("");
         cbName10.setValue("");
         txtAge10.setText("");
@@ -670,7 +762,14 @@ public class OncologyScreenDocumentController implements Initializable
         txtNumber10.setText("");
         txtWristband10.setText("");
         txtReason10.setText("");
+        attendanceArray[9] = 0;
+        notesArray[9] = 0;
+        codeBank.attendanceColour(txtAttendance10, 0);
+        codeBank.showNotes(txtNotes10, 0);
+    }
 
+    public void clear11()
+    {
         txtTime11.setText("");
         cbName11.setValue("");
         txtAge11.setText("");
@@ -678,7 +777,14 @@ public class OncologyScreenDocumentController implements Initializable
         txtNumber11.setText("");
         txtWristband11.setText("");
         txtReason11.setText("");
+        attendanceArray[10] = 0;
+        notesArray[10] = 0;
+        codeBank.attendanceColour(txtAttendance11, 0);
+        codeBank.showNotes(txtNotes11, 0);
+    }
 
+    public void clear12()
+    {
         txtTime12.setText("");
         cbName12.setValue("");
         txtAge12.setText("");
@@ -686,7 +792,14 @@ public class OncologyScreenDocumentController implements Initializable
         txtNumber12.setText("");
         txtWristband12.setText("");
         txtReason12.setText("");
+        attendanceArray[11] = 0;
+        notesArray[11] = 0;
+        codeBank.attendanceColour(txtAttendance12, 0);
+        codeBank.showNotes(txtNotes12, 0);
+    }
 
+    public void clear13()
+    {
         txtTime13.setText("");
         cbName13.setValue("");
         txtAge13.setText("");
@@ -694,7 +807,14 @@ public class OncologyScreenDocumentController implements Initializable
         txtNumber13.setText("");
         txtWristband13.setText("");
         txtReason13.setText("");
-
+        attendanceArray[12] = 0;
+        notesArray[12] = 0;
+        codeBank.attendanceColour(txtAttendance13, 0);
+        codeBank.showNotes(txtNotes13, 0);
+    }
+    
+    public void clear14()
+    {
         txtTime14.setText("");
         cbName14.setValue("");
         txtAge14.setText("");
@@ -702,10 +822,14 @@ public class OncologyScreenDocumentController implements Initializable
         txtNumber14.setText("");
         txtWristband14.setText("");
         txtReason14.setText("");
+        attendanceArray[13] = 0;
+        notesArray[13] = 0;
+        codeBank.attendanceColour(txtAttendance14, 0);
+        codeBank.showNotes(txtNotes14, 0);
+    }
                     
         
-        
-    }
+ 
     
     
     
@@ -1090,6 +1214,87 @@ public class OncologyScreenDocumentController implements Initializable
             {
 
             } 
+        }
+    }
+    
+    
+    public void delete()
+    {
+       deleteOption(txtTime1, txtHospital1, txtReason1, 1); 
+       deleteOption(txtTime2, txtHospital2, txtReason2, 2);
+       deleteOption(txtTime3, txtHospital3, txtReason3, 3);
+       deleteOption(txtTime4, txtHospital4, txtReason4, 4);
+       deleteOption(txtTime5, txtHospital5, txtReason5, 5);
+       deleteOption(txtTime6, txtHospital6, txtReason6, 6);
+       deleteOption(txtTime7, txtHospital7, txtReason7, 7);
+       deleteOption(txtTime8, txtHospital8, txtReason8, 8);
+       deleteOption(txtTime9, txtHospital9, txtReason9, 9);
+       deleteOption(txtTime10, txtHospital10, txtReason10, 10);
+       deleteOption(txtTime11, txtHospital11, txtReason11, 11);
+       deleteOption(txtTime12, txtHospital12, txtReason12, 12);
+       deleteOption(txtTime13, txtHospital13, txtReason13, 13);
+       deleteOption(txtTime14, txtHospital14, txtReason14, 14);
+    }
+    
+    
+    
+    public void deleteOption(TextField time, TextField hospital, TextArea reason, int value)
+    {
+        //https://stackoverflow.com/questions/32980159/javafx-append-to-right-click-menu-for-textfield accessed 18/2
+        //https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/ContextMenu.html accessed 18/2
+        ContextMenu contextMenu1 = new ContextMenu();
+        MenuItem delete = new MenuItem("Delete");
+        delete.setOnAction(new EventHandler<ActionEvent>() 
+        {
+            public void handle(ActionEvent e) 
+            {
+                try
+                {
+                    // open a connection
+                    Connection c = DatabaseConnector.activateConnection();
+                    c.setAutoCommit( true ); 
+
+                    // when creating a statement object, you MUST use a connection object to call the instance method
+                    Statement stmt = c.createStatement();
+                    
+                    String sql = "DELETE FROM oncology WHERE Date = '" + codeBank.dateToString(codeBank.getCurrentDate()) + "' AND Time = '" + time.getText() + "' AND Regular_HospitalNumber = '" + hospital.getText() +"' AND Reason ='" + reason.getText() + "'";
+                    
+                    stmt.executeUpdate(sql);                    
+                    
+                    c.close();
+                }
+                catch (SQLException x)
+                {
+
+                } 
+                clear(value);
+            }
+        });
+        contextMenu1.getItems().add(delete);
+        time.setContextMenu(contextMenu1);
+    }
+    
+    
+    public void clear(int value)
+    {
+        switch(value)
+        {
+            case 1:     clear1(); break;
+            case 2:     clear2(); break;
+            case 3:     clear3(); break;
+            case 4:     clear4(); break;
+            case 5:     clear5(); break;
+            case 6:     clear6(); break;
+            case 7:     clear7(); break;
+            case 8:     clear8(); break;
+            case 9:     clear9(); break;
+            case 10:    clear10(); break;
+            case 11:    clear11(); break;
+            case 12:    clear12(); break;
+            case 13:    clear13(); break;
+            case 14:    clear14(); break;
+            default:    break;
+            
         }
     }
     

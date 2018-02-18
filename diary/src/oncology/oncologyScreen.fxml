@@ -776,6 +776,23 @@
             <fx:reference source="txtWristband13"/>
             <fx:reference source="txtWristband14"/>            
         </ArrayList>
+        
+        <ArrayList fx:id="timeList">
+            <fx:reference source="txtTime1"/>
+            <fx:reference source="txtTime2"/>      
+            <fx:reference source="txtTime3"/>
+            <fx:reference source="txtTime4"/>
+            <fx:reference source="txtTime5"/>
+            <fx:reference source="txtTime6"/>
+            <fx:reference source="txtTime7"/>
+            <fx:reference source="txtTime8"/>
+            <fx:reference source="txtTime9"/>
+            <fx:reference source="txtTime10"/>
+            <fx:reference source="txtTime11"/>
+            <fx:reference source="txtTime12"/>
+            <fx:reference source="txtTime13"/>
+            <fx:reference source="txtTime14"/>            
+        </ArrayList>
     
     
        </fx:define>  
