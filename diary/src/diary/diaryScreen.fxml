@@ -22,7 +22,7 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </TextField>
-      <TextField fx:id="LA" alignment="CENTER" editable="false" layoutX="-2.0" layoutY="524.0" prefHeight="48.75" prefWidth="891.0" text="Leopards Den">
+      <TextField fx:id="LA" alignment="CENTER" editable="false" layoutX="1.0" layoutY="533.0" prefHeight="49.0" prefWidth="885.0" text="Leopards Den">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -33,7 +33,7 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </TextField>
-      <TextField fx:id="LP" alignment="CENTER" editable="false" layoutX="889.0" layoutY="524.0" prefHeight="48.75" prefWidth="891.0" text="Leopards Den">
+      <TextField fx:id="LP" alignment="CENTER" editable="false" layoutX="886.0" layoutY="533.0" prefHeight="48.75" prefWidth="891.0" text="Leopards Den">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -50,37 +50,37 @@
      
      <!-- HEADINGS -->
       <TextField fx:id="txtBlankMA" editable="false" layoutY="245.0" prefHeight="48.75" prefWidth="46.0" />
-     <TextField fx:id="txtTimeMA" alignment="CENTER" editable="false" layoutX="43.0" layoutY="245.0" prefHeight="48.75" prefWidth="87.0" text="Time">
+     <TextField fx:id="txtTimeMA" alignment="CENTER" editable="false" layoutX="46.0" layoutY="245.0" prefHeight="48.75" prefWidth="87.0" text="Time">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>      
-      <TextField fx:id="txtNameMA" alignment="CENTER" editable="false" layoutX="127.0" layoutY="245.0" prefHeight="48.75" prefWidth="216.0" text="Name">
+      <TextField fx:id="txtNameMA" alignment="CENTER" editable="false" layoutX="133.0" layoutY="245.0" prefHeight="48.75" prefWidth="216.0" text="Name">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtAgeMA" alignment="CENTER" editable="false" layoutX="340.0" layoutY="245.0" prefHeight="48.75" prefWidth="70.0" text="Age">
+      <TextField fx:id="txtAgeMA" alignment="CENTER" editable="false" layoutX="349.0" layoutY="245.0" prefHeight="48.75" prefWidth="70.0" text="Age">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtHospitalMA" alignment="CENTER" editable="false" layoutX="407.0" layoutY="245.0" prefHeight="48.75" prefWidth="152.0" text="Hospital Number">
+      <TextField fx:id="txtHospitalMA" alignment="CENTER" editable="false" layoutX="419.0" layoutY="245.0" prefHeight="48.75" prefWidth="152.0" text="Hospital Number">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtSpecialityMA" alignment="CENTER" editable="false" layoutX="556.0" layoutY="245.0" prefHeight="48.75" prefWidth="193.0" text="Speciality">
+      <TextField fx:id="txtSpecialityMA" alignment="CENTER" editable="false" layoutX="571.0" layoutY="245.0" prefHeight="49.0" prefWidth="181.0" text="Speciality">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtNotesMA" alignment="CENTER" editable="false" layoutX="746.0" layoutY="245.0" prefHeight="48.75" prefWidth="70.0" text="Notes">
+      <TextField fx:id="txtNotesMA" alignment="CENTER" editable="false" layoutX="752.0" layoutY="245.0" prefHeight="48.75" prefWidth="70.0" text="Notes">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtExtraMA" alignment="CENTER" editable="false" layoutX="813.0" layoutY="245.0" prefHeight="48.75" prefWidth="76.0" text="Extra">
+      <TextField fx:id="txtExtraMA" alignment="CENTER" editable="false" layoutX="822.0" layoutY="245.0" prefHeight="49.0" prefWidth="64.0" text="Extra">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -88,108 +88,78 @@
   
   
       <!--MONKEY AM 1 -->
-      <TextField fx:id="txtOneMA" alignment="CENTER" editable="false" layoutY="291.0" onMouseClicked="#MA1Attendance" prefHeight="48.75" prefWidth="46.0" text="1">
+      <TextField fx:id="txtOneMA" alignment="CENTER" editable="false" layoutY="293.0" onMouseClicked="#MA1Attendance" prefHeight="48.75" prefWidth="46.0" text="1">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>    
-      <TextField fx:id="txtTime1MA" alignment="CENTER" layoutX="43.0" layoutY="291.0" prefHeight="48.75" prefWidth="87.0" />
-      <TextField fx:id="txtName1MA" alignment="CENTER" layoutX="127.0" layoutY="291.0" prefHeight="48.75" prefWidth="216.0" />
-      <TextField fx:id="txtAge1MA" alignment="CENTER" layoutX="340.0" layoutY="291.0" prefHeight="48.75" prefWidth="70.0" />
-      <TextField fx:id="txtHospital1MA" alignment="CENTER" layoutX="407.0" layoutY="291.0" prefHeight="48.75" prefWidth="152.0" />
-      <TextField fx:id="txtSpeciality1MA" alignment="CENTER" layoutX="556.0" layoutY="291.0" prefHeight="48.75" prefWidth="193.0" />
-      <TextField fx:id="txtNotes1MA" alignment="CENTER" editable="false" layoutX="746.0" layoutY="291.0" onMouseClicked="#MA1Notes" prefHeight="48.75" prefWidth="70.0">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>
-      <TextField fx:id="txtExtra1MA" alignment="CENTER" editable="false" layoutX="813.0" layoutY="291.0" onMouseClicked="#MA1Extra" prefHeight="48.75" prefWidth="76.0" promptText="+">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>
+      <TextField fx:id="txtTime1MA" alignment="CENTER" layoutX="46.0" layoutY="293.0" prefHeight="48.75" prefWidth="87.0" />
+      <TextField fx:id="txtName1MA" alignment="CENTER" layoutX="133.0" layoutY="293.0" prefHeight="48.75" prefWidth="216.0" />
+      <TextField fx:id="txtAge1MA" alignment="CENTER" layoutX="349.0" layoutY="293.0" prefHeight="48.75" prefWidth="70.0" />
+      <TextField fx:id="txtHospital1MA" alignment="CENTER" layoutX="419.0" layoutY="293.0" prefHeight="48.75" prefWidth="152.0" />
+      <TextField fx:id="txtSpeciality1MA" alignment="CENTER" layoutX="571.0" layoutY="293.0" prefHeight="48.75" prefWidth="181.0" />
+      <TextField fx:id="txtNotes1MA" alignment="CENTER" editable="false" layoutX="752.0" layoutY="293.0" onMouseClicked="#MA1Notes" prefHeight="48.75" prefWidth="70.0" />
+      <TextField fx:id="txtExtra1MA" alignment="CENTER" editable="false" layoutX="822.0" layoutY="293.0" onMouseClicked="#MA1Extra" prefHeight="48.75" prefWidth="64.0" promptText="+" />
  
       
       <!--MONKEY AM 2 -->
-      <TextField fx:id="txtTwoMA" alignment="CENTER" editable="false" layoutY="337.0" onMouseClicked="#MA2Attendance" prefHeight="48.75" prefWidth="46.0" text="2">
+      <TextField fx:id="txtTwoMA" alignment="CENTER" editable="false" layoutY="340.0" onMouseClicked="#MA2Attendance" prefHeight="48.75" prefWidth="46.0" text="2">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>      
-      <TextField fx:id="txtTime2MA" alignment="CENTER" layoutX="43.0" layoutY="337.0" prefHeight="48.75" prefWidth="87.0" />
-      <TextField fx:id="txtName2MA" alignment="CENTER" layoutX="127.0" layoutY="337.0" prefHeight="48.75" prefWidth="216.0" />
-      <TextField fx:id="txtAge2MA" alignment="CENTER" layoutX="340.0" layoutY="337.0" prefHeight="48.75" prefWidth="70.0" />
-      <TextField fx:id="txtHospital2MA" alignment="CENTER" layoutX="407.0" layoutY="337.0" prefHeight="48.75" prefWidth="152.0" />
-      <TextField fx:id="txtSpeciality2MA" alignment="CENTER" layoutX="556.0" layoutY="337.0" prefHeight="48.75" prefWidth="193.0" />
-      <TextField fx:id="txtNotes2MA" alignment="CENTER" editable="false" layoutX="746.0" layoutY="337.0" onMouseClicked="#MA2Notes" prefHeight="48.75" prefWidth="70.0">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>
-      <TextField fx:id="txtExtra2MA" alignment="CENTER" editable="false" layoutX="813.0" layoutY="337.0" onMouseClicked="#MA2Extra" prefHeight="48.75" prefWidth="76.0" promptText="+">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>
+      <TextField fx:id="txtTime2MA" alignment="CENTER" layoutX="46.0" layoutY="340.0" prefHeight="48.75" prefWidth="87.0" />
+      <TextField fx:id="txtName2MA" alignment="CENTER" layoutX="133.0" layoutY="340.0" prefHeight="48.75" prefWidth="216.0" />
+      <TextField fx:id="txtAge2MA" alignment="CENTER" layoutX="349.0" layoutY="340.0" prefHeight="48.75" prefWidth="70.0" />
+      <TextField fx:id="txtHospital2MA" alignment="CENTER" layoutX="419.0" layoutY="340.0" prefHeight="48.75" prefWidth="152.0" />
+      <TextField fx:id="txtSpeciality2MA" alignment="CENTER" layoutX="571.0" layoutY="340.0" prefHeight="49.0" prefWidth="181.0" />
+      <TextField fx:id="txtNotes2MA" alignment="CENTER" editable="false" layoutX="752.0" layoutY="340.0" onMouseClicked="#MA2Notes" prefHeight="48.75" prefWidth="70.0" />
+      <TextField fx:id="txtExtra2MA" alignment="CENTER" editable="false" layoutX="822.0" layoutY="340.0" onMouseClicked="#MA2Extra" prefHeight="49.0" prefWidth="64.0" promptText="+" />
 
       
       <!--MONKEY AM 3 -->
-      <TextField fx:id="txtThreeMA" alignment="CENTER" editable="false" layoutY="383.0" onMouseClicked="#MA3Attendance" prefHeight="48.75" prefWidth="46.0" text="3">
+      <TextField fx:id="txtThreeMA" alignment="CENTER" editable="false" layoutY="388.0" onMouseClicked="#MA3Attendance" prefHeight="48.75" prefWidth="46.0" text="3">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>      
-      <TextField fx:id="txtTime3MA" alignment="CENTER" layoutX="43.0" layoutY="383.0" prefHeight="48.75" prefWidth="87.0" />
-      <TextField fx:id="txtName3MA" alignment="CENTER" layoutX="127.0" layoutY="383.0" prefHeight="48.75" prefWidth="216.0" />
-      <TextField fx:id="txtAge3MA" alignment="CENTER" layoutX="340.0" layoutY="383.0" prefHeight="48.75" prefWidth="70.0" />
-      <TextField fx:id="txtHospital3MA" alignment="CENTER" layoutX="407.0" layoutY="383.0" prefHeight="48.75" prefWidth="152.0" />
-      <TextField fx:id="txtSpeciality3MA" alignment="CENTER" layoutX="556.0" layoutY="383.0" prefHeight="48.75" prefWidth="193.0" />
-      <TextField fx:id="txtNotes3MA" alignment="CENTER" editable="false" layoutX="746.0" layoutY="383.0" onMouseClicked="#MA3Notes" prefHeight="48.75" prefWidth="70.0">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>
-      <TextField fx:id="txtExtra3MA" alignment="CENTER" editable="false" layoutX="813.0" layoutY="383.0" onMouseClicked="#MA3Extra" prefHeight="48.75" prefWidth="76.0" promptText="+">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>
+      <TextField fx:id="txtTime3MA" alignment="CENTER" layoutX="46.0" layoutY="388.0" prefHeight="48.75" prefWidth="87.0" />
+      <TextField fx:id="txtName3MA" alignment="CENTER" layoutX="133.0" layoutY="388.0" prefHeight="48.75" prefWidth="216.0" />
+      <TextField fx:id="txtAge3MA" alignment="CENTER" layoutX="349.0" layoutY="388.0" prefHeight="48.75" prefWidth="70.0" />
+      <TextField fx:id="txtHospital3MA" alignment="CENTER" layoutX="419.0" layoutY="388.0" prefHeight="48.75" prefWidth="152.0" />
+      <TextField fx:id="txtSpeciality3MA" alignment="CENTER" layoutX="571.0" layoutY="388.0" prefHeight="48.75" prefWidth="181.0" />
+      <TextField fx:id="txtNotes3MA" alignment="CENTER" editable="false" layoutX="752.0" layoutY="388.0" onMouseClicked="#MA3Notes" prefHeight="48.75" prefWidth="70.0" />
+      <TextField fx:id="txtExtra3MA" alignment="CENTER" editable="false" layoutX="822.0" layoutY="388.0" onMouseClicked="#MA3Extra" prefHeight="48.75" prefWidth="64.0" promptText="+" />
 
       
       <!--MONKEY AM 4 -->
-      <TextField fx:id="txtFourMA" alignment="CENTER" editable="false" layoutY="431.0" onMouseClicked="#MA4Attendance" prefHeight="48.75" prefWidth="46.0" text="4">
+      <TextField fx:id="txtFourMA" alignment="CENTER" editable="false" layoutY="436.0" onMouseClicked="#MA4Attendance" prefHeight="48.75" prefWidth="46.0" text="4">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>        
-      <TextField fx:id="txtTime4MA" alignment="CENTER" layoutX="43.0" layoutY="429.0" prefHeight="48.75" prefWidth="87.0" />
-      <TextField fx:id="txtName4MA" alignment="CENTER" layoutX="127.0" layoutY="429.0" prefHeight="48.75" prefWidth="216.0" />
-      <TextField fx:id="txtAge4MA" alignment="CENTER" layoutX="340.0" layoutY="429.0" prefHeight="48.75" prefWidth="70.0" />
-      <TextField fx:id="txtHospital4MA" alignment="CENTER" layoutX="407.0" layoutY="429.0" prefHeight="48.75" prefWidth="152.0" />    
-      <TextField fx:id="txtSpeciality4MA" alignment="CENTER" layoutX="556.0" layoutY="429.0" prefHeight="48.75" prefWidth="193.0" />
-      <TextField fx:id="txtNotes4MA" alignment="CENTER" editable="false" layoutX="746.0" layoutY="429.0" onMouseClicked="#MA4Notes" prefHeight="48.75" prefWidth="70.0">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>
-      <TextField fx:id="txtExtra4MA" alignment="CENTER" editable="false" layoutX="813.0" layoutY="429.0" onMouseClicked="#MA4Extra" prefHeight="48.75" prefWidth="76.0" promptText="+">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>
+      <TextField fx:id="txtTime4MA" alignment="CENTER" layoutX="46.0" layoutY="436.0" prefHeight="48.75" prefWidth="87.0" />
+      <TextField fx:id="txtName4MA" alignment="CENTER" layoutX="133.0" layoutY="436.0" prefHeight="48.75" prefWidth="216.0" />
+      <TextField fx:id="txtAge4MA" alignment="CENTER" layoutX="349.0" layoutY="436.0" prefHeight="48.75" prefWidth="70.0" />
+      <TextField fx:id="txtHospital4MA" alignment="CENTER" layoutX="419.0" layoutY="436.0" prefHeight="48.75" prefWidth="152.0" />    
+      <TextField fx:id="txtSpeciality4MA" alignment="CENTER" layoutX="571.0" layoutY="436.0" prefHeight="48.75" prefWidth="181.0" />
+      <TextField fx:id="txtNotes4MA" alignment="CENTER" editable="false" layoutX="752.0" layoutY="436.0" onMouseClicked="#MA4Notes" prefHeight="48.75" prefWidth="70.0" />
+      <TextField fx:id="txtExtra4MA" alignment="CENTER" editable="false" layoutX="822.0" layoutY="436.0" onMouseClicked="#MA4Extra" prefHeight="48.75" prefWidth="64.0" promptText="+" />
     
       
       <!--MONKEY AM Extra -->
-      <TextField fx:id="txtSpareMA" alignment="CENTER" editable="false" layoutY="477.0" onMouseClicked="#MAEAttendance" prefHeight="48.75" prefWidth="46.0">
+      <TextField fx:id="txtSpareMA" alignment="CENTER" editable="false" layoutY="484.0" onMouseClicked="#MAEAttendance" prefHeight="48.75" prefWidth="46.0">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>      
-      <TextField fx:id="txtTimeEMA" alignment="CENTER" layoutX="43.0" layoutY="475.0" prefHeight="48.75" prefWidth="87.0" />        
-      <TextField fx:id="txtNameEMA" alignment="CENTER" layoutX="127.0" layoutY="475.0" prefHeight="48.75" prefWidth="216.0" />       
-      <TextField fx:id="txtAgeEMA" alignment="CENTER" layoutX="340.0" layoutY="475.0" prefHeight="48.75" prefWidth="70.0" />        
-      <TextField fx:id="txtHospitalEMA" alignment="CENTER" layoutX="407.0" layoutY="475.0" prefHeight="48.75" prefWidth="152.0" />       
-      <TextField fx:id="txtSpecialityEMA" alignment="CENTER" layoutX="556.0" layoutY="475.0" prefHeight="48.75" prefWidth="193.0" />          
-      <TextField fx:id="txtNotesEMA" alignment="CENTER" editable="false" layoutX="746.0" layoutY="475.0" onMouseClicked="#MAENotes" prefHeight="48.75" prefWidth="70.0">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>       
-      <TextField fx:id="txtExtraEMA" alignment="CENTER" editable="false" layoutX="813.0" layoutY="475.0" onMouseClicked="#MAEExtra" prefHeight="48.75" prefWidth="76.0" promptText="+">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>       
+      <TextField fx:id="txtTimeEMA" alignment="CENTER" layoutX="46.0" layoutY="484.0" prefHeight="48.75" prefWidth="87.0" />        
+      <TextField fx:id="txtNameEMA" alignment="CENTER" layoutX="133.0" layoutY="484.0" prefHeight="48.75" prefWidth="216.0" />       
+      <TextField fx:id="txtAgeEMA" alignment="CENTER" layoutX="349.0" layoutY="484.0" prefHeight="48.75" prefWidth="70.0" />        
+      <TextField fx:id="txtHospitalEMA" alignment="CENTER" layoutX="419.0" layoutY="484.0" prefHeight="48.75" prefWidth="152.0" />       
+      <TextField fx:id="txtSpecialityEMA" alignment="CENTER" layoutX="571.0" layoutY="484.0" prefHeight="48.75" prefWidth="181.0" />          
+      <TextField fx:id="txtNotesEMA" alignment="CENTER" editable="false" layoutX="752.0" layoutY="484.0" onMouseClicked="#MAENotes" prefHeight="48.75" prefWidth="70.0" />       
+      <TextField fx:id="txtExtraEMA" alignment="CENTER" editable="false" layoutX="822.0" layoutY="484.0" onMouseClicked="#MAEExtra" prefHeight="48.75" prefWidth="64.0" promptText="+" />       
       
       
       
@@ -199,38 +169,38 @@
       <!--LEOPARDS DEN AM -->
       
       <!--HEADINGS-->
-      <TextField fx:id="txtBlankLA" editable="false" layoutX="-1.0" layoutY="573.0" prefHeight="48.75" prefWidth="46.0" />
-            <TextField fx:id="txtTimeLA" alignment="CENTER" editable="false" layoutX="42.0" layoutY="573.0" prefHeight="48.75" prefWidth="87.0" text="Time">
+      <TextField fx:id="txtBlankLA" editable="false" layoutY="582.0" prefHeight="48.75" prefWidth="46.0" />
+            <TextField fx:id="txtTimeLA" alignment="CENTER" editable="false" layoutX="46.0" layoutY="582.0" prefHeight="48.75" prefWidth="87.0" text="Time">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtNameLA" alignment="CENTER" editable="false" layoutX="126.0" layoutY="573.0" prefHeight="48.75" prefWidth="216.0" text="Name">
+      <TextField fx:id="txtNameLA" alignment="CENTER" editable="false" layoutX="133.0" layoutY="582.0" prefHeight="48.75" prefWidth="216.0" text="Name">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtAgeLA" alignment="CENTER" editable="false" layoutX="339.0" layoutY="573.0" prefHeight="48.75" prefWidth="70.0" text="Age">
+      <TextField fx:id="txtAgeLA" alignment="CENTER" editable="false" layoutX="349.0" layoutY="582.0" prefHeight="48.75" prefWidth="70.0" text="Age">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtHospitalLA" alignment="CENTER" editable="false" layoutX="406.0" layoutY="573.0" prefHeight="48.75" prefWidth="152.0" text="Hospital Number">
+      <TextField fx:id="txtHospitalLA" alignment="CENTER" editable="false" layoutX="419.0" layoutY="582.0" prefHeight="48.75" prefWidth="152.0" text="Hospital Number">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtSpecialityLA" alignment="CENTER" editable="false" layoutX="555.0" layoutY="573.0" prefHeight="48.75" prefWidth="193.0" text="Speciality">
+      <TextField fx:id="txtSpecialityLA" alignment="CENTER" editable="false" layoutX="571.0" layoutY="582.0" prefHeight="48.75" prefWidth="181.0" text="Speciality">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtNotesLA" alignment="CENTER" editable="false" layoutX="745.0" layoutY="573.0" prefHeight="48.75" prefWidth="70.0" text="Notes">
+      <TextField fx:id="txtNotesLA" alignment="CENTER" editable="false" layoutX="752.0" layoutY="582.0" prefHeight="48.75" prefWidth="70.0" text="Notes">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtExtraLA" alignment="CENTER" editable="false" layoutX="812.0" layoutY="573.0" prefHeight="48.75" prefWidth="76.0" text="Extra">
+      <TextField fx:id="txtExtraLA" alignment="CENTER" editable="false" layoutX="822.0" layoutY="582.0" prefHeight="48.75" prefWidth="64.0" text="Extra">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -238,150 +208,108 @@
 
       
       <!--LEOPARDS AM 1 -->
-      <TextField fx:id="txtOneLA" alignment="CENTER" editable="false" layoutX="-1.0" layoutY="619.0" onMouseClicked="#LA1Attendance" prefHeight="48.75" prefWidth="46.0" text="1">
+      <TextField fx:id="txtOneLA" alignment="CENTER" editable="false" layoutY="630.0" onMouseClicked="#LA1Attendance" prefHeight="48.75" prefWidth="46.0" text="1">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtTime1LA" alignment="CENTER" layoutX="42.0" layoutY="619.0" prefHeight="48.75" prefWidth="87.0" />
-      <TextField fx:id="txtName1LA" alignment="CENTER" layoutX="126.0" layoutY="619.0" prefHeight="48.75" prefWidth="216.0" />
-      <TextField fx:id="txtAge1LA" alignment="CENTER" layoutX="339.0" layoutY="619.0" prefHeight="48.75" prefWidth="70.0" />
-      <TextField fx:id="txtHospital1LA" alignment="CENTER" layoutX="406.0" layoutY="619.0" prefHeight="48.75" prefWidth="152.0" />
-      <TextField fx:id="txtSpeciality1LA" alignment="CENTER" layoutX="555.0" layoutY="619.0" prefHeight="48.75" prefWidth="193.0" />
-      <TextField fx:id="txtNotes1LA" alignment="CENTER" editable="false" layoutX="745.0" layoutY="619.0" onMouseClicked="#LA1Notes" prefHeight="48.75" prefWidth="70.0">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>
-      <TextField fx:id="txtExtra1LA" alignment="CENTER" editable="false" layoutX="812.0" layoutY="619.0" onMouseClicked="#LA1Extra" prefHeight="48.75" prefWidth="76.0" promptText="+">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>
+      <TextField fx:id="txtTime1LA" alignment="CENTER" layoutX="46.0" layoutY="630.0" prefHeight="48.75" prefWidth="87.0" />
+      <TextField fx:id="txtName1LA" alignment="CENTER" layoutX="133.0" layoutY="630.0" prefHeight="48.75" prefWidth="216.0" />
+      <TextField fx:id="txtAge1LA" alignment="CENTER" layoutX="349.0" layoutY="630.0" prefHeight="48.75" prefWidth="70.0" />
+      <TextField fx:id="txtHospital1LA" alignment="CENTER" layoutX="419.0" layoutY="630.0" prefHeight="48.75" prefWidth="152.0" />
+      <TextField fx:id="txtSpeciality1LA" alignment="CENTER" layoutX="571.0" layoutY="630.0" prefHeight="48.75" prefWidth="181.0" />
+      <TextField fx:id="txtNotes1LA" alignment="CENTER" editable="false" layoutX="752.0" layoutY="630.0" onMouseClicked="#LA1Notes" prefHeight="48.75" prefWidth="70.0" />
+      <TextField fx:id="txtExtra1LA" alignment="CENTER" editable="false" layoutX="822.0" layoutY="630.0" onMouseClicked="#LA1Extra" prefHeight="49.0" prefWidth="64.0" promptText="+" />
 
       
       <!--LEOPARDS AM 2 -->
-      <TextField fx:id="txtTwoLA" alignment="CENTER" editable="false" layoutX="-1.0" layoutY="665.0" onMouseClicked="#LA2Attendance" prefHeight="48.75" prefWidth="46.0" text="2">
+      <TextField fx:id="txtTwoLA" alignment="CENTER" editable="false" layoutY="678.0" onMouseClicked="#LA2Attendance" prefHeight="48.75" prefWidth="46.0" text="2">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtTime2LA" alignment="CENTER" layoutX="42.0" layoutY="665.0" prefHeight="48.75" prefWidth="87.0" />
-      <TextField fx:id="txtName2LA" alignment="CENTER" layoutX="126.0" layoutY="665.0" prefHeight="48.75" prefWidth="216.0" />
-      <TextField fx:id="txtAge2LA" alignment="CENTER" layoutX="339.0" layoutY="665.0" prefHeight="48.75" prefWidth="70.0" />
-      <TextField fx:id="txtHospital2LA" alignment="CENTER" layoutX="406.0" layoutY="665.0" prefHeight="48.75" prefWidth="152.0" />
-      <TextField fx:id="txtSpeciality2LA" alignment="CENTER" layoutX="555.0" layoutY="665.0" prefHeight="48.755" prefWidth="193.0" />
-      <TextField fx:id="txtNotes2LA" alignment="CENTER" editable="false" layoutX="745.0" layoutY="665.0" onMouseClicked="#LA2Notes" prefHeight="48.75" prefWidth="70.0">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>
-      <TextField fx:id="txtExtra2LA" alignment="CENTER" editable="false" layoutX="812.0" layoutY="665.0" onMouseClicked="#LA2Extra" prefHeight="48.75" prefWidth="76.0" promptText="+">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>
+      <TextField fx:id="txtTime2LA" alignment="CENTER" layoutX="46.0" layoutY="678.0" prefHeight="48.75" prefWidth="87.0" />
+      <TextField fx:id="txtName2LA" alignment="CENTER" layoutX="133.0" layoutY="678.0" prefHeight="48.75" prefWidth="216.0" />
+      <TextField fx:id="txtAge2LA" alignment="CENTER" layoutX="349.0" layoutY="678.0" prefHeight="48.75" prefWidth="70.0" />
+      <TextField fx:id="txtHospital2LA" alignment="CENTER" layoutX="419.0" layoutY="678.0" prefHeight="48.75" prefWidth="152.0" />
+      <TextField fx:id="txtSpeciality2LA" alignment="CENTER" layoutX="571.0" layoutY="678.0" prefHeight="49.0" prefWidth="181.0" />
+      <TextField fx:id="txtNotes2LA" alignment="CENTER" editable="false" layoutX="752.0" layoutY="678.0" onMouseClicked="#LA2Notes" prefHeight="48.75" prefWidth="70.0" />
+      <TextField fx:id="txtExtra2LA" alignment="CENTER" editable="false" layoutX="822.0" layoutY="678.0" onMouseClicked="#LA2Extra" prefHeight="49.0" prefWidth="64.0" promptText="+" />
 
       
       <!--LEOPARDS AM 3 --> 
-      <TextField fx:id="txtThreeLA" alignment="CENTER" editable="false" layoutX="-1.0" layoutY="711.0" onMouseClicked="#LA3Attendance" prefHeight="48.75" prefWidth="46.0" text="3">
+      <TextField fx:id="txtThreeLA" alignment="CENTER" editable="false" layoutY="726.0" onMouseClicked="#LA3Attendance" prefHeight="48.75" prefWidth="46.0" text="3">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtTime3LA" alignment="CENTER" layoutX="42.0" layoutY="711.0" prefHeight="48.75" prefWidth="87.0" />
-      <TextField fx:id="txtName3LA" alignment="CENTER" layoutX="126.0" layoutY="711.0" prefHeight="48.75" prefWidth="216.0" />
-      <TextField fx:id="txtAge3LA" alignment="CENTER" layoutX="339.0" layoutY="711.0" prefHeight="48.75" prefWidth="70.0" />
-      <TextField fx:id="txtHospital3LA" alignment="CENTER" layoutX="406.0" layoutY="711.0" prefHeight="48.75" prefWidth="152.0" />
-      <TextField fx:id="txtSpeciality3LA" alignment="CENTER" layoutX="555.0" layoutY="711.0" prefHeight="48.75" prefWidth="193.0" />
-      <TextField fx:id="txtNotes3LA" alignment="CENTER" editable="false" layoutX="745.0" layoutY="711.0" onMouseClicked="#LA3Notes" prefHeight="48.75" prefWidth="70.0">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>
-      <TextField fx:id="txtExtra3LA" alignment="CENTER" editable="false" layoutX="812.0" layoutY="711.0" onMouseClicked="#LA3Extra" prefHeight="48.75" prefWidth="76.0" promptText="+">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>
+      <TextField fx:id="txtTime3LA" alignment="CENTER" layoutX="46.0" layoutY="726.0" prefHeight="48.75" prefWidth="87.0" />
+      <TextField fx:id="txtName3LA" alignment="CENTER" layoutX="133.0" layoutY="726.0" prefHeight="48.75" prefWidth="216.0" />
+      <TextField fx:id="txtAge3LA" alignment="CENTER" layoutX="349.0" layoutY="726.0" prefHeight="48.75" prefWidth="70.0" />
+      <TextField fx:id="txtHospital3LA" alignment="CENTER" layoutX="419.0" layoutY="726.0" prefHeight="48.75" prefWidth="152.0" />
+      <TextField fx:id="txtSpeciality3LA" alignment="CENTER" layoutX="571.0" layoutY="726.0" prefHeight="49.0" prefWidth="181.0" />
+      <TextField fx:id="txtNotes3LA" alignment="CENTER" editable="false" layoutX="752.0" layoutY="726.0" onMouseClicked="#LA3Notes" prefHeight="48.75" prefWidth="70.0" />
+      <TextField fx:id="txtExtra3LA" alignment="CENTER" editable="false" layoutX="822.0" layoutY="726.0" onMouseClicked="#LA3Extra" prefHeight="49.0" prefWidth="64.0" promptText="+" />
     
                           
       <!--LEOPARDS AM 4 -->  
-      <TextField fx:id="txtFourLA" alignment="CENTER" editable="false" layoutX="-1.0" layoutY="759.0" onMouseClicked="#LA4Attendance" prefHeight="48.75" prefWidth="46.0" text="4">
+      <TextField fx:id="txtFourLA" alignment="CENTER" editable="false" layoutY="774.0" onMouseClicked="#LA4Attendance" prefHeight="48.75" prefWidth="46.0" text="4">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>     
-      <TextField fx:id="txtTime4LA" alignment="CENTER" layoutX="43.0" layoutY="758.0" prefHeight="48.75" prefWidth="87.0" />
-      <TextField fx:id="txtName4LA" alignment="CENTER" layoutX="126.0" layoutY="758.0" prefHeight="48.75" prefWidth="216.0" />
-      <TextField fx:id="txtAge4LA" alignment="CENTER" layoutX="340.0" layoutY="757.0" prefHeight="48.75" prefWidth="70.0" />
-      <TextField fx:id="txtHospital4LA" alignment="CENTER" layoutX="407.0" layoutY="757.0" prefHeight="48.75" prefWidth="152.0" />   
-      <TextField fx:id="txtSpeciality4LA" alignment="CENTER" layoutX="556.0" layoutY="757.0" prefHeight="48.75" prefWidth="193.0" />      
-      <TextField fx:id="txtNotes4LA" alignment="CENTER" editable="false" layoutX="746.0" layoutY="757.0" onMouseClicked="#LA4Notes" prefHeight="48.75" prefWidth="70.0">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>
-      <TextField fx:id="txtExtra4LA" alignment="CENTER" editable="false" layoutX="813.0" layoutY="757.0" onMouseClicked="#LA4Extra" prefHeight="48.75" prefWidth="76.0" promptText="+">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>
+      <TextField fx:id="txtTime4LA" alignment="CENTER" layoutX="46.0" layoutY="774.0" prefHeight="48.75" prefWidth="87.0" />
+      <TextField fx:id="txtName4LA" alignment="CENTER" layoutX="133.0" layoutY="774.0" prefHeight="48.75" prefWidth="216.0" />
+      <TextField fx:id="txtAge4LA" alignment="CENTER" layoutX="349.0" layoutY="774.0" prefHeight="48.75" prefWidth="70.0" />
+      <TextField fx:id="txtHospital4LA" alignment="CENTER" layoutX="419.0" layoutY="774.0" prefHeight="48.75" prefWidth="152.0" />   
+      <TextField fx:id="txtSpeciality4LA" alignment="CENTER" layoutX="571.0" layoutY="774.0" prefHeight="49.0" prefWidth="181.0" />      
+      <TextField fx:id="txtNotes4LA" alignment="CENTER" editable="false" layoutX="752.0" layoutY="774.0" onMouseClicked="#LA4Notes" prefHeight="48.75" prefWidth="70.0" />
+      <TextField fx:id="txtExtra4LA" alignment="CENTER" editable="false" layoutX="822.0" layoutY="774.0" onMouseClicked="#LA4Extra" prefHeight="49.0" prefWidth="64.0" promptText="+" />
 
             
       <!--LEOPARDS AM 5 --> 
-      <TextField fx:id="txtFiveLA" alignment="CENTER" editable="false" layoutX="-1.0" layoutY="805.0" onMouseClicked="#LA5Attendance" prefHeight="48.75" prefWidth="46.0" text="5">
+      <TextField fx:id="txtFiveLA" alignment="CENTER" editable="false" layoutY="822.0" onMouseClicked="#LA5Attendance" prefHeight="48.75" prefWidth="46.0" text="5">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>
-       <TextField fx:id="txtTime5LA" alignment="CENTER" layoutX="41.0" layoutY="805.0" prefHeight="48.75" prefWidth="87.0" />
-      <TextField fx:id="txtName5LA" alignment="CENTER" layoutX="126.0" layoutY="805.0" prefHeight="48.75" prefWidth="216.0" />
-      <TextField fx:id="txtAge5LA" alignment="CENTER" layoutX="339.0" layoutY="805.0" prefHeight="48.75" prefWidth="70.0" />
-      <TextField fx:id="txtHospital5LA" alignment="CENTER" layoutX="406.0" layoutY="805.0" prefHeight="48.75" prefWidth="152.0" />
-      <TextField fx:id="txtSpeciality5LA" alignment="CENTER" layoutX="555.0" layoutY="805.0" prefHeight="48.75" prefWidth="193.0" />
-      <TextField fx:id="txtNotes5LA" alignment="CENTER" editable="false" layoutX="745.0" layoutY="805.0" onMouseClicked="#LA5Notes" prefHeight="48.75" prefWidth="70.0">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>
-      <TextField fx:id="txtExtra5LA" alignment="CENTER" editable="false" layoutX="812.0" layoutY="805.0" onMouseClicked="#LA5Extra" prefHeight="48.75" prefWidth="76.0" promptText="+">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>
+       <TextField fx:id="txtTime5LA" alignment="CENTER" layoutX="46.0" layoutY="822.0" prefHeight="48.75" prefWidth="87.0" />
+      <TextField fx:id="txtName5LA" alignment="CENTER" layoutX="133.0" layoutY="822.0" prefHeight="48.75" prefWidth="216.0" />
+      <TextField fx:id="txtAge5LA" alignment="CENTER" layoutX="349.0" layoutY="822.0" prefHeight="48.75" prefWidth="70.0" />
+      <TextField fx:id="txtHospital5LA" alignment="CENTER" layoutX="419.0" layoutY="822.0" prefHeight="48.75" prefWidth="152.0" />
+      <TextField fx:id="txtSpeciality5LA" alignment="CENTER" layoutX="571.0" layoutY="822.0" prefHeight="49.0" prefWidth="181.0" />
+      <TextField fx:id="txtNotes5LA" alignment="CENTER" editable="false" layoutX="752.0" layoutY="822.0" onMouseClicked="#LA5Notes" prefHeight="48.75" prefWidth="70.0" />
+      <TextField fx:id="txtExtra5LA" alignment="CENTER" editable="false" layoutX="822.0" layoutY="822.0" onMouseClicked="#LA5Extra" prefHeight="49.0" prefWidth="64.0" promptText="+" />
 
               
       <!--LEOPARDS AM 6 -->  
-      <TextField fx:id="txtSixLA" alignment="CENTER" editable="false" layoutX="-1.0" layoutY="851.0" onMouseClicked="#LA6Attendance" prefHeight="48.75" prefWidth="46.0" text="6">
+      <TextField fx:id="txtSixLA" alignment="CENTER" editable="false" layoutY="870.0" onMouseClicked="#LA6Attendance" prefHeight="48.75" prefWidth="46.0" text="6">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtTime6LA" alignment="CENTER" layoutX="42.0" layoutY="851.0" prefHeight="48.75" prefWidth="87.0" />
-      <TextField fx:id="txtName6LA" alignment="CENTER" layoutX="126.0" layoutY="851.0" prefHeight="48.75" prefWidth="216.0" />
-      <TextField fx:id="txtAge6LA" alignment="CENTER" layoutX="339.0" layoutY="851.0" prefHeight="48.75" prefWidth="70.0" />      
-      <TextField fx:id="txtHospital6LA" alignment="CENTER" layoutX="406.0" layoutY="851.0" prefHeight="48.75" prefWidth="152.0" />
-      <TextField fx:id="txtSpeciality6LA" alignment="CENTER" layoutX="555.0" layoutY="851.0" prefHeight="48.75" prefWidth="193.0" />
-      <TextField fx:id="txtNotes6LA" alignment="CENTER" editable="false" layoutX="745.0" layoutY="851.0" onMouseClicked="#LA6Notes" prefHeight="48.75" prefWidth="70.0">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>
-      <TextField fx:id="txtExtra6LA" alignment="CENTER" editable="false" layoutX="812.0" layoutY="851.0" onMouseClicked="#LA6Extra" prefHeight="48.75" prefWidth="76.0" promptText="+">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>
+      <TextField fx:id="txtTime6LA" alignment="CENTER" layoutX="46.0" layoutY="870.0" prefHeight="48.75" prefWidth="87.0" />
+      <TextField fx:id="txtName6LA" alignment="CENTER" layoutX="133.0" layoutY="870.0" prefHeight="48.75" prefWidth="216.0" />
+      <TextField fx:id="txtAge6LA" alignment="CENTER" layoutX="349.0" layoutY="870.0" prefHeight="48.75" prefWidth="70.0" />      
+      <TextField fx:id="txtHospital6LA" alignment="CENTER" layoutX="419.0" layoutY="870.0" prefHeight="48.75" prefWidth="152.0" />
+      <TextField fx:id="txtSpeciality6LA" alignment="CENTER" layoutX="571.0" layoutY="870.0" prefHeight="49.0" prefWidth="181.0" />
+      <TextField fx:id="txtNotes6LA" alignment="CENTER" editable="false" layoutX="752.0" layoutY="870.0" onMouseClicked="#LA6Notes" prefHeight="48.75" prefWidth="70.0" />
+      <TextField fx:id="txtExtra6LA" alignment="CENTER" editable="false" layoutX="822.0" layoutY="870.0" onMouseClicked="#LA6Extra" prefHeight="49.0" prefWidth="64.0" promptText="+" />
      
               
       <!--LEOPARDS AM Extra -->      
-      <TextField fx:id="txtSpareLA" alignment="CENTER" editable="false" layoutY="900.0" onMouseClicked="#LAEAttendance" prefHeight="48.75" prefWidth="46.0">
+      <TextField fx:id="txtSpareLA" alignment="CENTER" editable="false" layoutY="918.0" onMouseClicked="#LAEAttendance" prefHeight="48.75" prefWidth="46.0">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>      
-      <TextField fx:id="txtTimeELA" alignment="CENTER" layoutX="43.0" layoutY="898.0" prefHeight="48.75" prefWidth="87.0" />         
-      <TextField fx:id="txtNameELA" alignment="CENTER" layoutX="127.0" layoutY="898.0" prefHeight="48.75" prefWidth="216.0" />       
-      <TextField fx:id="txtAgeELA" alignment="CENTER" layoutX="340.0" layoutY="898.0" prefHeight="48.75" prefWidth="70.0" />       
-      <TextField fx:id="txtHospitalELA" alignment="CENTER" layoutX="407.0" layoutY="898.0" prefHeight="48.75" prefWidth="152.0" />           
-      <TextField fx:id="txtSpecialityELA" alignment="CENTER" layoutX="556.0" layoutY="898.0" prefHeight="48.75" prefWidth="193.0" />         
-      <TextField fx:id="txtNotesELA" alignment="CENTER" editable="false" layoutX="746.0" layoutY="898.0" onMouseClicked="#LAENotes" prefHeight="48.75" prefWidth="70.0">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>        
-      <TextField fx:id="txtExtraELA" alignment="CENTER" editable="false" layoutX="813.0" layoutY="898.0" onMouseClicked="#LAEExtra" prefHeight="48.75" prefWidth="76.0" promptText="+">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>       
+      <TextField fx:id="txtTimeELA" alignment="CENTER" layoutX="46.0" layoutY="918.0" prefHeight="48.75" prefWidth="87.0" />         
+      <TextField fx:id="txtNameELA" alignment="CENTER" layoutX="133.0" layoutY="918.0" prefHeight="48.75" prefWidth="216.0" />       
+      <TextField fx:id="txtAgeELA" alignment="CENTER" layoutX="349.0" layoutY="918.0" prefHeight="48.75" prefWidth="70.0" />       
+      <TextField fx:id="txtHospitalELA" alignment="CENTER" layoutX="419.0" layoutY="918.0" prefHeight="48.75" prefWidth="152.0" />           
+      <TextField fx:id="txtSpecialityELA" alignment="CENTER" layoutX="571.0" layoutY="918.0" prefHeight="49.0" prefWidth="181.0" />         
+      <TextField fx:id="txtNotesELA" alignment="CENTER" editable="false" layoutX="752.0" layoutY="918.0" onMouseClicked="#LAENotes" prefHeight="48.75" prefWidth="70.0" />        
+      <TextField fx:id="txtExtraELA" alignment="CENTER" editable="false" layoutX="822.0" layoutY="918.0" onMouseClicked="#LAEExtra" prefHeight="49.0" prefWidth="64.0" promptText="+" />       
       
       
       
@@ -391,38 +319,38 @@
       <!--MONKEY HOUSE PM -->
       
       <!--HEADINGS-->
-      <TextField fx:id="txtBlankMP" editable="false" layoutX="888.0" layoutY="245.0" prefHeight="48.75" prefWidth="46.0" />
-      <TextField fx:id="txtTimeMP" alignment="CENTER" editable="false" layoutX="931.0" layoutY="245.0" prefHeight="48.75" prefWidth="87.0" text="Time">
+      <TextField fx:id="txtBlankMP" editable="false" layoutX="886.0" layoutY="245.0" prefHeight="48.75" prefWidth="46.0" />
+      <TextField fx:id="txtTimeMP" alignment="CENTER" editable="false" layoutX="932.0" layoutY="245.0" prefHeight="48.75" prefWidth="87.0" text="Time">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtNameMP" alignment="CENTER" editable="false" layoutX="1015.0" layoutY="245.0" prefHeight="48.75" prefWidth="216.0" text="Name">
+      <TextField fx:id="txtNameMP" alignment="CENTER" editable="false" layoutX="1019.0" layoutY="245.0" prefHeight="48.75" prefWidth="216.0" text="Name">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>      
-      <TextField fx:id="txtAgeMP" alignment="CENTER" editable="false" layoutX="1228.0" layoutY="245.0" prefHeight="48.75" prefWidth="70.0" text="Age">
+      <TextField fx:id="txtAgeMP" alignment="CENTER" editable="false" layoutX="1235.0" layoutY="245.0" prefHeight="48.75" prefWidth="70.0" text="Age">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>   
-      <TextField fx:id="txtHospitalMP" alignment="CENTER" editable="false" layoutX="1295.0" layoutY="245.0" prefHeight="48.75" prefWidth="152.0" text="Hospital Number">
+      <TextField fx:id="txtHospitalMP" alignment="CENTER" editable="false" layoutX="1305.0" layoutY="245.0" prefHeight="48.75" prefWidth="152.0" text="Hospital Number">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>   
-      <TextField fx:id="txtSpecialityMP" alignment="CENTER" editable="false" layoutX="1444.0" layoutY="245.0" prefHeight="48.75" prefWidth="193.0" text="Speciality">
+      <TextField fx:id="txtSpecialityMP" alignment="CENTER" editable="false" layoutX="1457.0" layoutY="245.0" prefHeight="48.75" prefWidth="181.0" text="Speciality">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>  
-      <TextField fx:id="txtNotesMP" alignment="CENTER" editable="false" layoutX="1634.0" layoutY="245.0" prefHeight="48.75" prefWidth="70.0" text="Notes">
+      <TextField fx:id="txtNotesMP" alignment="CENTER" editable="false" layoutX="1638.0" layoutY="245.0" prefHeight="48.75" prefWidth="70.0" text="Notes">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtExtraMP" alignment="CENTER" editable="false" layoutX="1701.0" layoutY="245.0" prefHeight="48.75" prefWidth="76.0" text="Extra">
+      <TextField fx:id="txtExtraMP" alignment="CENTER" editable="false" layoutX="1708.0" layoutY="245.0" prefHeight="48.75" prefWidth="64.0" text="Extra">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -430,108 +358,78 @@
 
       
       <!--MONKEY PM 1 -->
-      <TextField fx:id="txtOneMP" alignment="CENTER" editable="false" layoutX="888.0" layoutY="291.0" onMouseClicked="#MP1Attendance" prefHeight="48.75" prefWidth="46.0" text="1">
+      <TextField fx:id="txtOneMP" alignment="CENTER" editable="false" layoutX="886.0" layoutY="293.0" onMouseClicked="#MP1Attendance" prefHeight="48.75" prefWidth="46.0" text="1">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtTime1MP" alignment="CENTER" layoutX="931.0" layoutY="291.0" prefHeight="48.75" prefWidth="87.0" />       
-      <TextField fx:id="txtName1MP" alignment="CENTER" layoutX="1015.0" layoutY="291.0" prefHeight="48.75" prefWidth="216.0" />      
-      <TextField fx:id="txtAge1MP" alignment="CENTER" layoutX="1228.0" layoutY="291.0" prefHeight="48.75" prefWidth="70.0" />       
-      <TextField fx:id="txtHospital1MP" alignment="CENTER" layoutX="1295.0" layoutY="291.0" prefHeight="48.75" prefWidth="152.0" />      
-      <TextField fx:id="txtSpeciality1MP" alignment="CENTER" layoutX="1444.0" layoutY="291.0" prefHeight="48.75" prefWidth="193.0" />      
-      <TextField fx:id="txtNotes1MP" alignment="CENTER" editable="false" layoutX="1634.0" layoutY="291.0" onMouseClicked="#MP1Notes" prefHeight="48.75" prefWidth="70.0">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>       
-      <TextField fx:id="txtExtra1MP" alignment="CENTER" editable="false" layoutX="1701.0" layoutY="291.0" onMouseClicked="#MP1Extra" prefHeight="48.75" prefWidth="76.0" promptText="+">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>      
+      <TextField fx:id="txtTime1MP" alignment="CENTER" layoutX="932.0" layoutY="293.0" prefHeight="48.75" prefWidth="87.0" />       
+      <TextField fx:id="txtName1MP" alignment="CENTER" layoutX="1019.0" layoutY="293.0" prefHeight="48.75" prefWidth="216.0" />      
+      <TextField fx:id="txtAge1MP" alignment="CENTER" layoutX="1235.0" layoutY="293.0" prefHeight="48.75" prefWidth="70.0" />       
+      <TextField fx:id="txtHospital1MP" alignment="CENTER" layoutX="1305.0" layoutY="293.0" prefHeight="48.75" prefWidth="152.0" />      
+      <TextField fx:id="txtSpeciality1MP" alignment="CENTER" layoutX="1457.0" layoutY="293.0" prefHeight="49.0" prefWidth="181.0" />      
+      <TextField fx:id="txtNotes1MP" alignment="CENTER" editable="false" layoutX="1638.0" layoutY="294.0" onMouseClicked="#MP1Notes" prefHeight="48.75" prefWidth="70.0" />       
+      <TextField fx:id="txtExtra1MP" alignment="CENTER" editable="false" layoutX="1708.0" layoutY="294.0" onMouseClicked="#MP1Extra" prefHeight="48.75" prefWidth="64.0" promptText="+" />      
 
       
       <!--MONKEY PM 2 -->
-      <TextField fx:id="txtTwoMP" alignment="CENTER" editable="false" layoutX="888.0" layoutY="337.0" onMouseClicked="#MP2Attendance" prefHeight="48.75" prefWidth="46.0" text="2">
+      <TextField fx:id="txtTwoMP" alignment="CENTER" editable="false" layoutX="886.0" layoutY="341.0" onMouseClicked="#MP2Attendance" prefHeight="48.75" prefWidth="46.0" text="2">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtTime2MP" alignment="CENTER" layoutX="931.0" layoutY="337.0" prefHeight="48.75" prefWidth="87.0" />  
-      <TextField fx:id="txtName2MP" alignment="CENTER" layoutX="1015.0" layoutY="337.0" prefHeight="48.75" prefWidth="216.0" />      
-      <TextField fx:id="txtAge2MP" alignment="CENTER" layoutX="1228.0" layoutY="337.0" prefHeight="48.75" prefWidth="70.0" />         
-      <TextField fx:id="txtHospital2MP" alignment="CENTER" layoutX="1295.0" layoutY="337.0" prefHeight="48.75" prefWidth="152.0" />         
-      <TextField fx:id="txtSpeciality2MP" alignment="CENTER" layoutX="1444.0" layoutY="337.0" prefHeight="48.75" prefWidth="193.0" />          
-      <TextField fx:id="txtNotes2MP" alignment="CENTER" editable="false" layoutX="1634.0" layoutY="337.0" onMouseClicked="#MP2Notes" prefHeight="48.75" prefWidth="70.0">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>      
-      <TextField fx:id="txtExtra2MP" alignment="CENTER" editable="false" layoutX="1701.0" layoutY="337.0" onMouseClicked="#MP2Extra" prefHeight="48.75" prefWidth="76.0" promptText="+">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>      
+      <TextField fx:id="txtTime2MP" alignment="CENTER" layoutX="932.0" layoutY="341.0" prefHeight="48.75" prefWidth="87.0" />  
+      <TextField fx:id="txtName2MP" alignment="CENTER" layoutX="1019.0" layoutY="341.0" prefHeight="48.75" prefWidth="216.0" />      
+      <TextField fx:id="txtAge2MP" alignment="CENTER" layoutX="1235.0" layoutY="341.0" prefHeight="48.75" prefWidth="70.0" />         
+      <TextField fx:id="txtHospital2MP" alignment="CENTER" layoutX="1305.0" layoutY="341.0" prefHeight="48.75" prefWidth="152.0" />         
+      <TextField fx:id="txtSpeciality2MP" alignment="CENTER" layoutX="1457.0" layoutY="341.0" prefHeight="48.75" prefWidth="181.0" />          
+      <TextField fx:id="txtNotes2MP" alignment="CENTER" editable="false" layoutX="1638.0" layoutY="341.0" onMouseClicked="#MP2Notes" prefHeight="48.75" prefWidth="70.0" />      
+      <TextField fx:id="txtExtra2MP" alignment="CENTER" editable="false" layoutX="1708.0" layoutY="341.0" onMouseClicked="#MP2Extra" prefHeight="49.0" prefWidth="64.0" promptText="+" />      
 
       
       <!--MONKEY PM 3 -->
-      <TextField fx:id="txtThreeMP" alignment="CENTER" editable="false" layoutX="888.0" layoutY="383.0" onMouseClicked="#MP3Attendance" prefHeight="48.75" prefWidth="46.0" text="3">
+      <TextField fx:id="txtThreeMP" alignment="CENTER" editable="false" layoutX="886.0" layoutY="389.0" onMouseClicked="#MP3Attendance" prefHeight="48.75" prefWidth="46.0" text="3">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtTime3MP" alignment="CENTER" layoutX="931.0" layoutY="383.0" prefHeight="48.75" prefWidth="87.0" />      
-      <TextField fx:id="txtName3MP" alignment="CENTER" layoutX="1015.0" layoutY="383.0" prefHeight="48.75" prefWidth="216.0" />      
-      <TextField fx:id="txtAge3MP" alignment="CENTER" layoutX="1228.0" layoutY="383.0" prefHeight="48.75" prefWidth="70.0" />            
-      <TextField fx:id="txtHospital3MP" alignment="CENTER" layoutX="1295.0" layoutY="383.0" prefHeight="48.75" prefWidth="152.0" />            
-      <TextField fx:id="txtSpeciality3MP" alignment="CENTER" layoutX="1444.0" layoutY="383.0" prefHeight="48.75" prefWidth="193.0" />             
-      <TextField fx:id="txtNotes3MP" alignment="CENTER" editable="false" layoutX="1634.0" layoutY="383.0" onMouseClicked="#MP3Notes" prefHeight="48.75" prefWidth="70.0">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>      
-      <TextField fx:id="txtExtra3MP" alignment="CENTER" editable="false" layoutX="1701.0" layoutY="383.0" onMouseClicked="#MP3Extra" prefHeight="48.75" prefWidth="76.0" promptText="+">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>      
+      <TextField fx:id="txtTime3MP" alignment="CENTER" layoutX="932.0" layoutY="389.0" prefHeight="48.75" prefWidth="87.0" />      
+      <TextField fx:id="txtName3MP" alignment="CENTER" layoutX="1019.0" layoutY="389.0" prefHeight="48.75" prefWidth="216.0" />      
+      <TextField fx:id="txtAge3MP" alignment="CENTER" layoutX="1235.0" layoutY="389.0" prefHeight="48.75" prefWidth="70.0" />            
+      <TextField fx:id="txtHospital3MP" alignment="CENTER" layoutX="1305.0" layoutY="389.0" prefHeight="48.75" prefWidth="152.0" />            
+      <TextField fx:id="txtSpeciality3MP" alignment="CENTER" layoutX="1457.0" layoutY="389.0" prefHeight="48.75" prefWidth="181.0" />             
+      <TextField fx:id="txtNotes3MP" alignment="CENTER" editable="false" layoutX="1638.0" layoutY="389.0" onMouseClicked="#MP3Notes" prefHeight="48.75" prefWidth="70.0" />      
+      <TextField fx:id="txtExtra3MP" alignment="CENTER" editable="false" layoutX="1708.0" layoutY="389.0" onMouseClicked="#MP3Extra" prefHeight="49.0" prefWidth="64.0" promptText="+" />      
 
       
       <!--MONKEY PM 4 -->
-      <TextField fx:id="txtFourMP" alignment="CENTER" editable="false" layoutX="888.0" layoutY="431.0" onMouseClicked="#MP4Attendance" prefHeight="48.75" prefWidth="46.0" text="4">
+      <TextField fx:id="txtFourMP" alignment="CENTER" editable="false" layoutX="886.0" layoutY="437.0" onMouseClicked="#MP4Attendance" prefHeight="48.75" prefWidth="46.0" text="4">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtTime4MP" alignment="CENTER" layoutX="931.0" layoutY="429.0" prefHeight="48.75" prefWidth="87.0" />         
-      <TextField fx:id="txtName4MP" alignment="CENTER" layoutX="1015.0" layoutY="429.0" prefHeight="48.75" prefWidth="216.0" />      
-      <TextField fx:id="txtAge4MP" alignment="CENTER" layoutX="1228.0" layoutY="429.0" prefHeight="48.75" prefWidth="70.0" />                  
-      <TextField fx:id="txtHospital4MP" alignment="CENTER" layoutX="1295.0" layoutY="429.0" prefHeight="48.75" prefWidth="152.0" />                 
-      <TextField fx:id="txtSpeciality4MP" alignment="CENTER" layoutX="1444.0" layoutY="429.0" prefHeight="48.75" prefWidth="193.0" />                      
-      <TextField fx:id="txtNotes4MP" alignment="CENTER" editable="false" layoutX="1634.0" layoutY="429.0" onMouseClicked="#MP4Notes" prefHeight="48.75" prefWidth="70.0">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>      
-      <TextField fx:id="txtExtra4MP" alignment="CENTER" editable="false" layoutX="1701.0" layoutY="429.0" onMouseClicked="#MP4Extra" prefHeight="48.75" prefWidth="76.0" promptText="+">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>      
+      <TextField fx:id="txtTime4MP" alignment="CENTER" layoutX="932.0" layoutY="437.0" prefHeight="48.75" prefWidth="87.0" />         
+      <TextField fx:id="txtName4MP" alignment="CENTER" layoutX="1019.0" layoutY="437.0" prefHeight="48.75" prefWidth="216.0" />      
+      <TextField fx:id="txtAge4MP" alignment="CENTER" layoutX="1235.0" layoutY="437.0" prefHeight="48.75" prefWidth="70.0" />                  
+      <TextField fx:id="txtHospital4MP" alignment="CENTER" layoutX="1305.0" layoutY="437.0" prefHeight="48.75" prefWidth="152.0" />                 
+      <TextField fx:id="txtSpeciality4MP" alignment="CENTER" layoutX="1457.0" layoutY="437.0" prefHeight="49.0" prefWidth="181.0" />                      
+      <TextField fx:id="txtNotes4MP" alignment="CENTER" editable="false" layoutX="1638.0" layoutY="437.0" onMouseClicked="#MP4Notes" prefHeight="48.75" prefWidth="70.0" />      
+      <TextField fx:id="txtExtra4MP" alignment="CENTER" editable="false" layoutX="1707.0" layoutY="437.0" onMouseClicked="#MP4Extra" prefHeight="49.0" prefWidth="64.0" promptText="+" />      
          
       
       <!--MONKEY PM Extra -->
-      <TextField fx:id="txtSpareMP" alignment="CENTER" editable="false" layoutX="888.0" layoutY="477.0" onMouseClicked="#MPEAttendance" prefHeight="48.75" prefWidth="46.0">
+      <TextField fx:id="txtSpareMP" alignment="CENTER" editable="false" layoutX="886.0" layoutY="484.0" onMouseClicked="#MPEAttendance" prefHeight="48.75" prefWidth="46.0">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>         
-      <TextField fx:id="txtTimeEMP" alignment="CENTER" layoutX="931.0" layoutY="475.0" prefHeight="48.75" prefWidth="87.0" />       
-      <TextField fx:id="txtNameEMP" alignment="CENTER" layoutX="1015.0" layoutY="475.0" prefHeight="48.75" prefWidth="216.0" />         
-      <TextField fx:id="txtAgeEMP" alignment="CENTER" layoutX="1228.0" layoutY="475.0" prefHeight="48.75" prefWidth="70.0" />         
-      <TextField fx:id="txtHospitalEMP" alignment="CENTER" layoutX="1295.0" layoutY="475.0" prefHeight="48.75" prefWidth="152.0" />      
-      <TextField fx:id="txtSpecialityEMP" alignment="CENTER" layoutX="1444.0" layoutY="475.0" prefHeight="48.75" prefWidth="193.0" />        
-      <TextField fx:id="txtNotesEMP" alignment="CENTER" editable="false" layoutX="1634.0" layoutY="475.0" onMouseClicked="#MPENotes" prefHeight="48.75" prefWidth="70.0">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>      
-      <TextField fx:id="txtExtraEMP" alignment="CENTER" editable="false" layoutX="1701.0" layoutY="475.0" onMouseClicked="#MPEExtra" prefHeight="48.75" prefWidth="76.0" promptText="+">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>       
+      <TextField fx:id="txtTimeEMP" alignment="CENTER" layoutX="932.0" layoutY="484.0" prefHeight="48.75" prefWidth="87.0" />       
+      <TextField fx:id="txtNameEMP" alignment="CENTER" layoutX="1019.0" layoutY="484.0" prefHeight="48.75" prefWidth="216.0" />         
+      <TextField fx:id="txtAgeEMP" alignment="CENTER" layoutX="1235.0" layoutY="484.0" prefHeight="48.75" prefWidth="70.0" />         
+      <TextField fx:id="txtHospitalEMP" alignment="CENTER" layoutX="1305.0" layoutY="484.0" prefHeight="48.75" prefWidth="152.0" />      
+      <TextField fx:id="txtSpecialityEMP" alignment="CENTER" layoutX="1457.0" layoutY="484.0" prefHeight="49.0" prefWidth="181.0" />        
+      <TextField fx:id="txtNotesEMP" alignment="CENTER" editable="false" layoutX="1638.0" layoutY="484.0" onMouseClicked="#MPENotes" prefHeight="48.75" prefWidth="70.0" />      
+      <TextField fx:id="txtExtraEMP" alignment="CENTER" editable="false" layoutX="1707.0" layoutY="484.0" onMouseClicked="#MPEExtra" prefHeight="49.0" prefWidth="64.0" promptText="+" />       
       
       
       
@@ -541,38 +439,38 @@
       <!--LEOPARDS DEN-->
       
       <!--HEADINGS-->
-      <TextField fx:id="txtBlankLP" editable="false" layoutX="888.0" layoutY="573.0" prefHeight="48.75" prefWidth="46.0" />
-      <TextField fx:id="txtTimeLP" alignment="CENTER" editable="false" layoutX="931.0" layoutY="573.0" prefHeight="48.75" prefWidth="87.0" text="Time">
+      <TextField fx:id="txtBlankLP" editable="false" layoutX="885.0" layoutY="582.0" prefHeight="48.75" prefWidth="46.0" />
+      <TextField fx:id="txtTimeLP" alignment="CENTER" editable="false" layoutX="931.0" layoutY="582.0" prefHeight="48.75" prefWidth="87.0" text="Time">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtNameLP" alignment="CENTER" editable="false" layoutX="1015.0" layoutY="573.0" prefHeight="48.75" prefWidth="216.0" text="Name">
+      <TextField fx:id="txtNameLP" alignment="CENTER" editable="false" layoutX="1018.0" layoutY="582.0" prefHeight="48.75" prefWidth="216.0" text="Name">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtAgeLP" alignment="CENTER" editable="false" layoutX="1228.0" layoutY="573.0" prefHeight="48.75" prefWidth="70.0" text="Age">
+      <TextField fx:id="txtAgeLP" alignment="CENTER" editable="false" layoutX="1233.0" layoutY="582.0" prefHeight="48.75" prefWidth="70.0" text="Age">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtHospitalLP" alignment="CENTER" editable="false" layoutX="1295.0" layoutY="573.0" prefHeight="48.75" prefWidth="152.0" text="Hospital Number">
+      <TextField fx:id="txtHospitalLP" alignment="CENTER" editable="false" layoutX="1303.0" layoutY="582.0" prefHeight="48.75" prefWidth="152.0" text="Hospital Number">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtSpecialityLP" alignment="CENTER" editable="false" layoutX="1444.0" layoutY="573.0" prefHeight="48.75" prefWidth="193.0" text="Speciality">
+      <TextField fx:id="txtSpecialityLP" alignment="CENTER" editable="false" layoutX="1455.0" layoutY="582.0" prefHeight="49.0" prefWidth="181.0" text="Speciality">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtNotesLP" alignment="CENTER" editable="false" layoutX="1634.0" layoutY="573.0" prefHeight="48.75" prefWidth="70.0" text="Notes">
+      <TextField fx:id="txtNotesLP" alignment="CENTER" editable="false" layoutX="1636.0" layoutY="582.0" prefHeight="48.75" prefWidth="70.0" text="Notes">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtExtraLP" alignment="CENTER" editable="false" layoutX="1701.0" layoutY="573.0" prefHeight="48.75" prefWidth="76.0" text="Extra">
+      <TextField fx:id="txtExtraLP" alignment="CENTER" editable="false" layoutX="1706.0" layoutY="582.0" prefHeight="49.0" prefWidth="64.0" text="Extra">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -580,150 +478,108 @@
 
    
       <!--LEOPARDS PM 1 -->
-      <TextField fx:id="txtOneLP" alignment="CENTER" editable="false" layoutX="888.0" layoutY="619.0" onMouseClicked="#LP1Attendance" prefHeight="48.75" prefWidth="46.0" text="1">
+      <TextField fx:id="txtOneLP" alignment="CENTER" editable="false" layoutX="885.0" layoutY="631.0" onMouseClicked="#LP1Attendance" prefHeight="48.75" prefWidth="46.0" text="1">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>    
-      <TextField fx:id="txtTime1LP" alignment="CENTER" layoutX="931.0" layoutY="619.0" prefHeight="48.75" prefWidth="87.0" />
-      <TextField fx:id="txtName1LP" alignment="CENTER" layoutX="1015.0" layoutY="619.0" prefHeight="48.75" prefWidth="216.0" />
-      <TextField fx:id="txtAge1LP" alignment="CENTER" layoutX="1228.0" layoutY="619.0" prefHeight="48.75" prefWidth="70.0" />
-      <TextField fx:id="txtHospital1LP" alignment="CENTER" layoutX="1295.0" layoutY="619.0" prefHeight="48.75" prefWidth="152.0" />
-      <TextField fx:id="txtSpeciality1LP" alignment="CENTER" layoutX="1444.0" layoutY="619.0" prefHeight="48.75" prefWidth="193.0" />
-      <TextField fx:id="txtNotes1LP" alignment="CENTER" editable="false" layoutX="1634.0" layoutY="619.0" onMouseClicked="#LP1Notes" prefHeight="48.75" prefWidth="70.0">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>      
-      <TextField fx:id="txtExtra1LP" alignment="CENTER" editable="false" layoutX="1701.0" layoutY="619.0" onMouseClicked="#LP1Extra" prefHeight="48.75" prefWidth="76.0" promptText="+">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>      
+      <TextField fx:id="txtTime1LP" alignment="CENTER" layoutX="931.0" layoutY="631.0" prefHeight="48.75" prefWidth="87.0" />
+      <TextField fx:id="txtName1LP" alignment="CENTER" layoutX="1018.0" layoutY="631.0" prefHeight="48.75" prefWidth="216.0" />
+      <TextField fx:id="txtAge1LP" alignment="CENTER" layoutX="1233.0" layoutY="631.0" prefHeight="48.75" prefWidth="70.0" />
+      <TextField fx:id="txtHospital1LP" alignment="CENTER" layoutX="1303.0" layoutY="631.0" prefHeight="48.75" prefWidth="152.0" />
+      <TextField fx:id="txtSpeciality1LP" alignment="CENTER" layoutX="1455.0" layoutY="631.0" prefHeight="49.0" prefWidth="181.0" />
+      <TextField fx:id="txtNotes1LP" alignment="CENTER" editable="false" layoutX="1636.0" layoutY="631.0" onMouseClicked="#LP1Notes" prefHeight="48.75" prefWidth="70.0" />      
+      <TextField fx:id="txtExtra1LP" alignment="CENTER" editable="false" layoutX="1706.0" layoutY="631.0" onMouseClicked="#LP1Extra" prefHeight="49.0" prefWidth="64.0" promptText="+" />      
 
       
       <!--LEOPARDS PM 2 -->
-      <TextField fx:id="txtTwoLP" alignment="CENTER" editable="false" layoutX="888.0" layoutY="665.0" onMouseClicked="#LP2Attendance" prefHeight="48.75" prefWidth="46.0" text="2">
+      <TextField fx:id="txtTwoLP" alignment="CENTER" editable="false" layoutX="885.0" layoutY="678.0" onMouseClicked="#LP2Attendance" prefHeight="48.75" prefWidth="46.0" text="2">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>    
-      <TextField fx:id="txtTime2LP" alignment="CENTER" layoutX="931.0" layoutY="665.0" prefHeight="48.75" prefWidth="87.0" />
-      <TextField fx:id="txtName2LP" alignment="CENTER" layoutX="1015.0" layoutY="665.0" prefHeight="48.75" prefWidth="216.0" />
-      <TextField fx:id="txtAge2LP" alignment="CENTER" layoutX="1228.0" layoutY="665.0" prefHeight="48.75" prefWidth="70.0" />
-      <TextField fx:id="txtHospital2LP" alignment="CENTER" layoutX="1295.0" layoutY="665.0" prefHeight="48.75" prefWidth="152.0" />
-      <TextField fx:id="txtSpeciality2LP" alignment="CENTER" layoutX="1444.0" layoutY="665.0" prefHeight="48.755" prefWidth="193.0" />
-      <TextField fx:id="txtNotes2LP" alignment="CENTER" editable="false" layoutX="1634.0" layoutY="665.0" onMouseClicked="#LP2Notes" prefHeight="48.75" prefWidth="70.0">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>      
-      <TextField fx:id="txtExtra2LP" alignment="CENTER" editable="false" layoutX="1701.0" layoutY="665.0" onMouseClicked="#LP2Extra" prefHeight="48.75" prefWidth="76.0" promptText="+">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>      
+      <TextField fx:id="txtTime2LP" alignment="CENTER" layoutX="931.0" layoutY="679.0" prefHeight="48.75" prefWidth="87.0" />
+      <TextField fx:id="txtName2LP" alignment="CENTER" layoutX="1018.0" layoutY="679.0" prefHeight="48.75" prefWidth="216.0" />
+      <TextField fx:id="txtAge2LP" alignment="CENTER" layoutX="1233.0" layoutY="679.0" prefHeight="48.75" prefWidth="70.0" />
+      <TextField fx:id="txtHospital2LP" alignment="CENTER" layoutX="1303.0" layoutY="679.0" prefHeight="48.75" prefWidth="152.0" />
+      <TextField fx:id="txtSpeciality2LP" alignment="CENTER" layoutX="1455.0" layoutY="679.0" prefHeight="49.0" prefWidth="181.0" />
+      <TextField fx:id="txtNotes2LP" alignment="CENTER" editable="false" layoutX="1636.0" layoutY="679.0" onMouseClicked="#LP2Notes" prefHeight="48.75" prefWidth="70.0" />      
+      <TextField fx:id="txtExtra2LP" alignment="CENTER" editable="false" layoutX="1706.0" layoutY="679.0" onMouseClicked="#LP2Extra" prefHeight="49.0" prefWidth="64.0" promptText="+" />      
 
       
       <!--LEOPARDS PM 3 -->   
-      <TextField fx:id="txtThreeLP" alignment="CENTER" editable="false" layoutX="888.0" layoutY="711.0" onMouseClicked="#LP3Attendance" prefHeight="48.75" prefWidth="46.0" text="3">
+      <TextField fx:id="txtThreeLP" alignment="CENTER" editable="false" layoutX="885.0" layoutY="726.0" onMouseClicked="#LP3Attendance" prefHeight="48.75" prefWidth="46.0" text="3">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField> 
-      <TextField fx:id="txtTime3LP" alignment="CENTER" layoutX="931.0" layoutY="711.0" prefHeight="48.75" prefWidth="87.0" />
-      <TextField fx:id="txtName3LP" alignment="CENTER" layoutX="1015.0" layoutY="711.0" prefHeight="48.75" prefWidth="216.0" />
-      <TextField fx:id="txtAge3LP" alignment="CENTER" layoutX="1228.0" layoutY="711.0" prefHeight="48.75" prefWidth="70.0" />
-      <TextField fx:id="txtHospital3LP" alignment="CENTER" layoutX="1295.0" layoutY="711.0" prefHeight="48.75" prefWidth="152.0" />
-      <TextField fx:id="txtSpeciality3LP" alignment="CENTER" layoutX="1444.0" layoutY="711.0" prefHeight="48.75" prefWidth="193.0" />
-      <TextField fx:id="txtNotes3LP" alignment="CENTER" editable="false" layoutX="1634.0" layoutY="711.0" onMouseClicked="#LP3Notes" prefHeight="48.75" prefWidth="70.0">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>      
-      <TextField fx:id="txtExtra3LP" alignment="CENTER" editable="false" layoutX="1701.0" layoutY="711.0" onMouseClicked="#LP3Extra" prefHeight="48.75" prefWidth="76.0" promptText="+">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>      
+      <TextField fx:id="txtTime3LP" alignment="CENTER" layoutX="931.0" layoutY="727.0" prefHeight="48.75" prefWidth="87.0" />
+      <TextField fx:id="txtName3LP" alignment="CENTER" layoutX="1018.0" layoutY="727.0" prefHeight="48.75" prefWidth="216.0" />
+      <TextField fx:id="txtAge3LP" alignment="CENTER" layoutX="1234.0" layoutY="727.0" prefHeight="48.75" prefWidth="70.0" />
+      <TextField fx:id="txtHospital3LP" alignment="CENTER" layoutX="1304.0" layoutY="727.0" prefHeight="48.75" prefWidth="152.0" />
+      <TextField fx:id="txtSpeciality3LP" alignment="CENTER" layoutX="1456.0" layoutY="727.0" prefHeight="49.0" prefWidth="181.0" />
+      <TextField fx:id="txtNotes3LP" alignment="CENTER" editable="false" layoutX="1637.0" layoutY="727.0" onMouseClicked="#LP3Notes" prefHeight="48.75" prefWidth="70.0" />      
+      <TextField fx:id="txtExtra3LP" alignment="CENTER" editable="false" layoutX="1706.0" layoutY="727.0" onMouseClicked="#LP3Extra" prefHeight="49.0" prefWidth="64.0" promptText="+" />      
        
                      
       <!--LEOPARDS PM 4 -->  
-       <TextField fx:id="txtFourLP" alignment="CENTER" editable="false" layoutX="888.0" layoutY="759.0" onMouseClicked="#LP4Attendance" prefHeight="48.75" prefWidth="46.0" text="4">
+       <TextField fx:id="txtFourLP" alignment="CENTER" editable="false" layoutX="885.0" layoutY="774.0" onMouseClicked="#LP4Attendance" prefHeight="48.75" prefWidth="46.0" text="4">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>     
-      <TextField fx:id="txtTime4LP" alignment="CENTER" layoutX="932.0" layoutY="758.0" prefHeight="48.75" prefWidth="87.0" />
-      <TextField fx:id="txtName4LP" alignment="CENTER" layoutX="1015.0" layoutY="758.0" prefHeight="48.75" prefWidth="216.0" />
-      <TextField fx:id="txtAge4LP" alignment="CENTER" layoutX="1229.0" layoutY="757.0" prefHeight="48.75" prefWidth="70.0" />
-      <TextField fx:id="txtHospital4LP" alignment="CENTER" layoutX="1296.0" layoutY="757.0" prefHeight="48.75" prefWidth="152.0" />
-      <TextField fx:id="txtSpeciality4LP" alignment="CENTER" layoutX="1445.0" layoutY="757.0" prefHeight="48.75" prefWidth="193.0" />
-      <TextField fx:id="txtNotes4LP" alignment="CENTER" editable="false" layoutX="1635.0" layoutY="757.0" onMouseClicked="#LP4Notes" prefHeight="48.75" prefWidth="70.0">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>     
-      <TextField fx:id="txtExtra4LP" alignment="CENTER" editable="false" layoutX="1702.0" layoutY="757.0" onMouseClicked="#LP4Extra" prefHeight="48.75" prefWidth="76.0" promptText="+">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>      
+      <TextField fx:id="txtTime4LP" alignment="CENTER" layoutX="931.0" layoutY="775.0" prefHeight="48.75" prefWidth="87.0" />
+      <TextField fx:id="txtName4LP" alignment="CENTER" layoutX="1018.0" layoutY="775.0" prefHeight="48.75" prefWidth="216.0" />
+      <TextField fx:id="txtAge4LP" alignment="CENTER" layoutX="1234.0" layoutY="775.0" prefHeight="48.75" prefWidth="70.0" />
+      <TextField fx:id="txtHospital4LP" alignment="CENTER" layoutX="1304.0" layoutY="775.0" prefHeight="48.75" prefWidth="152.0" />
+      <TextField fx:id="txtSpeciality4LP" alignment="CENTER" layoutX="1456.0" layoutY="775.0" prefHeight="49.0" prefWidth="181.0" />
+      <TextField fx:id="txtNotes4LP" alignment="CENTER" editable="false" layoutX="1637.0" layoutY="775.0" onMouseClicked="#LP4Notes" prefHeight="48.75" prefWidth="70.0" />     
+      <TextField fx:id="txtExtra4LP" alignment="CENTER" editable="false" layoutX="1707.0" layoutY="775.0" onMouseClicked="#LP4Extra" prefHeight="49.0" prefWidth="64.0" promptText="+" />      
            
                           
       <!--LEOPARDS PM 5 -->  
-      <TextField fx:id="txtFiveLP" alignment="CENTER" editable="false" layoutX="888.0" layoutY="805.0" onMouseClicked="#LP5Attendance" prefHeight="48.75" prefWidth="46.0" text="5">
+      <TextField fx:id="txtFiveLP" alignment="CENTER" editable="false" layoutX="885.0" layoutY="823.0" onMouseClicked="#LP5Attendance" prefHeight="48.75" prefWidth="46.0" text="5">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>         
-      <TextField fx:id="txtTime5LP" alignment="CENTER" layoutX="930.0" layoutY="805.0" prefHeight="48.75" prefWidth="87.0" />
-      <TextField fx:id="txtName5LP" alignment="CENTER" layoutX="1015.0" layoutY="805.0" prefHeight="48.75" prefWidth="216.0" />
-      <TextField fx:id="txtAge5LP" alignment="CENTER" layoutX="1228.0" layoutY="805.0" prefHeight="48.75" prefWidth="70.0" />
-      <TextField fx:id="txtHospital5LP" alignment="CENTER" layoutX="1295.0" layoutY="805.0" prefHeight="48.75" prefWidth="152.0" />
-      <TextField fx:id="txtSpeciality5LP" alignment="CENTER" layoutX="1444.0" layoutY="805.0" prefHeight="48.75" prefWidth="193.0" />
-      <TextField fx:id="txtNotes5LP" alignment="CENTER" editable="false" layoutX="1634.0" layoutY="805.0" onMouseClicked="#LP5Notes" prefHeight="48.75" prefWidth="70.0">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>      
-      <TextField fx:id="txtExtra5LP" alignment="CENTER" editable="false" layoutX="1701.0" layoutY="805.0" onMouseClicked="#LP5Extra" prefHeight="48.75" prefWidth="76.0" promptText="+">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>     
+      <TextField fx:id="txtTime5LP" alignment="CENTER" layoutX="931.0" layoutY="823.0" prefHeight="48.75" prefWidth="87.0" />
+      <TextField fx:id="txtName5LP" alignment="CENTER" layoutX="1018.0" layoutY="823.0" prefHeight="48.75" prefWidth="216.0" />
+      <TextField fx:id="txtAge5LP" alignment="CENTER" layoutX="1233.0" layoutY="823.0" prefHeight="48.75" prefWidth="70.0" />
+      <TextField fx:id="txtHospital5LP" alignment="CENTER" layoutX="1303.0" layoutY="823.0" prefHeight="48.75" prefWidth="152.0" />
+      <TextField fx:id="txtSpeciality5LP" alignment="CENTER" layoutX="1455.0" layoutY="823.0" prefHeight="49.0" prefWidth="181.0" />
+      <TextField fx:id="txtNotes5LP" alignment="CENTER" editable="false" layoutX="1636.0" layoutY="823.0" onMouseClicked="#LP5Notes" prefHeight="48.75" prefWidth="70.0" />      
+      <TextField fx:id="txtExtra5LP" alignment="CENTER" editable="false" layoutX="1706.0" layoutY="823.0" onMouseClicked="#LP5Extra" prefHeight="49.0" prefWidth="64.0" promptText="+" />     
     
                       
       <!--LEOPARDS PM 6 -->  
-      <TextField fx:id="txtSixLP" alignment="CENTER" editable="false" layoutX="888.0" layoutY="851.0" onMouseClicked="#LP6Attendance" prefHeight="48.75" prefWidth="46.0" text="6">
+      <TextField fx:id="txtSixLP" alignment="CENTER" editable="false" layoutX="885.0" layoutY="870.0" onMouseClicked="#LP6Attendance" prefHeight="48.75" prefWidth="46.0" text="6">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>               
-      <TextField fx:id="txtTime6LP" alignment="CENTER" layoutX="931.0" layoutY="851.0" prefHeight="48.75" prefWidth="87.0" />
-      <TextField fx:id="txtName6LP" alignment="CENTER" layoutX="1015.0" layoutY="851.0" prefHeight="48.75" prefWidth="216.0" />     
-      <TextField fx:id="txtAge6LP" alignment="CENTER" layoutX="1228.0" layoutY="851.0" prefHeight="48.75" prefWidth="70.0" />     
-      <TextField fx:id="txtHospital6LP" alignment="CENTER" layoutX="1295.0" layoutY="851.0" prefHeight="48.75" prefWidth="152.0" />      
-      <TextField fx:id="txtSpeciality6LP" alignment="CENTER" layoutX="1444.0" layoutY="851.0" prefHeight="48.75" prefWidth="193.0" />    
-      <TextField fx:id="txtNotes6LP" alignment="CENTER" editable="false" layoutX="1634.0" layoutY="851.0" onMouseClicked="#LP6Notes" prefHeight="48.75" prefWidth="70.0">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>      
-      <TextField fx:id="txtExtra6LP" alignment="CENTER" editable="false" layoutX="1701.0" layoutY="851.0" onMouseClicked="#LP6Extra" prefHeight="48.75" prefWidth="76.0" promptText="+">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>     
+      <TextField fx:id="txtTime6LP" alignment="CENTER" layoutX="931.0" layoutY="870.0" prefHeight="48.75" prefWidth="87.0" />
+      <TextField fx:id="txtName6LP" alignment="CENTER" layoutX="1018.0" layoutY="870.0" prefHeight="48.75" prefWidth="216.0" />     
+      <TextField fx:id="txtAge6LP" alignment="CENTER" layoutX="1233.0" layoutY="870.0" prefHeight="48.75" prefWidth="70.0" />     
+      <TextField fx:id="txtHospital6LP" alignment="CENTER" layoutX="1303.0" layoutY="870.0" prefHeight="48.75" prefWidth="152.0" />      
+      <TextField fx:id="txtSpeciality6LP" alignment="CENTER" layoutX="1455.0" layoutY="870.0" prefHeight="49.0" prefWidth="181.0" />    
+      <TextField fx:id="txtNotes6LP" alignment="CENTER" editable="false" layoutX="1636.0" layoutY="870.0" onMouseClicked="#LP6Notes" prefHeight="48.75" prefWidth="70.0" />      
+      <TextField fx:id="txtExtra6LP" alignment="CENTER" editable="false" layoutX="1706.0" layoutY="870.0" onMouseClicked="#LP6Extra" prefHeight="49.0" prefWidth="64.0" promptText="+" />     
   
                       
       <!--LEOPARDS PM Extra -->        
-    <TextField fx:id="txtSpareLP" alignment="CENTER" editable="false" layoutX="889.0" layoutY="900.0" onMouseClicked="#LPEAttendance" prefHeight="48.75" prefWidth="46.0">
+    <TextField fx:id="txtSpareLP" alignment="CENTER" editable="false" layoutX="885.0" layoutY="918.0" onMouseClicked="#LPEAttendance" prefHeight="48.75" prefWidth="46.0">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>        
-      <TextField fx:id="txtTimeELP" alignment="CENTER" layoutX="932.0" layoutY="898.0" prefHeight="48.75" prefWidth="87.0" />        
-      <TextField fx:id="txtNameELP" alignment="CENTER" layoutX="1016.0" layoutY="898.0" prefHeight="48.75" prefWidth="216.0" />      
-      <TextField fx:id="txtAgeELP" alignment="CENTER" layoutX="1229.0" layoutY="898.0" prefHeight="48.75" prefWidth="70.0" />       
-      <TextField fx:id="txtHospitalELP" alignment="CENTER" layoutX="1296.0" layoutY="898.0" prefHeight="48.75" prefWidth="152.0" />     
-      <TextField fx:id="txtSpecialityELP" alignment="CENTER" layoutX="1445.0" layoutY="898.0" prefHeight="48.75" prefWidth="193.0" />   
-      <TextField fx:id="txtNotesELP" alignment="CENTER" editable="false" layoutX="1635.0" layoutY="898.0" onMouseClicked="#LPENotes" prefHeight="48.75" prefWidth="70.0">
-         <font>
-            <Font size="25.0" />
-         </font></TextField> 
-      <TextField fx:id="txtExtraELP" alignment="CENTER" editable="false" layoutX="1702.0" layoutY="898.0" onMouseClicked="#LPEExtra" prefHeight="48.75" prefWidth="76.0" promptText="+">
-         <font>
-            <Font size="25.0" />
-         </font></TextField>
+      <TextField fx:id="txtTimeELP" alignment="CENTER" layoutX="931.0" layoutY="918.0" prefHeight="48.75" prefWidth="87.0" />        
+      <TextField fx:id="txtNameELP" alignment="CENTER" layoutX="1018.0" layoutY="918.0" prefHeight="48.75" prefWidth="216.0" />      
+      <TextField fx:id="txtAgeELP" alignment="CENTER" layoutX="1234.0" layoutY="918.0" prefHeight="48.75" prefWidth="70.0" />       
+      <TextField fx:id="txtHospitalELP" alignment="CENTER" layoutX="1304.0" layoutY="918.0" prefHeight="48.75" prefWidth="152.0" />     
+      <TextField fx:id="txtSpecialityELP" alignment="CENTER" layoutX="1456.0" layoutY="918.0" prefHeight="49.0" prefWidth="181.0" />   
+      <TextField fx:id="txtNotesELP" alignment="CENTER" editable="false" layoutX="1637.0" layoutY="918.0" onMouseClicked="#LPENotes" prefHeight="48.75" prefWidth="70.0" /> 
+      <TextField fx:id="txtExtraELP" alignment="CENTER" editable="false" layoutX="1707.0" layoutY="918.0" onMouseClicked="#LPEExtra" prefHeight="49.0" prefWidth="64.0" promptText="+" />
          
          
       <ChoiceBox fx:id="cbStaff1" layoutY="-1.0" prefHeight="49.0" prefWidth="373.0" />
@@ -732,17 +588,18 @@
       <ChoiceBox fx:id="cbStaff2" layoutY="48.0" prefHeight="49.0" prefWidth="373.0" />
       <ChoiceBox fx:id="cbShift3" layoutX="372.0" layoutY="97.0" prefHeight="49.0" prefWidth="70.0" />
       <ChoiceBox fx:id="cbStaff3" layoutY="97.0" prefHeight="49.0" prefWidth="373.0" />
-      <ChoiceBox fx:id="cbStaff6" layoutX="444.0" layoutY="97.0" prefHeight="49.0" prefWidth="373.0" />
-      <ChoiceBox fx:id="cbShift6" layoutX="816.0" layoutY="97.0" prefHeight="49.0" prefWidth="70.0" />
-      <ChoiceBox fx:id="cbStaff5" layoutX="444.0" layoutY="48.0" prefHeight="49.0" prefWidth="373.0" />
-      <ChoiceBox fx:id="cbShift5" layoutX="816.0" layoutY="48.0" prefHeight="49.0" prefWidth="70.0" />
-      <ChoiceBox fx:id="cbShift4" layoutX="816.0" layoutY="-1.0" prefHeight="49.0" prefWidth="70.0" />
-      <ChoiceBox fx:id="cbStaff4" layoutX="444.0" layoutY="-1.0" prefHeight="49.0" prefWidth="373.0" />
+      <ChoiceBox fx:id="cbStaff6" layoutX="442.0" layoutY="97.0" prefHeight="49.0" prefWidth="373.0" />
+      <ChoiceBox fx:id="cbShift6" layoutX="814.0" layoutY="97.0" prefHeight="49.0" prefWidth="70.0" />
+      <ChoiceBox fx:id="cbStaff5" layoutX="442.0" layoutY="48.0" prefHeight="49.0" prefWidth="373.0" />
+      <ChoiceBox fx:id="cbShift5" layoutX="814.0" layoutY="48.0" prefHeight="49.0" prefWidth="70.0" />
+      <ChoiceBox fx:id="cbShift4" layoutX="814.0" layoutY="-1.0" prefHeight="49.0" prefWidth="70.0" />
+      <ChoiceBox fx:id="cbStaff4" layoutX="442.0" layoutY="-1.0" prefHeight="49.0" prefWidth="373.0" />
       
       
    </children>
 
-   <fx:define>
+   
+<fx:define>
        <ArrayList fx:id="attendanceList">
            <fx:reference source="txtOneMA"/>
            <fx:reference source="txtTwoMA"/>
