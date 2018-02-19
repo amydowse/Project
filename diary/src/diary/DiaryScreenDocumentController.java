@@ -1041,7 +1041,7 @@ public class DiaryScreenDocumentController  implements Initializable
     
     
     
-     public void delete()
+    public void delete()
     {
         for(int i=0; i<24; i++)
         {

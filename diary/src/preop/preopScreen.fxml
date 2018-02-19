@@ -21,7 +21,8 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtTimeAM" alignment="CENTER" editable="false" layoutX="45.0" layoutY="164.0" prefHeight="47.7" prefWidth="186.0" text="Time">
+      <TextField fx:id="txtAttendanceAM" layoutX="45.0" layoutY="164.0" prefHeight="48.0" prefWidth="45.0" />
+      <TextField fx:id="txtTimeAM" alignment="CENTER" editable="false" layoutX="90.0" layoutY="164.0" prefHeight="48.0" prefWidth="141.0" text="Time">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -46,12 +47,12 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtInformationAM" alignment="CENTER" editable="false" layoutX="1184.0" layoutY="164.0" prefHeight="48.0" prefWidth="334.0" text="Extra Information">
+      <TextField fx:id="txtInformationAM" alignment="CENTER" editable="false" layoutX="1184.0" layoutY="164.0" prefHeight="48.0" prefWidth="442.0" text="Extra Information">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtNotesAM" alignment="CENTER" editable="false" layoutX="1518.0" layoutY="164.0" prefHeight="48.0" prefWidth="207.0" text="Notes">
+      <TextField fx:id="txtNotesAM" alignment="CENTER" editable="false" layoutX="1626.0" layoutY="164.0" prefHeight="48.0" prefWidth="100.0" text="Notes">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -61,56 +62,60 @@
       
       
      <!-- AM ROW 1 --> 
-      <TextField fx:id="txtTimeA1" alignment="CENTER" editable="false" layoutX="45.0" layoutY="212.0" onMouseClicked="#A1Attendance" prefHeight="47.7" prefWidth="186.0" text="08:00">
+      <TextField fx:id="txtAttendanceA1" alignment="CENTER" layoutX="45.0" layoutY="212.0" onMouseClicked="#A1Attendance" prefHeight="48.0" prefWidth="45.0" />
+      <TextField fx:id="txtTimeA1" alignment="CENTER" editable="false" layoutX="90.0" layoutY="212.0" prefHeight="47.7" prefWidth="141.0" text="08:00">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>      
-      <TextField fx:id="txtNameA1" layoutX="231.0" layoutY="212.0" prefHeight="48.0" prefWidth="341.0" />    
-      <TextField fx:id="txtAgeA1" layoutX="572.0" layoutY="212.0" prefHeight="48.0" prefWidth="204.0" />
-      <TextField fx:id="txtHospitalA1" layoutX="776.0" layoutY="212.0" prefHeight="48.0" prefWidth="204.0" />      
-      <TextField fx:id="txtSpecialityA1" layoutX="980.0" layoutY="212.0" prefHeight="48.0" prefWidth="204.0" />      
-      <TextField fx:id="txtInformationA1" layoutX="1184.0" layoutY="212.0" onMouseClicked="#A1Extra" prefHeight="48.0" prefWidth="334.0" />
-      <TextField fx:id="txtNotesA1" layoutX="1518.0" layoutY="212.0" onMouseClicked="#A1Notes" prefHeight="48.0" prefWidth="207.0" />
+      <TextField fx:id="txtNameA1" alignment="CENTER" layoutX="231.0" layoutY="212.0" prefHeight="48.0" prefWidth="341.0" />    
+      <TextField fx:id="txtAgeA1" alignment="CENTER" layoutX="572.0" layoutY="212.0" prefHeight="48.0" prefWidth="204.0" />
+      <TextField fx:id="txtHospitalA1" alignment="CENTER" layoutX="776.0" layoutY="212.0" prefHeight="48.0" prefWidth="204.0" />      
+      <TextField fx:id="txtSpecialityA1" alignment="CENTER" layoutX="980.0" layoutY="212.0" prefHeight="48.0" prefWidth="204.0" />
+      <TextArea fx:id="txtInformationA1" layoutX="1184.0" layoutY="212.0" prefHeight="48.0" prefWidth="442.0" />
+      <TextField fx:id="txtNotesA1" alignment="CENTER" layoutX="1626.0" layoutY="212.0" onMouseClicked="#A1Notes" prefHeight="48.0" prefWidth="100.0" />
 
-    <!-- AM ROW 2 --> 
-      <TextField fx:id="txtTimeA2" alignment="CENTER" editable="false" layoutX="45.0" layoutY="260.0" onMouseClicked="#A2Attendance" prefHeight="47.7" prefWidth="186.0" text="08:30">
+    <!-- AM ROW 2 -->
+      <TextField fx:id="txtAttendanceA2" alignment="CENTER" layoutX="45.0" layoutY="260.0" onMouseClicked="#A2Attendance" prefHeight="48.0" prefWidth="45.0" />
+      <TextField fx:id="txtTimeA2" alignment="CENTER" editable="false" layoutX="90.0" layoutY="260.0" prefHeight="47.7" prefWidth="141.0" text="08:30">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtNameA2" layoutX="231.0" layoutY="260.0" prefHeight="48.0" prefWidth="341.0" />
-      <TextField fx:id="txtAgeA2" layoutX="572.0" layoutY="260.0" prefHeight="48.0" prefWidth="204.0" />
-      <TextField fx:id="txtHospitalA2" layoutX="776.0" layoutY="260.0" prefHeight="48.0" prefWidth="204.0" />
-      <TextField fx:id="txtSpecialityA2" layoutX="980.0" layoutY="260.0" prefHeight="48.0" prefWidth="204.0" />
-      <TextField fx:id="txtInformationA2" layoutX="1184.0" layoutY="260.0" onMouseClicked="#A2Extra" prefHeight="48.0" prefWidth="334.0" />
-      <TextField fx:id="txtNotesA2" layoutX="1518.0" layoutY="260.0" onMouseClicked="#A2Notes" prefHeight="48.0" prefWidth="207.0" />
+      <TextField fx:id="txtNameA2" alignment="CENTER" layoutX="231.0" layoutY="260.0" prefHeight="48.0" prefWidth="341.0" />
+      <TextField fx:id="txtAgeA2" alignment="CENTER" layoutX="572.0" layoutY="260.0" prefHeight="48.0" prefWidth="204.0" />
+      <TextField fx:id="txtHospitalA2" alignment="CENTER" layoutX="776.0" layoutY="260.0" prefHeight="48.0" prefWidth="204.0" />
+      <TextField fx:id="txtSpecialityA2" alignment="CENTER" layoutX="980.0" layoutY="260.0" prefHeight="48.0" prefWidth="204.0" />
+      <TextArea fx:id="txtInformationA2" layoutX="1184.0" layoutY="260.0" prefHeight="48.0" prefWidth="442.0" />
+      <TextField fx:id="txtNotesA2" alignment="CENTER" layoutX="1626.0" layoutY="260.0" onMouseClicked="#A2Notes" prefHeight="48.0" prefWidth="100.0" />
       
     <!-- AM ROW 3 -->
-      <TextField fx:id="txtTimeA3" alignment="CENTER" editable="false" layoutX="45.0" layoutY="308.0" onMouseClicked="#A3Attendance" prefHeight="47.7" prefWidth="186.0" text="09:00">
+      <TextField fx:id="txtAttendanceA3" alignment="CENTER" layoutX="45.0" layoutY="308.0" onMouseClicked="#A3Attendance" prefHeight="48.0" prefWidth="45.0" />
+      <TextField fx:id="txtTimeA3" alignment="CENTER" editable="false" layoutX="90.0" layoutY="308.0" prefHeight="47.7" prefWidth="141.0" text="09:00">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>    
-      <TextField fx:id="txtNameA3" layoutX="231.0" layoutY="308.0" prefHeight="48.0" prefWidth="341.0" />
-      <TextField fx:id="txtAgeA3" layoutX="572.0" layoutY="308.0" prefHeight="48.0" prefWidth="204.0" />
-      <TextField fx:id="txtHospitalA3" layoutX="776.0" layoutY="308.0" prefHeight="48.0" prefWidth="204.0" />
-      <TextField fx:id="txtSpecialityA3" layoutX="980.0" layoutY="308.0" prefHeight="48.0" prefWidth="204.0" />
-      <TextField fx:id="txtInformationA3" layoutX="1184.0" layoutY="308.0" onMouseClicked="#A3Extra" prefHeight="48.0" prefWidth="334.0" />      
-      <TextField fx:id="txtNotesA3" layoutX="1518.0" layoutY="308.0" onMouseClicked="#A3Notes" prefHeight="48.0" prefWidth="207.0" />
+      <TextField fx:id="txtNameA3" alignment="CENTER" layoutX="231.0" layoutY="308.0" prefHeight="48.0" prefWidth="341.0" />
+      <TextField fx:id="txtAgeA3" alignment="CENTER" layoutX="572.0" layoutY="308.0" prefHeight="48.0" prefWidth="204.0" />
+      <TextField fx:id="txtHospitalA3" alignment="CENTER" layoutX="776.0" layoutY="308.0" prefHeight="48.0" prefWidth="204.0" />
+      <TextField fx:id="txtSpecialityA3" alignment="CENTER" layoutX="980.0" layoutY="308.0" prefHeight="48.0" prefWidth="204.0" />      
+      <TextArea fx:id="txtInformationA3" layoutX="1184.0" layoutY="308.0" prefHeight="48.0" prefWidth="442.0" />
+      <TextField fx:id="txtNotesA3" alignment="CENTER" layoutX="1626.0" layoutY="308.0" onMouseClicked="#A3Notes" prefHeight="48.0" prefWidth="100.0" />
 
     <!-- AM ROW 4 -->  
-      <TextField fx:id="txtTimeA4" alignment="CENTER" editable="false" layoutX="45.0" layoutY="356.0" onMouseClicked="#A4Attendance" prefHeight="47.7" prefWidth="186.0" text="09:30">
+      <TextField fx:id="txtAttendanceA4" alignment="CENTER" layoutX="45.0" layoutY="356.0" onMouseClicked="#A4Attendance" prefHeight="48.0" prefWidth="45.0" /> 
+      <TextField fx:id="txtTimeA4" alignment="CENTER" editable="false" layoutX="90.0" layoutY="356.0" prefHeight="47.7" prefWidth="141.0" text="09:30">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtNameA4" layoutX="231.0" layoutY="356.0" prefHeight="48.0" prefWidth="341.0" />
-      <TextField fx:id="txtAgeA4" layoutX="572.0" layoutY="356.0" prefHeight="48.0" prefWidth="204.0" />
-      <TextField fx:id="txtHospitalA4" layoutX="776.0" layoutY="356.0" prefHeight="48.0" prefWidth="204.0" />
-      <TextField fx:id="txtSpecialityA4" layoutX="980.0" layoutY="356.0" prefHeight="48.0" prefWidth="204.0" />
-      <TextField fx:id="txtInformationA4" layoutX="1184.0" layoutY="356.0" onMouseClicked="#A4Extra" prefHeight="48.0" prefWidth="334.0" />
-      <TextField fx:id="txtNotesA4" layoutX="1518.0" layoutY="356.0" onMouseClicked="#A4Notes" prefHeight="48.0" prefWidth="207.0" />
+      <TextField fx:id="txtNameA4" alignment="CENTER" layoutX="231.0" layoutY="356.0" prefHeight="48.0" prefWidth="341.0" />
+      <TextField fx:id="txtAgeA4" alignment="CENTER" layoutX="572.0" layoutY="356.0" prefHeight="48.0" prefWidth="204.0" />
+      <TextField fx:id="txtHospitalA4" alignment="CENTER" layoutX="776.0" layoutY="356.0" prefHeight="48.0" prefWidth="204.0" />
+      <TextField fx:id="txtSpecialityA4" alignment="CENTER" layoutX="980.0" layoutY="356.0" prefHeight="48.0" prefWidth="204.0" />
+      <TextArea fx:id="txtInformationA4" layoutX="1184.0" layoutY="356.0" prefHeight="48.0" prefWidth="442.0" />
+      <TextField fx:id="txtNotesA4" alignment="CENTER" layoutX="1626.0" layoutY="356.0" onMouseClicked="#A4Notes" prefHeight="48.0" prefWidth="100.0" />
 
       
       
@@ -125,12 +130,13 @@
       
       
       <!-- PM HEADINGS -->
+      <TextField fx:id="txtAttendancePM" layoutX="45.0" layoutY="452.0" prefHeight="48.0" prefWidth="45.0" />
       <TextField fx:id="txtPM" editable="false" layoutX="45.0" layoutY="404.0" prefHeight="47.7" prefWidth="1680.0" text="PM">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </TextField>     
-      <TextField fx:id="txtTimePM" alignment="CENTER" editable="false" layoutX="45.0" layoutY="452.0" prefHeight="47.7" prefWidth="186.0" text="Time">
+      <TextField fx:id="txtTimePM" alignment="CENTER" editable="false" layoutX="90.0" layoutY="452.0" prefHeight="47.7" prefWidth="141.0" text="Time">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -155,12 +161,12 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </TextField>      
-      <TextField fx:id="txtInformationPM" alignment="CENTER" editable="false" layoutX="1184.0" layoutY="452.0" prefHeight="48.0" prefWidth="334.0" text="Extra Information">
+      <TextField fx:id="txtInformationPM" alignment="CENTER" editable="false" layoutX="1184.0" layoutY="452.0" prefHeight="48.0" prefWidth="442.0" text="Extra Information">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtNotesPM" alignment="CENTER" editable="false" layoutX="1518.0" layoutY="452.0" prefHeight="48.0" prefWidth="207.0" text="Notes">
+      <TextField fx:id="txtNotesPM" alignment="CENTER" editable="false" layoutX="1626.0" layoutY="452.0" prefHeight="48.0" prefWidth="100.0" text="Notes">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -169,57 +175,61 @@
       
       
     <!-- PM ROW 1 -->
-      <TextField fx:id="txtTimeP1" alignment="CENTER" editable="false" layoutX="45.0" layoutY="500.0" onMouseClicked="#P1Attendance" prefHeight="47.7" prefWidth="186.0" text="14:00">
+      <TextField fx:id="txtAttendanceP1" layoutX="45.0" layoutY="500.0" onMouseClicked="#P1Attendance" prefHeight="48.0" prefWidth="45.0" />
+      <TextField fx:id="txtTimeP1" alignment="CENTER" editable="false" layoutX="90.0" layoutY="500.0" prefHeight="47.7" prefWidth="141.0" text="14:00">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtNameP1" layoutX="231.0" layoutY="500.0" prefHeight="48.0" prefWidth="341.0" />
-      <TextField fx:id="txtAgeP1" layoutX="572.0" layoutY="500.0" prefHeight="48.0" prefWidth="204.0" />
-      <TextField fx:id="txtHospitalP1" layoutX="776.0" layoutY="500.0" prefHeight="48.0" prefWidth="204.0" />
-      <TextField fx:id="txtSpecialityP1" layoutX="980.0" layoutY="500.0" prefHeight="48.0" prefWidth="204.0" />
-      <TextField fx:id="txtInformationP1" layoutX="1184.0" layoutY="500.0" onMouseClicked="#P1Extra" prefHeight="48.0" prefWidth="334.0" />
-      <TextField fx:id="txtNotesP1" layoutX="1518.0" layoutY="500.0" onMouseClicked="#P1Notes" prefHeight="48.0" prefWidth="207.0" />      
+      <TextField fx:id="txtNameP1" alignment="CENTER" layoutX="231.0" layoutY="500.0" prefHeight="48.0" prefWidth="341.0" />
+      <TextField fx:id="txtAgeP1" alignment="CENTER" layoutX="572.0" layoutY="500.0" prefHeight="48.0" prefWidth="204.0" />
+      <TextField fx:id="txtHospitalP1" alignment="CENTER" layoutX="776.0" layoutY="500.0" prefHeight="48.0" prefWidth="204.0" />
+      <TextField fx:id="txtSpecialityP1" alignment="CENTER" layoutX="980.0" layoutY="500.0" prefHeight="48.0" prefWidth="204.0" />
+      <TextArea fx:id="txtInformationP1" layoutX="1184.0" layoutY="500.0" prefHeight="48.0" prefWidth="442.0" />
+      <TextField fx:id="txtNotesP1" alignment="CENTER" layoutX="1626.0" layoutY="500.0" onMouseClicked="#P1Notes" prefHeight="48.0" prefWidth="100.0" />      
       
     <!-- PM ROW 2 -->
-      <TextField fx:id="txtTimeP2" alignment="CENTER" editable="false" layoutX="45.0" layoutY="548.0" onMouseClicked="#P2Attendance" prefHeight="47.7" prefWidth="186.0" text="14:30">
+      <TextField fx:id="txtAttendanceP2" layoutX="45.0" layoutY="548.0" onMouseClicked="#P2Attendance" prefHeight="48.0" prefWidth="45.0" />
+      <TextField fx:id="txtTimeP2" alignment="CENTER" editable="false" layoutX="90.0" layoutY="548.0" prefHeight="47.7" prefWidth="141.0" text="14:30">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField> 
-      <TextField fx:id="txtNameP2" layoutX="231.0" layoutY="548.0" prefHeight="48.0" prefWidth="341.0" /> 
-      <TextField fx:id="txtAgeP2" layoutX="572.0" layoutY="548.0" prefHeight="48.0" prefWidth="204.0" /> 
-      <TextField fx:id="txtHospitalP2" layoutX="776.0" layoutY="548.0" prefHeight="48.0" prefWidth="204.0" /> 
-      <TextField fx:id="txtSpecialityP2" layoutX="980.0" layoutY="548.0" prefHeight="48.0" prefWidth="204.0" /> 
-      <TextField fx:id="txtInformationP2" layoutX="1184.0" layoutY="548.0" onMouseClicked="#P2Extra" prefHeight="48.0" prefWidth="334.0" />
-      <TextField fx:id="txtNotesP2" layoutX="1518.0" layoutY="548.0" onMouseClicked="#P2Notes" prefHeight="48.0" prefWidth="207.0" />
+      <TextField fx:id="txtNameP2" alignment="CENTER" layoutX="231.0" layoutY="548.0" prefHeight="48.0" prefWidth="341.0" /> 
+      <TextField fx:id="txtAgeP2" alignment="CENTER" layoutX="572.0" layoutY="548.0" prefHeight="48.0" prefWidth="204.0" /> 
+      <TextField fx:id="txtHospitalP2" alignment="CENTER" layoutX="776.0" layoutY="548.0" prefHeight="48.0" prefWidth="204.0" /> 
+      <TextField fx:id="txtSpecialityP2" alignment="CENTER" layoutX="980.0" layoutY="548.0" prefHeight="48.0" prefWidth="204.0" />
+      <TextArea fx:id="txtInformationP2" layoutX="1184.0" layoutY="548.0" prefHeight="48.0" prefWidth="442.0" />
+      <TextField fx:id="txtNotesP2" alignment="CENTER" layoutX="1626.0" layoutY="548.0" onMouseClicked="#P2Notes" prefHeight="48.0" prefWidth="100.0" />
       
       
 <!-- PM ROW 3 -->  
-      <TextField fx:id="txtTimeP3" alignment="CENTER" editable="false" layoutX="45.0" layoutY="596.0" onMouseClicked="#P3Attendance" prefHeight="47.7" prefWidth="186.0" text="15:00">
+      <TextField fx:id="txtAttendanceP3" layoutX="45.0" layoutY="596.0" onMouseClicked="#P3Attendance" prefHeight="48.0" prefWidth="45.0" />
+      <TextField fx:id="txtTimeP3" alignment="CENTER" editable="false" layoutX="90.0" layoutY="596.0" prefHeight="47.7" prefWidth="141.0" text="15:00">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>    
-      <TextField fx:id="txtNameP3" layoutX="231.0" layoutY="596.0" prefHeight="48.0" prefWidth="341.0" />    
-      <TextField fx:id="txtAgeP3" layoutX="572.0" layoutY="596.0" prefHeight="48.0" prefWidth="204.0" />    
-      <TextField fx:id="txtHospitalP3" layoutX="776.0" layoutY="596.0" prefHeight="48.0" prefWidth="204.0" />    
-      <TextField fx:id="txtSpecialityP3" layoutX="980.0" layoutY="596.0" prefHeight="48.0" prefWidth="204.0" />    
-      <TextField fx:id="txtInformationP3" layoutX="1184.0" layoutY="596.0" onMouseClicked="#P3Extra" prefHeight="48.0" prefWidth="334.0" />
-      <TextField fx:id="txtNotesP3" layoutX="1518.0" layoutY="596.0" onMouseClicked="#P3Notes" prefHeight="48.0" prefWidth="207.0" />      
+      <TextField fx:id="txtNameP3" alignment="CENTER" layoutX="231.0" layoutY="596.0" prefHeight="48.0" prefWidth="341.0" />    
+      <TextField fx:id="txtAgeP3" alignment="CENTER" layoutX="572.0" layoutY="596.0" prefHeight="48.0" prefWidth="204.0" />    
+      <TextField fx:id="txtHospitalP3" alignment="CENTER" layoutX="776.0" layoutY="596.0" prefHeight="48.0" prefWidth="204.0" />    
+      <TextField fx:id="txtSpecialityP3" alignment="CENTER" layoutX="980.0" layoutY="596.0" prefHeight="48.0" prefWidth="204.0" />
+      <TextArea fx:id="txtInformationP3" layoutX="1184.0" layoutY="596.0" prefHeight="48.0" prefWidth="442.0" />
+      <TextField fx:id="txtNotesP3" alignment="CENTER" layoutX="1626.0" layoutY="596.0" onMouseClicked="#P3Notes" prefHeight="48.0" prefWidth="100.0" />      
       
     <!-- PM ROW 4 -->
-      <TextField fx:id="txtTimeP4" alignment="CENTER" editable="false" layoutX="45.0" layoutY="644.0" onMouseClicked="#P4Attendance" prefHeight="47.7" prefWidth="186.0" text="15:30">
+      <TextField fx:id="txtAttendanceP4" layoutX="45.0" layoutY="644.0" onMouseClicked="#P4Attendance" prefHeight="48.0" prefWidth="45.0" />
+      <TextField fx:id="txtTimeP4" alignment="CENTER" editable="false" layoutX="90.0" layoutY="644.0" prefHeight="47.7" prefWidth="141.0" text="15:30">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>    
-      <TextField fx:id="txtNameP4" layoutX="231.0" layoutY="644.0" prefHeight="48.0" prefWidth="341.0" />    
-      <TextField fx:id="txtAgeP4" layoutX="572.0" layoutY="644.0" prefHeight="48.0" prefWidth="204.0" /> 
-      <TextField fx:id="txtHospitalP4" layoutX="776.0" layoutY="644.0" prefHeight="48.0" prefWidth="204.0" />      
-      <TextField fx:id="txtSpecialityP4" layoutX="980.0" layoutY="644.0" prefHeight="48.0" prefWidth="204.0" />         
-      <TextField fx:id="txtInformationP4" layoutX="1184.0" layoutY="644.0" onMouseClicked="#P4Extra" prefHeight="48.0" prefWidth="334.0" />
-      <TextField fx:id="txtNotesP4" layoutX="1518.0" layoutY="644.0" onMouseClicked="#P4Notes" prefHeight="48.0" prefWidth="207.0" />
+      <TextField fx:id="txtNameP4" alignment="CENTER" layoutX="231.0" layoutY="644.0" prefHeight="48.0" prefWidth="341.0" />    
+      <TextField fx:id="txtAgeP4" alignment="CENTER" layoutX="572.0" layoutY="644.0" prefHeight="48.0" prefWidth="204.0" /> 
+      <TextField fx:id="txtHospitalP4" alignment="CENTER" layoutX="776.0" layoutY="644.0" prefHeight="48.0" prefWidth="204.0" />      
+      <TextField fx:id="txtSpecialityP4" alignment="CENTER" layoutX="980.0" layoutY="644.0" prefHeight="48.0" prefWidth="204.0" />
+      <TextArea fx:id="txtInformationP4" layoutX="1184.0" layoutY="644.0" prefHeight="48.0" prefWidth="442.0" />
+      <TextField fx:id="txtNotesP4" alignment="CENTER" layoutX="1626.0" layoutY="644.0" onMouseClicked="#P4Notes" prefHeight="48.0" prefWidth="100.0" />
 
 
 
@@ -230,12 +240,13 @@
       
 
  <!-- UNSCHEDULED HEADINGS -->  
+      <TextField fx:id="txtAttendanceU" layoutX="45.0" layoutY="740.0" prefHeight="48.0" prefWidth="45.0" />
       <TextField fx:id="txtUnscheduled" editable="false" layoutX="46.0" layoutY="692.0" prefHeight="47.7" prefWidth="1680.0" text="UNSHCEDULED">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </TextField>      
-      <TextField fx:id="txtTimeU" alignment="CENTER" editable="false" layoutX="45.0" layoutY="740.0" prefHeight="47.7" prefWidth="186.0" text="Time">
+      <TextField fx:id="txtTimeU" alignment="CENTER" editable="false" layoutX="90.0" layoutY="740.0" prefHeight="47.7" prefWidth="141.0" text="Time">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -260,12 +271,12 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </TextField>                  
-      <TextField fx:id="txtInformationU" alignment="CENTER" editable="false" layoutX="1184.0" layoutY="740.0" prefHeight="48.0" prefWidth="334.0" text="Extra Information">
+      <TextField fx:id="txtInformationU" alignment="CENTER" editable="false" layoutX="1184.0" layoutY="740.0" prefHeight="48.0" prefWidth="442.0" text="Extra Information">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtNotesU" alignment="CENTER" editable="false" layoutX="1518.0" layoutY="740.0" prefHeight="48.0" prefWidth="207.0" text="Notes">
+      <TextField fx:id="txtNotesU" alignment="CENTER" editable="false" layoutX="1626.0" layoutY="740.0" prefHeight="48.0" prefWidth="100.0" text="Notes">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -274,49 +285,67 @@
    
    
     <!-- UNSHEDULED 1 -->
-      <TextField fx:id="txtTimeU1" alignment="CENTER" layoutX="45.0" layoutY="788.0" onMouseClicked="#U1Attendance" prefHeight="47.7" prefWidth="186.0">
+      <TextField fx:id="txtAttendanceU1" layoutX="45.0" layoutY="788.0" onMouseClicked="#U1Attendance" prefHeight="48.0" prefWidth="45.0" />
+      <TextField fx:id="txtTimeU1" alignment="CENTER" layoutX="90.0" layoutY="788.0" prefHeight="47.7" prefWidth="141.0" promptText="00:00">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtNameU1" layoutX="231.0" layoutY="788.0" prefHeight="48.0" prefWidth="341.0" />
-      <TextField fx:id="txtAgeU1" layoutX="572.0" layoutY="788.0" prefHeight="48.0" prefWidth="204.0" />
-      <TextField fx:id="txtHospitalU1" layoutX="776.0" layoutY="788.0" prefHeight="48.0" prefWidth="204.0" />
-      <TextField fx:id="txtSpecialityU1" layoutX="980.0" layoutY="788.0" prefHeight="48.0" prefWidth="204.0" />
-      <TextField fx:id="txtInformationU1" layoutX="1184.0" layoutY="788.0" onMouseClicked="#U1Extra" prefHeight="48.0" prefWidth="334.0" />
-      <TextField fx:id="txtNotesU1" layoutX="1518.0" layoutY="788.0" onMouseClicked="#U1Notes" prefHeight="48.0" prefWidth="207.0" />
+      <TextField fx:id="txtNameU1" alignment="CENTER" layoutX="231.0" layoutY="788.0" prefHeight="48.0" prefWidth="341.0" />
+      <TextField fx:id="txtAgeU1" alignment="CENTER" layoutX="572.0" layoutY="788.0" prefHeight="48.0" prefWidth="204.0" />
+      <TextField fx:id="txtHospitalU1" alignment="CENTER" layoutX="776.0" layoutY="788.0" prefHeight="48.0" prefWidth="204.0" />
+      <TextField fx:id="txtSpecialityU1" alignment="CENTER" layoutX="980.0" layoutY="788.0" prefHeight="48.0" prefWidth="204.0" />
+      <TextArea fx:id="txtInformationU1" layoutX="1184.0" layoutY="788.0" prefHeight="48.0" prefWidth="442.0" />
+      <TextField fx:id="txtNotesU1" alignment="CENTER" layoutX="1626.0" layoutY="788.0" onMouseClicked="#U1Notes" prefHeight="48.0" prefWidth="100.0" />
 
     <!-- UNSCHEDULED 2 -->
-      <TextField fx:id="txtTimeU2" alignment="CENTER" layoutX="45.0" layoutY="836.0" onMouseClicked="#U2Attendance" prefHeight="47.7" prefWidth="186.0">
+      <TextField fx:id="txtAttendanceU2" layoutX="45.0" layoutY="836.0" onMouseClicked="#U2Attendance" prefHeight="48.0" prefWidth="45.0" />
+      <TextField fx:id="txtTimeU2" alignment="CENTER" layoutX="90.0" layoutY="836.0" prefHeight="47.7" prefWidth="141.0" promptText="00:00">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>      
-      <TextField fx:id="txtNameU2" layoutX="231.0" layoutY="836.0" prefHeight="48.0" prefWidth="341.0" />      
-      <TextField fx:id="txtAgeU2" layoutX="572.0" layoutY="836.0" prefHeight="48.0" prefWidth="204.0" />      
-      <TextField fx:id="txtHospitalU2" layoutX="776.0" layoutY="836.0" prefHeight="48.0" prefWidth="204.0" />     
-      <TextField fx:id="txtSpecialityU2" layoutX="980.0" layoutY="836.0" prefHeight="48.0" prefWidth="204.0" />        
-      <TextField fx:id="txtInformationU2" layoutX="1184.0" layoutY="836.0" onMouseClicked="#U2Extra" prefHeight="48.0" prefWidth="334.0" />
-      <TextField fx:id="txtNotesU2" layoutX="1518.0" layoutY="836.0" onMouseClicked="#U2Notes" prefHeight="48.0" prefWidth="207.0" />
+      <TextField fx:id="txtNameU2" alignment="CENTER" layoutX="231.0" layoutY="836.0" prefHeight="48.0" prefWidth="341.0" />      
+      <TextField fx:id="txtAgeU2" alignment="CENTER" layoutX="572.0" layoutY="836.0" prefHeight="48.0" prefWidth="204.0" />      
+      <TextField fx:id="txtHospitalU2" alignment="CENTER" layoutX="776.0" layoutY="836.0" prefHeight="48.0" prefWidth="204.0" />     
+      <TextField fx:id="txtSpecialityU2" alignment="CENTER" layoutX="980.0" layoutY="836.0" prefHeight="48.0" prefWidth="204.0" />
+      <TextArea fx:id="txtInformationU2" layoutX="1184.0" layoutY="836.0" prefHeight="48.0" prefWidth="442.0" />
+      <TextField fx:id="txtNotesU2" alignment="CENTER" layoutX="1626.0" layoutY="836.0" onMouseClicked="#U2Notes" prefHeight="48.0" prefWidth="100.0" />
 
     <!-- UNSCHEDULED 3 -->  
-      <TextField fx:id="txtTimeU3" alignment="CENTER" layoutX="45.0" layoutY="884.0" onMouseClicked="#U3Attendance" prefHeight="47.7" prefWidth="186.0">
+      <TextField fx:id="txtAttendanceU3" layoutX="45.0" layoutY="884.0" onMouseClicked="#U3Attendance" prefHeight="48.0" prefWidth="45.0" />
+      <TextField fx:id="txtTimeU3" alignment="CENTER" layoutX="90.0" layoutY="884.0" prefHeight="47.7" prefWidth="141.0" promptText="00:00">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>      
-      <TextField fx:id="txtNameU3" layoutX="231.0" layoutY="884.0" prefHeight="48.0" prefWidth="341.0" />      
-      <TextField fx:id="txtAgeU3" layoutX="572.0" layoutY="884.0" prefHeight="48.0" prefWidth="204.0" />      
-      <TextField fx:id="txtHospitalU3" layoutX="776.0" layoutY="884.0" prefHeight="48.0" prefWidth="204.0" />   
-      <TextField fx:id="txtSpecialityU3" layoutX="980.0" layoutY="884.0" prefHeight="48.0" prefWidth="204.0" />   
-      <TextField fx:id="txtInformationU3" layoutX="1184.0" layoutY="884.0" onMouseClicked="#U3Extra" prefHeight="48.0" prefWidth="334.0" />
-      <TextField fx:id="txtNotesU3" layoutX="1518.0" layoutY="884.0" onMouseClicked="#U3Notes" prefHeight="48.0" prefWidth="207.0" />
+      <TextField fx:id="txtNameU3" alignment="CENTER" layoutX="231.0" layoutY="884.0" prefHeight="48.0" prefWidth="341.0" />      
+      <TextField fx:id="txtAgeU3" alignment="CENTER" layoutX="572.0" layoutY="884.0" prefHeight="48.0" prefWidth="204.0" />      
+      <TextField fx:id="txtHospitalU3" alignment="CENTER" layoutX="776.0" layoutY="884.0" prefHeight="48.0" prefWidth="204.0" />   
+      <TextField fx:id="txtSpecialityU3" alignment="CENTER" layoutX="980.0" layoutY="884.0" prefHeight="48.0" prefWidth="204.0" />
+      <TextArea fx:id="txtInformationU3" layoutX="1184.0" layoutY="884.0" prefHeight="48.0" prefWidth="442.0" />
+      <TextField fx:id="txtNotesU3" alignment="CENTER" layoutX="1626.0" layoutY="884.0" onMouseClicked="#U3Notes" prefHeight="48.0" prefWidth="100.0" />
+      
+    
      
-
 </children>
 
-      <fx:define>
+    <fx:define>
           <ArrayList fx:id="attendanceList">
+              <fx:reference source="txtAttendanceA1"/>
+              <fx:reference source="txtAttendanceA2"/>
+              <fx:reference source="txtAttendanceA3"/>
+              <fx:reference source="txtAttendanceA4"/> 
+              <fx:reference source="txtAttendanceP1"/>
+              <fx:reference source="txtAttendanceP2"/>
+              <fx:reference source="txtAttendanceP3"/>
+              <fx:reference source="txtAttendanceP4"/> 
+              <fx:reference source="txtAttendanceU1"/>
+              <fx:reference source="txtAttendanceU2"/>
+              <fx:reference source="txtAttendanceU3"/>       
+          </ArrayList>
+          
+          <ArrayList fx:id="timeList">
               <fx:reference source="txtTimeA1"/>
               <fx:reference source="txtTimeA2"/>
               <fx:reference source="txtTimeA3"/>
@@ -329,7 +358,77 @@
               <fx:reference source="txtTimeU2"/>
               <fx:reference source="txtTimeU3"/>       
           </ArrayList>
-       
+          
+          <ArrayList fx:id="nameList">
+              <fx:reference source="txtNameA1"/>
+              <fx:reference source="txtNameA2"/>
+              <fx:reference source="txtNameA3"/>
+              <fx:reference source="txtNameA4"/> 
+              <fx:reference source="txtNameP1"/>
+              <fx:reference source="txtNameP2"/>
+              <fx:reference source="txtNameP3"/>
+              <fx:reference source="txtNameP4"/> 
+              <fx:reference source="txtNameU1"/>
+              <fx:reference source="txtNameU2"/>
+              <fx:reference source="txtNameU3"/>       
+          </ArrayList>
+          
+          <ArrayList fx:id="ageList">
+              <fx:reference source="txtAgeA1"/>
+              <fx:reference source="txtAgeA2"/>
+              <fx:reference source="txtAgeA3"/>
+              <fx:reference source="txtAgeA4"/> 
+              <fx:reference source="txtAgeP1"/>
+              <fx:reference source="txtAgeP2"/>
+              <fx:reference source="txtAgeP3"/>
+              <fx:reference source="txtAgeP4"/> 
+              <fx:reference source="txtAgeU1"/>
+              <fx:reference source="txtAgeU2"/>
+              <fx:reference source="txtAgeU3"/>       
+          </ArrayList>
+          
+          <ArrayList fx:id="hospitalList">
+              <fx:reference source="txtHospitalA1"/>
+              <fx:reference source="txtHospitalA2"/>
+              <fx:reference source="txtHospitalA3"/>
+              <fx:reference source="txtHospitalA4"/> 
+              <fx:reference source="txtHospitalP1"/>
+              <fx:reference source="txtHospitalP2"/>
+              <fx:reference source="txtHospitalP3"/>
+              <fx:reference source="txtHospitalP4"/> 
+              <fx:reference source="txtHospitalU1"/>
+              <fx:reference source="txtHospitalU2"/>
+              <fx:reference source="txtHospitalU3"/>       
+          </ArrayList>
+          
+          <ArrayList fx:id="specialityList">
+              <fx:reference source="txtSpecialityA1"/>
+              <fx:reference source="txtSpecialityA2"/>
+              <fx:reference source="txtSpecialityA3"/>
+              <fx:reference source="txtSpecialityA4"/> 
+              <fx:reference source="txtSpecialityP1"/>
+              <fx:reference source="txtSpecialityP2"/>
+              <fx:reference source="txtSpecialityP3"/>
+              <fx:reference source="txtSpecialityP4"/> 
+              <fx:reference source="txtSpecialityU1"/>
+              <fx:reference source="txtSpecialityU2"/>
+              <fx:reference source="txtSpecialityU3"/>       
+          </ArrayList>
+          
+          <ArrayList fx:id="informationList">
+              <fx:reference source="txtInformationA1"/>
+              <fx:reference source="txtInformationA2"/>
+              <fx:reference source="txtInformationA3"/>
+              <fx:reference source="txtInformationA4"/> 
+              <fx:reference source="txtInformationP1"/>
+              <fx:reference source="txtInformationP2"/>
+              <fx:reference source="txtInformationP3"/>
+              <fx:reference source="txtInformationP4"/> 
+              <fx:reference source="txtInformationU1"/>
+              <fx:reference source="txtInformationU2"/>
+              <fx:reference source="txtInformationU3"/>   
+          </ArrayList>
+                   
           <ArrayList fx:id="notesList">
               <fx:reference source="txtNotesA1"/>
               <fx:reference source="txtNotesA2"/>
@@ -344,21 +443,11 @@
               <fx:reference source="txtNotesU3"/>   
           </ArrayList>
        
-          <ArrayList fx:id="extraList">
-              <fx:reference source="txtInformationA1"/>
-              <fx:reference source="txtInformationA2"/>
-              <fx:reference source="txtInformationA3"/>
-              <fx:reference source="txtInformationA4"/> 
-              <fx:reference source="txtInformationP1"/>
-              <fx:reference source="txtInformationP2"/>
-              <fx:reference source="txtInformationP3"/>
-              <fx:reference source="txtInformationP4"/> 
-              <fx:reference source="txtInformationU1"/>
-              <fx:reference source="txtInformationU2"/>
-              <fx:reference source="txtInformationU3"/>   
-          </ArrayList>
+          
        
-      </fx:define>  
+      </fx:define>   
+
+    
 
 
 </Pane>
