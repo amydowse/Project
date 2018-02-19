@@ -86,15 +86,15 @@ public class codeBank
     {
         if(attendance == 0)
         {
-            txt.setStyle(" -fx-background-color: #FFFFFF"); //white
+            txt.setStyle(" -fx-control-inner-background: #FFFFFF"); //white
         }
         else if (attendance == 1)
         {
-            txt.setStyle(" -fx-background-color: #00FF31"); //green
+            txt.setStyle(" -fx-control-inner-background: #00FF31"); //green
         }
         else
         {
-            txt.setStyle(" -fx-background-color: #FF0000"); //red
+            txt.setStyle(" -fx-control-inner-background: #FF0000"); //red
         }
     }
     
