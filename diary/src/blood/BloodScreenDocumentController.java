@@ -76,7 +76,7 @@ public class BloodScreenDocumentController implements Initializable
         tblClinic.setPlaceholder(new Label("There is no blood clinic scheduled for this day"));
         
         workingStaff = codeBank.fillStaffDropDowns();
-        cbStaff.getItems().add(workingStaff);
+        cbStaff.getItems().addAll(workingStaff);
         showInformation();
     }
     
@@ -458,6 +458,7 @@ public class BloodScreenDocumentController implements Initializable
                 deleteFromDatabase(appointment);
             }
         }
+        saveStaff();
     }
     
     public void saveToDatabase(blood appointment)
@@ -527,6 +528,42 @@ public class BloodScreenDocumentController implements Initializable
                 
     }
     
+    
+    public void saveStaff()
+    {
+        try
+        {
+            // open a connection
+            Connection c = DatabaseConnector.activateConnection();
+            c.setAutoCommit( true ); 
+            
+            // when creating a statement object, you MUST use a connection object to call the instance method
+            Statement stmt = c.createStatement();
+            
+            String date = codeBank.dateToString(codeBank.getCurrentDate());
+            
+            String staff = cbStaff.getValue().toString();
+            
+            staff = staff.substring(staff.indexOf("(") + 1);
+            staff = staff.substring(0, staff.indexOf(")"));
+            
+            String sql = "REPLACE INTO specificworking (Date, Place, ID) VALUES('"
+                                                            + date + "','Blood','"                                           
+                                                            + staff + "')";
+            
+            stmt.executeUpdate(sql);                 
+                    
+            c.close();
+        }
+        catch (SQLException e)
+        {
+            
+        } 
+        catch(NullPointerException n)
+        {
+            
+        }
+    }
     
         
         

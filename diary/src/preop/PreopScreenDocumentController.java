@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -186,6 +187,7 @@ public class PreopScreenDocumentController implements Initializable
     private ArrayList<preop> allBookings = new ArrayList<preop>();
     int[] attendanceArray = new int[11];
     int[] notesArray = new int[11];
+    ObservableList<String> workingStaff;
     
     @FXML private List<TextField> attendanceList;
     @FXML private List<TextField> timeList;
@@ -212,6 +214,8 @@ public class PreopScreenDocumentController implements Initializable
        loadInformation();
        showStaff(codeBank.getCurrentDate());
        delete();
+       workingStaff = codeBank.fillStaffDropDowns();
+       cbStaff.getItems().addAll(workingStaff);
     }
     
         

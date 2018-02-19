@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -180,6 +181,7 @@ public class NonbedScreenDocumentController implements Initializable
     int[] notesArray = new int[14];
     
     ArrayList<nonbed> allBookings = new ArrayList<nonbed>();
+    ObservableList<String> workingStaff;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) 
@@ -187,13 +189,16 @@ public class NonbedScreenDocumentController implements Initializable
         showInformation(codeBank.getCurrentDate());
         fillDropDowns();
         delete();
-        showStaff(codeBank.getCurrentDate());
+        workingStaff = codeBank.fillStaffDropDowns();
+        cbStaff.getItems().addAll(workingStaff);
     }
     
     
     public void showInformation(LocalDate date)
     {
+        cbStaff.valueProperty().set(null);
         clearAll();
+        showStaff(codeBank.getCurrentDate());
         
         try
         {
@@ -425,6 +430,7 @@ public class NonbedScreenDocumentController implements Initializable
         {
             
         } 
+        saveStaff();
     }
     
     public String SQLLine(int i, String date)
@@ -446,6 +452,42 @@ public class NonbedScreenDocumentController implements Initializable
         else
         {
             return "";
+        }
+    }
+    
+    public void saveStaff()
+    {
+        try
+        {
+            // open a connection
+            Connection c = DatabaseConnector.activateConnection();
+            c.setAutoCommit( true ); 
+            
+            // when creating a statement object, you MUST use a connection object to call the instance method
+            Statement stmt = c.createStatement();
+            
+            String date = codeBank.dateToString(codeBank.getCurrentDate());
+            
+            String staff = cbStaff.getValue().toString();
+            
+            staff = staff.substring(staff.indexOf("(") + 1);
+            staff = staff.substring(0, staff.indexOf(")"));
+            
+            String sql = "REPLACE INTO specificworking (Date, Place, ID) VALUES('"
+                                                            + date + "','Nonbed','"                                           
+                                                            + staff + "')";
+            
+            stmt.executeUpdate(sql);                 
+                    
+            c.close();
+        }
+        catch (SQLException e)
+        {
+            
+        } 
+        catch(NullPointerException n)
+        {
+            
         }
     }
     
