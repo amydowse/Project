@@ -28,6 +28,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
@@ -175,6 +176,8 @@ public class PreopScreenDocumentController implements Initializable
     @FXML TextField txtInformationU3 = new TextField();
     @FXML TextField txtNotesU3 = new TextField();
     
+    @FXML ChoiceBox cbStaff = new ChoiceBox();
+    
     private ArrayList<preop> allBookings = new ArrayList<preop>();
     int[] attendanceArray = new int[11];
     int[] notesArray = new int[11];
@@ -194,6 +197,7 @@ public class PreopScreenDocumentController implements Initializable
     {
        clearInformation();
        loadInformation();
+       showStaff(codeBank.getCurrentDate());
     }
     
         
@@ -908,6 +912,40 @@ public class PreopScreenDocumentController implements Initializable
         }
     }
     
+    
+    public void showStaff(LocalDate SearchDate)
+    {
+        try
+        {
+            // open a connection
+            Connection c = DatabaseConnector.activateConnection();
+            c.setAutoCommit( true ); 
+            ResultSet rs ;
+            
+            // when creating a statement object, you MUST use a connection object to call the instance method
+            Statement stmt = c.createStatement();
+            String stringDate = codeBank.dateToString(SearchDate);          
+            
+            //implement query
+            rs = stmt.executeQuery("SELECT * FROM staff, specificworking WHERE specificworking.Date = '" + stringDate + "' AND staff.ID = specificworking.ID AND specificworking.Place = 'Preop'"); 
+                        
+            while(rs.next())
+            { 
+                String firstname = rs.getString("FirstName");
+                int ID = rs.getInt("ID");
+                
+                String text = "(" +ID + ") " + firstname;
+                
+                cbStaff.setValue(text);
+                
+            }
+            c.close();
+        }
+        catch (SQLException e)
+        {
+            
+        } 
+    }
     
     
     

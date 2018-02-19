@@ -180,6 +180,8 @@ public class OncologyScreenDocumentController implements Initializable
     @FXML TextArea txtReason14 = new TextArea();
     @FXML TextField txtNotes14 = new TextField();
     
+    @FXML ChoiceBox cbStaff = new ChoiceBox();
+    
     @FXML private List<TextField> attendanceList;
     @FXML private List<TextField> notesList;
     @FXML private List<TextField> ageList;
@@ -200,6 +202,7 @@ public class OncologyScreenDocumentController implements Initializable
         showInformation(codeBank.getCurrentDate());
         fillDropDowns();
         delete();
+        showStaff(codeBank.getCurrentDate());
         
     }
     
@@ -1296,6 +1299,40 @@ public class OncologyScreenDocumentController implements Initializable
             default:    break;
             
         }
+    }
+    
+    public void showStaff(LocalDate SearchDate)
+    {
+        try
+        {
+            // open a connection
+            Connection c = DatabaseConnector.activateConnection();
+            c.setAutoCommit( true ); 
+            ResultSet rs ;
+            
+            // when creating a statement object, you MUST use a connection object to call the instance method
+            Statement stmt = c.createStatement();
+            String stringDate = codeBank.dateToString(SearchDate);          
+            
+            //implement query
+            rs = stmt.executeQuery("SELECT * FROM staff, specificworking WHERE specificworking.Date = '" + stringDate + "' AND staff.ID = specificworking.ID AND specificworking.Place = 'Oncology'"); 
+                        
+            while(rs.next())
+            { 
+                String firstname = rs.getString("FirstName");
+                int ID = rs.getInt("ID");
+                
+                String text = "(" +ID + ") " + firstname;
+                
+                cbStaff.setValue(text);
+                
+            }
+            c.close();
+        }
+        catch (SQLException e)
+        {
+            
+        } 
     }
     
     
