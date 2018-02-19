@@ -23,6 +23,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -31,6 +33,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -316,8 +320,16 @@ public class DiaryScreenDocumentController  implements Initializable
     @FXML private TextArea txtNotes = new TextArea();
     
     @FXML private List<TextField> attendanceList;
+    @FXML private List<TextField> timeList;
+    @FXML private List<TextField> nameList;
+    @FXML private List<TextField> ageList;
+    @FXML private List<TextField> hospitalList;
+    @FXML private List<TextField> specialityList;
     @FXML private List<TextField> notesList;
     @FXML private List<TextField> extraList;
+    
+    @FXML private List<ChoiceBox> staffList;
+    @FXML private List<ChoiceBox> shiftList;
     
     private ArrayList<workingStaff> staff = new ArrayList<workingStaff>();
     
@@ -325,6 +337,7 @@ public class DiaryScreenDocumentController  implements Initializable
     int[] notesArray = new int[24];
     String[] extraArray = codeBank.newStringArray(11);
     private Boolean notes = false;
+    String[] bedArray = new String[24];
    
       
     //METHODS -----------------------------------------------------------------------
@@ -334,15 +347,42 @@ public class DiaryScreenDocumentController  implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {    
+        fillBedArray();
         showInformation(codeBank.getCurrentDate());
         showStaff(codeBank.getCurrentDate());
         showNotes(codeBank.getCurrentDate());
-        fillStaffDropDowns();  
+        fillStaffDropDowns(); 
+        delete();
     }
     
-     
-    
-    
+    public void fillBedArray()
+    {
+        bedArray[0] = "1MA";
+        bedArray[1] = "2MA";
+        bedArray[2] = "3MA";
+        bedArray[3] = "4MA";
+        bedArray[4] = "EMA";
+        bedArray[5] = "1LA";
+        bedArray[6] = "2LA";
+        bedArray[7] = "3LA";
+        bedArray[8] = "4LA";
+        bedArray[9] = "5LA";
+        bedArray[10] = "6LA";
+        bedArray[11] = "ELA";
+        bedArray[12] = "1MP";
+        bedArray[13] = "2MP";
+        bedArray[14] = "3MP";
+        bedArray[15] = "4MP";
+        bedArray[16] = "EMP";
+        bedArray[17] = "1LP";
+        bedArray[18] = "2LP";
+        bedArray[19] = "3LP";
+        bedArray[20] = "4LP";
+        bedArray[21] = "5LP";
+        bedArray[22] = "6LP";
+        bedArray[23] = "ELP";
+        
+    }
     
     
     //Each method associated with the textfield for the bed numbers 
@@ -525,20 +565,12 @@ public class DiaryScreenDocumentController  implements Initializable
             //implement query
             rs = stmt.executeQuery("SELECT * FROM staff"); 
                   
+            for(int i=0; i<6 ; i++)
+            {
+                staffList.get(i).getItems().add("");
+                shiftList.get(i).getItems().add("");
+            }
             
-            cbStaff1.getItems().add("");
-            cbStaff2.getItems().add("");
-            cbStaff3.getItems().add("");
-            cbStaff4.getItems().add("");
-            cbStaff5.getItems().add("");
-            cbStaff6.getItems().add(""); 
-            
-            cbShift1.getItems().add("");
-            cbShift2.getItems().add("");
-            cbShift3.getItems().add("");
-            cbShift4.getItems().add("");
-            cbShift5.getItems().add("");
-            cbShift6.getItems().add(""); 
             
             while(rs.next())
             { 
@@ -547,30 +579,23 @@ public class DiaryScreenDocumentController  implements Initializable
                 
                 String text = "(" + ID + ") " + firstname;
                 
-                cbStaff1.getItems().add(text);
-                cbStaff2.getItems().add(text);
-                cbStaff3.getItems().add(text);
-                cbStaff4.getItems().add(text);
-                cbStaff5.getItems().add(text);
-                cbStaff6.getItems().add(text);  
+                for(int i=0; i<6 ; i++)
+                {
+                    staffList.get(i).getItems().add(text);
+                } 
             }
             c.close();
             
-            cbShift1.getItems().addAll("E", "L", "LD");
-            cbShift2.getItems().addAll("E", "L", "LD");
-            cbShift3.getItems().addAll("E", "L", "LD");
-            cbShift4.getItems().addAll("E", "L", "LD");
-            cbShift5.getItems().addAll("E", "L", "LD");
-            cbShift6.getItems().addAll("E", "L", "LD");
+            for(int i=0; i<6 ; i++)
+            {
+                shiftList.get(i).getItems().addAll("E", "L", "LD");
+            }
         }
         catch (SQLException e)
         {
             
         } 
     }
-    
-    
-   
     
     
     public void showStaff(LocalDate SearchDate)
@@ -609,6 +634,17 @@ public class DiaryScreenDocumentController  implements Initializable
         } 
     }
     
+    public void printStaffNames(ArrayList<workingStaff> staff)
+    {
+        for(int i=0; i<staff.size(); i++)
+        {
+            String value = "(" + staff.get(i).getID() + ") " + staff.get(i).getFirstName();
+            staffList.get(i).setValue(value);
+            shiftList.get(i).setValue(staff.get(i).getShift());
+        }
+    }
+    
+    
     public void showNotes(LocalDate SearchDate)
     {
         try
@@ -639,47 +675,7 @@ public class DiaryScreenDocumentController  implements Initializable
     }
     
     
-    public void printStaffNames(ArrayList<workingStaff> staff)
-    {
-        if(staff.size() >= 1)
-        {
-            String value = "(" + staff.get(0).getID() + ") " + staff.get(0).getFirstName();
-            cbStaff1.setValue(value);
-            cbShift1.setValue(staff.get(0).getShift());
-        }
-        if(staff.size() >= 2)
-        {
-            String value = "(" + staff.get(1).getID() + ") " + staff.get(1).getFirstName();
-            cbStaff2.setValue(value);
-            cbShift2.setValue(staff.get(1).getShift());
-        }
-        if(staff.size() >= 3)
-        {
-            String value = "(" + staff.get(2).getID() + ") " + staff.get(2).getFirstName();
-            cbStaff3.setValue(value);
-            cbShift3.setValue(staff.get(2).getShift());
-        }
-        if(staff.size() >= 4)
-        {
-            String value = "(" + staff.get(3).getID() + ") " + staff.get(3).getFirstName();
-            cbStaff4.setValue(value);
-            cbShift4.setValue(staff.get(3).getShift());
-        }
-        if(staff.size() >= 5)
-        {
-            String value = "(" + staff.get(4).getID() + ") " + staff.get(4).getFirstName();
-            cbStaff5.setValue(value);
-            cbShift5.setValue(staff.get(4).getShift());
-        }
-        if(staff.size() == 6)
-        {
-            String value = "(" + staff.get(5).getID() + ") " + staff.get(5).getFirstName();
-            cbStaff6.setValue(value);
-            cbShift6.setValue(staff.get(5).getShift());
-        }
-        
-        
-    }
+   
     
     
     
@@ -741,6 +737,18 @@ public class DiaryScreenDocumentController  implements Initializable
         }  
     }
     
+    public void showSingle(diary singleBooking, int i)
+    {
+        timeList.get(i).setText((singleBooking.getTime()).toString());
+        nameList.get(i).setText(singleBooking.getName());
+        ageList.get(i).setText(String.valueOf(singleBooking.getAge()));
+        hospitalList.get(i).setText(singleBooking.getHospitalNumber());
+        specialityList.get(i).setText(singleBooking.getSpeciality());
+        notesArray[i] = singleBooking.getNotes();
+        extraArray[i] = singleBooking.getExtraInfo();
+        attendanceArray[i] = singleBooking.getAttendance();
+    }
+    
   
     //Showing the main diary information 
     public void showResults(ArrayList<diary> allBookings)
@@ -751,245 +759,77 @@ public class DiaryScreenDocumentController  implements Initializable
                        
             switch(singleBooking.getBedNumber())
             {
-                case "1MA":
-                    txtTime1MA.setText((singleBooking.getTime()).toString());
-                    txtName1MA.setText(singleBooking.getName());
-                    txtAge1MA.setText(String.valueOf(singleBooking.getAge()));
-                    txtHospital1MA.setText(singleBooking.getHospitalNumber());
-                    txtSpeciality1MA.setText(singleBooking.getSpeciality());
-                    notesArray[0]=singleBooking.getNotes();
-                    extraArray[0] = singleBooking.getExtraInfo();
-                    attendanceArray[0] = singleBooking.getAttendance();
+                case "1MA": 
+                    showSingle(singleBooking, 0);
                     break;
                 case "2MA":
-                    txtTime2MA.setText((singleBooking.getTime()).toString());
-                    txtName2MA.setText(singleBooking.getName());
-                    txtAge2MA.setText(String.valueOf(singleBooking.getAge()));
-                    txtHospital2MA.setText(singleBooking.getHospitalNumber());
-                    txtSpeciality2MA.setText(singleBooking.getSpeciality());
-                    notesArray[1]=singleBooking.getNotes();
-                    extraArray[1] = singleBooking.getExtraInfo();
-                    attendanceArray[1] = singleBooking.getAttendance();
+                    showSingle(singleBooking, 1);
                     break;
                 case "3MA":
-                    txtTime3MA.setText((singleBooking.getTime()).toString());
-                    txtName3MA.setText(singleBooking.getName());
-                    txtAge3MA.setText(String.valueOf(singleBooking.getAge()));
-                    txtHospital3MA.setText(singleBooking.getHospitalNumber());
-                    txtSpeciality3MA.setText(singleBooking.getSpeciality());
-                    notesArray[2]=singleBooking.getNotes();
-                    extraArray[2] = singleBooking.getExtraInfo();
-                    attendanceArray[2] = singleBooking.getAttendance();
+                    showSingle(singleBooking, 2);
                     break;
                 case "4MA":
-                    txtTime4MA.setText((singleBooking.getTime()).toString());
-                    txtName4MA.setText(singleBooking.getName());
-                    txtAge4MA.setText(String.valueOf(singleBooking.getAge()));
-                    txtHospital4MA.setText(singleBooking.getHospitalNumber());
-                    txtSpeciality4MA.setText(singleBooking.getSpeciality());
-                    notesArray[3]=singleBooking.getNotes();
-                    extraArray[3] = singleBooking.getExtraInfo();
-                    attendanceArray[3] = singleBooking.getAttendance();
+                    showSingle(singleBooking, 3);
                     break;
                 case "EMA":
-                    txtTimeEMA.setText((singleBooking.getTime()).toString());
-                    txtNameEMA.setText(singleBooking.getName());
-                    txtAgeEMA.setText(String.valueOf(singleBooking.getAge()));
-                    txtHospitalEMA.setText(singleBooking.getHospitalNumber());
-                    txtSpecialityEMA.setText(singleBooking.getSpeciality());
-                    notesArray[4]=singleBooking.getNotes();
-                    extraArray[4] = singleBooking.getExtraInfo();
-                    attendanceArray[4] = singleBooking.getAttendance();
+                    showSingle(singleBooking, 4);
                     break;
                 case "1LA":
-                    txtTime1LA.setText((singleBooking.getTime()).toString());
-                    txtName1LA.setText(singleBooking.getName());
-                    txtAge1LA.setText(String.valueOf(singleBooking.getAge()));
-                    txtHospital1LA.setText(singleBooking.getHospitalNumber());
-                    txtSpeciality1LA.setText(singleBooking.getSpeciality());
-                    notesArray[5]=singleBooking.getNotes();
-                    extraArray[5] = singleBooking.getExtraInfo();
-                    attendanceArray[5] = singleBooking.getAttendance();
+                    showSingle(singleBooking, 5);
                     break;
                 case "2LA":
-                    txtTime2LA.setText((singleBooking.getTime()).toString());
-                    txtName2LA.setText(singleBooking.getName());
-                    txtAge2LA.setText(String.valueOf(singleBooking.getAge()));
-                    txtHospital2LA.setText(singleBooking.getHospitalNumber());
-                    txtSpeciality2LA.setText(singleBooking.getSpeciality());
-                    notesArray[6]=singleBooking.getNotes();
-                    extraArray[6] = singleBooking.getExtraInfo();
-                    attendanceArray[6] = singleBooking.getAttendance();
+                    showSingle(singleBooking, 6);
                     break;
                 case "3LA":
-                    txtTime3LA.setText((singleBooking.getTime()).toString());
-                    txtName3LA.setText(singleBooking.getName());
-                    txtAge3LA.setText(String.valueOf(singleBooking.getAge()));
-                    txtHospital3LA.setText(singleBooking.getHospitalNumber());
-                    txtSpeciality3LA.setText(singleBooking.getSpeciality());
-                    notesArray[7]=singleBooking.getNotes();
-                   extraArray[7] = singleBooking.getExtraInfo();
-                    attendanceArray[7] = singleBooking.getAttendance();
+                    showSingle(singleBooking, 7);
                     break;
                 case "4LA":
-                    txtTime4LA.setText((singleBooking.getTime()).toString());
-                    txtName4LA.setText(singleBooking.getName());
-                    txtAge4LA.setText(String.valueOf(singleBooking.getAge()));
-                    txtHospital4LA.setText(singleBooking.getHospitalNumber());
-                    txtSpeciality4LA.setText(singleBooking.getSpeciality());
-                    notesArray[8]=singleBooking.getNotes();
-                    extraArray[8] = singleBooking.getExtraInfo();
-                    attendanceArray[8] = singleBooking.getAttendance();
+                    showSingle(singleBooking, 8);
                     break;
                 case "5LA":
-                    txtTime5LA.setText((singleBooking.getTime()).toString());
-                    txtName5LA.setText(singleBooking.getName());
-                    txtAge5LA.setText(String.valueOf(singleBooking.getAge()));
-                    txtHospital5LA.setText(singleBooking.getHospitalNumber());
-                    txtSpeciality5LA.setText(singleBooking.getSpeciality());
-                    notesArray[9]=singleBooking.getNotes();
-                    extraArray[9] = singleBooking.getExtraInfo(); 
-                    attendanceArray[9] = singleBooking.getAttendance();
+                    showSingle(singleBooking, 9);
                     break;
                 case "6LA":
-                    txtTime6LA.setText((singleBooking.getTime()).toString());
-                    txtName6LA.setText(singleBooking.getName());
-                    txtAge6LA.setText(String.valueOf(singleBooking.getAge()));
-                    txtHospital6LA.setText(singleBooking.getHospitalNumber());
-                    txtSpeciality6LA.setText(singleBooking.getSpeciality());
-                    notesArray[10]=singleBooking.getNotes();
-                    extraArray[10] = singleBooking.getExtraInfo();
-                    attendanceArray[10] = singleBooking.getAttendance();
+                    showSingle(singleBooking, 10);
                     break;
                 case "ELA":
-                    txtTimeELA.setText((singleBooking.getTime()).toString());
-                    txtNameELA.setText(singleBooking.getName());
-                    txtAgeELA.setText(String.valueOf(singleBooking.getAge()));
-                    txtHospitalELA.setText(singleBooking.getHospitalNumber());
-                    txtSpecialityELA.setText(singleBooking.getSpeciality());
-                    notesArray[11]=singleBooking.getNotes();
-                    extraArray[11] = singleBooking.getExtraInfo();
-                    attendanceArray[11] = singleBooking.getAttendance();                    
+                    showSingle(singleBooking, 11);                 
                     break;
                 case "1MP":
-                    txtTime1MP.setText((singleBooking.getTime()).toString());
-                    txtName1MP.setText(singleBooking.getName());
-                    txtAge1MP.setText(String.valueOf(singleBooking.getAge()));
-                    txtHospital1MP.setText(singleBooking.getHospitalNumber());
-                    txtSpeciality1MP.setText(singleBooking.getSpeciality());
-                    notesArray[12]=singleBooking.getNotes();
-                    extraArray[12] = singleBooking.getExtraInfo();
-                    attendanceArray[12] = singleBooking.getAttendance();                   
+                   showSingle(singleBooking, 12);                  
                     break;
                 case "2MP":
-                    txtTime2MP.setText((singleBooking.getTime()).toString());
-                    txtName2MP.setText(singleBooking.getName());
-                    txtAge2MP.setText(String.valueOf(singleBooking.getAge()));
-                    txtHospital2MP.setText(singleBooking.getHospitalNumber());
-                    txtSpeciality2MP.setText(singleBooking.getSpeciality());
-                    notesArray[13]=singleBooking.getNotes();
-                    extraArray[13] = singleBooking.getExtraInfo();
-                    attendanceArray[13] = singleBooking.getAttendance();
+                    showSingle(singleBooking, 13);
                     break;
                 case "3MP":
-                    txtTime3MP.setText((singleBooking.getTime()).toString());
-                    txtName3MP.setText(singleBooking.getName());
-                    txtAge3MP.setText(String.valueOf(singleBooking.getAge()));
-                    txtHospital3MP.setText(singleBooking.getHospitalNumber());
-                    txtSpeciality3MP.setText(singleBooking.getSpeciality());
-                    notesArray[14]=singleBooking.getNotes();
-                    extraArray[14] = singleBooking.getExtraInfo();
-                    attendanceArray[14] = singleBooking.getAttendance(); 
+                    showSingle(singleBooking, 14);
                     break;
                 case "4MP":
-                    txtTime4MP.setText((singleBooking.getTime()).toString());
-                    txtName4MP.setText(singleBooking.getName());
-                    txtAge4MP.setText(String.valueOf(singleBooking.getAge()));
-                    txtHospital4MP.setText(singleBooking.getHospitalNumber());
-                    txtSpeciality4MP.setText(singleBooking.getSpeciality());
-                    notesArray[15]=singleBooking.getNotes();
-                    extraArray[15] = singleBooking.getExtraInfo();
-                    attendanceArray[15] = singleBooking.getAttendance();
+                    showSingle(singleBooking, 15);
                     break;
                 case "EMP":
-                    txtTimeEMP.setText((singleBooking.getTime()).toString());
-                    txtNameEMP.setText(singleBooking.getName());
-                    txtAgeEMP.setText(String.valueOf(singleBooking.getAge()));
-                    txtHospitalEMP.setText(singleBooking.getHospitalNumber());
-                    txtSpecialityEMP.setText(singleBooking.getSpeciality());
-                    notesArray[16]=singleBooking.getNotes();
-                    extraArray[16] = singleBooking.getExtraInfo();
-                    attendanceArray[16] = singleBooking.getAttendance(); 
+                    showSingle(singleBooking, 16);
                     break;
                 case "1LP":
-                    txtTime1LP.setText((singleBooking.getTime()).toString());
-                    txtName1LP.setText(singleBooking.getName());
-                    txtAge1LP.setText(String.valueOf(singleBooking.getAge()));
-                    txtHospital1LP.setText(singleBooking.getHospitalNumber());
-                    txtSpeciality1LP.setText(singleBooking.getSpeciality());
-                    notesArray[17]=singleBooking.getNotes();
-                    extraArray[17] = singleBooking.getExtraInfo();
-                    attendanceArray[17] = singleBooking.getAttendance();
+                    showSingle(singleBooking, 17);
                     break;
                 case "2LP":
-                    txtTime2LP.setText((singleBooking.getTime()).toString());
-                    txtName2LP.setText(singleBooking.getName());
-                    txtAge2LP.setText(String.valueOf(singleBooking.getAge()));
-                    txtHospital2LP.setText(singleBooking.getHospitalNumber());
-                    txtSpeciality2LP.setText(singleBooking.getSpeciality());
-                    notesArray[18]=singleBooking.getNotes();
-                    extraArray[18] = singleBooking.getExtraInfo();
-                    attendanceArray[18] = singleBooking.getAttendance(); 
+                    showSingle(singleBooking, 18);
                     break;
                 case "3LP":
-                    txtTime3LP.setText((singleBooking.getTime()).toString());
-                    txtName3LP.setText(singleBooking.getName());
-                    txtAge3LP.setText(String.valueOf(singleBooking.getAge()));
-                    txtHospital3LP.setText(singleBooking.getHospitalNumber());
-                    txtSpeciality3LP.setText(singleBooking.getSpeciality());
-                    notesArray[19]=singleBooking.getNotes();
-                    extraArray[19] = singleBooking.getExtraInfo();   
-                    attendanceArray[19] = singleBooking.getAttendance();
+                    showSingle(singleBooking, 19);
                     break;
                 case "4LP":
-                    txtTime4LP.setText((singleBooking.getTime()).toString());
-                    txtName4LP.setText(singleBooking.getName());
-                    txtAge4LP.setText(String.valueOf(singleBooking.getAge()));
-                    txtHospital4LP.setText(singleBooking.getHospitalNumber());
-                    txtSpeciality4LP.setText(singleBooking.getSpeciality());
-                    notesArray[20]=singleBooking.getNotes();
-                    extraArray[20] = singleBooking.getExtraInfo();
-                    attendanceArray[20] = singleBooking.getAttendance();
+                    showSingle(singleBooking, 20);
                     break;
                 case "5LP":
-                    txtTime5LP.setText((singleBooking.getTime()).toString());
-                    txtName5LP.setText(singleBooking.getName());
-                    txtAge5LP.setText(String.valueOf(singleBooking.getAge()));
-                    txtHospital5LP.setText(singleBooking.getHospitalNumber());
-                    txtSpeciality5LP.setText(singleBooking.getSpeciality());
-                    notesArray[21]=singleBooking.getNotes();
-                    extraArray[21] = singleBooking.getExtraInfo();
-                    attendanceArray[21] = singleBooking.getAttendance(); 
+                    showSingle(singleBooking, 21);
                     break;
                 case "6LP":
-                    txtTime6LP.setText((singleBooking.getTime()).toString());
-                    txtName6LP.setText(singleBooking.getName());
-                    txtAge6LP.setText(String.valueOf(singleBooking.getAge()));
-                    txtHospital6LP.setText(singleBooking.getHospitalNumber());
-                    txtSpeciality6LP.setText(singleBooking.getSpeciality());
-                    notesArray[22]=singleBooking.getNotes();
-                    extraArray[22] = singleBooking.getExtraInfo();
-                    attendanceArray[22] = singleBooking.getAttendance();
+                    showSingle(singleBooking, 22);
                     break;
                 case "ELP":
-                    txtTimeELP.setText((singleBooking.getTime()).toString());
-                    txtNameELP.setText(singleBooking.getName());
-                    txtAgeELP.setText(String.valueOf(singleBooking.getAge()));
-                    txtHospitalELP.setText(singleBooking.getHospitalNumber());
-                    txtSpecialityELP.setText(singleBooking.getSpeciality());
-                    notesArray[23]=singleBooking.getNotes();
-                    extraArray[23] = singleBooking.getExtraInfo();
-                    attendanceArray[23] = singleBooking.getAttendance();                    
+                    showSingle(singleBooking, 23);                  
                     break;
                 default:
                     break;
@@ -1029,32 +869,19 @@ public class DiaryScreenDocumentController  implements Initializable
         clearDiary();
         allBookings.clear();
     }
-    
-    
-    
-    
+      
     public void clearTopSection()
     {
         notes = false;
         staff.clear();
         txtNotes.setText("");
         
-        cbStaff1.setValue("");
-        cbStaff2.setValue("");
-        cbStaff3.setValue("");
-        cbStaff4.setValue("");
-        cbStaff5.setValue("");
-        cbStaff6.setValue("");
-        
-        cbShift1.setValue("");
-        cbShift2.setValue("");
-        cbShift3.setValue("");
-        cbShift4.setValue("");
-        cbShift5.setValue("");
-        cbShift6.setValue("");
-       
+        for(int i = 0; i<6; i++)
+        {
+            staffList.get(i).setValue("");
+            shiftList.get(i).setValue("");
+        }
     }
-    
     
     //Resetting the main diary 
     public void clearDiary()
@@ -1063,197 +890,23 @@ public class DiaryScreenDocumentController  implements Initializable
         notesArray = new int[24];
         extraArray = codeBank.newStringArray(24);
         
-        txtTime1MA.setText("");
-        txtName1MA.setText("");
-        txtAge1MA.setText("");
-        txtHospital1MA.setText("");
-        txtSpeciality1MA.setText("");
-        txtNotes1MA.setText("");
-        txtExtra1MA.setText("");
-                
-        txtTime2MA.setText("");
-        txtName2MA.setText("");
-        txtAge2MA.setText("");
-        txtHospital2MA.setText("");
-        txtSpeciality2MA.setText("");
-        txtNotes2MA.setText("");
-        txtExtra2MA.setText("");
-      
-        txtTime3MA.setText("");
-        txtName3MA.setText("");
-        txtAge3MA.setText("");
-        txtHospital3MA.setText("");
-        txtSpeciality3MA.setText("");
-        txtNotes3MA.setText("");
-        txtExtra3MA.setText(""); 
-                 
-        txtTime4MA.setText("");
-        txtName4MA.setText("");
-        txtAge4MA.setText("");
-        txtHospital4MA.setText("");
-        txtSpeciality4MA.setText("");
-        txtNotes4MA.setText("");
-        txtExtra4MA.setText("");
-                    
-        txtTimeEMA.setText("");
-        txtNameEMA.setText("");
-        txtAgeEMA.setText("");
-        txtHospitalEMA.setText("");
-        txtSpecialityEMA.setText("");
-        txtNotesEMA.setText("");
-        txtExtraEMA.setText("");
-                  
-        txtTime1LA.setText("");
-        txtName1LA.setText("");
-        txtAge1LA.setText("");
-        txtHospital1LA.setText("");
-        txtSpeciality1LA.setText("");
-        txtNotes1LA.setText("");
-        txtExtra1LA.setText("");   
-                  
-        txtTime2LA.setText("");   
-        txtName2LA.setText("");   
-        txtAge2LA.setText("");   
-        txtHospital2LA.setText("");   
-        txtSpeciality2LA.setText("");   
-        txtNotes2LA.setText("");   
-        txtExtra2LA.setText("");   
-                   
-        txtTime3LA.setText("");   
-        txtName3LA.setText("");   
-        txtAge3LA.setText("");   
-        txtHospital3LA.setText("");   
-        txtSpeciality3LA.setText("");   
-        txtNotes3LA.setText("");   
-        txtExtra3LA.setText("");     
-                  
-        txtTime4LA.setText("");   
-        txtName4LA.setText("");   
-        txtAge4LA.setText("");   
-        txtHospital4LA.setText("");   
-        txtSpeciality4LA.setText("");   
-        txtNotes4LA.setText("");   
-        txtExtra4LA.setText("");   
-                   
-        txtTime5LA.setText("");   
-        txtName5LA.setText("");   
-        txtAge5LA.setText("");   
-        txtHospital5LA.setText("");   
-        txtSpeciality5LA.setText("");   
-        txtNotes5LA.setText("");   
-        txtExtra5LA.setText("");   
-                    
-        txtTime6LA.setText("");   
-        txtName6LA.setText("");   
-        txtAge6LA.setText("");   
-        txtHospital6LA.setText("");   
-        txtSpeciality6LA.setText("");   
-        txtNotes6LA.setText("");   
-        txtExtra6LA.setText("");    
-                   
-        txtTimeELA.setText("");   
-        txtNameELA.setText("");   
-        txtAgeELA.setText("");   
-        txtHospitalELA.setText("");   
-        txtSpecialityELA.setText("");   
-        txtNotesELA.setText("");   
-        txtExtraELA.setText("");                       
-                    
-        txtTime1MP.setText("");   
-        txtName1MP.setText("");   
-        txtAge1MP.setText("");   
-        txtHospital1MP.setText("");   
-        txtSpeciality1MP.setText("");   
-        txtNotes1MP.setText("");   
-        txtExtra1MP.setText("");                       
-                   
-        txtTime2MP.setText("");   
-        txtName2MP.setText("");   
-        txtAge2MP.setText("");   
-        txtHospital2MP.setText("");   
-        txtSpeciality2MP.setText("");   
-        txtNotes2MP.setText("");   
-        txtExtra2MP.setText("");   
-                  
-        txtTime3MP.setText("");   
-        txtName3MP.setText("");   
-        txtAge3MP.setText("");   
-        txtHospital3MP.setText("");   
-        txtSpeciality3MP.setText("");   
-        txtNotes3MP.setText("");   
-        txtExtra3MP.setText("");        
-                  
-        txtTime4MP.setText("");   
-        txtName4MP.setText("");   
-        txtAge4MP.setText("");   
-        txtHospital4MP.setText("");   
-        txtSpeciality4MP.setText("");   
-        txtNotes4MP.setText("");   
-        txtExtra4MP.setText("");    
-                   
-        txtTimeEMP.setText("");   
-        txtNameEMP.setText("");   
-        txtAgeEMP.setText("");   
-        txtHospitalEMP.setText("");   
-        txtSpecialityEMP.setText("");   
-        txtNotesEMP.setText("");   
-        txtExtraEMP.setText("");     
-                   
-        txtTime1LP.setText("");   
-        txtName1LP.setText("");   
-        txtAge1LP.setText("");   
-        txtHospital1LP.setText("");   
-        txtSpeciality1LP.setText("");   
-        txtNotes1LP.setText("");   
-        txtExtra1LP.setText("");      
-                   
-        txtTime2LP.setText("");   
-        txtName2LP.setText("");   
-        txtAge2LP.setText("");   
-        txtHospital2LP.setText("");   
-        txtSpeciality2LP.setText("");   
-        txtNotes2LP.setText("");   
-        txtExtra2LP.setText("");   
-                   
-        txtTime3LP.setText("");   
-        txtName3LP.setText("");   
-        txtAge3LP.setText("");   
-        txtHospital3LP.setText("");   
-        txtSpeciality3LP.setText("");   
-        txtNotes3LP.setText("");   
-        txtExtra3LP.setText("");   
-
-        txtTime4LP.setText("");   
-        txtName4LP.setText("");   
-        txtAge4LP.setText("");   
-        txtHospital4LP.setText("");   
-        txtSpeciality4LP.setText("");   
-        txtNotes4LP.setText("");   
-        txtExtra4LP.setText("");   
-
-        txtTime5LP.setText("");   
-        txtName5LP.setText("");   
-        txtAge5LP.setText("");   
-        txtHospital5LP.setText("");   
-        txtSpeciality5LP.setText("");   
-        txtNotes5LP.setText("");   
-        txtExtra5LP.setText("");   
-
-        txtTime6LP.setText("");   
-        txtName6LP.setText("");   
-        txtAge6LP.setText("");   
-        txtHospital6LP.setText("");   
-        txtSpeciality6LP.setText("");   
-        txtNotes6LP.setText("");   
-        txtExtra6LP.setText("");   
-
-        txtTimeELP.setText("");   
-        txtNameELP.setText("");   
-        txtAgeELP.setText("");   
-        txtHospitalELP.setText("");   
-        txtSpecialityELP.setText("");   
-        txtNotesELP.setText("");   
-        txtExtraELP.setText("");                        
+        for(int i=0; i< 24; i++)
+        {
+            clearSingle(i);
+        }
+    }
+    
+    public void clearSingle(int i)
+    {
+        timeList.get(i).setText("");
+        nameList.get(i).setText("");
+        ageList.get(i).setText("");
+        hospitalList.get(i).setText("");
+        specialityList.get(i).setText("");
+        attendanceArray[i] = 0;
+        notesArray[i] = 0;
+        codeBank.attendanceColour(attendanceList.get(i), 0);
+        codeBank.showNotes(notesList.get(i), 0);
         
     }
     
@@ -1267,6 +920,7 @@ public class DiaryScreenDocumentController  implements Initializable
     
     public void save(LocalDate today)
     {
+        
         try
         {
             // open a connection
@@ -1276,73 +930,93 @@ public class DiaryScreenDocumentController  implements Initializable
             // when creating a statement object, you MUST use a connection object to call the instance method
             Statement stmt = c.createStatement();
             
+            
             String stringDate = codeBank.dateToString(today);          
             
-            
-            //implement query - SAVING EACH LINE                       
-            String[] queries = new String[24];
-            queries[0] = save1MA(stringDate);
-            queries[1] = save2MA(stringDate);
-            queries[2] = save3MA(stringDate);
-            queries[3] = save4MA(stringDate);
-            queries[4] = saveEMA(stringDate);
-            queries[5] = save1LA(stringDate);
-            queries[6] = save2LA(stringDate);
-            queries[7] = save3LA(stringDate);
-            queries[8] = save4LA(stringDate);
-            queries[9] = save5LA(stringDate);
-            queries[10] = save6LA(stringDate);
-            queries[11] = saveELA(stringDate);
-            queries[12] = save1MP(stringDate);
-            queries[13] = save2MP(stringDate);
-            queries[14] = save3MP(stringDate);
-            queries[15] = save4MP(stringDate);
-            queries[16] = saveEMP(stringDate);
-            queries[17] = save1LP(stringDate);
-            queries[18] = save2LP(stringDate);
-            queries[19] = save3LP(stringDate);
-            queries[20] = save4LP(stringDate);
-            queries[21] = save5LP(stringDate);
-            queries[22] = save6LP(stringDate);
-            queries[23] = saveELP(stringDate);
-            
-            for(int i=0; i<queries.length; i++)
+            for(int i=0; i<24; i++)
             {
-               stmt.executeUpdate(queries[i]);
+                String sql = SQLLine(i, stringDate);
+                stmt.executeUpdate(sql);
             }
             
-                        
-            String[] staffQueries = new String[6];
-            staffQueries[0] = saveStaff1(stringDate);
-            staffQueries[1] = saveStaff2(stringDate);
-            staffQueries[2] = saveStaff3(stringDate);
-            staffQueries[3] = saveStaff4(stringDate);
-            staffQueries[4] = saveStaff5(stringDate);
-            staffQueries[5] = saveStaff6(stringDate);
+            stmt.executeUpdate(saveNotes(stringDate));
             
-            for(int i=0; i<staffQueries.length; i++)
+            stmt.executeUpdate(deleteStaff(stringDate));
+            
+            for(int i=0; i<6; i++)
             {
-               stmt.executeUpdate(staffQueries[i]);
+                String sql = saveStaff(i, stringDate);
+                stmt.executeUpdate(sql);
             }
             
-            //implement query - SAVING NOTES AT TOP
-            String sql = saveNotes(stringDate);               
-            stmt.executeUpdate(sql);        
-                    
             c.close();
         }
         catch (SQLException e)
         {
             
         } 
+        
+    }
+    
+    //----------------------------------------------------------------------------------------------------
+    
+    
+    public String deleteStaff(String date)
+    {
+        return "DELETE FROM working WHERE Date = '" + date + "'" ;
+    }
+    
+    public String saveStaff(int i, String date)
+    {
+        if(!staffList.get(i).getValue().equals(""))
+        {
+            String line = staffList.get(i).getValue().toString();
+            int first = line.indexOf("(");
+            int second = line.indexOf(")");
+            String ID = line.substring(first+1, second);
+            String Shift = shiftList.get(i).getValue().toString();
+                        
+            System.out.println("SAVEING: " + ID + " " + date + " " + Shift);
+            
+            return "INSERT INTO working (Staff_ID, Date, Shift) VALUES (' "
+                                                                + ID + "','"
+                                                                + date + "','"
+                                                                + Shift + "')"   ;
+        }
+        else
+        {
+            return "";
+        }
     }
     
     
     
     
-    
-    //EACH SAVING METHOD FOR EACH MEMBER OF STAFF ------------------------------------------------------------------------------
-    
+    //OK
+    public String SQLLine(int i, String date)
+    {
+        if(!timeList.get(i).getText().equals("") & !nameList.get(i).getText().equals("") & !ageList.get(i).getText().equals("") & !hospitalList.get(i).getText().equals("") & !specialityList.get(i).getText().equals(""))
+        {
+            return ("REPLACE INTO diary (Date, BedNumber, Time, Name, Age, HospitalNumber, Speciality, ExtraInfo, Notes, Attendance) VALUES('"      
+                                                                                + date + "','"
+                                                                                + bedArray[i] + "','"
+                                                                                + timeList.get(i).getText() + "','"
+                                                                                + nameList.get(i).getText() + "','"
+                                                                                + ageList.get(i).getText() + "','"
+                                                                                + hospitalList.get(i).getText() + "','"
+                                                                                + specialityList.get(i).getText() + "','"
+                                                                                + extraArray[i] + "','"
+                                                                                + notesArray[i] + "','"
+                                                                                + attendanceArray[i] + "')"
+                    );
+        }
+        else
+        {
+            return "";
+        }
+    }   
+       
+    //OK
     public String saveNotes(String date)
     {
         if(notes)
@@ -1366,841 +1040,50 @@ public class DiaryScreenDocumentController  implements Initializable
     
     
     
-    public void replacingStaff(String date, int value)
+    
+     public void delete()
     {
+        for(int i=0; i<24; i++)
+        {
+            deleteOption(i);
+        }
+    }
+    
+    
+    public void deleteOption(int i)
+    {
+        TextField time = timeList.get(i);
+        TextField name = nameList.get(i);
+       
+        //https://stackoverflow.com/questions/32980159/javafx-append-to-right-click-menu-for-textfield accessed 18/2
+        //https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/ContextMenu.html accessed 18/2
+        ContextMenu contextMenu1 = new ContextMenu();
+        MenuItem delete = new MenuItem("Delete");
+        delete.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e) {
+                try {
+                    // open a connection
+                    Connection c = DatabaseConnector.activateConnection();
+                    c.setAutoCommit(true);
 
-        try
-        {
-            // open a connection
-            Connection c = DatabaseConnector.activateConnection();
-            c.setAutoCommit( true ); 
-            
-            // when creating a statement object, you MUST use a connection object to call the instance method
-            Statement stmt = c.createStatement();
-            
-            String sql ="DELETE FROM working WHERE Date = '" + date + "' AND Staff_ID = '" + staff.get(value).getID() + "'";   
-            
-            stmt.executeUpdate(sql);                 
-                    
-            c.close();
-        }
-        catch (SQLException e)
-        {
-            
-        } 
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-   public String saveStaff1(String date)
-    {      
-        if(!cbStaff1.getValue().toString().equals(""))
-        {
-            String line = cbStaff1.getValue().toString();
-            int first = line.indexOf("(");
-            int second = line.indexOf(")");
-            String ID = line.substring(first+1, second);
-            String Shift = cbShift1.getValue().toString();
-            
-            if(staff.size() >= 1)
-            {
-                replacingStaff(date, 0);
-            }
-            
-            return "REPLACE INTO working (Staff_ID, Date, Shift) VALUES (' "
-                                                                + ID + "','"
-                                                                + date + "','"
-                                                                + Shift + "')"   ;
-        }
-        else
-        {
-            if(staff.size() == 1 && staff.get(0) != null)
-            {
-                return "DELETE FROM working WHERE Date = '" + date + "' AND Staff_ID = '" + staff.get(0).getID() + "'";
-            }
-            else
-            {
-                return "";
-            }
-        }
-    }
-     
-    public String saveStaff2(String date)
-    {
-        if(!cbStaff2.getValue().toString().equals("") && staff.size() <=2)
-        {
-            String line = cbStaff2.getValue().toString();
-            int first = line.indexOf("(");
-            int second = line.indexOf(")");
-            String ID = line.substring(first+1, second);
-            String Shift = cbShift2.getValue().toString();
-            
-            if(staff.size() >= 2)
-            {
-                replacingStaff(date, 1);
-            }
-            
-            return "REPLACE INTO working (Staff_ID, Date, Shift) VALUES (' "
-                                                                + ID + "','"
-                                                                + date + "','"
-                                                                + Shift + "')"   ;
-        }
-        else
-        {
-            if(staff.size() >= 2)
-            {
-                return "DELETE FROM working WHERE Date = '" + date + "' AND Staff_ID = '" + staff.get(1).getID() + "'";
-            }
-            else
-            {
-                return "";
-            }
-        }
-        
-    }
+                    // when creating a statement object, you MUST use a connection object to call the instance method
+                    Statement stmt = c.createStatement();
 
-    public String saveStaff3(String date)
-    {
-        if(!cbStaff3.getValue().toString().equals("") && staff.size() <=3)
-        {
-            String line = cbStaff3.getValue().toString();
-            int first = line.indexOf("(");
-            int second = line.indexOf(")");
-            String ID = line.substring(first+1, second);
-            String Shift = cbShift3.getValue().toString();
-            
-            if(staff.size() >= 3)
-            {
-                replacingStaff(date, 2);
-            }
-            
-            return "REPLACE INTO working (Staff_ID, Date, Shift) VALUES (' "
-                                                                + ID + "','"
-                                                                + date + "','"
-                                                                + Shift + "')"   ;
-        }
-        else
-        {
-            if(staff.size() >= 3)
-            {
-                return "DELETE FROM working WHERE Date = '" + date + "' AND Staff_ID = '" + staff.get(2).getID() + "'";
-            }
-            else
-            {
-                return "";
-            }
-        }
-    }
+                    String sql = "DELETE FROM diary WHERE Date = '" + codeBank.dateToString(codeBank.getCurrentDate()) + "' AND Time = '" + time.getText() + "' AND BedNumber = '" + bedArray[i] + "'";
 
-    public String saveStaff4(String date)
-    {
-        if(!cbStaff4.getValue().toString().equals("") && staff.size() <=4)
-        {
-            String line = cbStaff4.getValue().toString();
-            int first = line.indexOf("(");
-            int second = line.indexOf(")");
-            String ID = line.substring(first+1, second);
-            String Shift = cbShift4.getValue().toString();
-            
-            if(staff.size() >= 4)
-            {
-                replacingStaff(date, 3);
-            }
-            
-            return "REPLACE INTO working (Staff_ID, Date, Shift) VALUES (' "
-                                                                + ID + "','"
-                                                                + date + "','"
-                                                                + Shift + "')"   ;
-        }
-        else
-        {
-            if(staff.size() >= 4)
-            {
-                return "DELETE FROM working WHERE Date = '" + date + "' AND Staff_ID = '" + staff.get(3).getID() + "'";
-            }
-            else
-            {
-                return "";
-            }
-        }
-    }
+                    stmt.executeUpdate(sql);
 
-    public String saveStaff5(String date)
-    {
-        if(!cbStaff5.getValue().toString().equals("") && staff.size() <=5)
-        {
-            String line = cbStaff5.getValue().toString();
-            int first = line.indexOf("(");
-            int second = line.indexOf(")");
-            String ID = line.substring(first+1, second);
-            String Shift = cbShift5.getValue().toString();
-            
-            if(staff.size() >= 5)
-            {
-                replacingStaff(date, 4);
-            }
-            
-            return "REPLACE INTO working (Staff_ID, Date, Shift) VALUES (' "
-                                                                + ID + "','"
-                                                                + date + "','"
-                                                                + Shift + "')"   ;
-        }
-        else
-        {
-            if(staff.size() >= 5)
-            {
-                return "DELETE FROM working WHERE Date = '" + date + "' AND Staff_ID = '" + staff.get(4).getID() + "'";
-            }
-            else
-            {
-                return "";
-            }
-        }
-    }
+                    c.close();
+                } catch (SQLException x) {
 
-    public String saveStaff6(String date)
-    {
-        if(!cbStaff6.getValue().toString().equals(""))
-        {
-            String line = cbStaff6.getValue().toString();
-            int first = line.indexOf("(");
-            int second = line.indexOf(")");
-            String ID = line.substring(first+1, second);
-            String Shift = cbShift6.getValue().toString();
-            
-            if(staff.size() == 6)
-            {
-                replacingStaff(date, 5);
+                }
+                clearSingle(i);
             }
-            
-            return "REPLACE INTO working (Staff_ID, Date, Shift) VALUES (' "
-                                                                + ID + "','"
-                                                                + date + "','"
-                                                                + Shift + "')"   ;
-        }
-        else
-        {
-            if(staff.size() == 6)
-            {
-                return "DELETE FROM working WHERE Date = '" + date + "' AND Staff_ID = '" + staff.get(5).getID() + "'";
-            }
-            else
-            {
-                return "";
-            }
-        }
-    }    
-      
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    //EACH SAVING METHOD FOR EACH ROW --------------------------------------------------------------------------------------------
-    
-    public String save1MA(String date)
-    {
-        if(!txtTime1MA.getText().equals("") & !txtName1MA.getText().equals("") & !txtAge1MA.getText().equals("") & !txtHospital1MA.getText().equals("") & !txtSpeciality1MA.getText().equals(""))
-        {
-            return ("REPLACE INTO diary (Date, BedNumber, Time, Name, Age, HospitalNumber, Speciality, ExtraInfo, Notes, Attendance) VALUES('"      
-                                                                                + date + "','"
-                                                                                + "1MA" + "','"
-                                                                                + txtTime1MA.getText() + "','"
-                                                                                + txtName1MA.getText() + "','"
-                                                                                + txtAge1MA.getText() + "','"
-                                                                                + txtHospital1MA.getText() + "','"
-                                                                                + txtSpeciality1MA.getText() + "','"
-                                                                                + extraArray[0] + "','"
-                                                                                + notesArray[0] + "','"
-                                                                                + attendanceArray[0] + "')"
-                    );
-        }
-        else
-        {
-            return "";
-        }
-    }  
-    
-    
-   
-    public String save2MA(String date)
-    {
-        if(!txtTime2MA.getText().equals("") & !txtName2MA.getText().equals("") & !txtAge2MA.getText().equals("") & !txtHospital2MA.getText().equals("") & !txtSpeciality2MA.getText().equals(""))
-        {
-            return ("REPLACE INTO diary (Date, BedNumber, Time, Name, Age, HospitalNumber, Speciality, ExtraInfo, Notes, Attendance) VALUES('"      
-                                                                                + date + "','"
-                                                                                + "2MA" + "','"
-                                                                                + txtTime2MA.getText() + "','"
-                                                                                + txtName2MA.getText() + "','"
-                                                                                + txtAge2MA.getText() + "','"
-                                                                                + txtHospital2MA.getText() + "','"
-                                                                                + txtSpeciality2MA.getText() + "','"
-                                                                                + extraArray[1] + "','"
-                                                                                + notesArray[1] + "','"
-                                                                                + attendanceArray[1] + "')"
-                    );
-        }
-        else
-        {
-            return "";
-        }
-    }   
-    
-    
-    
-    public String save3MA(String date)
-    {
-        if(!txtTime3MA.getText().equals("") & !txtName3MA.getText().equals("") & !txtAge3MA.getText().equals("") & !txtHospital3MA.getText().equals("") & !txtSpeciality3MA.getText().equals(""))
-        {
-            return ("REPLACE INTO diary (Date, BedNumber, Time, Name, Age, HospitalNumber, Speciality, ExtraInfo, Notes, Attendance) VALUES('"      
-                                                                                + date + "','"
-                                                                                + "3MA" + "','"
-                                                                                + txtTime3MA.getText() + "','"
-                                                                                + txtName3MA.getText() + "','"
-                                                                                + txtAge3MA.getText() + "','"
-                                                                                + txtHospital3MA.getText() + "','"
-                                                                                + txtSpeciality3MA.getText() + "','"
-                                                                                + extraArray[2] + "','"
-                                                                                + notesArray[2] + "','"
-                                                                                + attendanceArray[2] + "')"
-                    );
-        }
-        else
-        {
-            return "";
-        }
-    } 
-    
-    
-    
-    public String save4MA(String date)
-    {
-        if(!txtTime4MA.getText().equals("") & !txtName4MA.getText().equals("") & !txtAge4MA.getText().equals("") & !txtHospital4MA.getText().equals("") & !txtSpeciality4MA.getText().equals(""))
-        {
-            return ("REPLACE INTO diary (Date, BedNumber, Time, Name, Age, HospitalNumber, Speciality, ExtraInfo, Notes, Attendance) VALUES('"      
-                                                                                + date + "','"
-                                                                                + "4MA" + "','"
-                                                                                + txtTime4MA.getText() + "','"
-                                                                                + txtName4MA.getText() + "','"
-                                                                                + txtAge4MA.getText() + "','"
-                                                                                + txtHospital4MA.getText() + "','"
-                                                                                + txtSpeciality4MA.getText() + "','"
-                                                                                + extraArray[3] + "','"
-                                                                                + notesArray[3] + "','"
-                                                                                + attendanceArray[3] + "')"
-                    );
-        }
-        else
-        {
-            return "";
-        }
-    }     
-    
-    
-    public String saveEMA(String date)
-    {
-        if(!txtTimeEMA.getText().equals("") & !txtNameEMA.getText().equals("") & !txtAgeEMA.getText().equals("") & !txtHospitalEMA.getText().equals("") & !txtSpecialityEMA.getText().equals(""))
-        {
-            return ("REPLACE INTO diary (Date, BedNumber, Time, Name, Age, HospitalNumber, Speciality, ExtraInfo, Notes, Attendance) VALUES('"      
-                                                                                + date + "','"
-                                                                                + "EMA" + "','"
-                                                                                + txtTimeEMA.getText() + "','"
-                                                                                + txtNameEMA.getText() + "','"
-                                                                                + txtAgeEMA.getText() + "','"
-                                                                                + txtHospitalEMA.getText() + "','"
-                                                                                + txtSpecialityEMA.getText() + "','"
-                                                                                + extraArray[4] + "','"
-                                                                                + notesArray[4] + "','"
-                                                                                + attendanceArray[4] + "')"
-                    );
-        }
-        else
-        {
-            return "";
-        }
-    }     
-    
-    
-    public String save1LA(String date)
-    {
-        if(!txtTime1LA.getText().equals("") & !txtName1LA.getText().equals("") & !txtAge1LA.getText().equals("") & !txtHospital1LA.getText().equals("") & !txtSpeciality1LA.getText().equals(""))
-        {
-            return ("REPLACE INTO diary (Date, BedNumber, Time, Name, Age, HospitalNumber, Speciality, ExtraInfo, Notes, Attendance) VALUES('"      
-                                                                                + date + "','"
-                                                                                + "1LA" + "','"
-                                                                                + txtTime1LA.getText() + "','"
-                                                                                + txtName1LA.getText() + "','"
-                                                                                + txtAge1LA.getText() + "','"
-                                                                                + txtHospital1LA.getText() + "','"
-                                                                                + txtSpeciality1LA.getText() + "','"
-                                                                                + extraArray[5] + "','"
-                                                                                + notesArray[5] + "','"
-                                                                                + attendanceArray[5] + "')"
-                    );
-        }
-        else
-        {
-            return "";
-        }
-    }     
-    
-    
-    
-    public String save2LA(String date)
-    {
-        if(!txtTime2LA.getText().equals("") & !txtName2LA.getText().equals("") & !txtAge2LA.getText().equals("") & !txtHospital2LA.getText().equals("") & !txtSpeciality2LA.getText().equals(""))
-        {
-            return ("REPLACE INTO diary (Date, BedNumber, Time, Name, Age, HospitalNumber, Speciality, ExtraInfo, Notes, Attendance) VALUES('"      
-                                                                                + date + "','"
-                                                                                + "2LA" + "','"
-                                                                                + txtTime2LA.getText() + "','"
-                                                                                + txtName2LA.getText() + "','"
-                                                                                + txtAge2LA.getText() + "','"
-                                                                                + txtHospital2LA.getText() + "','"
-                                                                                + txtSpeciality2LA.getText() + "','"
-                                                                                + extraArray[6] + "','"
-                                                                                + notesArray[6] + "','"
-                                                                                + attendanceArray[6] + "')"
-                    );
-        }
-        else
-        {
-            return "";
-        }
-    }       
-    
-    public String save3LA(String date)
-    {
-        if(!txtTime3LA.getText().equals("") & !txtName3LA.getText().equals("") & !txtAge3LA.getText().equals("") & !txtHospital3LA.getText().equals("") & !txtSpeciality3LA.getText().equals(""))
-        {
-            return ("REPLACE INTO diary (Date, BedNumber, Time, Name, Age, HospitalNumber, Speciality, ExtraInfo, Notes, Attendance) VALUES('"      
-                                                                                + date + "','"
-                                                                                + "3LA" + "','"
-                                                                                + txtTime3LA.getText() + "','"
-                                                                                + txtName3LA.getText() + "','"
-                                                                                + txtAge3LA.getText() + "','"
-                                                                                + txtHospital3LA.getText() + "','"
-                                                                                + txtSpeciality3LA.getText() + "','"
-                                                                                + extraArray[7] + "','"
-                                                                                + notesArray[7] + "','"
-                                                                                + attendanceArray[7] + "')"
-                    );
-        }
-        else
-        {
-            return "";
-        }
-    }       
-    
-    
-    public String save4LA(String date)
-    {
-        if(!txtTime4LA.getText().equals("") & !txtName4LA.getText().equals("") & !txtAge4LA.getText().equals("") & !txtHospital4LA.getText().equals("") & !txtSpeciality4LA.getText().equals(""))
-        {
-            return ("REPLACE INTO diary (Date, BedNumber, Time, Name, Age, HospitalNumber, Speciality, ExtraInfo, Notes, Attendance) VALUES('"      
-                                                                                + date + "','"
-                                                                                + "4LA" + "','"
-                                                                                + txtTime4LA.getText() + "','"
-                                                                                + txtName4LA.getText() + "','"
-                                                                                + txtAge4LA.getText() + "','"
-                                                                                + txtHospital4LA.getText() + "','"
-                                                                                + txtSpeciality4LA.getText() + "','"
-                                                                                + extraArray[8] + "','"
-                                                                                + notesArray[8] + "','"
-                                                                                + attendanceArray[8] + "')"
-                    );
-        }
-        else
-        {
-            return "";
-        }
-    }      
-    
-    
-    public String save5LA(String date)
-    {
-        if(!txtTime5LA.getText().equals("") & !txtName5LA.getText().equals("") & !txtAge5LA.getText().equals("") & !txtHospital5LA.getText().equals("") & !txtSpeciality5LA.getText().equals(""))
-        {
-            return ("REPLACE INTO diary (Date, BedNumber, Time, Name, Age, HospitalNumber, Speciality, ExtraInfo, Notes, Attendance) VALUES('"      
-                                                                                + date + "','"
-                                                                                + "5LA" + "','"
-                                                                                + txtTime5LA.getText() + "','"
-                                                                                + txtName5LA.getText() + "','"
-                                                                                + txtAge5LA.getText() + "','"
-                                                                                + txtHospital5LA.getText() + "','"
-                                                                                + txtSpeciality5LA.getText() + "','"
-                                                                                + extraArray[9] + "','"
-                                                                                + notesArray[9] + "','"
-                                                                                + attendanceArray[9] + "')"
-                    );
-        }
-        else
-        {
-            return "";
-        }
-    }   
-    
-    
-    
-    public String save6LA(String date)
-    {
-        if(!txtTime6LA.getText().equals("") & !txtName6LA.getText().equals("") & !txtAge6LA.getText().equals("") & !txtHospital6LA.getText().equals("") & !txtSpeciality6LA.getText().equals(""))
-        {
-            return ("REPLACE INTO diary (Date, BedNumber, Time, Name, Age, HospitalNumber, Speciality, ExtraInfo, Notes, Attendance) VALUES('"      
-                                                                                + date + "','"
-                                                                                + "6LA" + "','"
-                                                                                + txtTime6LA.getText() + "','"
-                                                                                + txtName6LA.getText() + "','"
-                                                                                + txtAge6LA.getText() + "','"
-                                                                                + txtHospital6LA.getText() + "','"
-                                                                                + txtSpeciality6LA.getText() + "','"
-                                                                                + extraArray[10] + "','"
-                                                                                + notesArray[10] + "','"
-                                                                                + attendanceArray[10] + "')"
-                    );
-        }
-        else
-        {
-            return "";
-        }
-    }    
-    
-    
-    public String saveELA(String date)
-    {
-        if(!txtTimeELA.getText().equals("") & !txtNameELA.getText().equals("") & !txtAgeELA.getText().equals("") & !txtHospitalELA.getText().equals("") & !txtSpecialityELA.getText().equals(""))
-        {
-            return ("REPLACE INTO diary (Date, BedNumber, Time, Name, Age, HospitalNumber, Speciality, ExtraInfo, Notes, Attendance) VALUES('"      
-                                                                                + date + "','"
-                                                                                + "ELA" + "','"
-                                                                                + txtTimeELA.getText() + "','"
-                                                                                + txtNameELA.getText() + "','"
-                                                                                + txtAgeELA.getText() + "','"
-                                                                                + txtHospitalELA.getText() + "','"
-                                                                                + txtSpecialityELA.getText() + "','"
-                                                                                + extraArray[11] + "','"
-                                                                                + notesArray[11] + "','"
-                                                                                + attendanceArray[11] + "')"
-                    );
-        }
-        else
-        {
-            return "";
-        }
-    }    
-    
- //***************************************************************************************   
-    
-    public String save1MP(String date)
-    {
-        if(!txtTime1MP.getText().equals("") & !txtName1MP.getText().equals("") & !txtAge1MP.getText().equals("") & !txtHospital1MP.getText().equals("") & !txtSpeciality1MP.getText().equals(""))
-        {
-            return ("REPLACE INTO diary (Date, BedNumber, Time, Name, Age, HospitalNumber, Speciality, ExtraInfo, Notes, Attendance) VALUES('"      
-                                                                                + date + "','"
-                                                                                + "1MP" + "','"
-                                                                                + txtTime1MP.getText() + "','"
-                                                                                + txtName1MP.getText() + "','"
-                                                                                + txtAge1MP.getText() + "','"
-                                                                                + txtHospital1MP.getText() + "','"
-                                                                                + txtSpeciality1MP.getText() + "','"
-                                                                                + extraArray[12] + "','"
-                                                                                + notesArray[12] + "','"
-                                                                                + attendanceArray[12] + "')"
-                    );
-        }
-        else
-        {
-            return "";
-        }
-    }  
-    
-    
-   
-    public String save2MP(String date)
-    {
-        if(!txtTime2MP.getText().equals("") & !txtName2MP.getText().equals("") & !txtAge2MP.getText().equals("") & !txtHospital2MP.getText().equals("") & !txtSpeciality2MP.getText().equals(""))
-        {
-            return ("REPLACE INTO diary (Date, BedNumber, Time, Name, Age, HospitalNumber, Speciality, ExtraInfo, Notes, Attendance) VALUES('"      
-                                                                                + date + "','"
-                                                                                + "2MP" + "','"
-                                                                                + txtTime2MP.getText() + "','"
-                                                                                + txtName2MP.getText() + "','"
-                                                                                + txtAge2MP.getText() + "','"
-                                                                                + txtHospital2MP.getText() + "','"
-                                                                                + txtSpeciality2MP.getText() + "','"
-                                                                                + extraArray[13] + "','"
-                                                                                + notesArray[13] + "','"
-                                                                                + attendanceArray[13] + "')"
-                    );
-        }
-        else
-        {
-            return "";
-        }
-    }   
-    
-    
-    
-    public String save3MP(String date)
-    {
-        if(!txtTime3MP.getText().equals("") & !txtName3MP.getText().equals("") & !txtAge3MP.getText().equals("") & !txtHospital3MP.getText().equals("") & !txtSpeciality3MP.getText().equals(""))
-        {
-            return ("REPLACE INTO diary (Date, BedNumber, Time, Name, Age, HospitalNumber, Speciality, ExtraInfo, Notes, Attendance) VALUES('"      
-                                                                                + date + "','"
-                                                                                + "3MP" + "','"
-                                                                                + txtTime3MP.getText() + "','"
-                                                                                + txtName3MP.getText() + "','"
-                                                                                + txtAge3MP.getText() + "','"
-                                                                                + txtHospital3MP.getText() + "','"
-                                                                                + txtSpeciality3MP.getText() + "','"
-                                                                                + extraArray[14] + "','"
-                                                                                + notesArray[14] + "','"
-                                                                                + attendanceArray[14] + "')"
-                    );
-        }
-        else
-        {
-            return "";
-        }
-    } 
-    
-    
-    
-    public String save4MP(String date)
-    {
-        if(!txtTime4MP.getText().equals("") & !txtName4MP.getText().equals("") & !txtAge4MP.getText().equals("") & !txtHospital4MP.getText().equals("") & !txtSpeciality4MP.getText().equals(""))
-        {
-            return ("REPLACE INTO diary (Date, BedNumber, Time, Name, Age, HospitalNumber, Speciality, ExtraInfo, Notes, Attendance) VALUES('"      
-                                                                                + date + "','"
-                                                                                + "4MP" + "','"
-                                                                                + txtTime4MP.getText() + "','"
-                                                                                + txtName4MP.getText() + "','"
-                                                                                + txtAge4MP.getText() + "','"
-                                                                                + txtHospital4MP.getText() + "','"
-                                                                                + txtSpeciality4MP.getText() + "','"
-                                                                                + extraArray[15] + "','"
-                                                                                + notesArray[15] + "','"
-                                                                                + attendanceArray[15] + "')"
-                    );
-        }
-        else
-        {
-            return "";
-        }
-    }     
-    
-    
-    public String saveEMP(String date)
-    {
-        if(!txtTimeEMP.getText().equals("") & !txtNameEMP.getText().equals("") & !txtAgeEMP.getText().equals("") & !txtHospitalEMP.getText().equals("") & !txtSpecialityEMP.getText().equals(""))
-        {
-            return ("REPLACE INTO diary (Date, BedNumber, Time, Name, Age, HospitalNumber, Speciality, ExtraInfo, Notes, Attendance) VALUES('"      
-                                                                                + date + "','"
-                                                                                + "EMP" + "','"
-                                                                                + txtTimeEMP.getText() + "','"
-                                                                                + txtNameEMP.getText() + "','"
-                                                                                + txtAgeEMP.getText() + "','"
-                                                                                + txtHospitalEMP.getText() + "','"
-                                                                                + txtSpecialityEMP.getText() + "','"
-                                                                                + extraArray[16] + "','"
-                                                                                + notesArray[16] + "','"
-                                                                                + attendanceArray[16] + "')"
-                    );
-        }
-        else
-        {
-            return "";
-        }
-    }     
-    
-    
-    public String save1LP(String date)
-    {
-        if(!txtTime1LP.getText().equals("") & !txtName1LP.getText().equals("") & !txtAge1LP.getText().equals("") & !txtHospital1LP.getText().equals("") & !txtSpeciality1LP.getText().equals(""))
-        {
-            return ("REPLACE INTO diary (Date, BedNumber, Time, Name, Age, HospitalNumber, Speciality, ExtraInfo, Notes, Attendance) VALUES('"      
-                                                                                + date + "','"
-                                                                                + "1LP" + "','"
-                                                                                + txtTime1LP.getText() + "','"
-                                                                                + txtName1LP.getText() + "','"
-                                                                                + txtAge1LP.getText() + "','"
-                                                                                + txtHospital1LP.getText() + "','"
-                                                                                + txtSpeciality1LP.getText() + "','"
-                                                                                + extraArray[17] + "','"
-                                                                                + notesArray[17] + "','"
-                                                                                + attendanceArray[17] + "')"
-                    );
-        }
-        else
-        {
-            return "";
-        }
-    }     
-    
-    
-    
-    public String save2LP(String date)
-    {
-        if(!txtTime2LP.getText().equals("") & !txtName2LP.getText().equals("") & !txtAge2LP.getText().equals("") & !txtHospital2LP.getText().equals("") & !txtSpeciality2LP.getText().equals(""))
-        {
-            return ("REPLACE INTO diary (Date, BedNumber, Time, Name, Age, HospitalNumber, Speciality, ExtraInfo, Notes, Attendance) VALUES('"      
-                                                                                + date + "','"
-                                                                                + "2LP" + "','"
-                                                                                + txtTime2LP.getText() + "','"
-                                                                                + txtName2LP.getText() + "','"
-                                                                                + txtAge2LP.getText() + "','"
-                                                                                + txtHospital2LP.getText() + "','"
-                                                                                + txtSpeciality2LP.getText() + "','"
-                                                                                + extraArray[18] + "','"
-                                                                                + notesArray[18] + "','"
-                                                                                + attendanceArray[18] + "')"
-                    );
-        }
-        else
-        {
-            return "";
-        }
-    }       
-    
-    public String save3LP(String date)
-    {
-        if(!txtTime3LP.getText().equals("") & !txtName3LP.getText().equals("") & !txtAge3LP.getText().equals("") & !txtHospital3LP.getText().equals("") & !txtSpeciality3LP.getText().equals(""))
-        {
-            return ("REPLACE INTO diary (Date, BedNumber, Time, Name, Age, HospitalNumber, Speciality, ExtraInfo, Notes, Attendance) VALUES('"      
-                                                                                + date + "','"
-                                                                                + "3LP" + "','"
-                                                                                + txtTime3LP.getText() + "','"
-                                                                                + txtName3LP.getText() + "','"
-                                                                                + txtAge3LP.getText() + "','"
-                                                                                + txtHospital3LP.getText() + "','"
-                                                                                + txtSpeciality3LP.getText() + "','"
-                                                                                + extraArray[19] + "','"
-                                                                                + notesArray[19] + "','"
-                                                                                + attendanceArray[19] + "')"
-                    );
-        }
-        else
-        {
-            return "";
-        }
-    }       
-    
-    
-    public String save4LP(String date)
-    {
-        if(!txtTime4LP.getText().equals("") & !txtName4LP.getText().equals("") & !txtAge4LP.getText().equals("") & !txtHospital4LP.getText().equals("") & !txtSpeciality4LP.getText().equals(""))
-        {
-            return ("REPLACE INTO diary (Date, BedNumber, Time, Name, Age, HospitalNumber, Speciality, ExtraInfo, Notes, Attendance) VALUES('"      
-                                                                                + date + "','"
-                                                                                + "4LP" + "','"
-                                                                                + txtTime4LP.getText() + "','"
-                                                                                + txtName4LP.getText() + "','"
-                                                                                + txtAge4LP.getText() + "','"
-                                                                                + txtHospital4LP.getText() + "','"
-                                                                                + txtSpeciality4LP.getText() + "','"
-                                                                                + extraArray[20] + "','"
-                                                                                + notesArray[20] + "','"
-                                                                                + attendanceArray[20] + "')"
-                    );
-        }
-        else
-        {
-            return "";
-        }
-    }      
-    
-    
-    public String save5LP(String date)
-    {
-        if(!txtTime5LP.getText().equals("") & !txtName5LP.getText().equals("") & !txtAge5LP.getText().equals("") & !txtHospital5LP.getText().equals("") & !txtSpeciality5LP.getText().equals(""))
-        {
-            return ("REPLACE INTO diary (Date, BedNumber, Time, Name, Age, HospitalNumber, Speciality, ExtraInfo, Notes, Attendance) VALUES('"      
-                                                                                + date + "','"
-                                                                                + "5LP" + "','"
-                                                                                + txtTime5LP.getText() + "','"
-                                                                                + txtName5LP.getText() + "','"
-                                                                                + txtAge5LP.getText() + "','"
-                                                                                + txtHospital5LP.getText() + "','"
-                                                                                + txtSpeciality5LP.getText() + "','"
-                                                                                + extraArray[21] + "','"
-                                                                                + notesArray[21] + "','"
-                                                                                + attendanceArray[21] + "')"
-                    );
-        }
-        else
-        {
-            return "";
-        }
-    }   
-    
-    
-    
-    public String save6LP(String date)
-    {
-        if(!txtTime6LP.getText().equals("") & !txtName6LP.getText().equals("") & !txtAge6LP.getText().equals("") & !txtHospital6LP.getText().equals("") & !txtSpeciality6LP.getText().equals(""))
-        {
-            return ("REPLACE INTO diary (Date, BedNumber, Time, Name, Age, HospitalNumber, Speciality, ExtraInfo, Notes, Attendance) VALUES('"      
-                                                                                + date + "','"
-                                                                                + "6LP" + "','"
-                                                                                + txtTime6LP.getText() + "','"
-                                                                                + txtName6LP.getText() + "','"
-                                                                                + txtAge6LP.getText() + "','"
-                                                                                + txtHospital6LP.getText() + "','"
-                                                                                + txtSpeciality6LP.getText() + "','"
-                                                                                + extraArray[22] + "','"
-                                                                                + notesArray[22] + "','"
-                                                                                + attendanceArray[22] + "')"
-                    );
-        }
-        else
-        {
-            return "";
-        }
-    }    
-    
-    
-    public String saveELP(String date)
-    {
-        if(!txtTimeELP.getText().equals("") & !txtNameELP.getText().equals("") & !txtAgeELP.getText().equals("") & !txtHospitalELP.getText().equals("") & !txtSpecialityELP.getText().equals(""))
-        {
-            return ("REPLACE INTO diary (Date, BedNumber, Time, Name, Age, HospitalNumber, Speciality, ExtraInfo, Notes, Attendance) VALUES('"      
-                                                                                + date + "','"
-                                                                                + "ELP" + "','"
-                                                                                + txtTimeELP.getText() + "','"
-                                                                                + txtNameELP.getText() + "','"
-                                                                                + txtAgeELP.getText() + "','"
-                                                                                + txtHospitalELP.getText() + "','"
-                                                                                + txtSpecialityELP.getText() + "','"
-                                                                                + extraArray[23] + "','"
-                                                                                + notesArray[23] + "','"
-                                                                                + attendanceArray[23] + "')"
-                    );
-        }
-        else
-        {
-            return "";
-        }
-    }        
+        });
+        contextMenu1.getItems().add(delete);
+        timeList.get(i).setContextMenu(contextMenu1);
+
+    }
     
 }//END OF CLASS
 

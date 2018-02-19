@@ -724,6 +724,8 @@
          <font>
             <Font size="25.0" />
          </font></TextField>
+         
+         
       <ChoiceBox fx:id="cbStaff1" layoutY="-1.0" prefHeight="49.0" prefWidth="373.0" />
       <ChoiceBox fx:id="cbShift1" layoutX="372.0" layoutY="-1.0" prefHeight="49.0" prefWidth="70.0" />
       <ChoiceBox fx:id="cbShift2" layoutX="372.0" layoutY="48.0" prefHeight="49.0" prefWidth="70.0" />
@@ -766,6 +768,141 @@
            <fx:reference source="txtFiveLP"/>
            <fx:reference source="txtSixLP"/>
            <fx:reference source="txtSpareLP"/>         
+       </ArrayList>
+       
+       <ArrayList fx:id="timeList">
+           <fx:reference source="txtTime1MA"/>
+           <fx:reference source="txtTime2MA"/>      
+           <fx:reference source="txtTime3MA"/>
+           <fx:reference source="txtTime4MA"/>
+           <fx:reference source="txtTimeEMA"/>
+           <fx:reference source="txtTime1LA"/>
+           <fx:reference source="txtTime2LA"/>
+           <fx:reference source="txtTime3LA"/>
+           <fx:reference source="txtTime4LA"/>
+           <fx:reference source="txtTime5LA"/>
+           <fx:reference source="txtTime6LA"/>
+           <fx:reference source="txtTimeELA"/>
+           <fx:reference source="txtTime1MP"/>
+           <fx:reference source="txtTime2MP"/>      
+           <fx:reference source="txtTime3MP"/>
+           <fx:reference source="txtTime4MP"/>
+           <fx:reference source="txtTimeEMP"/>
+           <fx:reference source="txtTime1LP"/>
+           <fx:reference source="txtTime2LP"/>
+           <fx:reference source="txtTime3LP"/>
+           <fx:reference source="txtTime4LP"/>
+           <fx:reference source="txtTime5LP"/>
+           <fx:reference source="txtTime6LP"/>
+           <fx:reference source="txtTimeELP"/>
+       </ArrayList>
+       
+       <ArrayList fx:id="nameList">
+           <fx:reference source="txtName1MA"/>
+           <fx:reference source="txtName2MA"/>      
+           <fx:reference source="txtName3MA"/>
+           <fx:reference source="txtName4MA"/>
+           <fx:reference source="txtNameEMA"/>
+           <fx:reference source="txtName1LA"/>
+           <fx:reference source="txtName2LA"/>
+           <fx:reference source="txtName3LA"/>
+           <fx:reference source="txtName4LA"/>
+           <fx:reference source="txtName5LA"/>
+           <fx:reference source="txtName6LA"/>
+           <fx:reference source="txtNameELA"/>
+           <fx:reference source="txtName1MP"/>
+           <fx:reference source="txtName2MP"/>      
+           <fx:reference source="txtName3MP"/>
+           <fx:reference source="txtName4MP"/>
+           <fx:reference source="txtNameEMP"/>
+           <fx:reference source="txtName1LP"/>
+           <fx:reference source="txtName2LP"/>
+           <fx:reference source="txtName3LP"/>
+           <fx:reference source="txtName4LP"/>
+           <fx:reference source="txtName5LP"/>
+           <fx:reference source="txtName6LP"/>
+           <fx:reference source="txtNameELP"/>
+       </ArrayList>
+       
+       <ArrayList fx:id="ageList">
+           <fx:reference source="txtAge1MA"/>
+           <fx:reference source="txtAge2MA"/>      
+           <fx:reference source="txtAge3MA"/>
+           <fx:reference source="txtAge4MA"/>
+           <fx:reference source="txtAgeEMA"/>
+           <fx:reference source="txtAge1LA"/>
+           <fx:reference source="txtAge2LA"/>
+           <fx:reference source="txtAge3LA"/>
+           <fx:reference source="txtAge4LA"/>
+           <fx:reference source="txtAge5LA"/>
+           <fx:reference source="txtAge6LA"/>
+           <fx:reference source="txtAgeELA"/>
+           <fx:reference source="txtAge1MP"/>
+           <fx:reference source="txtAge2MP"/>      
+           <fx:reference source="txtAge3MP"/>
+           <fx:reference source="txtAge4MP"/>
+           <fx:reference source="txtAgeEMP"/>
+           <fx:reference source="txtAge1LP"/>
+           <fx:reference source="txtAge2LP"/>
+           <fx:reference source="txtAge3LP"/>
+           <fx:reference source="txtAge4LP"/>
+           <fx:reference source="txtAge5LP"/>
+           <fx:reference source="txtAge6LP"/>
+           <fx:reference source="txtAgeELP"/>
+       </ArrayList>
+       
+       <ArrayList fx:id="hospitalList">
+           <fx:reference source="txtHospital1MA"/>
+           <fx:reference source="txtHospital2MA"/>      
+           <fx:reference source="txtHospital3MA"/>
+           <fx:reference source="txtHospital4MA"/>
+           <fx:reference source="txtHospitalEMA"/>
+           <fx:reference source="txtHospital1LA"/>
+           <fx:reference source="txtHospital2LA"/>
+           <fx:reference source="txtHospital3LA"/>
+           <fx:reference source="txtHospital4LA"/>
+           <fx:reference source="txtHospital5LA"/>
+           <fx:reference source="txtHospital6LA"/>
+           <fx:reference source="txtHospitalELA"/>
+           <fx:reference source="txtHospital1MP"/>
+           <fx:reference source="txtHospital2MP"/>      
+           <fx:reference source="txtHospital3MP"/>
+           <fx:reference source="txtHospital4MP"/>
+           <fx:reference source="txtHospitalEMP"/>
+           <fx:reference source="txtHospital1LP"/>
+           <fx:reference source="txtHospital2LP"/>
+           <fx:reference source="txtHospital3LP"/>
+           <fx:reference source="txtHospital4LP"/>
+           <fx:reference source="txtHospital5LP"/>
+           <fx:reference source="txtHospital6LP"/>
+           <fx:reference source="txtHospitalELP"/>
+       </ArrayList>
+       
+       <ArrayList fx:id="specialityList">
+           <fx:reference source="txtSpeciality1MA"/>
+           <fx:reference source="txtSpeciality2MA"/>      
+           <fx:reference source="txtSpeciality3MA"/>
+           <fx:reference source="txtSpeciality4MA"/>
+           <fx:reference source="txtSpecialityEMA"/>
+           <fx:reference source="txtSpeciality1LA"/>
+           <fx:reference source="txtSpeciality2LA"/>
+           <fx:reference source="txtSpeciality3LA"/>
+           <fx:reference source="txtSpeciality4LA"/>
+           <fx:reference source="txtSpeciality5LA"/>
+           <fx:reference source="txtSpeciality6LA"/>
+           <fx:reference source="txtSpecialityELA"/>
+           <fx:reference source="txtSpeciality1MP"/>
+           <fx:reference source="txtSpeciality2MP"/>      
+           <fx:reference source="txtSpeciality3MP"/>
+           <fx:reference source="txtSpeciality4MP"/>
+           <fx:reference source="txtSpecialityEMP"/>
+           <fx:reference source="txtSpeciality1LP"/>
+           <fx:reference source="txtSpeciality2LP"/>
+           <fx:reference source="txtSpeciality3LP"/>
+           <fx:reference source="txtSpeciality4LP"/>
+           <fx:reference source="txtSpeciality5LP"/>
+           <fx:reference source="txtSpeciality6LP"/>
+           <fx:reference source="txtSpecialityELP"/>
        </ArrayList>
        
        <ArrayList fx:id="notesList">
@@ -820,6 +957,24 @@
            <fx:reference source="txtExtra5LP"/>
            <fx:reference source="txtExtra6LP"/>
            <fx:reference source="txtExtraELP"/>
+       </ArrayList>
+       
+       <ArrayList fx:id="staffList">
+           <fx:reference source="cbStaff1"/>
+           <fx:reference source="cbStaff2"/>
+           <fx:reference source="cbStaff3"/>
+           <fx:reference source="cbStaff4"/>
+           <fx:reference source="cbStaff5"/>
+           <fx:reference source="cbStaff6"/>
+       </ArrayList>
+       
+       <ArrayList fx:id="shiftList">
+           <fx:reference source="cbShift1"/>
+           <fx:reference source="cbShift2"/>
+           <fx:reference source="cbShift3"/>
+           <fx:reference source="cbShift4"/>
+           <fx:reference source="cbShift5"/>
+           <fx:reference source="cbShift6"/>
        </ArrayList>
        
    </fx:define>  
