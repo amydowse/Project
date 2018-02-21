@@ -68,6 +68,11 @@ public class ProcedureScreenDocumentController implements Initializable
     {
         allProcedures.clear();
         tblProcedures.getItems().clear();
+        txtName.setText("");
+        txtDuration.setText("");
+        txtNurses.setText("");
+        cbLocation.setValue("");
+        
         try
         {
             Connection c = DatabaseConnector.activateConnection();
@@ -173,10 +178,9 @@ public class ProcedureScreenDocumentController implements Initializable
                 c.setAutoCommit(true);
                 Statement stmt = c.createStatement();
 
-                String sql = "UPDATE procedures SET    Name = '" + txtName.getText()
-                        + "', Duration = '" + txtDuration.getText()
-                        + "', NumberOfNurses = '" + txtNurses.getText()
-                        + "', Location = '" + cbLocation.getValue().toString() + "'";
+                String sql = "UPDATE procedures SET     Duration = '" + txtDuration.getText()
+                                                        + "', NumberOfNurses = '" + txtNurses.getText()
+                                                        + "', Location = '" + cbLocation.getValue().toString() + "' WHERE  Name = '" + txtName.getText() + "'";
 
                 stmt.executeUpdate(sql);
                 c.close();

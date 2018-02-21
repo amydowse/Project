@@ -54,7 +54,7 @@ public class ProcedureDialogController implements Initializable
                                                                 + txtName.getText() + "','"
                                                                 + txtDuration.getText() + "','"
                                                                 + txtNurses.getText() + "','"
-                                                                + txtName.getText() + "')";
+                                                                + cbLocation.getValue().toString() + "')";
 
                 stmt.executeUpdate(sql);
                 c.close();
