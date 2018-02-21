@@ -198,6 +198,8 @@ public class NonbedScreenDocumentController implements Initializable
     {
         cbStaff.valueProperty().set(null);
         clearAll();
+        workingStaff = codeBank.fillStaffDropDowns();
+        cbStaff.getItems().addAll(workingStaff);
         showStaff(codeBank.getCurrentDate());
         
         try

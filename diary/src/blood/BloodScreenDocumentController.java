@@ -84,7 +84,8 @@ public class BloodScreenDocumentController implements Initializable
     {
         cbStaff.valueProperty().set(null);
         
-        cbStaff.setItems(workingStaff);
+        workingStaff = codeBank.fillStaffDropDowns();
+        cbStaff.getItems().addAll(workingStaff);
         showStaff(codeBank.getCurrentDate());
         
         tblClinic.getItems().clear();

@@ -691,24 +691,41 @@
             <fx:reference source="txtAttendance13"/>
             <fx:reference source="txtAttendance14"/>
         </ArrayList>
-       
-        <ArrayList fx:id="notesList">
-            <fx:reference source="txtNotes1"/>
-            <fx:reference source="txtNotes2"/>      
-            <fx:reference source="txtNotes3"/>
-            <fx:reference source="txtNotes4"/>
-            <fx:reference source="txtNotes5"/>
-            <fx:reference source="txtNotes6"/>
-            <fx:reference source="txtNotes7"/>
-            <fx:reference source="txtNotes8"/>
-            <fx:reference source="txtNotes9"/>
-            <fx:reference source="txtNotes10"/>
-            <fx:reference source="txtNotes11"/>
-            <fx:reference source="txtNotes12"/>
-            <fx:reference source="txtNotes13"/>
-            <fx:reference source="txtNotes14"/>            
+        
+        <ArrayList fx:id="timeList">
+            <fx:reference source="txtTime1"/>
+            <fx:reference source="txtTime2"/>      
+            <fx:reference source="txtTime3"/>
+            <fx:reference source="txtTime4"/>
+            <fx:reference source="txtTime5"/>
+            <fx:reference source="txtTime6"/>
+            <fx:reference source="txtTime7"/>
+            <fx:reference source="txtTime8"/>
+            <fx:reference source="txtTime9"/>
+            <fx:reference source="txtTime10"/>
+            <fx:reference source="txtTime11"/>
+            <fx:reference source="txtTime12"/>
+            <fx:reference source="txtTime13"/>
+            <fx:reference source="txtTime14"/>            
         </ArrayList>
         
+        <ArrayList fx:id="nameList">
+            <fx:reference source="cbName1"/>
+            <fx:reference source="cbName2"/>      
+            <fx:reference source="cbName3"/>
+            <fx:reference source="cbName4"/>
+            <fx:reference source="cbName5"/>
+            <fx:reference source="cbName6"/>
+            <fx:reference source="cbName7"/>
+            <fx:reference source="cbName8"/>
+            <fx:reference source="cbName9"/>
+            <fx:reference source="cbName10"/>
+            <fx:reference source="cbName11"/>
+            <fx:reference source="cbName12"/>
+            <fx:reference source="cbName13"/>
+            <fx:reference source="cbName14"/>            
+        </ArrayList>
+             
         <ArrayList fx:id="ageList">
             <fx:reference source="txtAge1"/>
             <fx:reference source="txtAge2"/>      
@@ -777,22 +794,40 @@
             <fx:reference source="txtWristband14"/>            
         </ArrayList>
         
-        <ArrayList fx:id="timeList">
-            <fx:reference source="txtTime1"/>
-            <fx:reference source="txtTime2"/>      
-            <fx:reference source="txtTime3"/>
-            <fx:reference source="txtTime4"/>
-            <fx:reference source="txtTime5"/>
-            <fx:reference source="txtTime6"/>
-            <fx:reference source="txtTime7"/>
-            <fx:reference source="txtTime8"/>
-            <fx:reference source="txtTime9"/>
-            <fx:reference source="txtTime10"/>
-            <fx:reference source="txtTime11"/>
-            <fx:reference source="txtTime12"/>
-            <fx:reference source="txtTime13"/>
-            <fx:reference source="txtTime14"/>            
+         <ArrayList fx:id="reasonList">
+            <fx:reference source="txtReason1"/>
+            <fx:reference source="txtReason2"/>      
+            <fx:reference source="txtReason3"/>
+            <fx:reference source="txtReason4"/>
+            <fx:reference source="txtReason5"/>
+            <fx:reference source="txtReason6"/>
+            <fx:reference source="txtReason7"/>
+            <fx:reference source="txtReason8"/>
+            <fx:reference source="txtReason9"/>
+            <fx:reference source="txtReason10"/>
+            <fx:reference source="txtReason11"/>
+            <fx:reference source="txtReason12"/>
+            <fx:reference source="txtReason13"/>
+            <fx:reference source="txtReason14"/>            
         </ArrayList>
+        
+         <ArrayList fx:id="notesList">
+            <fx:reference source="txtNotes1"/>
+            <fx:reference source="txtNotes2"/>      
+            <fx:reference source="txtNotes3"/>
+            <fx:reference source="txtNotes4"/>
+            <fx:reference source="txtNotes5"/>
+            <fx:reference source="txtNotes6"/>
+            <fx:reference source="txtNotes7"/>
+            <fx:reference source="txtNotes8"/>
+            <fx:reference source="txtNotes9"/>
+            <fx:reference source="txtNotes10"/>
+            <fx:reference source="txtNotes11"/>
+            <fx:reference source="txtNotes12"/>
+            <fx:reference source="txtNotes13"/>
+            <fx:reference source="txtNotes14"/>            
+        </ArrayList>
+        
     
     
        </fx:define>  
