@@ -60,7 +60,7 @@ public class ProcedureScreenDocumentController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        cbLocation.getItems().addAll("Bed", "Non-bed");
+        cbLocation.getItems().addAll("", "Bed", "Non-bed");
         showInformation();
     }
     

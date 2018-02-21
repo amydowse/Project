@@ -7,16 +7,16 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="975.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="regular.RegularScreenDocumentController">
    <children>
-      <TextArea fx:id="txtExtraInfo" layoutX="935.0" layoutY="560.0" prefHeight="180.0" prefWidth="358.0" />
-      <Label layoutX="756.0" layoutY="560.0" text="Extra Information">
+      <TextArea fx:id="txtExtraInfo" layoutX="935.0" layoutY="628.0" prefHeight="123.0" prefWidth="358.0" />
+      <Label layoutX="756.0" layoutY="628.0" text="Extra Information">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Button fx:id="btnSave" layoutX="1170.0" layoutY="806.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="123.0" text="SAVE" />
-      <Button fx:id="btnDelete" layoutX="915.0" layoutY="806.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="123.0" text="DELETE" />
-      <Button fx:id="btnAdd" layoutX="639.0" layoutY="806.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="123.0" text="ADD" />
-      <TextField fx:id="txtNHS" layoutX="935.0" layoutY="309.0" prefHeight="44.0" prefWidth="358.0">
+      <Button fx:id="btnSave" layoutX="1170.0" layoutY="806.0" onAction="#Save" mnemonicParsing="false" prefHeight="56.0" prefWidth="123.0" text="SAVE" />
+      <Button fx:id="btnDelete" layoutX="915.0" layoutY="806.0" onAction="#Delete" mnemonicParsing="false" prefHeight="56.0" prefWidth="123.0" text="DELETE" />
+      <Button fx:id="btnAdd" layoutX="639.0" layoutY="806.0" onAction="#Add" mnemonicParsing="false" prefHeight="56.0" prefWidth="123.0" text="ADD" />
+      <TextField fx:id="txtNHS" layoutX="935.0" editable="false" layoutY="309.0" prefHeight="44.0" prefWidth="358.0">
          <font>
             <Font size="20.0" />
          </font>
@@ -73,5 +73,6 @@
       </TableView>
       <RadioButton fx:id="rdbWhite" layoutX="935.0" layoutY="488.0" mnemonicParsing="false" text="White Band" />
       <RadioButton fx:id="rdbRed" layoutX="1193.0" layoutY="488.0" mnemonicParsing="false" text="Red Band" />
+      <RadioButton fx:id="rbOncology" layoutX="935.0" layoutY="561.0" mnemonicParsing="false" text="Oncology" />
    </children>
 </Pane>

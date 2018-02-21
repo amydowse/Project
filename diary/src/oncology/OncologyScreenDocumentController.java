@@ -331,7 +331,7 @@ public class OncologyScreenDocumentController implements Initializable
             Statement stmt = c.createStatement();          
             
             //implement query
-            rs = stmt.executeQuery("SELECT Name FROM regular"); 
+            rs = stmt.executeQuery("SELECT FirstName, LastName FROM regular"); 
                 
             for(int i=0; i<14; i++)
             {
@@ -341,11 +341,12 @@ public class OncologyScreenDocumentController implements Initializable
             
             while(rs.next())
             { 
-                String name = rs.getString("Name");
+                String FirstName = rs.getString("FirstName");
+                String LastName = rs.getString("LastName");
                
                 for(int i=0; i<14; i++)
                 {
-                    nameList.get(i).getItems().add(name);
+                    nameList.get(i).getItems().add(FirstName + " " + LastName);
                 }
                   
             }

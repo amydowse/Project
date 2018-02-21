@@ -20,6 +20,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import procedure.ProcedureScreenDocumentController;
+import regular.RegularScreenDocumentController;
 
 /**
  *
@@ -33,7 +34,10 @@ public class TopMenuDocumentController implements Initializable
     @FXML Label lblHeading = new Label();
     
     public static ProcedureScreenDocumentController PrSDC;
+    public static RegularScreenDocumentController RSDC;
+    
     private Pane ProcedurePane;
+    private Pane RegularPane;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) 
@@ -46,6 +50,10 @@ public class TopMenuDocumentController implements Initializable
             ProcedurePane = PrSL.load();
             PrSDC = PrSL.getController();
             
+            FXMLLoader RSL = new FXMLLoader(getClass().getResource("/regular/regularScreen.fxml"));            
+            RegularPane = RSL.load();
+            RSDC = RSL.getController();
+            
             String selection = bases.StartScreenDocumentController.selection;
      
             switch(selection)
@@ -56,14 +64,11 @@ public class TopMenuDocumentController implements Initializable
                     lblHeading.setText("STAFF");
                     break;
                 case "Regular": 
-                    newLoadedPane = FXMLLoader.load(getClass().getResource("/regular/regularScreen.fxml"));
-                    changeContentPaneNewLoad(newLoadedPane); 
+                    changeContentPaneNewLoad(RegularPane); 
                     lblHeading.setText("REGULAR ATTENDERS");
                     break;
                 case "Procedures": 
                     changeContentPaneNewLoad(ProcedurePane);
-                    //newLoadedPane = FXMLLoader.load(getClass().getResource("/procedure/procedureScreen.fxml"));
-                    //changeContentPaneNewLoad(newLoadedPane); 
                     lblHeading.setText("PROCEDURES");
                     break;
                 case "Search": 
