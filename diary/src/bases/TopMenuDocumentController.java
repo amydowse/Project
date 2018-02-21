@@ -19,6 +19,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import procedure.ProcedureScreenDocumentController;
 
 /**
  *
@@ -31,14 +32,20 @@ public class TopMenuDocumentController implements Initializable
     
     @FXML Label lblHeading = new Label();
     
+    public static ProcedureScreenDocumentController PrSDC;
+    private Pane ProcedurePane;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) 
-    {
+    {       
         ContentPane = this.Content;
         Pane newLoadedPane;
         try 
         {
+            FXMLLoader PrSL = new FXMLLoader(getClass().getResource("/procedure/procedureScreen.fxml"));            
+            ProcedurePane = PrSL.load();
+            PrSDC = PrSL.getController();
+            
             String selection = bases.StartScreenDocumentController.selection;
      
             switch(selection)
@@ -54,8 +61,9 @@ public class TopMenuDocumentController implements Initializable
                     lblHeading.setText("REGULAR ATTENDERS");
                     break;
                 case "Procedures": 
-                    newLoadedPane = FXMLLoader.load(getClass().getResource("/procedure/procedureScreen.fxml"));
-                    changeContentPaneNewLoad(newLoadedPane); 
+                    changeContentPaneNewLoad(ProcedurePane);
+                    //newLoadedPane = FXMLLoader.load(getClass().getResource("/procedure/procedureScreen.fxml"));
+                    //changeContentPaneNewLoad(newLoadedPane); 
                     lblHeading.setText("PROCEDURES");
                     break;
                 case "Search": 

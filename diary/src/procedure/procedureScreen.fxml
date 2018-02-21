@@ -5,16 +5,12 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="975.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="975.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="procedure.ProcedureScreenDocumentController">
    <children>
-      <Button fx:id="btnSave" layoutX="1170.0" layoutY="806.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="123.0" text="SAVE" />
-      <Button fx:id="btnDelete" layoutX="915.0" layoutY="806.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="123.0" text="DELETE" />
-      <Button fx:id="btnAdd" layoutX="639.0" layoutY="806.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="123.0" text="ADD" />
-      <TextField fx:id="txtLocation" layoutX="935.0" layoutY="309.0" prefHeight="44.0" prefWidth="358.0">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </TextField>
+      <Button fx:id="btnSave" layoutX="1170.0" layoutY="806.0" mnemonicParsing="false" onAction="#Save" prefHeight="56.0" prefWidth="123.0" text="SAVE" />
+      <Button fx:id="btnDelete" layoutX="915.0" layoutY="806.0" mnemonicParsing="false" onAction="#Delete" prefHeight="56.0" prefWidth="123.0" text="DELETE" />
+      <Button fx:id="btnAdd" layoutX="639.0" layoutY="806.0" mnemonicParsing="false" onAction="#Add" prefHeight="56.0" prefWidth="123.0" text="ADD" />
+     
       <TextField fx:id="txtNurses" layoutX="935.0" layoutY="223.0" prefHeight="44.0" prefWidth="358.0">
          <font>
             <Font size="20.0" />
@@ -55,5 +51,6 @@
             <TableColumn fx:id="tblColName" prefWidth="427.0" text="Procedure Name" />
          </columns>
       </TableView>
+      <ChoiceBox fx:id="cbLocation" layoutX="935.0" layoutY="309.0" prefHeight="44.0" prefWidth="358.0" />
    </children>
 </Pane>

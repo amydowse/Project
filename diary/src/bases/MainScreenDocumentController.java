@@ -35,6 +35,7 @@ import javafx.stage.Window;
 import nonbed.NonbedScreenDocumentController;
 import oncology.OncologyScreenDocumentController;
 import preop.PreopScreenDocumentController;
+import procedure.ProcedureScreenDocumentController;
 /**
  *
  * @author amydo
@@ -95,7 +96,8 @@ public class MainScreenDocumentController implements Initializable
             FXMLLoader OSL = new FXMLLoader(getClass().getResource("/oncology/oncologyScreen.fxml"));
             OncologyPane = OSL.load();
             OSDC = OSL.getController();
-           
+            
+            
             codeBank.setCurrentDate(LocalDate.now());
             
             updateDate();
