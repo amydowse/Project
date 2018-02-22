@@ -21,6 +21,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import procedure.ProcedureScreenDocumentController;
 import regular.RegularScreenDocumentController;
+import staff.StaffScreenDocumentController;
 
 /**
  *
@@ -35,9 +36,11 @@ public class TopMenuDocumentController implements Initializable
     
     public static ProcedureScreenDocumentController PrSDC;
     public static RegularScreenDocumentController RSDC;
+    public static StaffScreenDocumentController SSDC;
     
     private Pane ProcedurePane;
     private Pane RegularPane;
+    private Pane StaffPane;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) 
@@ -54,13 +57,16 @@ public class TopMenuDocumentController implements Initializable
             RegularPane = RSL.load();
             RSDC = RSL.getController();
             
+            FXMLLoader SSL = new FXMLLoader(getClass().getResource("/staff/staffScreen.fxml"));            
+            StaffPane = SSL.load();
+            SSDC = SSL.getController();
+            
             String selection = bases.StartScreenDocumentController.selection;
      
             switch(selection)
             {
                 case "Staff": 
-                    newLoadedPane = FXMLLoader.load(getClass().getResource("/staff/staffScreen.fxml"));
-                    changeContentPaneNewLoad(newLoadedPane);
+                    changeContentPaneNewLoad(StaffPane);
                     lblHeading.setText("STAFF");
                     break;
                 case "Regular": 

@@ -5,59 +5,59 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="975.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="975.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="staff.StaffScreenDocumentController">
    <children>
       <TableView fx:id="tblNames" layoutX="68.0" layoutY="47.0" prefHeight="876.0" prefWidth="428.0">
         <columns>
           <TableColumn fx:id="tblColName" prefWidth="427.0" text="Staff Member Name" />
         </columns>
       </TableView>
-      <Label layoutX="800.0" layoutY="54.0" text="First Name">
+      <Label layoutX="800.0" layoutY="134.0" text="First Name">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="803.0" layoutY="135.0" text="Last Name">
+      <Label layoutX="803.0" layoutY="215.0" text="Last Name">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="825.0" layoutY="220.0" text="Position">
+      <Label layoutX="825.0" layoutY="300.0" text="Position">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="838.0" layoutY="306.0" text="Agency">
+      <Label layoutX="838.0" layoutY="386.0" text="Agency">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="752.0" layoutY="387.0" text="Contact Number">
+      <Label layoutX="752.0" layoutY="467.0" text="Contact Number">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="txtFirstName" layoutX="925.0" layoutY="47.0" prefHeight="44.0" prefWidth="358.0">
+      <TextField fx:id="txtFirstName" layoutX="925.0" layoutY="127.0" prefHeight="44.0" prefWidth="358.0">
          <font>
             <Font size="20.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtLastName" layoutX="925.0" layoutY="128.0" prefHeight="44.0" prefWidth="358.0">
+      <TextField fx:id="txtLastName" layoutX="925.0" layoutY="208.0" prefHeight="44.0" prefWidth="358.0">
          <font>
             <Font size="20.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtPosition" layoutX="925.0" layoutY="213.0" prefHeight="44.0" prefWidth="358.0">
+      <TextField fx:id="txtPosition" layoutX="925.0" layoutY="293.0" prefHeight="44.0" prefWidth="358.0">
          <font>
             <Font size="20.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtNumber" layoutX="925.0" layoutY="380.0" prefHeight="44.0" prefWidth="358.0">
+      <TextField fx:id="txtNumber" layoutX="925.0" layoutY="460.0" prefHeight="44.0" prefWidth="358.0">
          <font>
             <Font size="20.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtAgency" layoutX="925.0" layoutY="299.0" prefHeight="44.0" prefWidth="358.0">
+      <TextField fx:id="txtAgency" layoutX="925.0" layoutY="379.0" prefHeight="44.0" prefWidth="358.0">
          <font>
             <Font size="20.0" />
          </font>
@@ -68,14 +68,24 @@
             <TableColumn fx:id="tblColStatus" prefWidth="114.0" text="Status" />
          </columns>
       </TableView>
-      <Button fx:id="btnAdd" layoutX="629.0" layoutY="794.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="123.0" text="ADD" />
-      <Button fx:id="btnDelete" layoutX="905.0" layoutY="794.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="123.0" text="DELETE" />
-      <Button fx:id="btnSave" layoutX="1160.0" layoutY="794.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="123.0" text="SAVE" />
-      <Label layoutX="746.0" layoutY="473.0" text="Extra Information">
+      <Button fx:id="btnAdd" layoutX="629.0" layoutY="794.0" mnemonicParsing="false" onAction="#Add" prefHeight="56.0" prefWidth="123.0" text="ADD" />
+      <Button fx:id="btnDelete" layoutX="905.0" layoutY="794.0" mnemonicParsing="false" onAction="#Delete" prefHeight="56.0" prefWidth="123.0" text="DELETE" />
+      <Button fx:id="btnSave" layoutX="1160.0" layoutY="794.0" mnemonicParsing="false" onAction="#Save" prefHeight="56.0" prefWidth="123.0" text="SAVE" />
+      <Label layoutX="746.0" layoutY="553.0" text="Extra Information">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <TextArea fx:id="txtExtraInfo" layoutX="925.0" layoutY="473.0" prefHeight="257.0" prefWidth="358.0" />
+      <TextArea fx:id="txtExtraInfo" layoutX="925.0" layoutY="553.0" prefHeight="173.0" prefWidth="358.0" />
+      <Label layoutX="880.0" layoutY="73.0" text="ID">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblID" layoutX="925.0" layoutY="73.0" text="X">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
