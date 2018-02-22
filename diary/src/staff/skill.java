@@ -12,9 +12,9 @@ package staff;
 public class skill 
 {
     private String ProcedureName;
-    private boolean hasSkill;
+    private String hasSkill;
     
-    public skill(String ProcedureName, boolean hasSkill)
+    public skill(String ProcedureName, String hasSkill)
     {
         this.ProcedureName = ProcedureName;
         this.hasSkill = hasSkill;
@@ -26,7 +26,7 @@ public class skill
         return ProcedureName;
     }
     
-    public boolean getHasSkill()
+    public String getHasSkill()
     {
         return hasSkill;
     }
@@ -38,7 +38,7 @@ public class skill
         this.ProcedureName = ProcedureName;
     }
     
-    public void setHasSkill(boolean hasSkill)
+    public void setHasSkill(String hasSkill)
     {
         this.hasSkill = hasSkill;
     }

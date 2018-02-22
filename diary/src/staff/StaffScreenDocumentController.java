@@ -15,6 +15,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -27,6 +29,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -115,15 +118,17 @@ public class StaffScreenDocumentController implements Initializable
                 
                 
             }
-                System.out.println(allStaff.size());
-             
+            
+            c.close(); 
+            
                 tblColName.setCellValueFactory(new PropertyValueFactory("Show"));
 
                 tblNames.getItems().addAll(allStaff);
 
                 tblNames.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> 
                 {
-                     allProcedures.clear();
+                    allProcedures.clear();
+                    specificProcedures.clear();
                     tblProcedures.getItems().clear();
                     
                     if(newSelection != null)
@@ -143,7 +148,7 @@ public class StaffScreenDocumentController implements Initializable
 
             
             
-            c.close();   
+              
         }
         catch (SQLException e)
         {
@@ -167,10 +172,11 @@ public class StaffScreenDocumentController implements Initializable
 
             while (rs.next()) 
             {
-                skill x = new skill(rs.getString("Name"), false);
+                skill x = new skill(rs.getString("Name"), "✘");
                 allProcedures.add(x);
             }
             
+       
             sql = "SELECT Procedure_Name FROM skill WHERE Staff_ID ='" + ID + "'";
 
             rs = stmt.executeQuery(sql);
@@ -181,17 +187,16 @@ public class StaffScreenDocumentController implements Initializable
             }
             
             c.close();
-            display();
-
         } 
         catch (SQLException e) 
         {
 
         }
+         display(ID);
     }
     
     
-    public void display()
+    public void display(int ID)
     {
         for(skill skills : allProcedures)
         {
@@ -199,14 +204,54 @@ public class StaffScreenDocumentController implements Initializable
             {
                 if(skills.getProcedureName().equals(specificProcedures.get(i)))
                 {
-                    skills.setHasSkill(true);
+                    skills.setHasSkill("✔");
                 }
             }
         }
         
+        tblProcedures.getItems().addAll(allProcedures);
+        
         tblColProcedure.setCellValueFactory(new PropertyValueFactory("ProcedureName"));
         tblColStatus.setCellValueFactory(new PropertyValueFactory("hasSkill"));
-        tblProcedures.getItems().addAll(allProcedures);
+        
+        
+        //Add in changing the skill set of a staff member 
+        //https://stackoverflow.com/questions/27281370/javafx-tableview-format-one-cell-based-on-the-value-of-another-in-the-row accessed 10/2/18
+            tblColStatus.setCellValueFactory(new PropertyValueFactory<skill, String>("hasSkill"));
+            tblColStatus.setCellFactory(tc -> {
+                TableCell<skill, String> cell = new TableCell<skill, String>()  {
+                    @Override
+                    protected void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        setText(empty ? null : item.toString());
+                    }
+                };
+                cell.setOnMouseClicked(e -> {
+                    if (!cell.isEmpty()) {
+                        int row = cell.getIndex();
+                        changeStatus(row, ID);
+                    }
+
+                });
+                return cell;
+            });
+        
+    }
+    
+    public void changeStatus(int index, int ID)
+    {
+        if(allProcedures.get(index).getHasSkill().equals("✔"))
+        {
+            allProcedures.get(index).setHasSkill("✘");
+        }
+        else
+        {
+            allProcedures.get(index).setHasSkill("✔");
+        }
+        
+        tblProcedures.getItems().clear();
+        tblProcedures.getItems().addAll(allProcedures);     
+         
     }
     
     
@@ -273,15 +318,46 @@ public class StaffScreenDocumentController implements Initializable
                                                         + "', ExtraInfo = '" + txtExtraInfo.getText() + "' WHERE  ID = '" + lblID.getText() + "'";
 
                 stmt.executeUpdate(sql);
+                
                 c.close();
 
+                saveProcedures();
                 tblProcedures.getItems().clear();
                 showInformation();
             } 
             catch (SQLException e) 
             {
-
+                Logger.getLogger(StaffScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
             }
+        }
+    }
+    
+    public void saveProcedures()
+    {
+        try 
+        {
+            Connection c = DatabaseConnector.activateConnection();
+            c.setAutoCommit(true);
+            Statement stmt = c.createStatement();
+            
+            for (int i = 0; i < allProcedures.size(); i++) 
+            {
+                if (allProcedures.get(i).getHasSkill().equals("✘")) 
+                {
+                    stmt.executeUpdate("DELETE FROM skill WHERE Staff_ID= '" + lblID.getText() + "' AND Procedure_Name = '" + allProcedures.get(i).getProcedureName() + "'");
+                } 
+                else 
+                {
+                    stmt.executeUpdate("INSERT INTO skill (Staff_ID, Procedure_Name) VALUES ('" + lblID.getText() + "','" + allProcedures.get(i).getProcedureName() + "')");
+
+                }
+            }
+            c.close();
+        }
+        catch(SQLException e)
+        {
+            System.out.println("Saving pr");
+            Logger.getLogger(StaffScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
         }
     }
     
