@@ -348,7 +348,7 @@ public class StaffScreenDocumentController implements Initializable
                 } 
                 else 
                 {
-                    stmt.executeUpdate("INSERT INTO skill (Staff_ID, Procedure_Name) VALUES ('" + lblID.getText() + "','" + allProcedures.get(i).getProcedureName() + "')");
+                    stmt.executeUpdate("REPLACE INTO skill (Staff_ID, Procedure_Name) VALUES ('" + lblID.getText() + "','" + allProcedures.get(i).getProcedureName() + "')");
 
                 }
             }
