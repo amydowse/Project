@@ -31,7 +31,8 @@ public class StartScreenDocumentController implements Initializable
     @FXML private Button btnRegular = new Button();
     @FXML private Button btnProcedure = new Button();
     @FXML private Button btnTemplates = new Button();
-    @FXML private Button btnSearch = new Button();
+    @FXML private Button btnPatientSearch = new Button();
+    @FXML private Button btnProcedureSearch = new Button();
     @FXML private Button btnExtra = new Button();
     @FXML private ImageView imgLogo = new ImageView();
     
@@ -96,9 +97,17 @@ public class StartScreenDocumentController implements Initializable
     @FXML
     public void showSearchMain() throws IOException
     {
-        selection = "Search";
+        selection = "Search Patient";
         load();
     }
+    
+    @FXML
+    public void showSearchProcedureMain() throws IOException
+    {
+        selection = "Search Procedure";
+        load();
+    }
+
 
     @FXML
     public void showSettingsMain() throws IOException

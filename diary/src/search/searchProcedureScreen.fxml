@@ -5,14 +5,10 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="975.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="search.SearchScreenDocumentController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="975.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="search.SearchProcedureScreenDocumentController">
    <children>
-      <TextField fx:id="txtSearchName" layoutX="61.0" layoutY="144.0" prefHeight="31.0" prefWidth="851.0">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </TextField>
-      <Button fx:id="btnSearch" layoutX="1024.0" layoutY="144.0" onAction="#search" mnemonicParsing="false" text="SEARCH">
+      <ComboBox fx:id="cmbSearchProcedure" layoutX="61.0" layoutY="144.0" prefHeight="44.0" prefWidth="851.0" />
+      <Button fx:id="btnSearch" layoutX="1024.0" layoutY="144.0" mnemonicParsing="false" text="SEARCH">
          <font>
             <Font size="20.0" />
          </font>
@@ -36,20 +32,10 @@
             <TableColumn fx:id="tblColProcedure" minWidth="0.0" prefWidth="290.0" text="Procedure" />
         </columns>
       </TableView>
-      <RadioButton fx:id="rbFuture" layoutX="61.0" layoutY="66.0" mnemonicParsing="false" text="Future Appointments">
+      <Label fx:id="lbl1" layoutX="71.0" layoutY="70.0" text="Enter the procedure you are searching for:">
          <font>
-            <Font size="20.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
-      </RadioButton>
-      <RadioButton fx:id="rbPast" layoutX="467.0" layoutY="66.0" mnemonicParsing="false" text="Past Appointments">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="rbBoth" layoutX="820.0" layoutY="66.0" mnemonicParsing="false" text="Future and Past Appointments">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </RadioButton>
+      </Label>
    </children>
 </Pane>

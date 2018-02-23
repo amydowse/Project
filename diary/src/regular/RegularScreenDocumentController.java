@@ -63,7 +63,7 @@ public class RegularScreenDocumentController implements Initializable
     @FXML Button btnAdd;
     @FXML Button btnDelete;
     
-     ObservableList allPatients = FXCollections.observableArrayList();
+    ObservableList allPatients = FXCollections.observableArrayList();
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 

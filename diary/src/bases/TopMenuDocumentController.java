@@ -77,10 +77,15 @@ public class TopMenuDocumentController implements Initializable
                     changeContentPaneNewLoad(ProcedurePane);
                     lblHeading.setText("PROCEDURES");
                     break;
-                case "Search": 
+                case "Search Patient": 
                     newLoadedPane = FXMLLoader.load(getClass().getResource("/search/searchScreen.fxml"));
                     changeContentPaneNewLoad(newLoadedPane);  
-                    lblHeading.setText("SEARCH");
+                    lblHeading.setText("SEARCH PATIENT");
+                    break;
+                case "Search Procedure": 
+                    newLoadedPane = FXMLLoader.load(getClass().getResource("/search/searchProcedureScreen.fxml"));
+                    changeContentPaneNewLoad(newLoadedPane);  
+                    lblHeading.setText("SEARCH PROCEDURE");
                     break;
                 case "Settings": 
                     newLoadedPane = FXMLLoader.load(getClass().getResource("/settings/settingScreen.fxml"));

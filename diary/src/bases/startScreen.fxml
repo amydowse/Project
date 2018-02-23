@@ -17,12 +17,13 @@
       <Button fx:id="btnStaff" layoutX="677.0" layoutY="267.0" mnemonicParsing="false" onAction="#showStaffMain" prefHeight="200.0" prefWidth="200.0" text="Staff" />
       <Button fx:id="btnRegular" layoutX="1143.0" layoutY="267.0" mnemonicParsing="false" onAction="#showRegularMain" prefHeight="200.0" prefWidth="200.0" text="Regular Attenders" />
       <Button fx:id="btnProcedure" layoutX="1531.0" layoutY="267.0" mnemonicParsing="false" onAction="#showProcedureMain" prefHeight="200.0" prefWidth="200.0" text="Procedures" />      
-      <Button fx:id="btnSearch" layoutX="221.0" layoutY="663.0" mnemonicParsing="false" onAction="#showSearchMain" prefHeight="200.0" prefWidth="200.0" text="Search" />         
-      <Button fx:id="btnSettings" layoutX="677.0" layoutY="663.0" mnemonicParsing="false" onAction="#showSettingsMain" prefHeight="200.0" prefWidth="200.0" text="Settings" />
+      <Button fx:id="btnPatientSearch" layoutX="221.0" layoutY="663.0" mnemonicParsing="false" onAction="#showSearchMain" prefHeight="200.0" prefWidth="200.0" text="Patient Search" />         
+      <Button fx:id="btnSettings" layoutX="1143.0" layoutY="663.0" mnemonicParsing="false" onAction="#showSettingsMain" prefHeight="200.0" prefWidth="200.0" text="Settings" />
      
      
 
       <ImageView fx:id="imgLogo" fitHeight="200.0" fitWidth="200.0" layoutX="1531.0" layoutY="663.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="btnProcedureSearch" layoutX="677.0" layoutY="663.0" mnemonicParsing="false" onAction="#showSearchProcedureMain" prefHeight="200.0" prefWidth="200.0" text="Procedure Search" />
 
    </children>
 </Pane>
