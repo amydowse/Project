@@ -5,8 +5,15 @@
  */
 package settings;
 
+import common.DatabaseConnector;
+import common.codeBank;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -89,9 +96,10 @@ public class SettingScreenDocumentController implements Initializable
     
     @FXML private Button btnSaveAlter = new Button();
     
-   
     
-    
+    @FXML private List<CheckBox> weekList;
+    ArrayList<String> week = new ArrayList<String>();
+       
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
@@ -99,8 +107,105 @@ public class SettingScreenDocumentController implements Initializable
         templateInactive();
         alterInactive();
         paneBloodDetails.setVisible(false);
+        
+        showTemplate();
+        week.add("Monday");
+        week.add("Tuesday");
+        week.add("Wednesday");
+        week.add("Thursday");
+        week.add("Friday");
     }
     
+    
+    
+    
+    
+    public void showTemplate()
+    {
+        //loading the current templates
+    }
+    
+    
+    
+    
+    
+    
+    
+    @FXML
+    public void saveTemplate()
+    {
+        for(int i=0; i<weekList.size(); i++)
+        {
+            if(weekList.get(i).isSelected())
+            {
+                save(i);
+            }
+            else
+            {
+                delete(i);
+            }
+        }
+    }
+    
+    public void save(int i)
+    {
+        try 
+        {
+            // open a connection
+            Connection c = DatabaseConnector.activateConnection();
+            c.setAutoCommit(true);
+
+            // when creating a statement object, you MUST use a connection object to call the instance method
+            Statement stmt = c.createStatement();
+
+            String sql = "REPLACE INTO (Day, Start, End, Duration, BreakStart, BreakEnd) VALUES ('" 
+                                                                                + week.get(i) + "',"
+                                                                                + txtTempStart.getText() + "',"
+                                                                                + txtTempEnd.getText() + "',"
+                                                                                + txtTempLength.getText() + "',"
+                                                                                + txtTempBreakStart.getText() + "',"
+                                                                                + txtTempBreakEnd.getText() + "')";
+
+
+            
+            
+            stmt.executeUpdate(sql);
+
+            c.close();
+        } 
+        catch (SQLException x) 
+        {
+
+        }
+    }
+    
+    public void delete(int i)
+    {
+        try 
+        {
+            // open a connection
+            Connection c = DatabaseConnector.activateConnection();
+            c.setAutoCommit(true);
+
+            // when creating a statement object, you MUST use a connection object to call the instance method
+            Statement stmt = c.createStatement();
+
+            String sql = "DELETE FROM template WHERE Day = '" + week.get(i) + "'";
+
+            stmt.executeUpdate(sql);
+
+            c.close();
+        } 
+        catch (SQLException x) 
+        {
+
+        }
+    }
+    
+   
+    
+    
+    //Getting the screens to show when clicked on --------------------------------------------------------------------------------------
     public void extraClicked()
     {
         extraActive();

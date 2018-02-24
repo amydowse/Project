@@ -271,7 +271,6 @@ public class SearchScreenDocumentController implements Initializable
                 {
                     if(date.isAfter(LocalDate.now()))
                     {
-                        System.out.println("ADDING F");
                         searchResult.add(x);
                             
                     }
@@ -280,13 +279,11 @@ public class SearchScreenDocumentController implements Initializable
                 {
                     if(date.isBefore(LocalDate.now()))
                     {
-                        System.out.println("ADDING P");
                         searchResult.add(x);
                     }
                 }
                 else
                 {
-                    System.out.println("ADDING B");
                     searchResult.add(x);
                 }
                       
@@ -307,7 +304,7 @@ public class SearchScreenDocumentController implements Initializable
     public void display()
     {
         tblSearchResult.getItems().addAll(searchResult);
-        tblColDate.setCellValueFactory(new PropertyValueFactory("Date"));
+        tblColDate.setCellValueFactory(new PropertyValueFactory("StringDate"));
         tblColTime.setCellValueFactory(new PropertyValueFactory("Time"));
         tblColName.setCellValueFactory(new PropertyValueFactory("Name"));
         tblColAge.setCellValueFactory(new PropertyValueFactory("Age"));

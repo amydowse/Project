@@ -276,7 +276,9 @@ public class StaffScreenDocumentController implements Initializable
 
                 String sql = "DELETE FROM staff WHERE ID = '" + lblID.getText() + "'"; 
                 
-                //DELETE FROM STAFF SKILLS
+                stmt.executeUpdate(sql); 
+                
+                sql = "DELETE FROM skill WHERE Staff_ID = '" + lblID.getText() + "'"; 
                 
                 stmt.executeUpdate(sql); 
                 

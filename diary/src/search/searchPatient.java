@@ -5,6 +5,7 @@
  */
 package search;
 
+import common.codeBank;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -30,6 +31,10 @@ public class searchPatient
     }
     
     //GETTERS
+    public String getStringDate()
+    {
+        return codeBank.dateToString(date);
+    }
     public LocalDate getDate()
     {
         return date;
