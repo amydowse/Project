@@ -16,6 +16,7 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -73,6 +74,20 @@ public class RegularScreenDocumentController implements Initializable
         rdbWhite.setToggleGroup(group);
         
         showInformation();
+        
+        txtDOB.focusedProperty().addListener((ObservableValue<? extends Boolean> ov, Boolean oldV, Boolean newV) -> {
+            if (!newV) {
+                checkingDate(txtDOB.getText());
+            }
+        });
+    }
+    
+    public void checkingDate(String value)
+    {
+        if(!codeBank.checkDate(value))
+        {
+            codeBank.dateError();
+        }
     }
     
     

@@ -246,13 +246,18 @@ public class BloodScreenDocumentController implements Initializable
             tblColDOB.setCellValueFactory(new PropertyValueFactory<blood, String>("DateOfBirth"));
             tblColDOB.setCellFactory(TextFieldTableCell.forTableColumn());        
             tblColDOB.setOnEditCommit(
-                    new EventHandler<CellEditEvent<blood, String>>() {
-                @Override
-                public void handle(CellEditEvent<blood, String> t) {
-                    ((blood) t.getTableView().getItems().get(
-                            t.getTablePosition().getRow())).setDOB(t.getNewValue());
-                }
-            }
+                    new EventHandler<CellEditEvent<blood, String>>() 
+                    {
+                        @Override
+                        public void handle(CellEditEvent<blood, String> t) 
+                        {
+                            ((blood)t.getTableView().getItems().get(t.getTablePosition().getRow())).setDOB(t.getNewValue());
+                            if(!codeBank.checkDate(t.getNewValue()))
+                            {
+                                codeBank.dateError();
+                            }
+                        }
+                    }
             );
             
             

@@ -10,6 +10,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javafx.collections.FXCollections;
@@ -156,7 +159,30 @@ public class codeBank
     
     public static boolean checkDate(String input)
     {
-        return true;
+        if(input.equals(""))
+        {
+            return true;
+        }
+        if(input.matches("\\d\\d/\\d\\d/\\d\\d\\d\\d"))
+        {
+            try 
+            {
+                DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                df.setLenient(false);
+                df.parse(input);
+                System.out.println("DATE OK");
+                return true;
+            } 
+            catch (ParseException e) 
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return false;
+        }
+   
     }
     
     public static boolean checkInteger(String input)
@@ -184,6 +210,17 @@ public class codeBank
         alert.setTitle("Error in Data");
         alert.setHeaderText("An age entered is not a number");
         alert.setContentText("Please check data");
+        alert.showAndWait();
+    }
+    
+    public static void dateError()
+    {
+        System.out.println("Alert");
+        
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Error in Date");
+        alert.setHeaderText("A date is not entered in the correct format");
+        alert.setContentText("Please put in the following format: dd/MM/YYYY");
         alert.showAndWait();
     }
     
