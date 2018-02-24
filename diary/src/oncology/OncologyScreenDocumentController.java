@@ -205,9 +205,7 @@ public class OncologyScreenDocumentController implements Initializable
         showInformation(codeBank.getCurrentDate());
         fillDropDowns();
         delete();
-        workingStaff = codeBank.fillStaffDropDowns();
-        cbStaff.getItems().addAll(workingStaff);
-        
+               
     }
     
     
