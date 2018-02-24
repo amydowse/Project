@@ -226,6 +226,7 @@ public class PreopScreenDocumentController implements Initializable
         cbAMNurse.getItems().addAll(workingStaff);
         cbPMNurse.getItems().addAll(workingStaff);
         showStaff(codeBank.getCurrentDate());
+        
         try
         {
             // open a connection

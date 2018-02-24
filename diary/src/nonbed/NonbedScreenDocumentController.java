@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -187,16 +189,13 @@ public class NonbedScreenDocumentController implements Initializable
     public void initialize(URL url, ResourceBundle rb) 
     {
         showInformation(codeBank.getCurrentDate());
-        fillDropDowns();
+        fillDropDowns(); //fills to procedure drop down 
         delete();
-        workingStaff = codeBank.fillStaffDropDowns();
-        cbStaff.getItems().addAll(workingStaff);
     }
     
     
     public void showInformation(LocalDate date)
     {
-        cbStaff.valueProperty().set(null);
         clearAll();
         workingStaff = codeBank.fillStaffDropDowns();
         cbStaff.getItems().addAll(workingStaff);
@@ -330,6 +329,7 @@ public class NonbedScreenDocumentController implements Initializable
     
     public void clearAll()
     {
+        cbStaff.getItems().clear();
         attendanceArray = new int[14];
         notesArray = new int[14];
         allBookings.clear();
@@ -427,12 +427,12 @@ public class NonbedScreenDocumentController implements Initializable
                 stmt.executeUpdate(sql);
             }
             c.close();
+            saveStaff();
         }
         catch (SQLException e)
         {
             
         } 
-        saveStaff();
     }
     
     public String SQLLine(int i, String date)
@@ -472,12 +472,15 @@ public class NonbedScreenDocumentController implements Initializable
             
             String staff = cbStaff.getValue().toString();
             
+            System.out.println(">>>>>>>>>>>>>>>> " + staff);
+            
             staff = staff.substring(staff.indexOf("(") + 1);
             staff = staff.substring(0, staff.indexOf(")"));
             
-            String sql = "REPLACE INTO specificworking (Date, Place, ID) VALUES('"
-                                                            + date + "','Nonbed','"                                           
-                                                            + staff + "')";
+            System.out.println(">>>>>>>>>>>>>>>> " + staff);
+            
+            String sql = "REPLACE INTO specificworking (Date, Place, ID) VALUES ('" + date + "', 'Nonbed', '" + staff + "')";
+                                                           
             
             stmt.executeUpdate(sql);                 
                     
@@ -485,11 +488,11 @@ public class NonbedScreenDocumentController implements Initializable
         }
         catch (SQLException e)
         {
-            
+            //Logger.getLogger(NonbedScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
         } 
         catch(NullPointerException n)
         {
-            
+            //Logger.getLogger(NonbedScreenDocumentController.class.getName()).log(Level.SEVERE, null, n);
         }
     }
     
@@ -509,7 +512,7 @@ public class NonbedScreenDocumentController implements Initializable
             String stringDate = codeBank.dateToString(SearchDate);          
             
             //implement query
-            rs = stmt.executeQuery("SELECT * FROM staff, specificworking WHERE specificworking.Date = '" + stringDate + "' AND staff.ID = specificworking.ID"); 
+            rs = stmt.executeQuery("SELECT * FROM staff, specificworking WHERE specificworking.Date = '" + stringDate + "' AND staff.ID = specificworking.ID AND specificworking.Place = 'Nonbed'"); 
                         
             while(rs.next())
             { 
