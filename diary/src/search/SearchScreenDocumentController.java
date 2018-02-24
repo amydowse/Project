@@ -72,6 +72,8 @@ public class SearchScreenDocumentController implements Initializable
         searchResult.clear();
         tblSearchResult.getItems().clear();
         
+        lblSearchCriteria.setText("'" + txtSearchName.getText() + "'");
+        
         try
         {
             // open a connection
@@ -247,7 +249,6 @@ public class SearchScreenDocumentController implements Initializable
             
             while(rs.next())
             {  
-                System.out.println("RESULT???????????");
                 String Date = rs.getString("Date");
                 LocalDate date = codeBank.stringToDate(Date);
                 

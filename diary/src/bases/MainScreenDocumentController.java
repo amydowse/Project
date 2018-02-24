@@ -16,6 +16,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
@@ -28,10 +29,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import javafx.util.Callback;
 import nonbed.NonbedScreenDocumentController;
 import oncology.OncologyScreenDocumentController;
 import preop.PreopScreenDocumentController;
@@ -108,6 +112,49 @@ public class MainScreenDocumentController implements Initializable
         {
             Logger.getLogger(MainScreenDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
+        
+        //https://examples.javacodegeeks.com/desktop-java/javafx/datepicker-javafx/javafx-datepicker-example/#control_event accessed 24/2/18
+        // Create a day cell factory
+        Callback<DatePicker, DateCell> dayCellFactory = new Callback<DatePicker, DateCell>()
+        {
+            public DateCell call(final DatePicker datePicker)
+            {
+                return new DateCell()
+                {
+                    @Override
+                    public void updateItem(LocalDate item, boolean empty)
+                    {
+                        // Must call super
+                        super.updateItem(item, empty);
+
+                        // Show Weekends in blue color
+                        DayOfWeek day = DayOfWeek.from(item);
+                        if (day == DayOfWeek.SATURDAY || day == DayOfWeek.SUNDAY)
+                        {
+                            this.setDisable ( true );
+                            this.setStyle(" -fx-background-color: #ff0000; ") ;
+                        }
+                    }
+                };
+            }
+        };
+
+
+        // Set the day cell factory to the DatePicker
+       dpCalandar.setDayCellFactory(dayCellFactory);
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
     
     public void updateButtons()
@@ -308,7 +355,16 @@ public class MainScreenDocumentController implements Initializable
         NSDC.save(codeBank.getCurrentDate());
         OSDC.save(codeBank.getCurrentDate());
         
-        codeBank.setCurrentDate(codeBank.getCurrentDate().plusDays(1));
+        LocalDate changingDate = codeBank.getCurrentDate().plusDays(1);
+        DayOfWeek day = DayOfWeek.from(changingDate);
+                        
+        while(day == DayOfWeek.SATURDAY || day == DayOfWeek.SUNDAY)
+        {
+            changingDate = changingDate.plusDays(1);
+            day = DayOfWeek.from(changingDate);
+        }
+        
+        codeBank.setCurrentDate(changingDate);
         updateDate();
         updateButtons();
         
@@ -330,7 +386,16 @@ public class MainScreenDocumentController implements Initializable
         NSDC.save(codeBank.getCurrentDate());
         OSDC.save(codeBank.getCurrentDate());
         
-        codeBank.setCurrentDate(codeBank.getCurrentDate().minusDays(1));
+        LocalDate changingDate = codeBank.getCurrentDate().minusDays(1);
+        DayOfWeek day = DayOfWeek.from(changingDate);
+                        
+        while(day == DayOfWeek.SATURDAY || day == DayOfWeek.SUNDAY)
+        {
+            changingDate = changingDate.minusDays(1);
+            day = DayOfWeek.from(changingDate);
+        }
+        
+        codeBank.setCurrentDate(changingDate);
         updateDate();
         updateButtons();
         
