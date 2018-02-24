@@ -7,7 +7,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="975.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="search.SearchProcedureScreenDocumentController">
    <children>
-      <ComboBox fx:id="cmbSearchProcedure" layoutX="61.0" layoutY="144.0" prefHeight="44.0" prefWidth="851.0" />
+      <ChoiceBox fx:id="cmbSearchProcedure" layoutX="61.0" layoutY="144.0" prefHeight="44.0" prefWidth="851.0" />
       <Button fx:id="btnSearch" layoutX="1024.0" layoutY="144.0" mnemonicParsing="false" text="SEARCH">
          <font>
             <Font size="20.0" />
@@ -23,19 +23,32 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <TableView fx:id="tblSearchResult" layoutX="61.0" layoutY="313.0" prefHeight="603.0" prefWidth="1064.0">
+      <TableView fx:id="tblSearchResult" layoutX="61.0" layoutY="313.0" prefHeight="603.0" prefWidth="679.0">
         <columns>
-          <TableColumn fx:id="tblColDate" prefWidth="150.0" text="Date" />
-          <TableColumn fx:id="tblColTime" minWidth="0.0" prefWidth="150.0" text="Time" />
-            <TableColumn fx:id="tblColName" minWidth="0.0" prefWidth="323.0" text="Name" />
-            <TableColumn fx:id="tblColAge" minWidth="0.0" prefWidth="150.0" text="Age" />
-            <TableColumn fx:id="tblColProcedure" minWidth="0.0" prefWidth="290.0" text="Procedure" />
+          <TableColumn fx:id="tblColDate" prefWidth="225.0" text="Date" />
+          <TableColumn fx:id="tblColTime" minWidth="0.0" prefWidth="225.0" text="Time" />
+            <TableColumn fx:id="tblColBook" minWidth="0.0" prefWidth="225.0" text="Book" />
         </columns>
       </TableView>
-      <Label fx:id="lbl1" layoutX="71.0" layoutY="70.0" text="Enter the procedure you are searching for:">
+      <RadioButton fx:id="rbW3" layoutX="661.0" layoutY="76.0" mnemonicParsing="false" text="Within 3 weeks">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font size="20.0" />
          </font>
-      </Label>
+      </RadioButton>
+      <RadioButton fx:id="rb2W" layoutX="370.0" layoutY="76.0" mnemonicParsing="false" text="Within 2 weeks">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="rb1W" layoutX="71.0" layoutY="76.0" mnemonicParsing="false" text="Within 1 week">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="rbW4" layoutX="954.0" layoutY="76.0" mnemonicParsing="false" text="Within 4 weeks">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </RadioButton>
    </children>
 </Pane>

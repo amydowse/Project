@@ -202,7 +202,7 @@ public class PreopScreenDocumentController implements Initializable
     boolean OneUnscheduled = false;
     boolean TwoUnscheduled = false;
     boolean ThreeUnscheduled = false;
-    
+  
     
     
 
@@ -492,6 +492,7 @@ public class PreopScreenDocumentController implements Initializable
             }
             c.close();
             saveStaff(today);
+            
         }
         catch (SQLException e)
         {
@@ -505,16 +506,16 @@ public class PreopScreenDocumentController implements Initializable
         if(!timeList.get(i).getText().equals("") & !nameList.get(i).getText().equals("") & !ageList.get(i).getText().equals("") & !hospitalList.get(i).getText().equals("") & !specialityList.get(i).getText().equals(""))
         {
             return ("REPLACE INTO preop (Date, Time, Name, Age, HospitalNumber, Speciality, ExtraInfo, Notes, Attendance) VALUES('"      
-                                                                                + date + "','"
-                                                                                + timeList.get(i).getText() + "','"
-                                                                                + nameList.get(i).getText() + "','"
-                                                                                + ageList.get(i).getText() + "','"
-                                                                                + hospitalList.get(i).getText() + "','"
-                                                                                + specialityList.get(i).getText() + "','"
-                                                                                + informationList.get(i).getText() + "','"
-                                                                                + notesArray[i] + "','"
-                                                                                + attendanceArray[i] + "')"
-                    );
+                                                                                    + date + "','"
+                                                                                    + timeList.get(i).getText() + "','"
+                                                                                    + nameList.get(i).getText() + "','"
+                                                                                    + ageList.get(i).getText() + "','"
+                                                                                    + hospitalList.get(i).getText() + "','"
+                                                                                    + specialityList.get(i).getText() + "','"
+                                                                                    + informationList.get(i).getText() + "','"
+                                                                                    + notesArray[i] + "','"
+                                                                                    + attendanceArray[i] + "')"
+             );
         }
         else
         {

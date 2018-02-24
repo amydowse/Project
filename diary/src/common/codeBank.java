@@ -14,6 +14,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 
 /**
@@ -149,6 +150,41 @@ public class codeBank
 
         }
         return workingStaff;
+    }
+    
+    
+    
+    public static boolean checkDate(String input)
+    {
+        return true;
+    }
+    
+    public static boolean checkInteger(String input)
+    {
+        try 
+        { 
+            if(input.equals(""))
+            {
+                return true;
+            }
+            Integer.parseInt(input);
+            return true;
+        } 
+        catch(NumberFormatException e)  
+        { 
+            return false; 
+        } 
+    }
+    
+    public static void dataError()
+    {
+        System.out.println("Alert");
+        
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Error in Data");
+        alert.setHeaderText("An age entered is not a number");
+        alert.setContentText("Please check data");
+        alert.showAndWait();
     }
     
     

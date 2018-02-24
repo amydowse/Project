@@ -107,6 +107,9 @@ public class MainScreenDocumentController implements Initializable
             updateDate();
             showDiary();
             updateButtons();
+            
+            
+            
         } 
         catch (IOException ex) 
         {
@@ -320,9 +323,12 @@ public class MainScreenDocumentController implements Initializable
         lblDate.setText(stringDate);        
     }
     
+    
+    
+    
     @FXML
     public void today()
-    {
+    {     
         DSDC.save(codeBank.getCurrentDate());
         PSDC.save(codeBank.getCurrentDate());
         BSDC.save();

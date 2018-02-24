@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -353,6 +354,29 @@ public class DiaryScreenDocumentController  implements Initializable
         showNotes(codeBank.getCurrentDate());
         fillStaffDropDowns(); 
         delete();
+        
+        //https://stackoverflow.com/questions/42943652/how-to-trigger-an-event-on-focus-out-for-a-textfield-in-javafx-using-fxml accessed 24/2
+        for(int i=0; i<24; i++)
+        {
+            TextField selected = ageList.get(i);
+            ageList.get(i).focusedProperty().addListener((ObservableValue<? extends Boolean> ov, Boolean oldV, Boolean newV) -> {
+            if (!newV) 
+            { 
+                callingTest(selected);
+            }
+            });
+        }
+    
+    }
+    
+    public void callingTest(TextField selected)
+    {
+        String value = selected.getText();
+        
+        if(!codeBank.checkInteger(value))
+        {
+            codeBank.dataError();
+        }
     }
     
     public void fillBedArray()
@@ -975,9 +999,7 @@ public class DiaryScreenDocumentController  implements Initializable
             int second = line.indexOf(")");
             String ID = line.substring(first+1, second);
             String Shift = shiftList.get(i).getValue().toString();
-            
-            System.out.println(ID + " " + date + " " + Shift);
-            
+                        
             return "INSERT INTO working (Staff_ID, Date, Shift) VALUES (' "
                                                                 + ID + "','"
                                                                 + date + "','"
@@ -1082,6 +1104,17 @@ public class DiaryScreenDocumentController  implements Initializable
         contextMenu1.getItems().add(delete);
         timeList.get(i).setContextMenu(contextMenu1);
 
+    }
+    
+    
+    
+    @FXML
+    public void checkInt()
+    {
+        if(!codeBank.checkInteger(txtAge1MA.getText()))
+        {
+            codeBank.dataError();
+        }
     }
     
 }//END OF CLASS
