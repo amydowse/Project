@@ -212,11 +212,11 @@ public class PreopScreenDocumentController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
-       clearInformation();
-       loadInformation();
-       delete();
+        clearInformation();
+        loadInformation();
+        delete();
       
-       for(int i=0; i<11; i++)
+        for(int i=0; i<11; i++)
         {
             TextField selected = ageList.get(i);
             ageList.get(i).focusedProperty().addListener((ObservableValue<? extends Boolean> ov, Boolean oldV, Boolean newV) -> {
@@ -227,6 +227,39 @@ public class PreopScreenDocumentController implements Initializable
             });
         }
     
+          
+        txtTimeU1.focusedProperty().addListener((ObservableValue<? extends Boolean> ov, Boolean oldV, Boolean newV) -> {
+            if (!newV) 
+            { 
+                checkingTime(txtTimeU1);
+            }
+        });
+        
+        txtTimeU2.focusedProperty().addListener((ObservableValue<? extends Boolean> ov, Boolean oldV, Boolean newV) -> {
+            if (!newV) 
+            { 
+                checkingTime(txtTimeU1);
+            }
+        });
+        
+        txtTimeU3.focusedProperty().addListener((ObservableValue<? extends Boolean> ov, Boolean oldV, Boolean newV) -> {
+            if (!newV) 
+            { 
+                checkingTime(txtTimeU1);
+            }
+        });
+        
+    
+    }
+    
+    public void checkingTime(TextField selected)
+    {
+        String value = selected.getText();
+        
+        if(!codeBank.checkTime(value))
+        {
+            codeBank.timeError();
+        }
     }
     
     public void checkingAge(TextField selected)

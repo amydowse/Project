@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -206,7 +207,29 @@ public class OncologyScreenDocumentController implements Initializable
         fillDropDowns();
         delete();
                
+        for(int i=0; i<14; i++)
+        {
+            TextField selected = timeList.get(i);
+            timeList.get(i).focusedProperty().addListener((ObservableValue<? extends Boolean> ov, Boolean oldV, Boolean newV) -> {
+            if (!newV) 
+            { 
+                checkingTime(selected);
+            }
+            });
+        }
+    
     }
+    
+    public void checkingTime(TextField selected)
+    {
+        String value = selected.getText();
+        
+        if(!codeBank.checkTime(value))
+        {
+            codeBank.timeError();
+        }
+    }
+    
     
     
     

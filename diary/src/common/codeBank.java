@@ -14,7 +14,9 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
@@ -202,6 +204,27 @@ public class codeBank
         } 
     }
     
+    public static boolean checkTime(String input)
+    {
+        try
+        {
+            if(input.equals(""))
+            {
+                return true;
+            }
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+            LocalTime.parse(input, formatter);
+            return true;
+        }
+        catch(DateTimeParseException e)
+        {
+              return false;
+        }
+    }
+    
+    
+    
+    
     public static void ageError()
     {
         System.out.println("Alert");
@@ -221,6 +244,17 @@ public class codeBank
         alert.setTitle("Error in Date");
         alert.setHeaderText("A date is not entered in the correct format");
         alert.setContentText("Please put in the following format: dd/MM/YYYY");
+        alert.showAndWait();
+    }
+    
+    public static void timeError()
+    {
+        System.out.println("Alert");
+        
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Error in Time");
+        alert.setHeaderText("A time is not entered in the correct format");
+        alert.setContentText("Please a date in the 24-hour clocked: HH:mm");
         alert.showAndWait();
     }
     

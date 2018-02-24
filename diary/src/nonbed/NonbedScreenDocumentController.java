@@ -204,6 +204,27 @@ public class NonbedScreenDocumentController implements Initializable
             });
         }
     
+        for(int i=0; i<14; i++)
+        {
+            TextField selected = timeList.get(i);
+            timeList.get(i).focusedProperty().addListener((ObservableValue<? extends Boolean> ov, Boolean oldV, Boolean newV) -> {
+            if (!newV) 
+            { 
+                checkingTime(selected);
+            }
+            });
+        }
+    
+    }
+    
+    public void checkingTime(TextField selected)
+    {
+        String value = selected.getText();
+        
+        if(!codeBank.checkTime(value))
+        {
+            codeBank.timeError();
+        }
     }
     
     public void checkingAge(TextField selected)
