@@ -975,8 +975,8 @@ public class DiaryScreenDocumentController  implements Initializable
             int second = line.indexOf(")");
             String ID = line.substring(first+1, second);
             String Shift = shiftList.get(i).getValue().toString();
-                        
-            System.out.println("SAVEING: " + ID + " " + date + " " + Shift);
+            
+            System.out.println(ID + " " + date + " " + Shift);
             
             return "INSERT INTO working (Staff_ID, Date, Shift) VALUES (' "
                                                                 + ID + "','"
@@ -1023,7 +1023,6 @@ public class DiaryScreenDocumentController  implements Initializable
         {
             if(txtNotes.getText().equals("") || txtNotes.getText().trim().equals("NOTES"))
             {
-                System.out.println("BLANK");
                 return "DELETE FROM notes WHERE Date = '" + date + "'" ;
             }
             else

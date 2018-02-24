@@ -182,7 +182,8 @@ public class PreopScreenDocumentController implements Initializable
     @FXML TextArea txtInformationU3 = new TextArea();
     @FXML TextField txtNotesU3 = new TextField();
     
-    @FXML ChoiceBox cbStaff = new ChoiceBox();
+    @FXML ChoiceBox cbAMNurse = new ChoiceBox();
+    @FXML ChoiceBox cbPMNurse = new ChoiceBox();
     
     private ArrayList<preop> allBookings = new ArrayList<preop>();
     int[] attendanceArray = new int[11];
@@ -212,10 +213,8 @@ public class PreopScreenDocumentController implements Initializable
     {
        clearInformation();
        loadInformation();
-       showStaff(codeBank.getCurrentDate());
        delete();
-       workingStaff = codeBank.fillStaffDropDowns();
-       cbStaff.getItems().addAll(workingStaff);
+      
     }
     
         
@@ -223,6 +222,10 @@ public class PreopScreenDocumentController implements Initializable
     public void loadInformation()
     {
         clearInformation();
+        workingStaff = codeBank.fillStaffDropDowns();       
+        cbAMNurse.getItems().addAll(workingStaff);
+        cbPMNurse.getItems().addAll(workingStaff);
+        showStaff(codeBank.getCurrentDate());
         try
         {
             // open a connection
@@ -373,7 +376,9 @@ public class PreopScreenDocumentController implements Initializable
     
     //Clear all of the textboxes
     public void clearInformation()
-    {
+    {       
+        cbAMNurse.getItems().clear();
+        cbPMNurse.getItems().clear();
         allBookings.clear();
         attendanceArray = new int[11];
         notesArray = new int[11];
@@ -464,7 +469,7 @@ public class PreopScreenDocumentController implements Initializable
     
     
    
-    
+    //Saving the lines and the staff 
     public void save(LocalDate today)
     {
         try
@@ -485,6 +490,7 @@ public class PreopScreenDocumentController implements Initializable
                 stmt.executeUpdate(sql);
             }
             c.close();
+            saveStaff(today);
         }
         catch (SQLException e)
         {
@@ -492,6 +498,7 @@ public class PreopScreenDocumentController implements Initializable
         } 
     }
     
+    //Saving each preop line
     public String SQLLine(int i, String date)
     {
         if(!timeList.get(i).getText().equals("") & !nameList.get(i).getText().equals("") & !ageList.get(i).getText().equals("") & !hospitalList.get(i).getText().equals("") & !specialityList.get(i).getText().equals(""))
@@ -514,13 +521,75 @@ public class PreopScreenDocumentController implements Initializable
         }
     
     }
+    
+    //Saving the selected staff
+    public void saveStaff(LocalDate today)
+    {
+        ArrayList<String> queries = new ArrayList<String>();
+        try
+        {
+            // open a connection
+            Connection c = DatabaseConnector.activateConnection();
+            c.setAutoCommit( true ); 
+            
+            // when creating a statement object, you MUST use a connection object to call the instance method
+            Statement stmt = c.createStatement();
+                        
+            String stringDate = codeBank.dateToString(today);          
+            
+            if(cbAMNurse.getValue() != null)
+            {
+                if(cbAMNurse.getValue().equals(""))
+                {
+                    queries.add("DELETE FROM specificworking WHERE Date = '" + stringDate + "', Place = 'PreopAM'");
+                }
+
+                if(!cbAMNurse.getValue().equals(""))
+                {
+                    String staff = cbAMNurse.getValue().toString();
+                    staff = staff.substring(staff.indexOf("(") + 1);
+                    staff = staff.substring(0, staff.indexOf(")"));
+                    queries.add("REPLACE INTO specificworking (Date, Place, ID) VALUES ('" + stringDate + "', 'PreopAM', '" + staff + "')");
+                }
+            }
+            
+            if(cbPMNurse.getValue() != null)
+            {
+                if(cbPMNurse.getValue().equals(""))
+                {
+                    queries.add("DELETE FROM specificworking WHERE Date = '" + stringDate + "', Place = 'PreopPM'");
+                }
+
+                if(!cbPMNurse.getValue().equals(""))
+                {
+                    String staff = cbPMNurse.getValue().toString();
+                    staff = staff.substring(staff.indexOf("(") + 1);
+                    staff = staff.substring(0, staff.indexOf(")"));
+                    queries.add("REPLACE INTO specificworking (Date, Place, ID) VALUES ('" + stringDate + "', 'PreopPM', '" + staff + "')");
+                }
+            }
+            
+            
+            for(int i=0; i<queries.size(); i++)
+            {
+                stmt.executeUpdate(queries.get(i));
+            }
+            
+            c.close();
+        }
+        catch (SQLException e)
+        {
+            Logger.getLogger(PreopScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
+        } 
+    }
         
         
     
     
-    
+    //Show the specific staff that are working - selecting them from the list 
     public void showStaff(LocalDate SearchDate)
     {
+        System.out.println("ShowStaff in preop " + SearchDate);
         try
         {
             // open a connection
@@ -533,7 +602,7 @@ public class PreopScreenDocumentController implements Initializable
             String stringDate = codeBank.dateToString(SearchDate);          
             
             //implement query
-            rs = stmt.executeQuery("SELECT * FROM staff, specificworking WHERE specificworking.Date = '" + stringDate + "' AND staff.ID = specificworking.ID AND specificworking.Place = 'Preop'"); 
+            rs = stmt.executeQuery("SELECT * FROM staff, specificworking WHERE specificworking.Date = '" + stringDate + "' AND staff.ID = specificworking.ID AND specificworking.Place = 'PreopAM'"); 
                         
             while(rs.next())
             { 
@@ -542,7 +611,20 @@ public class PreopScreenDocumentController implements Initializable
                 
                 String text = "(" +ID + ") " + firstname;
                 
-                cbStaff.setValue(text);
+                cbAMNurse.setValue(text);
+                
+            }
+            
+            rs = stmt.executeQuery("SELECT * FROM staff, specificworking WHERE specificworking.Date = '" + stringDate + "' AND staff.ID = specificworking.ID AND specificworking.Place = 'PreopPM'"); 
+                        
+            while(rs.next())
+            { 
+                String firstname = rs.getString("FirstName");
+                int ID = rs.getInt("ID");
+                
+                String text = "(" +ID + ") " + firstname;
+                
+                cbPMNurse.setValue(text);
                 
             }
             c.close();
@@ -554,7 +636,7 @@ public class PreopScreenDocumentController implements Initializable
     }
     
     
-    
+    //Setting up the delete function
     public void delete()
     {
         for(int i=0; i<11; i++)
@@ -563,7 +645,7 @@ public class PreopScreenDocumentController implements Initializable
         }
     }
     
-    
+    //Deleting the right clicked on row 
     public void deleteOption(int i)
     {
         TextField time = timeList.get(i);

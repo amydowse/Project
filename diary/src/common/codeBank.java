@@ -118,6 +118,7 @@ public class codeBank
     public static ObservableList<String> fillStaffDropDowns() 
     {
         ObservableList<String> workingStaff = FXCollections.observableArrayList();
+        workingStaff.add("");
         try 
         {
             // open a connection
@@ -141,6 +142,7 @@ public class codeBank
 
                 workingStaff.add(text);
             }
+            
 
         } catch (SQLException e) 
         {
