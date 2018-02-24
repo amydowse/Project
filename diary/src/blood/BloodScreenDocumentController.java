@@ -125,10 +125,7 @@ public class BloodScreenDocumentController implements Initializable
             //make localdate into string
             LocalDate currentDate = codeBank.getCurrentDate();
             String day = currentDate.getDayOfWeek().name();
-            
-            System.out.println(currentDate);
-            System.out.println(day);
-            
+                        
             //implement query
             rs = stmt.executeQuery("SELECT * FROM template WHERE Day = '" + day + "'" );
             

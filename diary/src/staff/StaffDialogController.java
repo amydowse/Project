@@ -210,7 +210,7 @@ public class StaffDialogController implements Initializable
             {
                 if (allProcedures.get(i).getHasSkill().equals("✔")) 
                 {
-                    System.out.println(lblID.getText() + "  " + allProcedures.get(i).getProcedureName());
+                    //System.out.println(lblID.getText() + "  " + allProcedures.get(i).getProcedureName());
                     stmt.executeUpdate("INSERT INTO skill (Staff_ID, Procedure_Name) VALUES ('" + lblID.getText() + "','" + allProcedures.get(i).getProcedureName() + "')");
                 }
             }

@@ -590,7 +590,6 @@ public class PreopScreenDocumentController implements Initializable
     //Show the specific staff that are working - selecting them from the list 
     public void showStaff(LocalDate SearchDate)
     {
-        System.out.println("ShowStaff in preop " + SearchDate);
         try
         {
             // open a connection

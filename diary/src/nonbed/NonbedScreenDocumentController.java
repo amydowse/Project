@@ -472,12 +472,8 @@ public class NonbedScreenDocumentController implements Initializable
             
             String staff = cbStaff.getValue().toString();
             
-            System.out.println(">>>>>>>>>>>>>>>> " + staff);
-            
             staff = staff.substring(staff.indexOf("(") + 1);
             staff = staff.substring(0, staff.indexOf(")"));
-            
-            System.out.println(">>>>>>>>>>>>>>>> " + staff);
             
             String sql = "REPLACE INTO specificworking (Date, Place, ID) VALUES ('" + date + "', 'Nonbed', '" + staff + "')";
                                                            
