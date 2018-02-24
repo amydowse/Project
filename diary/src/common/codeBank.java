@@ -176,7 +176,7 @@ public class codeBank
         } 
     }
     
-    public static void dataError()
+    public static void ageError()
     {
         System.out.println("Alert");
         

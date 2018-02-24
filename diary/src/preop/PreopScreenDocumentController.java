@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -215,7 +216,29 @@ public class PreopScreenDocumentController implements Initializable
        loadInformation();
        delete();
       
+       for(int i=0; i<11; i++)
+        {
+            TextField selected = ageList.get(i);
+            ageList.get(i).focusedProperty().addListener((ObservableValue<? extends Boolean> ov, Boolean oldV, Boolean newV) -> {
+            if (!newV) 
+            { 
+                checkingAge(selected);
+            }
+            });
+        }
+    
     }
+    
+    public void checkingAge(TextField selected)
+    {
+        String value = selected.getText();
+        
+        if(!codeBank.checkInteger(value))
+        {
+            codeBank.ageError();
+        }
+    }
+    
     
         
     //Load the information for that day

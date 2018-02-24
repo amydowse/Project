@@ -362,22 +362,25 @@ public class DiaryScreenDocumentController  implements Initializable
             ageList.get(i).focusedProperty().addListener((ObservableValue<? extends Boolean> ov, Boolean oldV, Boolean newV) -> {
             if (!newV) 
             { 
-                callingTest(selected);
+                checkingAge(selected);
             }
             });
         }
     
     }
     
-    public void callingTest(TextField selected)
+    public void checkingAge(TextField selected)
     {
         String value = selected.getText();
         
         if(!codeBank.checkInteger(value))
         {
-            codeBank.dataError();
+            codeBank.ageError();
         }
     }
+    
+    
+    
     
     public void fillBedArray()
     {
@@ -1108,14 +1111,7 @@ public class DiaryScreenDocumentController  implements Initializable
     
     
     
-    @FXML
-    public void checkInt()
-    {
-        if(!codeBank.checkInteger(txtAge1MA.getText()))
-        {
-            codeBank.dataError();
-        }
-    }
+    
     
 }//END OF CLASS
 
