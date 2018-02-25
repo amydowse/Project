@@ -21,6 +21,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -269,7 +271,8 @@ public class OncologyScreenDocumentController implements Initializable
                 String time = rs.getString("Time"); //Time
                 LocalTime localTime = LocalTime.parse(time, DateTimeFormatter.ISO_LOCAL_TIME);
               
-                String name = rs.getString("Name");
+                String firstName = rs.getString("FirstName");
+                String lastName = rs.getString("LastName");
                 
                 //https://memorynotfound.com/calculate-age-from-date-of-birth-in-java/ accessed 17/02/2018
                 String dob = rs.getString("DateOfBirth");
@@ -285,7 +288,7 @@ public class OncologyScreenDocumentController implements Initializable
                 int attendance = rs.getInt("Attendance");
                 
                 //creating a diary object 
-                oncology booking = new oncology(localDate, localTime, name, age, hospitalNumber, number, wristband, reason, notes, attendance);
+                oncology booking = new oncology(localDate, localTime, firstName + " " + lastName, age, hospitalNumber, number, wristband, reason, notes, attendance);
                 allBookings.add(booking);             
             }
             Collections.sort(allBookings);
@@ -354,7 +357,7 @@ public class OncologyScreenDocumentController implements Initializable
             Statement stmt = c.createStatement();          
             
             //implement query
-            rs = stmt.executeQuery("SELECT FirstName, LastName FROM regular"); 
+            rs = stmt.executeQuery("SELECT FirstName, LastName FROM regular WHERE Oncology='" + 1 + "'"); 
                 
             for(int i=0; i<14; i++)
             {
@@ -496,7 +499,7 @@ public class OncologyScreenDocumentController implements Initializable
         }
         catch (SQLException e)
         {
-            
+            Logger.getLogger(OncologyScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
         } 
         
     }
@@ -650,6 +653,8 @@ public class OncologyScreenDocumentController implements Initializable
         {
             try
             {
+                String[] name = patient.split(" ");
+                
                 // open a connection
                 Connection c = DatabaseConnector.activateConnection();
                 c.setAutoCommit( true ); 
@@ -657,7 +662,7 @@ public class OncologyScreenDocumentController implements Initializable
                 // when creating a statement object, you MUST use a connection object to call the instance method
                 Statement stmt = c.createStatement();
 
-                rs = stmt.executeQuery("SELECT * FROM regular WHERE Name = '" + patient + "'");
+                rs = stmt.executeQuery("SELECT * FROM regular WHERE FirstName = '" + name[0] + "' AND LastName ='" + name[1] + "'");
 
                 while(rs.next())
                 { 
@@ -676,7 +681,7 @@ public class OncologyScreenDocumentController implements Initializable
             }
             catch (SQLException e)
             {
-
+                    Logger.getLogger(OncologyScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
             } 
         }
     }
@@ -729,6 +734,7 @@ public class OncologyScreenDocumentController implements Initializable
     {
         TextField time = timeList.get(i);
         ChoiceBox name = nameList.get(i);
+        TextField hospital = hospitalList.get(i);
 
         //https://stackoverflow.com/questions/32980159/javafx-append-to-right-click-menu-for-textfield accessed 18/2
         //https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/ContextMenu.html accessed 18/2
@@ -744,7 +750,7 @@ public class OncologyScreenDocumentController implements Initializable
                     // when creating a statement object, you MUST use a connection object to call the instance method
                     Statement stmt = c.createStatement();
 
-                    String sql = "DELETE FROM oncology WHERE Date = '" + codeBank.dateToString(codeBank.getCurrentDate()) + "' AND Time = '" + time.getText() + "'AND Name ='" + name.getValue().toString() + "'";
+                    String sql = "DELETE FROM oncology WHERE Date = '" + codeBank.dateToString(codeBank.getCurrentDate()) + "' AND Time = '" + time.getText() + "'AND Regular_HospitalNumber ='" + hospital.getText() + "'";
 
                     stmt.executeUpdate(sql);
 
