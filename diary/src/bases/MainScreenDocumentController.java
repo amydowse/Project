@@ -31,6 +31,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -77,6 +79,12 @@ public class MainScreenDocumentController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
+        //Image from http://www.stickpng.com/img/icons-logos-emojis/home-icons/chimney-home-icon
+        Image image = new Image(getClass().getResourceAsStream("/bases/home.png"));
+        ImageView IV = new ImageView(image);
+        IV.setFitHeight(53);
+        IV.setFitWidth(60);
+        btnHome.setGraphic(IV);
               
         ContentPane = this.Content;
         try 

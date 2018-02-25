@@ -17,6 +17,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -65,6 +66,7 @@ public class ProcedureScreenDocumentController implements Initializable
         showInformation();
     }
     
+        
     public void showInformation()
     {
         allProcedures.clear();
@@ -73,6 +75,21 @@ public class ProcedureScreenDocumentController implements Initializable
         txtDuration.setText("");
         txtNurses.setText("");
         cbLocation.setValue("");
+        
+        txtDuration.focusedProperty().addListener((ObservableValue<? extends Boolean> ov, Boolean oldV, Boolean newV) -> {
+            if (!newV) 
+            { 
+                checkingInteger(txtDuration);
+            }
+            });
+        
+        txtNurses.focusedProperty().addListener((ObservableValue<? extends Boolean> ov, Boolean oldV, Boolean newV) -> {
+            if (!newV) 
+            { 
+                checkingInteger(txtNurses);
+            }
+            });
+        
         
         try
         {
@@ -124,6 +141,16 @@ public class ProcedureScreenDocumentController implements Initializable
            
     }
     
+    
+    public void checkingInteger(TextField selected)
+    {
+        String value = selected.getText();
+        
+        if(!codeBank.checkInteger(value))
+        {
+            codeBank.integerError();
+        }
+    }
     
     
     

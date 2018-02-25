@@ -17,10 +17,10 @@
 <BorderPane id="whole" prefHeight="1050.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bases.MainScreenDocumentController">
     
     <top>
-        <Pane id="topBar" prefHeight="75.0" prefWidth="850.0" style="-fx-background-color: #80bdff;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+        <Pane id="topBar" prefHeight="75.0" prefWidth="850.0" style="-fx-background-color: #80bdff" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
          <children>
             <DatePicker fx:id="dpCalandar" editable="false" layoutX="1623.0" prefHeight="75.0" prefWidth="298.0" onAction="#selectedDate" stylesheets="@datepickerStyle.css" />
-            <Button fx:id="btnHome" mnemonicParsing="false" onAction="#Home" prefHeight="75.0" prefWidth="75.0" text="HOME" />
+            <Button fx:id="btnHome" mnemonicParsing="false" onAction="#Home" prefHeight="75.0" prefWidth="75.0" />
             <Button fx:id="btnRight" layoutX="1770.0" mnemonicParsing="false" onAction="#plusOneDay" prefHeight="75.0" prefWidth="75.0" text="→" />
             <Button fx:id="btnLeft" layoutX="1695.0" mnemonicParsing="false" onAction="#minusOneDay" prefHeight="75.0" prefWidth="75.0" text="←" />
             <Label fx:id="lblDate" layoutX="90.0" layoutY="9.0" prefHeight="58.0" prefWidth="1139.0" text="DATE">

@@ -17,7 +17,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import procedure.ProcedureScreenDocumentController;
 import regular.RegularScreenDocumentController;
@@ -42,9 +45,21 @@ public class TopMenuDocumentController implements Initializable
     private Pane RegularPane;
     private Pane StaffPane;
     
+    
+    @FXML Button btnHome = new Button();
+        
     @Override
     public void initialize(URL location, ResourceBundle resources) 
-    {       
+    {
+        //Image from http://www.stickpng.com/img/icons-logos-emojis/home-icons/chimney-home-icon
+        Image image = new Image(getClass().getResourceAsStream("/bases/home.png"));
+        ImageView IV = new ImageView(image);
+        IV.setFitHeight(53);
+        IV.setFitWidth(60);
+        btnHome.setGraphic(IV);
+       
+        
+        
         ContentPane = this.Content;
         Pane newLoadedPane;
         try 

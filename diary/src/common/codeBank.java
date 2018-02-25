@@ -236,6 +236,17 @@ public class codeBank
         alert.showAndWait();
     }
     
+    public static void integerError()
+    {
+        System.out.println("Alert");
+        
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Error in Data");
+        alert.setHeaderText("An value entered is not a number");
+        alert.setContentText("Please check duration and number of nurses");
+        alert.showAndWait();
+    }
+    
     public static void dateError()
     {
         System.out.println("Alert");
