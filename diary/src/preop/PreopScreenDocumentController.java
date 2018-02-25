@@ -203,7 +203,7 @@ public class PreopScreenDocumentController implements Initializable
     boolean OneUnscheduled = false;
     boolean TwoUnscheduled = false;
     boolean ThreeUnscheduled = false;
-  
+    boolean issue = false;
     
     
 
@@ -278,6 +278,7 @@ public class PreopScreenDocumentController implements Initializable
     public void loadInformation()
     {
         clearInformation();
+        
         workingStaff = codeBank.fillStaffDropDowns();       
         cbAMNurse.getItems().addAll(workingStaff);
         cbPMNurse.getItems().addAll(workingStaff);
@@ -434,6 +435,7 @@ public class PreopScreenDocumentController implements Initializable
     //Clear all of the textboxes
     public void clearInformation()
     {       
+        issue = false;
         cbAMNurse.getItems().clear();
         cbPMNurse.getItems().clear();
         allBookings.clear();
@@ -548,6 +550,13 @@ public class PreopScreenDocumentController implements Initializable
             }
             c.close();
             saveStaff(today);
+            if(issue)
+            {
+                System.out.println("Preop");
+                codeBank.missingError();
+            }
+            
+            clearInformation();
             
         }
         catch (SQLException e)
@@ -575,9 +584,30 @@ public class PreopScreenDocumentController implements Initializable
         }
         else
         {
+            reportIssue(i);
             return "";
         }
+    }   
     
+    
+    public void reportIssue(int i)
+    {
+        if(i == 10 || i == 9 || i == 8)
+        {
+            if(!timeList.get(i).getText().equals("") || !nameList.get(i).getText().equals("") || !ageList.get(i).getText().equals("") || !hospitalList.get(i).getText().equals("") || !specialityList.get(i).getText().equals(""))
+            {
+                System.out.println("TOP: " + i);
+                issue = true;
+            }
+        }
+        else
+        {
+            if(!nameList.get(i).getText().equals("") || !ageList.get(i).getText().equals("") || !hospitalList.get(i).getText().equals("") || !specialityList.get(i).getText().equals(""))
+            {
+                System.out.println("TOP: " + i);
+                issue = true;
+            }
+        }
     }
     
     //Saving the selected staff

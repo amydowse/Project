@@ -7,6 +7,7 @@ package regular;
 
 import bases.TopMenuDocumentController;
 import common.DatabaseConnector;
+import common.codeBank;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -68,36 +69,42 @@ public class RegularDialogController implements Initializable
         {
             oncology = 1;
         }
-        
-        try 
+        if(!txtNHS.getText().equals("") && !txtFirstName.getText().equals("") && !txtLastName.getText().equals("") && !txtDOB.getText().equals("")) 
         {
-            Connection c = DatabaseConnector.activateConnection();
-            c.setAutoCommit(true);
-            Statement stmt = c.createStatement();
+            try 
+            {
+                Connection c = DatabaseConnector.activateConnection();
+                c.setAutoCommit(true);
+                Statement stmt = c.createStatement();
 
-            String sql = "INSERT INTO regular (HospitalNumber, FirstName, LastName, DateOfBirth, Number, Wristband, ExtraInfo, Oncology) VALUES ('"
-                                                    + txtNHS.getText() + "','"
-                                                    + txtFirstName.getText() + "','"
-                                                    + txtLastName.getText() + "','"
-                                                    + txtDOB.getText() + "','"
-                                                    + txtNumber.getText() + "','"
-                                                    + wristband + "','"
-                                                    + txtExtraInfo.getText() + "','"
-                                                    + oncology + "')";
+                String sql = "INSERT INTO regular (HospitalNumber, FirstName, LastName, DateOfBirth, Number, Wristband, ExtraInfo, Oncology) VALUES ('"
+                                                        + txtNHS.getText() + "','"
+                                                        + txtFirstName.getText() + "','"
+                                                        + txtLastName.getText() + "','"
+                                                        + txtDOB.getText() + "','"
+                                                        + txtNumber.getText() + "','"
+                                                        + wristband + "','"
+                                                        + txtExtraInfo.getText() + "','"
+                                                        + oncology + "')";
 
-            stmt.executeUpdate(sql);
-            c.close();
+                stmt.executeUpdate(sql);
+                c.close();
 
-        } 
-        catch (SQLException e) 
-        {
+            } 
+            catch (SQLException e) 
+            {
 
+            }
+
+            TopMenuDocumentController.RSDC.showInformation();
+            //https://stackoverflow.com/questions/13567019/close-fxml-window-by-code-javafx accessed 21/2
+            Stage stage = (Stage) btnSave.getScene().getWindow();
+            stage.close();
         }
-        
-        TopMenuDocumentController.RSDC.showInformation();
-        //https://stackoverflow.com/questions/13567019/close-fxml-window-by-code-javafx accessed 21/2
-        Stage stage = (Stage) btnSave.getScene().getWindow();
-        stage.close();
+        else if(!txtNHS.getText().equals("") || !txtFirstName.getText().equals("")|| !txtLastName.getText().equals("") || !txtDOB.getText().equals("")) 
+        {
+            codeBank.missingError();
+        }
     }
     
     public void shutdown()

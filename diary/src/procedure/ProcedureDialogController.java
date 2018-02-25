@@ -8,6 +8,7 @@ package procedure;
 import bases.MainScreenDocumentController;
 import bases.TopMenuDocumentController;
 import common.DatabaseConnector;
+import common.codeBank;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -42,7 +43,7 @@ public class ProcedureDialogController implements Initializable
     @FXML
     public void Save()
     {
-        if (!txtName.getText().equals("") && !txtDuration.equals("") && !txtNurses.getText().equals("")) 
+        if (!txtName.getText().equals("") && !txtDuration.equals("") && !txtNurses.getText().equals("") && cbLocation.getValue()!=null) 
         {
             try 
             {
@@ -69,6 +70,11 @@ public class ProcedureDialogController implements Initializable
             Stage stage = (Stage) btnSave.getScene().getWindow();
             stage.close();
             
+        }
+        else if(!txtName.getText().equals("") || !txtDuration.equals("") || !txtNurses.getText().equals("") || !cbLocation.getValue().equals(""))
+        {
+            System.out.println("Procedure Add");
+            codeBank.missingError();
         }
     }
    

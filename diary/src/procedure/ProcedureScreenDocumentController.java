@@ -6,6 +6,7 @@
 package procedure;
 
 import common.DatabaseConnector;
+import common.codeBank;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -170,7 +171,7 @@ public class ProcedureScreenDocumentController implements Initializable
     public void Save() 
     {
         //checks that all of the info has been entered
-        if (!txtName.getText().equals("") && !txtDuration.equals("") && !txtNurses.getText().equals("")) 
+        if (!txtName.getText().equals("") && !txtDuration.equals("") && !txtNurses.getText().equals("") && !cbLocation.getValue().equals("")) 
         {
             try 
             {
@@ -193,6 +194,12 @@ public class ProcedureScreenDocumentController implements Initializable
 
             }
         }
+        else if (!txtName.getText().equals("") || !txtDuration.equals("") || !txtNurses.getText().equals("") || !cbLocation.getValue().equals(""))
+        {
+            System.out.println("Procedure");
+            codeBank.missingError();
+        }
+                
     }
     
     private ProcedureDialogController DC;
@@ -200,8 +207,7 @@ public class ProcedureScreenDocumentController implements Initializable
     
     @FXML
     public void Add()
-    {      
-        System.out.println("xxxx");      
+    {         
         try 
         {    
             Stage stage = new Stage();

@@ -6,6 +6,7 @@
 package staff;
 
 import common.DatabaseConnector;
+import common.codeBank;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -65,7 +66,7 @@ public class StaffScreenDocumentController implements Initializable
     @FXML Button btnSave;
     @FXML Button btnAdd;
     @FXML Button btnDelete;
-    
+        
     ObservableList allStaff = FXCollections.observableArrayList();
     ObservableList<skill> allProcedures = FXCollections.observableArrayList();
     ArrayList<String> specificProcedures = new ArrayList<String>();
@@ -304,7 +305,7 @@ public class StaffScreenDocumentController implements Initializable
     public void Save() 
     {
         //checks that all of the info has been entered
-        if (!txtFirstName.getText().equals("") && !txtLastName.equals("")) 
+        if (!txtFirstName.getText().equals("") && !txtLastName.getText().equals("")) 
         {
             try 
             {
@@ -332,7 +333,13 @@ public class StaffScreenDocumentController implements Initializable
                 Logger.getLogger(StaffScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
             }
         }
-    }
+        else if (!txtFirstName.getText().equals("") || !txtLastName.getText().equals("")) 
+        {
+            codeBank.missingError();
+        }
+    }   
+    
+    
     
     public void saveProcedures()
     {

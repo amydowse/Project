@@ -248,8 +248,9 @@ public class RegularScreenDocumentController implements Initializable
         {
             oncology = 1;
         }
+        
         //checks that all of the info has been entered
-        if (!txtNHS.getText().equals("")) 
+        if (!txtNHS.getText().equals("") && !txtFirstName.getText().equals("") && !txtLastName.getText().equals("") && !txtDOB.getText().equals("")) 
         {
             try 
             {
@@ -275,6 +276,10 @@ public class RegularScreenDocumentController implements Initializable
             {
 
             }
+        }
+        else if (!txtNHS.getText().equals("") || !txtFirstName.getText().equals("") || !txtLastName.getText().equals("") || !txtDOB.getText().equals("")) 
+        {
+            codeBank.missingError();
         }
     }
     

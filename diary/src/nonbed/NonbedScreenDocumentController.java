@@ -182,6 +182,7 @@ public class NonbedScreenDocumentController implements Initializable
    
     int[] attendanceArray = new int[14];
     int[] notesArray = new int[14];
+    boolean issue = false;
     
     ArrayList<nonbed> allBookings = new ArrayList<nonbed>();
     ObservableList<String> workingStaff;
@@ -373,6 +374,7 @@ public class NonbedScreenDocumentController implements Initializable
     
     public void clearAll()
     {
+        issue = false;
         cbStaff.getItems().clear();
         attendanceArray = new int[14];
         notesArray = new int[14];
@@ -472,6 +474,12 @@ public class NonbedScreenDocumentController implements Initializable
             }
             c.close();
             saveStaff();
+            if(issue)
+            {
+                System.out.println("Nonbed");
+                codeBank.missingError();
+            }
+            clearAll();
         }
         catch (SQLException e)
         {
@@ -497,7 +505,17 @@ public class NonbedScreenDocumentController implements Initializable
         }
         else
         {
+            reportIssue(i);
             return "";
+        }
+    }   
+    
+    
+    public void reportIssue(int i)
+    {
+        if(!timeList.get(i).getText().equals("") || !nameList.get(i).getText().equals("") || !procedureList.get(i).getValue().equals(""))
+        {
+            issue = true;
         }
     }
     

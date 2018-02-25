@@ -249,12 +249,19 @@ public class codeBank
     
     public static void timeError()
     {
-        System.out.println("Alert");
-        
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Error in Time");
         alert.setHeaderText("A time is not entered in the correct format");
         alert.setContentText("Please a date in the 24-hour clocked: HH:mm");
+        alert.showAndWait();
+    }
+    
+    public static void missingError()
+    {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Missing data");
+        alert.setHeaderText("Not all the required data has been entered");
+        alert.setContentText("These enteries have not been saved");
         alert.showAndWait();
     }
     

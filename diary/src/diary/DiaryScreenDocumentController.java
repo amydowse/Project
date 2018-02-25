@@ -339,6 +339,8 @@ public class DiaryScreenDocumentController  implements Initializable
     String[] extraArray = codeBank.newStringArray(11);
     private Boolean notes = false;
     String[] bedArray = new String[24];
+    
+    boolean issue = false;
    
       
     //METHODS -----------------------------------------------------------------------
@@ -921,6 +923,7 @@ public class DiaryScreenDocumentController  implements Initializable
     public void clearTopSection()
     {
         notes = false;
+        issue = false;
         staff.clear();
         txtNotes.setText("");
         
@@ -998,6 +1001,14 @@ public class DiaryScreenDocumentController  implements Initializable
             }
             
             c.close();
+            
+            if(issue)
+            {
+                System.out.println("Diary");
+                codeBank.missingError();
+            }
+            
+            clearAll();
         }
         catch (SQLException e)
         {
@@ -1058,9 +1069,21 @@ public class DiaryScreenDocumentController  implements Initializable
         }
         else
         {
+            reportIssue(i);
             return "";
         }
     }   
+    
+    
+    public void reportIssue(int i)
+    {
+        System.out.println(i);
+        if(!timeList.get(i).getText().equals("") || !nameList.get(i).getText().equals("") || !ageList.get(i).getText().equals("") || !hospitalList.get(i).getText().equals("") || !specialityList.get(i).getText().equals(""))
+        {
+            System.out.println("NOT ALL THE DATA");
+            issue = true;
+        }
+    }
        
     //OK
     public String saveNotes(String date)

@@ -450,9 +450,13 @@ public class MainScreenDocumentController implements Initializable
         BSDC.save();
         NSDC.save(codeBank.getCurrentDate());
         OSDC.save(codeBank.getCurrentDate());
-        updateButtons();
-        changeContentPane(DiaryPane);    
+               
+        DSDC.showInformation(codeBank.getCurrentDate());
+        DSDC.showStaff(codeBank.getCurrentDate());
+        DSDC.showNotes(codeBank.getCurrentDate());
         
+        updateButtons();
+        changeContentPane(DiaryPane); 
     }
    
     @FXML
@@ -463,9 +467,12 @@ public class MainScreenDocumentController implements Initializable
        BSDC.save();
        NSDC.save(codeBank.getCurrentDate());
        OSDC.save(codeBank.getCurrentDate());
+       
+       BSDC.showInformation();
+       
        updateButtons();
        changeContentPane(BloodPane); 
-        
+         
     }
     
     @FXML
@@ -476,9 +483,11 @@ public class MainScreenDocumentController implements Initializable
         BSDC.save();
         NSDC.save(codeBank.getCurrentDate());
         OSDC.save(codeBank.getCurrentDate());
-        updateButtons();
-        changeContentPane(PreopPane); 
         
+        PSDC.loadInformation();
+        
+        updateButtons();
+        changeContentPane(PreopPane);
     }
     
     @FXML
@@ -489,6 +498,9 @@ public class MainScreenDocumentController implements Initializable
        BSDC.save();
        NSDC.save(codeBank.getCurrentDate());
        OSDC.save(codeBank.getCurrentDate());
+       
+       OSDC.showInformation(codeBank.getCurrentDate());
+       
        updateButtons();
        changeContentPane(OncologyPane);
         
@@ -502,9 +514,12 @@ public class MainScreenDocumentController implements Initializable
        BSDC.save();
        NSDC.save(codeBank.getCurrentDate());
        OSDC.save(codeBank.getCurrentDate());
+       
+       NSDC.showInformation(codeBank.getCurrentDate());
+       
        updateButtons();
        changeContentPane(NonbedPane);
-        
+       
     }
     
   

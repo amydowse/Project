@@ -7,6 +7,7 @@ package staff;
 
 import bases.TopMenuDocumentController;
 import common.DatabaseConnector;
+import common.codeBank;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -164,7 +165,7 @@ public class StaffDialogController implements Initializable
     @FXML
     public void Save()
     {
-        if (!txtFirstName.getText().equals("") && !txtLastName.equals("")) 
+        if (!txtFirstName.getText().equals("") && !txtLastName.getText().equals("")) 
         {
             try 
             {
@@ -195,6 +196,10 @@ public class StaffDialogController implements Initializable
             Stage stage = (Stage) btnSave.getScene().getWindow();
             stage.close();
             
+        }
+        else if (!txtFirstName.getText().equals("") || !txtLastName.getText().equals("")) 
+        {
+            codeBank.missingError();
         }
     }
     

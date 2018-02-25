@@ -200,6 +200,8 @@ public class OncologyScreenDocumentController implements Initializable
     ArrayList<oncology> allBookings = new ArrayList<oncology>();
     ObservableList<String> workingStaff;
     
+    boolean issue = false;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
@@ -484,12 +486,19 @@ public class OncologyScreenDocumentController implements Initializable
                 stmt.executeUpdate(sql);
             }
             c.close();
+            saveStaff();
+            if(issue)
+            {
+                System.out.println("Oncology");
+                codeBank.missingError();
+            }
+            clearAll();
         }
         catch (SQLException e)
         {
             
         } 
-        saveStaff();
+        
     }
     
     public String SQLLine(int i, String date)
@@ -507,7 +516,17 @@ public class OncologyScreenDocumentController implements Initializable
         }
         else
         {
+            reportIssue(i);
             return "";
+        }
+    }   
+    
+    
+    public void reportIssue(int i)
+    {
+        if(!timeList.get(i).getText().equals("") || !nameList.get(i).getValue().equals("") || !reasonList.get(i).getText().equals(""))
+        {
+            issue = true;
         }
     }
     
@@ -665,6 +684,7 @@ public class OncologyScreenDocumentController implements Initializable
     
    public void clearAll()
     {
+        issue = false;
         attendanceArray = new int[14];
         notesArray = new int[14];
         allBookings.clear();
