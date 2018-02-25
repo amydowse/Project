@@ -9,11 +9,15 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="975.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="settings.SettingScreenDocumentController">
    <children>
-      <Line layoutX="885.0" startY="975.0" />
-      <Line endX="1920.0" endY="430.0" startX="885.0" startY="430.0" />
+       
+     
+      
       <Pane fx:id="paneAlter1" layoutX="884.0" layoutY="429.0" onMouseClicked="#alterClicked" prefHeight="547.0" prefWidth="1036.0" />
       <Pane fx:id="paneTemplateContainer" layoutX="883.0" onMouseClicked="#templateClicked" prefHeight="431.0" prefWidth="1042.0" />
       <Pane fx:id="paneExtraContainer" onMouseClicked="#extraClicked" prefHeight="975.0" prefWidth="885.0" />
+      
+      
+      
       <Pane fx:id="paneExtra" prefHeight="975.0" prefWidth="885.0">
          <children>
             <Label fx:id="lblExtraDate" layoutX="46.0" layoutY="125.0" text="Date">
@@ -37,12 +41,12 @@
                   <Font size="20.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="chbOncology" layoutX="46.0" layoutY="471.0" mnemonicParsing="false" text="Oncology">
+            <CheckBox fx:id="chbPreop" layoutX="46.0" layoutY="393.0" mnemonicParsing="false" text="Pre-op">
                <font>
                   <Font size="20.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="chbPreop" layoutX="46.0" layoutY="393.0" mnemonicParsing="false" text="Pre-op">
+            <CheckBox fx:id="chbOncology" layoutX="46.0" layoutY="471.0" mnemonicParsing="false" text="Oncology">
                <font>
                   <Font size="20.0" />
                </font>
@@ -99,6 +103,10 @@
             <Button fx:id="btnSaveExtra" layoutX="660.0" layoutY="874.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="90.0" text="SAVE" />
          </children>
       </Pane>
+      
+      
+      
+      
       <Pane fx:id="paneTemplate" layoutX="885.0" prefHeight="431.0" prefWidth="1036.0">
          <children>
             <Label fx:id="lblTemplate" layoutX="46.0" layoutY="48.0" text="Blood Clinic Template">
@@ -111,11 +119,12 @@
             <CheckBox fx:id="chbWednesday" layoutX="46.0" layoutY="237.0" mnemonicParsing="false" text="Wednesday" />
             <CheckBox fx:id="chbThursday" layoutX="46.0" layoutY="297.0" mnemonicParsing="false" text="Thursday" />
             <CheckBox fx:id="chbFriday" layoutX="46.0" layoutY="366.0" mnemonicParsing="false" text="Friday" />
-            <TextField fx:id="txtTempBreakEnd" layoutX="572.0" layoutY="345.0" />
-            <TextField fx:id="txtTempBreakStart" layoutX="572.0" layoutY="296.0" />
-            <TextField fx:id="txtTempLength" layoutX="572.0" layoutY="226.0" />
-            <TextField fx:id="txtTempEnd" layoutX="572.0" layoutY="172.0" />
             <TextField fx:id="txtTempStart" layoutX="572.0" layoutY="120.0" />
+            <TextField fx:id="txtTempEnd" layoutX="572.0" layoutY="172.0" />
+            <TextField fx:id="txtTempLength" layoutX="572.0" layoutY="226.0" />
+            <TextField fx:id="txtTempBreakStart" layoutX="572.0" layoutY="296.0" />
+            <TextField fx:id="txtTempBreakEnd" layoutX="572.0" layoutY="345.0" />
+            
             <Label fx:id="lblTempBreakEnd" layoutX="367.0" layoutY="346.0" text="Break EndTime">
                <font>
                   <Font size="20.0" />
@@ -144,6 +153,11 @@
             <Button fx:id="btnSaveTemplate" layoutX="832.0" layoutY="353.0" onAction="#saveTemplate" mnemonicParsing="false" prefHeight="54.0" prefWidth="90.0" text="SAVE" />
          </children>
       </Pane>
+      
+      
+      
+      
+      
       <Pane fx:id="paneAlter" layoutX="884.0" layoutY="430.0" prefHeight="547.0" prefWidth="1042.0">
          <children>
             <Label fx:id="lblAlter" layoutX="46.0" layoutY="36.0" text="Alter Specific Blood Clinic">

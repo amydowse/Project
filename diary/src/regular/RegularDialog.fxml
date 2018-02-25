@@ -7,71 +7,82 @@
 
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="914.0" prefWidth="609.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="regular.RegularDialogController">
-   <children>
-      <RadioButton fx:id="rbOncology" layoutX="203.0" layoutY="598.0" mnemonicParsing="false" text="Oncology" />
-      <RadioButton fx:id="rdbRed" layoutX="461.0" layoutY="525.0" mnemonicParsing="false" text="Red Band" />
-      <RadioButton fx:id="rdbWhite" layoutX="203.0" layoutY="525.0" mnemonicParsing="false" text="White Band" />
-      <Label layoutX="78.0" layoutY="101.0" text="First Name">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="81.0" layoutY="182.0" text="Last Name">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="64.0" layoutY="267.0" text="Date of Birth">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="54.0" layoutY="353.0" text="NHS Number">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="30.0" layoutY="434.0" text="Contact Number">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Label>
-      <TextField fx:id="txtFirstName" layoutX="203.0" layoutY="94.0" prefHeight="44.0" prefWidth="358.0">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="txtLastName" layoutX="203.0" layoutY="175.0" prefHeight="44.0" prefWidth="358.0">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="txtDOB" layoutX="203.0" layoutY="260.0" prefHeight="44.0" prefWidth="358.0">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="txtNumber" layoutX="203.0" layoutY="427.0" prefHeight="44.0" prefWidth="358.0">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="txtNHS" layoutX="203.0" layoutY="346.0" prefHeight="44.0" prefWidth="358.0">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </TextField>
-      <Button fx:id="btnSave" layoutX="438.0" layoutY="843.0" mnemonicParsing="false" onAction="#Save" prefHeight="56.0" prefWidth="123.0" text="SAVE" />
-      <Label layoutX="24.0" layoutY="665.0" text="Extra Information">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Label>
-      <TextArea fx:id="txtExtraInfo" layoutX="203.0" layoutY="665.0" prefHeight="123.0" prefWidth="358.0" />
-      <Label layoutX="35.0" layoutY="37.0" text="Enter the details of a new regular attender:">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Label>
-   </children>
+    <children>
+       
+        <!--Insturctions-->
+        <Label layoutX="35.0" layoutY="37.0" text="Enter the details of a new regular attender:">
+            <font>
+                <Font name="System Bold" size="20.0" />
+            </font>
+        </Label>
+      
+        <!--Button-->
+        <Button fx:id="btnSave" layoutX="438.0" layoutY="843.0" mnemonicParsing="false" onAction="#Save" prefHeight="56.0" prefWidth="123.0" text="SAVE" />
+       
+        <!--Labels-->
+        <Label layoutX="78.0" layoutY="101.0" text="First Name">
+            <font>
+                <Font name="System Bold" size="20.0" />
+            </font>
+        </Label>
+        <Label layoutX="81.0" layoutY="182.0" text="Last Name">
+            <font>
+                <Font name="System Bold" size="20.0" />
+            </font>
+        </Label>
+        <Label layoutX="64.0" layoutY="267.0" text="Date of Birth">
+            <font>
+                <Font name="System Bold" size="20.0" />
+            </font>
+        </Label>
+        <Label layoutX="54.0" layoutY="353.0" text="NHS Number">
+            <font>
+                <Font name="System Bold" size="20.0" />
+            </font>
+        </Label>
+        <Label layoutX="30.0" layoutY="434.0" text="Contact Number">
+            <font>
+                <Font name="System Bold" size="20.0" />
+            </font>
+        </Label>
+        <Label layoutX="24.0" layoutY="665.0" text="Extra Information">
+            <font>
+                <Font name="System Bold" size="20.0" />
+            </font>
+        </Label>
+       
+       
+       
+        <!--Data-->
+        <TextField fx:id="txtFirstName" layoutX="203.0" layoutY="94.0" prefHeight="44.0" prefWidth="358.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="txtLastName" layoutX="203.0" layoutY="175.0" prefHeight="44.0" prefWidth="358.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="txtDOB" layoutX="203.0" layoutY="260.0" prefHeight="44.0" prefWidth="358.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="txtNumber" layoutX="203.0" layoutY="427.0" prefHeight="44.0" prefWidth="358.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="txtNHS" layoutX="203.0" layoutY="346.0" prefHeight="44.0" prefWidth="358.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>
+        <RadioButton fx:id="rdbRed" layoutX="461.0" layoutY="525.0" mnemonicParsing="false" text="Red Band" />
+        <RadioButton fx:id="rdbWhite" layoutX="203.0" layoutY="525.0" mnemonicParsing="false" text="White Band" />
+        <RadioButton fx:id="rbOncology" layoutX="203.0" layoutY="598.0" mnemonicParsing="false" text="Oncology" />
+        <TextArea fx:id="txtExtraInfo" layoutX="203.0" layoutY="665.0" prefHeight="123.0" prefWidth="358.0" />
+      
+    </children>
 </Pane>

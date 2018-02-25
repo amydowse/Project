@@ -7,84 +7,103 @@
 
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="930.0" prefWidth="1125.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="staff.StaffDialogController">
-   <children>
-      <Label fx:id="lblID" layoutX="211.0" layoutY="108.0" text="X">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="166.0" layoutY="108.0" text="ID">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Label>
-      <TextArea fx:id="txtExtraInfo" layoutX="211.0" layoutY="588.0" prefHeight="173.0" prefWidth="358.0" />
-      <Label layoutX="32.0" layoutY="588.0" text="Extra Information">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Label>
-      <Button fx:id="btnSave" layoutX="446.0" layoutY="829.0" mnemonicParsing="false" onAction="#Save" prefHeight="56.0" prefWidth="123.0" text="SAVE" />
-      <TableView fx:id="tblProcedures" layoutX="651.0" layoutY="82.0" prefHeight="814.0" prefWidth="428.0">
-         <columns>
-            <TableColumn fx:id="tblColProcedure" prefWidth="313.0" text="Procedure" />
-            <TableColumn fx:id="tblColStatus" prefWidth="114.0" text="Status" />
-         </columns>
-      </TableView>
-      <TextField fx:id="txtAgency" layoutX="211.0" layoutY="414.0" prefHeight="44.0" prefWidth="358.0">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="txtNumber" layoutX="211.0" layoutY="495.0" prefHeight="44.0" prefWidth="358.0">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="txtPosition" layoutX="211.0" layoutY="328.0" prefHeight="44.0" prefWidth="358.0">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="txtLastName" layoutX="211.0" layoutY="243.0" prefHeight="44.0" prefWidth="358.0">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="txtFirstName" layoutX="211.0" layoutY="162.0" prefHeight="44.0" prefWidth="358.0">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </TextField>
-      <Label layoutX="38.0" layoutY="502.0" text="Contact Number">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="124.0" layoutY="421.0" text="Agency">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="111.0" layoutY="335.0" text="Position">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="89.0" layoutY="250.0" text="Last Name">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="86.0" layoutY="169.0" text="First Name">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="35.0" layoutY="41.0" text="Enter the details of a new staff member:">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Label>
-   </children>
+    <children>
+     
+        <!--Procedure table-->
+        <TableView fx:id="tblProcedures" layoutX="651.0" layoutY="82.0" prefHeight="814.0" prefWidth="428.0">
+            <columns>
+                <TableColumn fx:id="tblColProcedure" prefWidth="313.0" text="Procedure" />
+                <TableColumn fx:id="tblColStatus" prefWidth="114.0" text="Status" />
+            </columns>
+        </TableView>
+       
+       
+        <!--Instructions-->
+        <Label layoutX="35.0" layoutY="41.0" text="Enter the details of a new staff member:">
+            <font>
+                <Font name="System Bold" size="20.0" />
+            </font>
+        </Label> 
+      
+      
+        <!--Button-->
+        <Button fx:id="btnSave" layoutX="446.0" layoutY="829.0" mnemonicParsing="false" onAction="#Save" prefHeight="56.0" prefWidth="123.0" text="SAVE" />
+       
+        
+        
+        <!--Labels-->
+        <Label layoutX="166.0" layoutY="108.0" text="ID">
+            <font>
+                <Font name="System Bold" size="20.0" />
+            </font>
+        </Label>
+        <Label layoutX="86.0" layoutY="169.0" text="First Name">
+            <font>
+                <Font name="System Bold" size="20.0" />
+            </font>
+        </Label> 
+        <Label layoutX="89.0" layoutY="250.0" text="Last Name">
+            <font>
+                <Font name="System Bold" size="20.0" />
+            </font>
+        </Label> 
+        <Label layoutX="111.0" layoutY="335.0" text="Position">
+            <font>
+                <Font name="System Bold" size="20.0" />
+            </font>
+        </Label> 
+        <Label layoutX="124.0" layoutY="421.0" text="Agency">
+            <font>
+                <Font name="System Bold" size="20.0" />
+            </font>
+        </Label> 
+        <Label layoutX="38.0" layoutY="502.0" text="Contact Number">
+            <font>
+                <Font name="System Bold" size="20.0" />
+            </font>
+        </Label>
+        <Label layoutX="32.0" layoutY="588.0" text="Extra Information">
+            <font>
+                <Font name="System Bold" size="20.0" />
+            </font>
+        </Label>
+      
+      
+       
+        <!--Data-->
+        <Label fx:id="lblID" layoutX="211.0" layoutY="108.0" text="X">
+            <font>
+                <Font name="System Bold" size="20.0" />
+            </font>
+        </Label>
+        <TextField fx:id="txtFirstName" layoutX="211.0" layoutY="162.0" prefHeight="44.0" prefWidth="358.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="txtLastName" layoutX="211.0" layoutY="243.0" prefHeight="44.0" prefWidth="358.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="txtPosition" layoutX="211.0" layoutY="328.0" prefHeight="44.0" prefWidth="358.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="txtAgency" layoutX="211.0" layoutY="414.0" prefHeight="44.0" prefWidth="358.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="txtNumber" layoutX="211.0" layoutY="495.0" prefHeight="44.0" prefWidth="358.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>
+        <TextArea fx:id="txtExtraInfo" layoutX="211.0" layoutY="588.0" prefHeight="173.0" prefWidth="358.0" />
+      
+     
+      
+    </children>
 </Pane>
