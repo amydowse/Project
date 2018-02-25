@@ -219,17 +219,27 @@ public class MainScreenDocumentController implements Initializable
             ResultSet rs ;
             
             // when creating a statement object, you MUST use a connection object to call the instance method
-            Statement stmt = c.createStatement();          
+            Statement stmt = c.createStatement();
             
-            //implement query
-            String date = codeBank.dateToString(codeBank.getCurrentDate());
-            rs = stmt.executeQuery("SELECT count(*) AS total FROM blood WHERE Date ='" + date + "'"); 
-                
-            while(rs.next())
-            { 
-                btnBlood.setText("Blood Clinic\n\n"+rs.getInt("total") + " booked");
+            String day = codeBank.getCurrentDate().getDayOfWeek().name();
+            rs = stmt.executeQuery("SELECT * FROM template WHERE Day ='" + day + "'");
+            if(rs.next())
+            {
+                //implement query
+                String date = codeBank.dateToString(codeBank.getCurrentDate());
+                rs = stmt.executeQuery("SELECT count(*) AS total FROM blood WHERE Date ='" + date + "'"); 
+
+                while(rs.next())
+                { 
+                    btnBlood.setText("Blood Clinic\n\n"+rs.getInt("total") + " booked");
+                }
+                c.close();
             }
-            c.close();
+            else
+            {
+                btnBlood.setText("Blood Clinic\n\nNO CLINIC");
+                c.close();
+            }
         }
         catch (SQLException e)
         {

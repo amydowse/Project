@@ -17,9 +17,9 @@
        
        
        <!--Buttons-->
-       <Button fx:id="btnSave" layoutX="1170.0" layoutY="806.0" onAction="#Save" mnemonicParsing="false" prefHeight="56.0" prefWidth="123.0" text="SAVE" />
-       <Button fx:id="btnDelete" layoutX="915.0" layoutY="806.0" onAction="#Delete" mnemonicParsing="false" prefHeight="56.0" prefWidth="123.0" text="DELETE" />
-       <Button fx:id="btnAdd" layoutX="639.0" layoutY="806.0" onAction="#Add" mnemonicParsing="false" prefHeight="56.0" prefWidth="123.0" text="ADD" />
+       <Button fx:id="btnSave" layoutX="1170.0" layoutY="806.0" mnemonicParsing="false" onAction="#Save" prefHeight="56.0" prefWidth="123.0" text="SAVE" />
+       <Button fx:id="btnDelete" layoutX="915.0" layoutY="806.0" mnemonicParsing="false" onAction="#Delete" prefHeight="56.0" prefWidth="123.0" text="DELETE" />
+       <Button fx:id="btnAdd" layoutX="639.0" layoutY="806.0" mnemonicParsing="false" onAction="#Add" prefHeight="56.0" prefWidth="123.0" text="ADD" />
        
       
        <!--Labels-->
@@ -71,7 +71,7 @@
                <Font size="20.0" />
            </font>
        </TextField>
-       <TextField fx:id="txtNHS" layoutX="935.0" editable="false" layoutY="309.0" prefHeight="44.0" prefWidth="358.0">
+       <TextField fx:id="txtNHS" editable="false" layoutX="935.0" layoutY="309.0" prefHeight="44.0" prefWidth="358.0">
            <font>
                <Font size="20.0" />
            </font>
@@ -82,9 +82,9 @@
            </font>
        </TextField> 
        <RadioButton fx:id="rdbWhite" layoutX="935.0" layoutY="488.0" mnemonicParsing="false" text="White Band" />
-       <RadioButton fx:id="rdbRed" layoutX="1193.0" layoutY="488.0" mnemonicParsing="false" text="Red Band" />
-       <RadioButton fx:id="rbOncology" layoutX="935.0" layoutY="561.0" mnemonicParsing="false" text="Oncology" />       
+       <RadioButton fx:id="rdbRed" layoutX="1193.0" layoutY="488.0" mnemonicParsing="false" text="Red Band" />       
        <TextArea fx:id="txtExtraInfo" layoutX="935.0" layoutY="628.0" prefHeight="123.0" prefWidth="358.0" />
+      <CheckBox fx:id="cbOncology" layoutX="930.0" layoutY="557.0" mnemonicParsing="false" text="Oncology" />
       
       
       

@@ -16,11 +16,14 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 
 /**
@@ -37,7 +40,7 @@ public class RegularDialogController implements Initializable
     @FXML TextField txtDOB;
     @FXML TextField txtNumber;
     @FXML TextField txtNHS;
-    @FXML RadioButton rbOncology;
+    @FXML CheckBox cbOncology;
     @FXML TextArea txtExtraInfo;
         
     @FXML private RadioButton rdbRed = new RadioButton();
@@ -48,7 +51,10 @@ public class RegularDialogController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
-        
+        ToggleGroup group = new ToggleGroup();
+        rdbRed.setToggleGroup(group);
+        rdbWhite.setToggleGroup(group);
+        rdbWhite.setSelected(true);
     }
     
     @FXML
@@ -65,7 +71,7 @@ public class RegularDialogController implements Initializable
         }
         
         int oncology = 0;
-        if(rbOncology.isSelected())
+        if(cbOncology.isSelected())
         {
             oncology = 1;
         }

@@ -28,6 +28,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
@@ -54,7 +55,7 @@ public class RegularScreenDocumentController implements Initializable
     @FXML TextField txtDOB;
     @FXML TextField txtNumber;
     @FXML TextField txtNHS;
-    @FXML RadioButton rbOncology;
+    @FXML CheckBox cbOncology;
     @FXML TextArea txtExtraInfo;
         
     @FXML private RadioButton rdbRed = new RadioButton();
@@ -104,7 +105,7 @@ public class RegularScreenDocumentController implements Initializable
         
         rdbRed.setSelected(false);
         rdbWhite.setSelected(false);
-        rbOncology.setSelected(false);
+        cbOncology.setSelected(false);
         
         
         try
@@ -164,11 +165,11 @@ public class RegularScreenDocumentController implements Initializable
                         
                         if(((regular)newSelection).getOncology() == 1)
                         {
-                            rbOncology.setSelected(true);
+                            cbOncology.setSelected(true);
                         }
                         else
                         {
-                            rbOncology.setSelected(false);
+                            cbOncology.setSelected(false);
                         }
                        
         
@@ -244,7 +245,7 @@ public class RegularScreenDocumentController implements Initializable
         }
         
         int oncology = 0;
-        if(rbOncology.isSelected())
+        if(cbOncology.isSelected())
         {
             oncology = 1;
         }

@@ -69,19 +69,20 @@
                 <Font size="20.0" />
             </font>
         </TextField>
-        <TextField fx:id="txtNumber" layoutX="203.0" layoutY="427.0" prefHeight="44.0" prefWidth="358.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
         <TextField fx:id="txtNHS" layoutX="203.0" layoutY="346.0" prefHeight="44.0" prefWidth="358.0">
             <font>
                 <Font size="20.0" />
             </font>
         </TextField>
+        <TextField fx:id="txtNumber" layoutX="203.0" layoutY="427.0" prefHeight="44.0" prefWidth="358.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>
+        
         <RadioButton fx:id="rdbRed" layoutX="461.0" layoutY="525.0" mnemonicParsing="false" text="Red Band" />
         <RadioButton fx:id="rdbWhite" layoutX="203.0" layoutY="525.0" mnemonicParsing="false" text="White Band" />
-        <RadioButton fx:id="rbOncology" layoutX="203.0" layoutY="598.0" mnemonicParsing="false" text="Oncology" />
+        <CheckBox fx:id="cbOncology" layoutX="203.0" layoutY="598.0" mnemonicParsing="false" text="Oncology" />
         <TextArea fx:id="txtExtraInfo" layoutX="203.0" layoutY="665.0" prefHeight="123.0" prefWidth="358.0" />
       
     </children>
