@@ -83,32 +83,36 @@ public class MainScreenDocumentController implements Initializable
         {
             FXMLLoader DSL = new FXMLLoader(getClass().getResource("/diary/diaryScreen.fxml"));            
             DiaryPane = DSL.load();
+            DiaryPane.setAccessibleText("Diary");
             DSDC = DSL.getController();
             
             FXMLLoader PSL = new FXMLLoader(getClass().getResource("/preop/preopScreen.fxml"));
             PreopPane = PSL.load();
+            PreopPane.setAccessibleText("Preop");
             PSDC = PSL.getController();
             
             FXMLLoader BSL = new FXMLLoader(getClass().getResource("/blood/bloodScreen.fxml"));
             BloodPane = BSL.load();
+            BloodPane.setAccessibleText("Blood");
             BSDC = BSL.getController();
             
             FXMLLoader NSL = new FXMLLoader(getClass().getResource("/nonbed/nonbedScreen.fxml"));
             NonbedPane = NSL.load();
+            NonbedPane.setAccessibleText("Nonbed");
             NSDC = NSL.getController();
             
             FXMLLoader OSL = new FXMLLoader(getClass().getResource("/oncology/oncologyScreen.fxml"));
             OncologyPane = OSL.load();
+            OncologyPane.setAccessibleText("Oncology");
             OSDC = OSL.getController();
             
             
             codeBank.setCurrentDate(LocalDate.now());
             
             updateDate();
-            showDiary();
+            changeContentPane(DiaryPane); 
+            
             updateButtons();
-            
-            
             
         } 
         catch (IOException ex) 
@@ -329,11 +333,7 @@ public class MainScreenDocumentController implements Initializable
     @FXML
     public void today()
     {     
-        DSDC.save(codeBank.getCurrentDate());
-        PSDC.save(codeBank.getCurrentDate());
-        BSDC.save();
-        NSDC.save(codeBank.getCurrentDate());
-        OSDC.save(codeBank.getCurrentDate());
+        save();
         
         //todays date into a localDate format 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -343,23 +343,13 @@ public class MainScreenDocumentController implements Initializable
         updateDate();
         updateButtons();
         
-        DSDC.showInformation(codeBank.getCurrentDate());
-        DSDC.showStaff(codeBank.getCurrentDate());
-        DSDC.showNotes(codeBank.getCurrentDate());
-        PSDC.loadInformation();
-        BSDC.showInformation();
-        NSDC.showInformation(codeBank.getCurrentDate());
-        OSDC.showInformation(codeBank.getCurrentDate());
+        show();
     }
     
     @FXML 
     public void plusOneDay()
     {
-        DSDC.save(codeBank.getCurrentDate());
-        PSDC.save(codeBank.getCurrentDate());
-        BSDC.save();
-        NSDC.save(codeBank.getCurrentDate());
-        OSDC.save(codeBank.getCurrentDate());
+        save();
         
         LocalDate changingDate = codeBank.getCurrentDate().plusDays(1);
         DayOfWeek day = DayOfWeek.from(changingDate);
@@ -374,23 +364,13 @@ public class MainScreenDocumentController implements Initializable
         updateDate();
         updateButtons();
         
-        DSDC.showInformation(codeBank.getCurrentDate());
-        DSDC.showStaff(codeBank.getCurrentDate());
-        DSDC.showNotes(codeBank.getCurrentDate());
-        PSDC.loadInformation();
-        BSDC.showInformation();
-        NSDC.showInformation(codeBank.getCurrentDate());
-        OSDC.showInformation(codeBank.getCurrentDate());
+        show();
     }
     
     @FXML 
     public void minusOneDay()
     {
-        DSDC.save(codeBank.getCurrentDate());
-        PSDC.save(codeBank.getCurrentDate());
-        BSDC.save();
-        NSDC.save(codeBank.getCurrentDate());
-        OSDC.save(codeBank.getCurrentDate());
+        save();
         
         LocalDate changingDate = codeBank.getCurrentDate().minusDays(1);
         DayOfWeek day = DayOfWeek.from(changingDate);
@@ -405,56 +385,79 @@ public class MainScreenDocumentController implements Initializable
         updateDate();
         updateButtons();
         
-        DSDC.showInformation(codeBank.getCurrentDate());
-        DSDC.showStaff(codeBank.getCurrentDate());
-        DSDC.showNotes(codeBank.getCurrentDate());
-        PSDC.loadInformation();
-        BSDC.showInformation();
-        NSDC.showInformation(codeBank.getCurrentDate());
-        OSDC.showInformation(codeBank.getCurrentDate());
+        show();
     }
     
     @FXML
     //method for date picker 
     public void selectedDate()
     {
-        DSDC.save(codeBank.getCurrentDate());
-        PSDC.save(codeBank.getCurrentDate());
-        BSDC.save();
-        NSDC.save(codeBank.getCurrentDate());
-        OSDC.save(codeBank.getCurrentDate());
-        
+        save();
         codeBank.setCurrentDate(dpCalandar.getValue());
         updateDate();
         updateButtons();
-        
-        DSDC.showInformation(codeBank.getCurrentDate());
-        DSDC.showStaff(codeBank.getCurrentDate());
-        DSDC.showNotes(codeBank.getCurrentDate());
-        PSDC.loadInformation();
-        BSDC.showInformation();
-        NSDC.showInformation(codeBank.getCurrentDate());
-        OSDC.showInformation(codeBank.getCurrentDate());
+        show();
     }
     
     
     
     
     
-    @FXML
+   
+    
+    public void show()
+    {
+        System.out.println("SHOWING: " + ContentPane.getChildren().get(0).getAccessibleText());
+        
+        switch(ContentPane.getChildren().get(0).getAccessibleText())
+        {
+            case "Diary":   
+                DSDC.showInformation(codeBank.getCurrentDate());
+                break;
+            case "Preop":
+                PSDC.loadInformation();
+                break;
+            case "Blood":
+                BSDC.showInformation();
+                break;
+            case "Nonbed":
+                NSDC.showInformation(codeBank.getCurrentDate());
+                break;
+            case "Oncology":
+                OSDC.showInformation(codeBank.getCurrentDate());
+                break;
+        }
+    }
+    
+    public void save()
+    {
+        System.out.println("GOING FROM: " + ContentPane.getChildren().get(0).getAccessibleText());
+        
+        switch(ContentPane.getChildren().get(0).getAccessibleText())
+        {
+            case "Diary":   
+                DSDC.save(codeBank.getCurrentDate());
+                break;
+            case "Preop":
+                PSDC.save(codeBank.getCurrentDate());
+                break;
+            case "Blood":
+                BSDC.save();
+                break;
+            case "Nonbed":
+                NSDC.save(codeBank.getCurrentDate());
+                break;
+            case "Oncology":
+                OSDC.save(codeBank.getCurrentDate());
+                break;
+        }
+    }
+    
+     @FXML
     public void showDiary() throws IOException
     {
-       //Pane newLoadedPane = FXMLLoader.load(getClass().getResource("/diary/diaryScreen.fxml"));
-        DSDC.save(codeBank.getCurrentDate());
-        PSDC.save(codeBank.getCurrentDate());
-        BSDC.save();
-        NSDC.save(codeBank.getCurrentDate());
-        OSDC.save(codeBank.getCurrentDate());
-               
+        save();     
         DSDC.showInformation(codeBank.getCurrentDate());
-        DSDC.showStaff(codeBank.getCurrentDate());
-        DSDC.showNotes(codeBank.getCurrentDate());
-        
         updateButtons();
         changeContentPane(DiaryPane); 
     }
@@ -462,30 +465,18 @@ public class MainScreenDocumentController implements Initializable
     @FXML
     public void showBlood() throws IOException
     {
-       DSDC.save(codeBank.getCurrentDate());
-       PSDC.save(codeBank.getCurrentDate());
-       BSDC.save();
-       NSDC.save(codeBank.getCurrentDate());
-       OSDC.save(codeBank.getCurrentDate());
-       
-       BSDC.showInformation();
-       
-       updateButtons();
-       changeContentPane(BloodPane); 
+        save();
+        BSDC.showInformation();
+        updateButtons();
+        changeContentPane(BloodPane); 
          
     }
     
     @FXML
     public void showPreop() throws IOException
     {
-        DSDC.save(codeBank.getCurrentDate());
-        PSDC.save(codeBank.getCurrentDate());
-        BSDC.save();
-        NSDC.save(codeBank.getCurrentDate());
-        OSDC.save(codeBank.getCurrentDate());
-        
+        save();
         PSDC.loadInformation();
-        
         updateButtons();
         changeContentPane(PreopPane);
     }
@@ -493,32 +484,20 @@ public class MainScreenDocumentController implements Initializable
     @FXML
     public void showOncology() throws IOException
     {
-       DSDC.save(codeBank.getCurrentDate());
-       PSDC.save(codeBank.getCurrentDate());
-       BSDC.save();
-       NSDC.save(codeBank.getCurrentDate());
-       OSDC.save(codeBank.getCurrentDate());
-       
-       OSDC.showInformation(codeBank.getCurrentDate());
-       
-       updateButtons();
-       changeContentPane(OncologyPane);
+        save();
+        OSDC.showInformation(codeBank.getCurrentDate());
+        updateButtons();
+        changeContentPane(OncologyPane);
         
     }
     
     @FXML
     public void showNonbed() throws IOException
     {
-       DSDC.save(codeBank.getCurrentDate());
-       PSDC.save(codeBank.getCurrentDate());
-       BSDC.save();
-       NSDC.save(codeBank.getCurrentDate());
-       OSDC.save(codeBank.getCurrentDate());
-       
-       NSDC.showInformation(codeBank.getCurrentDate());
-       
-       updateButtons();
-       changeContentPane(NonbedPane);
+        save();
+        NSDC.showInformation(codeBank.getCurrentDate());
+        updateButtons();
+        changeContentPane(NonbedPane);
        
     }
     
@@ -527,11 +506,7 @@ public class MainScreenDocumentController implements Initializable
     public void Home() throws IOException
     {
         Parent root = FXMLLoader.load(getClass().getResource("/bases/startScreen.fxml"));
-        DSDC.save(codeBank.getCurrentDate());
-        PSDC.save(codeBank.getCurrentDate());
-        BSDC.save();
-        NSDC.save(codeBank.getCurrentDate());
-        OSDC.save(codeBank.getCurrentDate());
+        save();
         codeBank.setCurrentDate(LocalDate.now());
         Scene scene = new Scene(root);
         bases.Start.stage.setScene(scene);

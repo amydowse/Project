@@ -596,7 +596,6 @@ public class PreopScreenDocumentController implements Initializable
         {
             if(!timeList.get(i).getText().equals("") || !nameList.get(i).getText().equals("") || !ageList.get(i).getText().equals("") || !hospitalList.get(i).getText().equals("") || !specialityList.get(i).getText().equals(""))
             {
-                System.out.println("TOP: " + i);
                 issue = true;
             }
         }
@@ -604,7 +603,6 @@ public class PreopScreenDocumentController implements Initializable
         {
             if(!nameList.get(i).getText().equals("") || !ageList.get(i).getText().equals("") || !hospitalList.get(i).getText().equals("") || !specialityList.get(i).getText().equals(""))
             {
-                System.out.println("TOP: " + i);
                 issue = true;
             }
         }

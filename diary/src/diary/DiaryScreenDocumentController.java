@@ -352,8 +352,6 @@ public class DiaryScreenDocumentController  implements Initializable
     {    
         fillBedArray();
         showInformation(codeBank.getCurrentDate());
-        showStaff(codeBank.getCurrentDate());
-        showNotes(codeBank.getCurrentDate());
         fillStaffDropDowns(); 
         delete();
         
@@ -673,9 +671,10 @@ public class DiaryScreenDocumentController  implements Initializable
                                 
                 workingStaff instanceOfWorkingStaff = new workingStaff(firstname, lastname, ID, shift);
                 staff.add(instanceOfWorkingStaff);
-                
+                              
             }
-            printStaffNames(staff);
+            System.out.println("Before printing " + staff.size());
+            printStaffNames();
             c.close();
         }
         catch (SQLException e)
@@ -684,8 +683,9 @@ public class DiaryScreenDocumentController  implements Initializable
         } 
     }
     
-    public void printStaffNames(ArrayList<workingStaff> staff)
+    public void printStaffNames()
     {
+        System.out.println(staff.size());
         for(int i=0; i<staff.size(); i++)
         {
             String value = "(" + staff.get(i).getID() + ") " + staff.get(i).getFirstName();
@@ -728,13 +728,14 @@ public class DiaryScreenDocumentController  implements Initializable
    
     
     
-    
+   
     
     
     //Getting the main diary information 
     public void showInformation(LocalDate SearchDate)
-    {   
-        clearAll();
+    {   clearAll();
+        showStaff(codeBank.getCurrentDate());
+        showNotes(codeBank.getCurrentDate());
         
         try
         {
@@ -981,7 +982,6 @@ public class DiaryScreenDocumentController  implements Initializable
             // when creating a statement object, you MUST use a connection object to call the instance method
             Statement stmt = c.createStatement();
             
-            
             String stringDate = codeBank.dateToString(today);          
             
             for(int i=0; i<24; i++)
@@ -1077,7 +1077,6 @@ public class DiaryScreenDocumentController  implements Initializable
     
     public void reportIssue(int i)
     {
-        System.out.println(i);
         if(!timeList.get(i).getText().equals("") || !nameList.get(i).getText().equals("") || !ageList.get(i).getText().equals("") || !hospitalList.get(i).getText().equals("") || !specialityList.get(i).getText().equals(""))
         {
             System.out.println("NOT ALL THE DATA");
