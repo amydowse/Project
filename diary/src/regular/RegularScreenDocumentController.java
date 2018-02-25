@@ -209,11 +209,11 @@ public class RegularScreenDocumentController implements Initializable
                 c.setAutoCommit( true ); 
                 Statement stmt = c.createStatement();    
 
-                String sql = "DELETE FROM regular WHERE HospitalNumber = '" + txtNHS.getText() + "'"; 
-                
-                //DELETE FROM STAFF SKILLS
-                
+                String sql = "DELETE FROM regular WHERE HospitalNumber = '" + txtNHS.getText() + "'";
                 stmt.executeUpdate(sql); 
+                
+                sql = "DELETE FROM oncology WHERE Regular_HospitalNumber ='" + txtNHS.getText() + "'";
+                stmt.executeUpdate(sql);
                 
                 c.close();
                 

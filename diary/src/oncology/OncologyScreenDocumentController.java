@@ -751,8 +751,8 @@ public class OncologyScreenDocumentController implements Initializable
                     Statement stmt = c.createStatement();
 
                     String sql = "DELETE FROM oncology WHERE Date = '" + codeBank.dateToString(codeBank.getCurrentDate()) + "' AND Time = '" + time.getText() + "'AND Regular_HospitalNumber ='" + hospital.getText() + "'";
-
                     stmt.executeUpdate(sql);
+                    
 
                     c.close();
                 } catch (SQLException x) {
