@@ -74,16 +74,21 @@ public class BloodScreenDocumentController implements Initializable
     public void initialize(URL url, ResourceBundle rb) 
     {     
         tblClinic.setPlaceholder(new Label("There is no blood clinic scheduled for this day"));
-    
         showInformation();
     }
     
     public void showInformation()
     {
-        cbStaff.valueProperty().set(null);
+        cbStaff.getItems().clear();
+        
+        if(workingStaff != null)
+        {
+            workingStaff.clear();
+        }
         
         workingStaff = codeBank.fillStaffDropDowns();
         cbStaff.getItems().addAll(workingStaff);
+        
         showStaff(codeBank.getCurrentDate());
         
         tblClinic.getItems().clear();

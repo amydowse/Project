@@ -237,8 +237,8 @@ public class OncologyScreenDocumentController implements Initializable
     
     public void showInformation(LocalDate date)
     {
-        cbStaff.valueProperty().set(null);
         clearAll();
+        
         workingStaff = codeBank.fillStaffDropDowns();
         cbStaff.getItems().addAll(workingStaff);
         showStaff(codeBank.getCurrentDate());
@@ -684,6 +684,11 @@ public class OncologyScreenDocumentController implements Initializable
     
    public void clearAll()
     {
+        cbStaff.getItems().clear();
+        if(workingStaff != null)
+        {
+            workingStaff.clear();
+        }
         issue = false;
         attendanceArray = new int[14];
         notesArray = new int[14];
