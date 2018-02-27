@@ -114,8 +114,11 @@ public class StaffScreenDocumentController implements Initializable
                 String number = rs.getString("ContactNumber");
                 String extraInfo = rs.getString("ExtraInfo");
                 
-                staff x = new staff(ID, firstName, lastName, position, agency, number, extraInfo );
-                allStaff.add(x);
+                if(ID != 0)
+                {
+                    staff x = new staff(ID, firstName, lastName, position, agency, number, extraInfo );
+                    allStaff.add(x);
+                }
                 
                 
             }
@@ -273,12 +276,23 @@ public class StaffScreenDocumentController implements Initializable
             {
                 Connection c = DatabaseConnector.activateConnection();
                 c.setAutoCommit( true ); 
-                Statement stmt = c.createStatement();    
+                Statement stmt = c.createStatement(); 
+                ResultSet rs;
 
-                String sql = "DELETE FROM staff WHERE ID = '" + lblID.getText() + "'"; 
+                String sql = "SELECT FirstName FROM staff WHERE ID='" + lblID.getText() + "'";
                 
-                stmt.executeUpdate(sql); 
+                rs = stmt.executeQuery(sql);
                 
+                String name = rs.getString("FirstName");
+                
+                sql = "UPDATE staff SET ID = '" + 0 + "' WHERE ID ='" + lblID.getText() + "'";                
+                        
+               stmt.executeUpdate(sql);
+               
+               sql = "UPDATE working SET Staff_ID = '" + 0 + "', Name = '" + name + "' WHERE Staff_ID ='" + lblID.getText() + "'";                
+                        
+               stmt.executeUpdate(sql);
+                                
                 sql = "DELETE FROM skill WHERE Staff_ID = '" + lblID.getText() + "'"; 
                 
                 stmt.executeUpdate(sql); 
@@ -290,7 +304,7 @@ public class StaffScreenDocumentController implements Initializable
             }
             catch (SQLException e)
             {
-
+                Logger.getLogger(StaffScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
             }
         } 
         else 
