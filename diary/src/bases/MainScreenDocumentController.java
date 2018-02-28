@@ -422,7 +422,7 @@ public class MainScreenDocumentController implements Initializable
         LocalDate changingDate = codeBank.getCurrentDate().plusDays(1);
         DayOfWeek day = DayOfWeek.from(changingDate);
                         
-        while(day == DayOfWeek.SATURDAY || day == DayOfWeek.SUNDAY)
+        while(day == DayOfWeek.SATURDAY || day == DayOfWeek.SUNDAY && !Extra(changingDate))
         {
             changingDate = changingDate.plusDays(1);
             day = DayOfWeek.from(changingDate);
@@ -443,7 +443,7 @@ public class MainScreenDocumentController implements Initializable
         LocalDate changingDate = codeBank.getCurrentDate().minusDays(1);
         DayOfWeek day = DayOfWeek.from(changingDate);
                         
-        while(day == DayOfWeek.SATURDAY || day == DayOfWeek.SUNDAY)
+        while(day == DayOfWeek.SATURDAY || day == DayOfWeek.SUNDAY && !Extra(changingDate))
         {
             changingDate = changingDate.minusDays(1);
             day = DayOfWeek.from(changingDate);
