@@ -184,12 +184,14 @@ public class NonbedScreenDocumentController implements Initializable
     int[] notesArray = new int[14];
     boolean issue = false;
     
+    ArrayList<String> procedures = new ArrayList<String>();
     ArrayList<nonbed> allBookings = new ArrayList<nonbed>();
     ObservableList<String> workingStaff;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
+        System.out.println("INIT");
         showInformation(codeBank.getCurrentDate());
         fillDropDowns(); //fills to procedure drop down 
         delete();
@@ -242,6 +244,7 @@ public class NonbedScreenDocumentController implements Initializable
     public void showInformation(LocalDate date)
     {
         clearAll();
+        fillDropDowns();
         workingStaff = codeBank.fillStaffDropDowns();
         cbStaff.getItems().addAll(workingStaff);
         showStaff(codeBank.getCurrentDate());
@@ -300,8 +303,12 @@ public class NonbedScreenDocumentController implements Initializable
         }  
     }
     
+    
+    
     public void showResults(ArrayList<nonbed> allBookings)
     {
+        System.out.println("SHOW RESULTS");
+        
         for(int i=0; i<allBookings.size(); i++)
         {
             nonbed singleBooking = allBookings.get(i);
@@ -311,7 +318,14 @@ public class NonbedScreenDocumentController implements Initializable
             nameList.get(i).setText(singleBooking.getName());
             ageList.get(i).setText(""+singleBooking.getAge());
             hospitalList.get(i).setText(singleBooking.getHospital());
+            
+            //If a proceudre has been deleted, add that already booked optoin to the list
+            if(!inList(singleBooking.getProcudure()))
+            {
+                 procedureList.get(i).getItems().add(singleBooking.getProcudure());
+            }
             procedureList.get(i).setValue(singleBooking.getProcudure());
+            
             reasonList.get(i).setText(singleBooking.getReason());
             notesArray[i] = singleBooking.getNotes();
             
@@ -333,6 +347,19 @@ public class NonbedScreenDocumentController implements Initializable
     }
     
     
+    public boolean inList(String procedure)
+    {
+        for(int i=0; i<procedures.size(); i++)
+        {
+            if(procedures.get(i).equals(procedure))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    
     public void fillDropDowns()
     {
        try
@@ -348,21 +375,19 @@ public class NonbedScreenDocumentController implements Initializable
             //implement query
             rs = stmt.executeQuery("SELECT Name FROM procedures"); 
             
-            for(int i=0; i< procedureList.size(); i++)
-            {
-                procedureList.get(i).getItems().add("");
-            }
-           
+            procedures.add("");
+            
             while(rs.next())
             { 
                 String name = rs.getString("Name");
-               
-                for(int i=0; i< procedureList.size(); i++)
-                {
-                    procedureList.get(i).getItems().add(name);
-                }
-                  
+                procedures.add(name);
             }
+            
+            for(int i=0; i< procedureList.size(); i++)
+            {
+                    procedureList.get(i).getItems().addAll(procedures);
+            }
+            
             c.close();
             
         }
@@ -375,6 +400,7 @@ public class NonbedScreenDocumentController implements Initializable
     public void clearAll()
     {
         issue = false;
+        procedures.clear();
         cbStaff.getItems().clear();
         attendanceArray = new int[14];
         notesArray = new int[14];
@@ -392,7 +418,7 @@ public class NonbedScreenDocumentController implements Initializable
         nameList.get(i).setText("");
         ageList.get(i).setText("");
         hospitalList.get(i).setText("");
-        procedureList.get(i).setValue("");
+        procedureList.get(i).getItems().clear();
         reasonList.get(i).setText("");
         txtReason1.setText("");
         attendanceArray[i] = 0;
@@ -489,24 +515,31 @@ public class NonbedScreenDocumentController implements Initializable
     
     public String SQLLine(int i, String date)
     {
-        if(!timeList.get(i).getText().equals("") & !nameList.get(i).getText().equals("") & !procedureList.get(i).getValue().equals(""))
+        if(procedureList.get(i).getValue()==null)
         {
-            return  ("REPLACE INTO nonbed (Date, Time, Name, Age, HospitalNumber, Procedure, Reason, Notes, Attendance) VALUES('"      
-                                                                                        + date + "','"
-                                                                                        + timeList.get(i).getText() + "','"
-                                                                                        + nameList.get(i).getText() + "','"
-                                                                                        + ageList.get(i).getText() + "','"
-                                                                                        + hospitalList.get(i).getText() + "','"
-                                                                                        + procedureList.get(i).getValue() + "','"
-                                                                                        + txtReason1.getText() + "','"
-                                                                                        + notesArray[i] + "','"
-                                                                                        + attendanceArray[i] + "')"
-                    );
+            return "";
         }
         else
         {
-            reportIssue(i);
-            return "";
+            if(!timeList.get(i).getText().equals("") & !nameList.get(i).getText().equals("") & !procedureList.get(i).getValue().equals(""))
+            {
+                return  ("REPLACE INTO nonbed (Date, Time, Name, Age, HospitalNumber, Procedure, Reason, Notes, Attendance) VALUES('"      
+                                                                                            + date + "','"
+                                                                                            + timeList.get(i).getText() + "','"
+                                                                                            + nameList.get(i).getText() + "','"
+                                                                                            + ageList.get(i).getText() + "','"
+                                                                                            + hospitalList.get(i).getText() + "','"
+                                                                                            + procedureList.get(i).getValue() + "','"
+                                                                                            + txtReason1.getText() + "','"
+                                                                                            + notesArray[i] + "','"
+                                                                                            + attendanceArray[i] + "')"
+                        );
+            }
+            else
+            {
+                reportIssue(i);
+                return "";
+            }
         }
     }   
     

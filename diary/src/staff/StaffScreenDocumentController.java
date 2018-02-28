@@ -278,24 +278,39 @@ public class StaffScreenDocumentController implements Initializable
                 c.setAutoCommit( true ); 
                 Statement stmt = c.createStatement(); 
                 ResultSet rs;
-
-                String sql = "SELECT FirstName FROM staff WHERE ID='" + lblID.getText() + "'";
+                
+                String sql = "SELECT * FROM working WHERE ID='" + lblID.getText() + "'";
                 
                 rs = stmt.executeQuery(sql);
                 
-                String name = rs.getString("FirstName");
-                
-                sql = "UPDATE staff SET ID = '" + 0 + "' WHERE ID ='" + lblID.getText() + "'";                
-                        
-               stmt.executeUpdate(sql);
-               
-               sql = "UPDATE working SET Staff_ID = '" + 0 + "', Name = '" + name + "' WHERE Staff_ID ='" + lblID.getText() + "'";                
-                        
-               stmt.executeUpdate(sql);
-                                
-                sql = "DELETE FROM skill WHERE Staff_ID = '" + lblID.getText() + "'"; 
-                
-                stmt.executeUpdate(sql); 
+                //If the staff member has shifts booked 
+                if(rs.next())
+                {
+                    //Get the first name of the staff member being deleted
+                    sql = "SELECT FirstName FROM staff WHERE ID='" + lblID.getText() + "'";
+                    rs = stmt.executeQuery(sql);
+                    String name = rs.getString("FirstName");
+
+                    //Set the deleted staff member ID to 0
+                    sql = "UPDATE staff SET ID = '" + 0 + "' WHERE ID ='" + lblID.getText() + "'";  
+                    stmt.executeUpdate(sql);
+
+                    //Set the name and new ID of the deleted staff member in working (keeps them in the diary for past shifts)
+                    sql = "UPDATE working SET Staff_ID = '" + 0 + "', Name = '" + name + "' WHERE Staff_ID ='" + lblID.getText() + "'";  
+                    stmt.executeUpdate(sql);
+
+                    //Delete all of the skills of that person - will remove from the specific working locations but that is OK for past bookings
+                    sql = "DELETE FROM skill WHERE Staff_ID = '" + lblID.getText() + "'"; 
+                    stmt.executeUpdate(sql); 
+                }
+                else //If the staff member has not shifts 
+                {
+                    sql = "DELETE FROM staff WHERE ID = '" + lblID.getText() + "'"; 
+                    stmt.executeUpdate(sql);
+                    
+                    sql = "DELETE FROM skill WHERE Staff_ID = '" + lblID.getText() + "'"; 
+                    stmt.executeUpdate(sql); 
+                }
                 
                 c.close();
                 
