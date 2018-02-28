@@ -25,7 +25,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <DatePicker fx:id="extraListDate" layoutX="134.0" layoutY="118.0" prefHeight="44.0" prefWidth="230.0" />
+            <DatePicker fx:id="extraListDate" layoutX="134.0" layoutY="118.0" prefHeight="44.0" prefWidth="230.0"  onAction="#selectedExtraDate" />
             <Label fx:id="lblExtraInstructions" layoutX="46.0" layoutY="190.0" text="Please select the types of procedures that will occur on">
                <font>
                   <Font size="20.0" />
@@ -100,7 +100,7 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Button fx:id="btnSaveExtra" layoutX="660.0" layoutY="874.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="90.0" text="SAVE" />
+            <Button fx:id="btnSaveExtra" layoutX="660.0" layoutY="874.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="90.0" text="SAVE" onAction="#saveExtra" />
          </children>
       </Pane>
       
@@ -150,7 +150,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button fx:id="btnSaveTemplate" layoutX="832.0" layoutY="353.0" onAction="#saveTemplate" mnemonicParsing="false" prefHeight="54.0" prefWidth="90.0" text="SAVE" />
+            <Button fx:id="btnSaveTemplate" layoutX="832.0" layoutY="353.0" mnemonicParsing="false" onAction="#saveTemplate" prefHeight="54.0" prefWidth="90.0" text="SAVE" />
          </children>
       </Pane>
       
@@ -165,7 +165,7 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <DatePicker fx:id="alterDate" layoutX="46.0" layoutY="145.0" prefHeight="44.0" prefWidth="230.0" />
+            <DatePicker fx:id="alterDate" layoutX="46.0" layoutY="145.0" onAction="#selectedDate" prefHeight="44.0" prefWidth="230.0" />
             <Label fx:id="lblAlterStart" layoutX="46.0" layoutY="226.0" text="Start Time">
                <font>
                   <Font size="20.0" />
@@ -201,8 +201,18 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button fx:id="btnSaveAlter" layoutX="844.0" layoutY="439.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="90.0" text="SAVE" />
+            <Button fx:id="btnSaveAlter" layoutX="844.0" layoutY="439.0" mnemonicParsing="false" onAction="#saveAlter" prefHeight="54.0" prefWidth="90.0" text="SAVE" />
+            <Label fx:id="lblNoClinic" layoutX="309.0" layoutY="157.0" text="CURRENTLY NO CLINIC">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </children>
+   
+   
+  
+   
+   
 </Pane>

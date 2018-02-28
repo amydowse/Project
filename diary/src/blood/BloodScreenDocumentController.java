@@ -16,6 +16,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -130,12 +131,16 @@ public class BloodScreenDocumentController implements Initializable
             //make localdate into string
             LocalDate currentDate = codeBank.getCurrentDate();
             String day = currentDate.getDayOfWeek().name();
-                        
-            //implement query
-            rs = stmt.executeQuery("SELECT * FROM template WHERE Day = '" + day + "'" );
+            String date = codeBank.dateToString(currentDate);
             
+            //implement query
+            rs = stmt.executeQuery("SELECT * FROM template WHERE Day = '" + date + "'" );
+            
+            if(!rs.isBeforeFirst())
+            {
+                rs = stmt.executeQuery("SELECT * FROM template WHERE Day = '" + day + "'" );
+            }
 
-                
             while(rs.next())
             {
                 String startTimeS = rs.getString("Start");
@@ -217,16 +222,25 @@ public class BloodScreenDocumentController implements Initializable
             }
             
                 
-            for (int T = 0; T<allTimes.size(); T++)
+            boolean added = false;
+            
+            for (int B=0; B<specificBookings.size(); B++)
             {
-                for(int B=0; B<specificBookings.size(); B++)
+                for(int T = 0; T<allTimes.size(); T++)
                 {
                     if(allTimes.get(T).getTime().compareTo(specificBookings.get(B).getTime()) == 0)
                     {
                         allTimes.set(T, specificBookings.get(B));
+                        added = true;
                     }
                 }
+                if(!added)
+                {
+                    allTimes.add(specificBookings.get(B));
+                }
             }    
+            
+            Collections.sort(allTimes);
             
             allBookings = FXCollections.observableArrayList(allTimes);
     

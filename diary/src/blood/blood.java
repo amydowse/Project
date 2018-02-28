@@ -12,7 +12,7 @@ import java.time.LocalTime;
  *
  * @author amydo
  */
-public class blood 
+public class blood implements Comparable<blood>
 {
     private LocalDate date;
     private LocalTime time;
@@ -145,6 +145,12 @@ public class blood
     public void setAttendance(int attendance)
     {
         this.attendance = attendance;
+    }
+    
+    @Override
+    public int compareTo(blood o) 
+    {
+        return getTime().compareTo(o.getTime());
     }
 }
 

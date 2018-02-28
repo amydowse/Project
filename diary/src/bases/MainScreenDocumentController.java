@@ -222,11 +222,12 @@ public class MainScreenDocumentController implements Initializable
             Statement stmt = c.createStatement();
             
             String day = codeBank.getCurrentDate().getDayOfWeek().name();
-            rs = stmt.executeQuery("SELECT * FROM template WHERE Day ='" + day + "'");
+            String date = codeBank.dateToString(codeBank.getCurrentDate());
+            
+            rs = stmt.executeQuery("SELECT * FROM template WHERE Day ='" + date + "'");
             if(rs.next())
             {
                 //implement query
-                String date = codeBank.dateToString(codeBank.getCurrentDate());
                 rs = stmt.executeQuery("SELECT count(*) AS total FROM blood WHERE Date ='" + date + "'"); 
 
                 while(rs.next())
@@ -237,9 +238,25 @@ public class MainScreenDocumentController implements Initializable
             }
             else
             {
-                btnBlood.setText("Blood Clinic\n\nNO CLINIC");
-                c.close();
+                rs = stmt.executeQuery("SELECT * FROM template WHERE Day ='" + day + "'");
+                if(rs.next())
+                {
+                    //implement query
+                    rs = stmt.executeQuery("SELECT count(*) AS total FROM blood WHERE Date ='" + date + "'"); 
+
+                    while(rs.next())
+                    { 
+                        btnBlood.setText("Blood Clinic\n\n"+rs.getInt("total") + " booked");
+                    }
+                    c.close();
+                }
+                else
+                {
+                    btnBlood.setText("Blood Clinic\n\nNO CLINIC");
+                }
             }
+            
+            c.close();
         }
         catch (SQLException e)
         {
@@ -425,7 +442,7 @@ public class MainScreenDocumentController implements Initializable
     
     public void show()
     {
-        System.out.println("SHOWING: " + ContentPane.getChildren().get(0).getAccessibleText());
+        //System.out.println("SHOWING: " + ContentPane.getChildren().get(0).getAccessibleText());
         
         switch(ContentPane.getChildren().get(0).getAccessibleText())
         {
@@ -449,7 +466,7 @@ public class MainScreenDocumentController implements Initializable
     
     public void save()
     {
-        System.out.println("GOING FROM: " + ContentPane.getChildren().get(0).getAccessibleText());
+        //System.out.println("GOING FROM: " + ContentPane.getChildren().get(0).getAccessibleText());
         
         switch(ContentPane.getChildren().get(0).getAccessibleText())
         {
