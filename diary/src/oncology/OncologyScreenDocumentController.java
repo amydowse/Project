@@ -747,20 +747,124 @@ public class OncologyScreenDocumentController implements Initializable
         }
     }
     
+    @FXML public void LoadPatient2()
+    {
+        if(cbName2.getValue() != null)
+        {
+            String patient = cbName2.getValue().toString(); 
+            Load(1, patient);
+        }
+    }
     
-    @FXML public void LoadPatient2(){String patient = cbName2.getValue().toString(); Load(1, patient);}
-    @FXML public void LoadPatient3(){String patient = cbName3.getValue().toString(); Load(2, patient);}
-    @FXML public void LoadPatient4(){String patient = cbName4.getValue().toString(); Load(3, patient);}
-    @FXML public void LoadPatient5(){String patient = cbName5.getValue().toString(); Load(4, patient);}
-    @FXML public void LoadPatient6(){String patient = cbName6.getValue().toString(); Load(5, patient);}
-    @FXML public void LoadPatient7(){String patient = cbName7.getValue().toString(); Load(6, patient);}
-    @FXML public void LoadPatient8(){String patient = cbName8.getValue().toString(); Load(7, patient);}
-    @FXML public void LoadPatient9(){String patient = cbName9.getValue().toString(); Load(8, patient);}
-    @FXML public void LoadPatient10(){String patient = cbName10.getValue().toString(); Load(9, patient);}
-    @FXML public void LoadPatient11(){String patient = cbName11.getValue().toString(); Load(10, patient);}
-    @FXML public void LoadPatient12(){String patient = cbName12.getValue().toString(); Load(11, patient);}
-    @FXML public void LoadPatient13(){String patient = cbName13.getValue().toString(); Load(12, patient);}
-    @FXML public void LoadPatient14(){String patient = cbName14.getValue().toString(); Load(13, patient);}
+    @FXML public void LoadPatient3()
+    {
+        if(cbName3.getValue() != null)
+        {
+            String patient = cbName3.getValue().toString(); 
+            Load(2, patient);
+        }
+    }
+    
+    @FXML public void LoadPatient4()
+    {
+        if(cbName4.getValue() != null)
+        {
+            String patient = cbName4.getValue().toString(); 
+            Load(3, patient);
+        }
+    }
+    
+    @FXML public void LoadPatient5()
+    {
+        if(cbName5.getValue() != null)
+        {
+            String patient = cbName5.getValue().toString(); 
+            Load(4, patient);
+        }
+    }
+    
+    @FXML public void LoadPatient6()
+    {
+        if(cbName6.getValue() != null)
+        {
+            String patient = cbName6.getValue().toString(); 
+            Load(5, patient);
+        }
+    }
+    
+    @FXML public void LoadPatient7()
+    {
+        if(cbName7.getValue() != null)
+        {
+            String patient = cbName7.getValue().toString(); 
+            Load(6, patient);
+        }
+    }
+    
+    @FXML public void LoadPatient8()
+    {
+        if(cbName8.getValue() != null)
+        {
+            String patient = cbName8.getValue().toString(); 
+            Load(7, patient);
+        }
+    }
+    
+    @FXML public void LoadPatient9()
+    {
+        if(cbName9.getValue() != null)
+        {
+            String patient = cbName9.getValue().toString(); 
+            Load(8, patient);
+        }
+    }
+    
+    @FXML public void LoadPatient10()
+    {
+        if(cbName10.getValue() != null)
+        {
+            String patient = cbName10.getValue().toString(); 
+            Load(9, patient);
+        }
+    }
+    
+    @FXML public void LoadPatient11()
+    {
+        if(cbName11.getValue() != null)
+        {
+            String patient = cbName11.getValue().toString(); 
+            Load(10, patient);
+        }
+    }
+    
+    @FXML public void LoadPatient12()
+    {
+        if(cbName12.getValue() != null)
+        {
+            String patient = cbName12.getValue().toString(); 
+            Load(11, patient);
+        }
+    }
+    
+    @FXML public void LoadPatient13()
+    {
+        if(cbName13.getValue() != null)
+        {
+            String patient = cbName13.getValue().toString(); 
+            Load(12, patient);
+        }
+    }
+    
+    @FXML public void LoadPatient14()
+    {
+        if(cbName14.getValue() != null)
+        {
+            String patient = cbName14.getValue().toString(); 
+            Load(13, patient);
+        }
+    }
+    
+    
     
     
     
