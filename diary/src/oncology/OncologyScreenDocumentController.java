@@ -199,6 +199,7 @@ public class OncologyScreenDocumentController implements Initializable
     int[] attendanceArray = new int[14];
     int[] notesArray = new int[14];
     
+    ArrayList<Boolean> deleted = new ArrayList<Boolean>();   
     ArrayList<String> patients = new ArrayList<String>();
     ArrayList<oncology> allBookings = new ArrayList<oncology>();
     ObservableList<String> workingStaff;
@@ -222,6 +223,8 @@ public class OncologyScreenDocumentController implements Initializable
             }
             });
         }
+        
+       
     
     }
     
@@ -242,6 +245,11 @@ public class OncologyScreenDocumentController implements Initializable
     {
         clearAll();
         fillDropDowns();
+        
+        for(int i=0; i<14; i++)
+        {
+            deleted.add(i, false);
+        }
         
         workingStaff = codeBank.fillStaffDropDowns();
         cbStaff.getItems().addAll(workingStaff);
@@ -265,8 +273,6 @@ public class OncologyScreenDocumentController implements Initializable
             
             while(rs.next())
             {
-                System.out.println("GOT STUFF");
-                
                 //get String into LocalDate
                 String Stringdate = rs.getString("Date"); //LocalDate
                 LocalDate localDate = codeBank.stringToDate(Stringdate);
@@ -295,8 +301,6 @@ public class OncologyScreenDocumentController implements Initializable
         {
             
         }
-        
-            
             for(int i=0; i<allBookings.size(); i++)
             {
                 if(allBookings.get(i).getName() == null)
@@ -317,7 +321,6 @@ public class OncologyScreenDocumentController implements Initializable
 
                         while(rs2.next())
                         {
-                            System.out.println("GOT STUFF");
 
                             String firstName = rs2.getString("FirstName");
                             String lastName = rs2.getString("LastName");
@@ -340,9 +343,9 @@ public class OncologyScreenDocumentController implements Initializable
                         
                     }
                 }
+                deleted.set(i, true);
             }
             
-            System.out.println("DONE");
             Collections.sort(allBookings);
            
             for(int i=0; i<allBookings.size(); i++)
@@ -547,7 +550,16 @@ public class OncologyScreenDocumentController implements Initializable
             
             for(int i=0; i<14; i++)
             {
-                String sql = SQLLine(i, stringDate);
+                String sql;
+                if(deleted.get(i) == false)
+                {
+                    sql = SQLLine(i, stringDate);
+                }
+                else
+                {
+                    sql = SQLLineDeleted(i, stringDate);
+                }
+                
                 stmt.executeUpdate(sql);
             }
             c.close();
@@ -569,6 +581,12 @@ public class OncologyScreenDocumentController implements Initializable
     
     public String SQLLine(int i, String date)
     {
+        if(nameList.get(i).getValue()==null)
+        {
+            return "";
+        }
+        else
+        {
             if(!timeList.get(i).getText().equals("") & !nameList.get(i).getValue().equals("") & !reasonList.get(i).getText().equals(""))
             {
                 return ("REPLACE INTO oncology (Date, Time, Regular_HospitalNumber, Reason, Notes, Attendance) VALUES('"      
@@ -585,6 +603,40 @@ public class OncologyScreenDocumentController implements Initializable
                 reportIssue(i);
                 return "";
             }
+        }
+        
+    }   
+    
+    
+    public String SQLLineDeleted(int i, String date)
+    {
+        if(nameList.get(i).getValue()==null)
+        {
+            return "";
+        }
+        else
+        {
+            if(!timeList.get(i).getText().equals("") & !nameList.get(i).getValue().equals("") & !reasonList.get(i).getText().equals(""))
+            {
+                return ("REPLACE INTO oncology (Date, Time, Regular_HospitalNumber, Reason, Notes, Attendance, Name, Age, ContactNumber, Wristband) VALUES('"      
+                                                                                    + date + "','"
+                                                                                    + timeList.get(i).getText() + "','"
+                                                                                    + hospitalList.get(i).getText() + "','"
+                                                                                    + reasonList.get(i).getText() + "','"
+                                                                                    + notesArray[i] + "','"
+                                                                                    + attendanceArray[i] + "','"
+                                                                                    + nameList.get(i).getValue().toString() + "','"
+                                                                                    + ageList.get(i).getText() + "','"
+                                                                                    + numberList.get(i).getText() + "','"
+                                                                                    + wristbandList.get(i).getText() + "')"
+                        );
+            }
+            else
+            {
+                reportIssue(i);
+                return "";
+            }
+        }
         
     }   
     
@@ -686,7 +738,16 @@ public class OncologyScreenDocumentController implements Initializable
     
     //Loading a patients information when you select them from the drop down 
     
-    @FXML public void LoadPatient1(){String patient = cbName1.getValue().toString(); Load(0, patient);}
+    @FXML public void LoadPatient1()
+    {
+        if(cbName1.getValue() != null)
+        {
+            String patient = cbName1.getValue().toString(); 
+            Load(0, patient);
+        }
+    }
+    
+    
     @FXML public void LoadPatient2(){String patient = cbName2.getValue().toString(); Load(1, patient);}
     @FXML public void LoadPatient3(){String patient = cbName3.getValue().toString(); Load(2, patient);}
     @FXML public void LoadPatient4(){String patient = cbName4.getValue().toString(); Load(3, patient);}
@@ -706,7 +767,7 @@ public class OncologyScreenDocumentController implements Initializable
     @FXML
     public void Load(int position, String patient)
     {
-        if(patient.equals(""))
+        if(patient == null || patient.equals(""))
         {
             ageList.get(position).setText(""); 
             hospitalList.get(position).setText("");
@@ -755,10 +816,12 @@ public class OncologyScreenDocumentController implements Initializable
    public void clearAll()
     {
         cbStaff.getItems().clear();
+        
         if(workingStaff != null)
         {
             workingStaff.clear();
         }
+        
         issue = false;
         patients.clear();
         attendanceArray = new int[14];
@@ -773,10 +836,9 @@ public class OncologyScreenDocumentController implements Initializable
     
     public void clearSingle(int i)
     {
-        timeList.get(i).setText("");
-        
         nameList.get(i).getItems().clear();
         
+        timeList.get(i).setText("");       
         ageList.get(i).setText("");
         hospitalList.get(i).setText("");
         numberList.get(i).setText("");
