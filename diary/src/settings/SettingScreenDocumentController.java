@@ -155,15 +155,87 @@ public class SettingScreenDocumentController implements Initializable
             
             chbNonbed.setSelected(true);
             chbNonbed.setDisable(true);
+            
+            checkBlood(date, day);
         }
         else
         {
-            
+            showWeekend(date);
         }
         
-        checkBlood(date, day);
+        
     }
     
+    
+    public void showWeekend(String date)
+    {
+        try
+        {
+            Connection c = DatabaseConnector.activateConnection();
+            c.setAutoCommit(true);
+            Statement stmt = c.createStatement();
+            ResultSet rs;
+            
+            String sql = "SELECT * FROM extra WHERE Date='" + date + "'";
+            rs = stmt.executeQuery(sql);
+            
+            while(rs.next())
+            {
+                int surgery = rs.getInt("Surgery");
+                int blood = rs.getInt("Blood");
+                int preop = rs.getInt("Preop");
+                int oncology = rs.getInt("Oncology");
+                int nonbed = rs.getInt("Nonbed");
+            
+
+                if(surgery==1)
+                {
+                    chbSurgery.setSelected(true);
+                }
+
+                if(blood==1)
+                {
+                    chbBlood.setSelected(true);
+                    paneBloodDetails.setVisible(true);
+                    
+                    sql = "SELECT * FROM template WHERE Day='" + date + "'";
+                    rs = stmt.executeQuery(sql);
+                    
+                    if(rs.next())
+                    {
+                        txtExtraStart.setText(rs.getString("Start"));
+                        txtExtraEnd.setText(rs.getString("End"));
+                        txtExtraLength.setText(rs.getString("Duration"));
+                        txtExtraBreakStart.setText(rs.getString("BreakStart"));
+                        txtExtraBreakEnd.setText(rs.getString("BreakEnd"));
+                    }
+                    
+                }
+
+                if(preop==1)
+                {
+                    chbPreop.setSelected(true);
+                }
+
+                if(oncology==1)
+                {
+                    chbOncology.setSelected(true);
+                }
+
+                if(nonbed==1)
+                {
+                    chbNonbed.setSelected(true);
+                }
+            }
+        
+            c.close();
+            
+        }
+        catch(SQLException e)
+        {
+            Logger.getLogger(SettingScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
     
     
     public void checkBlood(String date, String day)
