@@ -303,7 +303,7 @@ public class StaffScreenDocumentController implements Initializable
                     sql = "DELETE FROM skill WHERE Staff_ID = '" + lblID.getText() + "'"; 
                     stmt.executeUpdate(sql); 
                 }
-                else //If the staff member has not shifts 
+                else //If the staff member has no shifts 
                 {
                     sql = "DELETE FROM staff WHERE ID = '" + lblID.getText() + "'"; 
                     stmt.executeUpdate(sql);

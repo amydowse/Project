@@ -199,6 +199,7 @@ public class OncologyScreenDocumentController implements Initializable
     int[] attendanceArray = new int[14];
     int[] notesArray = new int[14];
     
+    ArrayList<String> patients = new ArrayList<String>();
     ArrayList<oncology> allBookings = new ArrayList<oncology>();
     ObservableList<String> workingStaff;
     
@@ -240,6 +241,7 @@ public class OncologyScreenDocumentController implements Initializable
     public void showInformation(LocalDate date)
     {
         clearAll();
+        fillDropDowns();
         
         workingStaff = codeBank.fillStaffDropDowns();
         cbStaff.getItems().addAll(workingStaff);
@@ -258,11 +260,13 @@ public class OncologyScreenDocumentController implements Initializable
             //make localdate into string
             String stringDate = codeBank.dateToString(date);
                     
-            //implement query
-            rs = stmt.executeQuery("SELECT * FROM regular, oncology WHERE oncology.Date = '" + stringDate + "' AND oncology.Regular_HospitalNumber = regular.HospitalNumber" );
-           
+            String sql = "SELECT * FROM oncology WHERE oncology.Date = '" + stringDate + "'";
+            rs = stmt.executeQuery(sql);
+            
             while(rs.next())
-            { 
+            {
+                System.out.println("GOT STUFF");
+                
                 //get String into LocalDate
                 String Stringdate = rs.getString("Date"); //LocalDate
                 LocalDate localDate = codeBank.stringToDate(Stringdate);
@@ -270,41 +274,84 @@ public class OncologyScreenDocumentController implements Initializable
                 //get String into LocalTime
                 String time = rs.getString("Time"); //Time
                 LocalTime localTime = LocalTime.parse(time, DateTimeFormatter.ISO_LOCAL_TIME);
-              
-                String firstName = rs.getString("FirstName");
-                String lastName = rs.getString("LastName");
-                
-                //https://memorynotfound.com/calculate-age-from-date-of-birth-in-java/ accessed 17/02/2018
-                String dob = rs.getString("DateOfBirth");
-                LocalDate dobDate = codeBank.stringToDate(dob);
-                Period period = Period.between(dobDate, LocalDate.now());
-                int age = period.getYears(); 
-        
-                String hospitalNumber = rs.getString("HospitalNumber");
-                String number = rs.getString("Number");
-                String wristband = rs.getString("Wristband");
+
+                String hospitalNumber = rs.getString("Regular_HospitalNumber");
                 String reason = rs.getString("Reason");
                 int notes = rs.getInt("Notes");
                 int attendance = rs.getInt("Attendance");
                 
-                //creating a diary object 
-                oncology booking = new oncology(localDate, localTime, firstName + " " + lastName, age, hospitalNumber, number, wristband, reason, notes, attendance);
-                allBookings.add(booking);             
+                String name = rs.getString("Name");
+                int age = rs.getInt("Age");
+                String number = rs.getString("ContactNumber");
+                String wristband = rs.getString("Wristband");
+                
+                oncology booking = new oncology(localDate, localTime, name, age, hospitalNumber, number, wristband, reason, notes, attendance);
+                allBookings.add(booking);  
+                
+            }   
+            c.close();
+        }
+        catch(SQLException e)
+        {
+            
+        }
+        
+            
+            for(int i=0; i<allBookings.size(); i++)
+            {
+                if(allBookings.get(i).getName() == null)
+                {
+                    try
+                    {
+                        // open a connection
+                        Connection c2 = DatabaseConnector.activateConnection();
+                        c2.setAutoCommit( true ); 
+                        ResultSet rs2 ;
+
+                        // when creating a statement object, you MUST use a connection object to call the instance method
+                        Statement stmt2 = c2.createStatement();
+
+                        //make localdate into string
+                        String sql = "SELECT * FROM regular WHERE regular.HospitalNumber ='" + allBookings.get(i).getHospitalNumber() + "'";
+                        rs2 = stmt2.executeQuery(sql);
+
+                        while(rs2.next())
+                        {
+                            System.out.println("GOT STUFF");
+
+                            String firstName = rs2.getString("FirstName");
+                            String lastName = rs2.getString("LastName");
+                            allBookings.get(i).setName(firstName + " " + lastName);
+                                                        
+                            String dob = rs2.getString("DateOfBirth");
+                            LocalDate dobDate = codeBank.stringToDate(dob);
+                            Period period = Period.between(dobDate, LocalDate.now());
+                            allBookings.get(i).setAge(period.getYears()); 
+                            
+                            allBookings.get(i).setNumber(rs2.getString("Number"));
+                            allBookings.get(i).setWristband(rs2.getString("Wristband"));
+
+                            
+                        }   
+                        c2.close();
+                    }
+                    catch (SQLException ex)
+                    {
+                        
+                    }
+                }
             }
+            
+            System.out.println("DONE");
             Collections.sort(allBookings);
            
             for(int i=0; i<allBookings.size(); i++)
             {
                 allBookings.get(i).setPosition(i+1);
             }
-            c.close();
             showResults(allBookings);
             
-        }
-        catch (SQLException e)
-        {
-            
-        }  
+         
     }
     
     public void showResults(ArrayList<oncology> allBookings)
@@ -314,7 +361,13 @@ public class OncologyScreenDocumentController implements Initializable
             oncology singleBooking = allBookings.get(i);
         
             timeList.get(i).setText((singleBooking.getTime()).toString());
-            nameList.get(i).setValue((singleBooking.getName()));
+            
+            if(!inList(singleBooking.getName()))
+            {
+                nameList.get(i).getItems().add(singleBooking.getName());
+            }
+            nameList.get(i).setValue(singleBooking.getName());
+            
             ageList.get(i).setText("" + singleBooking.getAge());
             hospitalList.get(i).setText(singleBooking.getHospitalNumber());
             numberList.get(i).setText(singleBooking.getNumber());
@@ -338,6 +391,19 @@ public class OncologyScreenDocumentController implements Initializable
             codeBank.showNotes(text2, notesArray[count2]);
             count2++;
         }
+        
+    }
+    
+    public boolean inList(String name)
+    {
+        for(int i=0; i<patients.size(); i++)
+        {
+            if(patients.get(i).equals(name))
+            {
+                return true;
+            }
+        }
+        return false;
     }
     
     
@@ -358,26 +424,23 @@ public class OncologyScreenDocumentController implements Initializable
             
             //implement query
             rs = stmt.executeQuery("SELECT FirstName, LastName FROM regular WHERE Oncology='" + 1 + "'"); 
-                
-            for(int i=0; i<14; i++)
-            {
-                nameList.get(i).getItems().add("");
-            }
             
+            patients.add(" ");
             
             while(rs.next())
             { 
                 String FirstName = rs.getString("FirstName");
                 String LastName = rs.getString("LastName");
-               
-                for(int i=0; i<14; i++)
-                {
-                    nameList.get(i).getItems().add(FirstName + " " + LastName);
-                }
-                  
+                
+                patients.add(FirstName + " " + LastName);
+            }
+            
+            for(int i=0; i<14; i++)
+            {
+                nameList.get(i).getItems().addAll(patients);
             }
             c.close();
-            
+                        
         }
         catch (SQLException e)
         {
@@ -480,7 +543,6 @@ public class OncologyScreenDocumentController implements Initializable
             // when creating a statement object, you MUST use a connection object to call the instance method
             Statement stmt = c.createStatement();
             
-            
             String stringDate = codeBank.dateToString(today);          
             
             for(int i=0; i<14; i++)
@@ -489,6 +551,7 @@ public class OncologyScreenDocumentController implements Initializable
                 stmt.executeUpdate(sql);
             }
             c.close();
+            
             saveStaff();
             if(issue)
             {
@@ -506,22 +569,23 @@ public class OncologyScreenDocumentController implements Initializable
     
     public String SQLLine(int i, String date)
     {
-        if(!timeList.get(i).getText().equals("") & !nameList.get(i).getValue().equals("") & !reasonList.get(i).getText().equals(""))
-        {
-            return ("REPLACE INTO oncology (Date, Time, Regular_HospitalNumber, Reason, Notes, Attendance) VALUES('"      
-                                                                                + date + "','"
-                                                                                + timeList.get(i).getText() + "','"
-                                                                                + hospitalList.get(i).getText() + "','"
-                                                                                + reasonList.get(i).getText() + "','"
-                                                                                + notesArray[i] + "','"
-                                                                                + attendanceArray[i] + "')"
-                    );
-        }
-        else
-        {
-            reportIssue(i);
-            return "";
-        }
+            if(!timeList.get(i).getText().equals("") & !nameList.get(i).getValue().equals("") & !reasonList.get(i).getText().equals(""))
+            {
+                return ("REPLACE INTO oncology (Date, Time, Regular_HospitalNumber, Reason, Notes, Attendance) VALUES('"      
+                                                                                    + date + "','"
+                                                                                    + timeList.get(i).getText() + "','"
+                                                                                    + hospitalList.get(i).getText() + "','"
+                                                                                    + reasonList.get(i).getText() + "','"
+                                                                                    + notesArray[i] + "','"
+                                                                                    + attendanceArray[i] + "')"
+                        );
+            }
+            else
+            {
+                reportIssue(i);
+                return "";
+            }
+        
     }   
     
     
@@ -684,6 +748,7 @@ public class OncologyScreenDocumentController implements Initializable
                     Logger.getLogger(OncologyScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
             } 
         }
+        
     }
     
     
@@ -695,6 +760,7 @@ public class OncologyScreenDocumentController implements Initializable
             workingStaff.clear();
         }
         issue = false;
+        patients.clear();
         attendanceArray = new int[14];
         notesArray = new int[14];
         allBookings.clear();
@@ -708,7 +774,9 @@ public class OncologyScreenDocumentController implements Initializable
     public void clearSingle(int i)
     {
         timeList.get(i).setText("");
-        nameList.get(i).setValue("");
+        
+        nameList.get(i).getItems().clear();
+        
         ageList.get(i).setText("");
         hospitalList.get(i).setText("");
         numberList.get(i).setText("");

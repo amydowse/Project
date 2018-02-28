@@ -14,8 +14,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -207,14 +210,44 @@ public class RegularScreenDocumentController implements Initializable
             {
                 Connection c = DatabaseConnector.activateConnection();
                 c.setAutoCommit( true ); 
-                Statement stmt = c.createStatement();    
+                Statement stmt = c.createStatement();  
+                ResultSet rs;
+                
+                String sql = "SELECT * FROM oncology WHERE Regular_HospitalNumber ='" + txtNHS.getText() + "'";
+                rs = stmt.executeQuery(sql);
+                
+                //They have appointments
+                if(rs.next())
+                {
+                    //Get the information of the regular attender you are deleting 
+                    sql = "SELECT FirstName, LastName, DateOfBirth, Number, Wristband FROM regular WHERE HospitalNumber='" + txtNHS.getText() + "'";
+                    rs = stmt.executeQuery(sql);
+                    String firstName = rs.getString("FirstName");
+                    String lastName = rs.getString("LastName");
+                    String name = firstName + " " + lastName;
+                    
+                    String dob = rs.getString("DateOfBirth");
+                    LocalDate dobDate = codeBank.stringToDate(dob);
+                    Period period = Period.between(dobDate, LocalDate.now());
+                    int age = period.getYears(); 
+                   
+                    String number = rs.getString("Number");
+                    String wristband = rs.getString("Wristband");
 
-                String sql = "DELETE FROM regular WHERE HospitalNumber = '" + txtNHS.getText() + "'";
-                stmt.executeUpdate(sql); 
-                
-                sql = "DELETE FROM oncology WHERE Regular_HospitalNumber ='" + txtNHS.getText() + "'";
-                stmt.executeUpdate(sql);
-                
+                    //Set the details of the oncology patients  (keeps them in the diary for past appointments)
+                    sql = "UPDATE oncology SET Name = '" + name + "', Age = '" + age + "', ContactNumber ='" + number + "', Wristband = '" + wristband + "' WHERE Regular_HospitalNumber ='" + txtNHS.getText() + "'"; 
+                    stmt.executeUpdate(sql);
+
+                    //Delete the regualar attender 
+                    sql = "DELETE FROM regular WHERE HospitalNumber='" + txtNHS.getText() + "'";
+                    stmt.executeUpdate(sql); 
+                }
+                else //they dont have any appointents 
+                {
+                    sql = "DELETE FROM oncology WHERE Regular_HospitalNumber ='" + txtNHS.getText() + "'";
+                    stmt.executeUpdate(sql);
+                }
+
                 c.close();
                 
                 tblNames.getItems().clear();
@@ -222,7 +255,7 @@ public class RegularScreenDocumentController implements Initializable
             }
             catch (SQLException e)
             {
-
+                Logger.getLogger(RegularScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
             }
         } 
         else 
