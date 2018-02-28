@@ -146,11 +146,13 @@ public class MainScreenDocumentController implements Initializable
 
                         // Show Weekends in blue color
                         DayOfWeek day = DayOfWeek.from(item);
-                        if (day == DayOfWeek.SATURDAY || day == DayOfWeek.SUNDAY)
+                        if (day == DayOfWeek.SATURDAY || day == DayOfWeek.SUNDAY && !Extra(item))
                         {
                             this.setDisable ( true );
                             this.setStyle(" -fx-background-color: #ff0000; ") ;
                         }
+                        
+                        
                     }
                 };
             }
@@ -160,17 +162,48 @@ public class MainScreenDocumentController implements Initializable
         // Set the day cell factory to the DatePicker
        dpCalandar.setDayCellFactory(dayCellFactory);
 
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
     }
+    
+    //if there = true
+    //if not there = false
+    public boolean Extra(LocalDate date)
+    {
+        try
+        {
+            // open a connection
+            Connection c = DatabaseConnector.activateConnection();
+            c.setAutoCommit( true ); 
+            ResultSet rs ;
+            
+            // when creating a statement object, you MUST use a connection object to call the instance method
+            Statement stmt = c.createStatement();          
+            
+            //implement query
+            String Stringdate = codeBank.dateToString(date);
+            
+            rs = stmt.executeQuery("SELECT * FROM extra WHERE Date ='" + Stringdate + "'"); 
+                
+            c.close();
+            
+            while(rs.next())
+            { 
+                return true;
+            }
+            return false;
+            
+        }
+        catch (SQLException e)
+        {
+            
+        } 
+        return false;
+    }
+    
+    
+    
+    
+    
+    
     
     public void updateButtons()
     {
