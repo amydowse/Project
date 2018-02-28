@@ -145,9 +145,20 @@ public class SettingScreenDocumentController implements Initializable
         if(day.equals("MONDAY") || day.equals("TUESDAY") || day.equals("WEDNESDAY") || day.equals("THURSDAY") || day.equals("FRIDAY"))
         {
             chbSurgery.setSelected(true);
+            chbSurgery.setDisable(true);
+            
             chbPreop.setSelected(true);
-            chbOncology.setSelected(true);  
+            chbPreop.setDisable(true);
+            
+            chbOncology.setSelected(true); 
+            chbOncology.setDisable(true);
+            
             chbNonbed.setSelected(true);
+            chbNonbed.setDisable(true);
+        }
+        else
+        {
+            
         }
         
         checkBlood(date, day);
@@ -205,12 +216,21 @@ public class SettingScreenDocumentController implements Initializable
     public void clearAllExtra()
     {
         initiallyBlood = false;
+        
         chbSurgery.setSelected(false);
         chbBlood.setSelected(false);
         chbPreop.setSelected(false);
         chbOncology.setSelected(false);  
         chbNonbed.setSelected(false);
         paneBloodDetails.setVisible(false);
+        
+        chbSurgery.setDisable(false);
+        chbBlood.setDisable(false);
+        chbPreop.setDisable(false);
+        chbOncology.setDisable(false);  
+        chbNonbed.setDisable(false);
+        paneBloodDetails.setDisable(false);
+        
         txtExtraStart.setText("");
         txtExtraEnd.setText("");
         txtExtraLength.setText("");
