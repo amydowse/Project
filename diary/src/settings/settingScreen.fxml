@@ -25,7 +25,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <DatePicker fx:id="extraListDate" layoutX="134.0" layoutY="118.0" prefHeight="44.0" prefWidth="230.0"  onAction="#selectedExtraDate" />
+            <DatePicker fx:id="extraListDate" layoutX="134.0" layoutY="118.0" onAction="#selectedExtraDate" prefHeight="44.0" prefWidth="230.0" />
             <Label fx:id="lblExtraInstructions" layoutX="46.0" layoutY="190.0" text="Please select the types of procedures that will occur on">
                <font>
                   <Font size="20.0" />
@@ -100,7 +100,8 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Button fx:id="btnSaveExtra" layoutX="660.0" layoutY="874.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="90.0" text="SAVE" onAction="#saveExtra" />
+            <Button fx:id="btnSaveExtra" layoutX="722.0" layoutY="874.0" mnemonicParsing="false" onAction="#saveExtra" prefHeight="54.0" prefWidth="90.0" text="SAVE" />
+            <Button fx:id="btnDeleteExtra" layoutX="597.0" layoutY="874.0" mnemonicParsing="false" onAction="#deleteExtra" prefHeight="54.0" prefWidth="90.0" text="DELETE" />
          </children>
       </Pane>
       

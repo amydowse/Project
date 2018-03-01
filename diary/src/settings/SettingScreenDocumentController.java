@@ -53,7 +53,9 @@ public class SettingScreenDocumentController implements Initializable
     @FXML private CheckBox chbOncology = new CheckBox();   
     @FXML private CheckBox chbNonbed = new CheckBox();
     @FXML private Pane paneBloodDetails = new Pane();
+    
     @FXML private Button btnSaveExtra = new Button();
+    @FXML private Button btnDeleteExtra = new Button();
     
     @FXML private TextField txtExtraStart = new TextField();
     @FXML private TextField txtExtraEnd = new TextField();
@@ -278,6 +280,7 @@ public class SettingScreenDocumentController implements Initializable
                     txtExtraBreakEnd.setText(rs.getString("BreakEnd"));
                 }
             }
+            c.close();
         }
         catch(SQLException e)
         {
@@ -336,6 +339,8 @@ public class SettingScreenDocumentController implements Initializable
                                                                                         + txtExtraBreakEnd.getText() + "')";
                     
                     stmt.executeUpdate(sql);
+                    
+                    c.close();
 
                 }
                 catch(SQLException e)
@@ -437,6 +442,79 @@ public class SettingScreenDocumentController implements Initializable
         catch (SQLException e) 
         {
             Logger.getLogger(SettingScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+    
+    
+    @FXML
+    public void deleteExtra()
+    {
+        LocalDate selected = extraListDate.getValue();
+        String day = selected.getDayOfWeek().name();
+        String date = codeBank.dateToString(selected);
+       
+        if(day.equals("MONDAY") || day.equals("TUESDAY") || day.equals("WEDNESDAY") || day.equals("THURSDAY") || day.equals("FRIDAY"))
+        {
+            try 
+            {
+                // open a connection
+                Connection c = DatabaseConnector.activateConnection();
+                c.setAutoCommit(true);
+
+                // when creating a statement object, you MUST use a connection object to call the instance method
+                Statement stmt = c.createStatement();
+
+                String sql = "DELETE FROM template WHERE Day ='" + date + "'";
+                stmt.executeUpdate(sql);
+                
+                sql = "DELETE FROM blood WHERE Date ='" + date + "'";
+                stmt.executeUpdate(sql);
+
+                c.close();
+            } 
+            catch (SQLException e) 
+            {
+                Logger.getLogger(SettingScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+        else
+        {
+            try 
+            {
+                // open a connection
+                Connection c = DatabaseConnector.activateConnection();
+                c.setAutoCommit(true);
+
+                // when creating a statement object, you MUST use a connection object to call the instance method
+                Statement stmt = c.createStatement();
+
+                String sql = "DELETE FROM template WHERE Day ='" + date + "'";
+                stmt.executeUpdate(sql);
+                
+                sql = "DELETE FROM blood WHERE Date ='" + date + "'";
+                stmt.executeUpdate(sql);
+                
+                sql = "DELETE FROM diary WHERE Date ='" + date + "'";
+                stmt.executeUpdate(sql);
+                
+                sql = "DELETE FROM preop WHERE Date ='" + date + "'";
+                stmt.executeUpdate(sql);
+                
+                sql = "DELETE FROM oncology WHERE Date ='" + date + "'";
+                stmt.executeUpdate(sql);
+                
+                sql = "DELETE FROM nonbed WHERE Date ='" + date + "'";
+                stmt.executeUpdate(sql);
+                
+                sql = "DELETE FROM extra WHERE Date ='" + date + "'";
+                stmt.executeUpdate(sql);
+
+                c.close();
+            } 
+            catch (SQLException e) 
+            {
+                Logger.getLogger(SettingScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
+            }
         }
     }
     

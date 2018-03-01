@@ -191,7 +191,7 @@ public class NonbedScreenDocumentController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
-        System.out.println("INIT");
+       
         showInformation(codeBank.getCurrentDate());
         fillDropDowns(); //fills to procedure drop down 
         delete();
@@ -307,8 +307,6 @@ public class NonbedScreenDocumentController implements Initializable
     
     public void showResults(ArrayList<nonbed> allBookings)
     {
-        System.out.println("SHOW RESULTS");
-        
         for(int i=0; i<allBookings.size(); i++)
         {
             nonbed singleBooking = allBookings.get(i);

@@ -673,7 +673,6 @@ public class DiaryScreenDocumentController  implements Initializable
                 staff.add(instanceOfWorkingStaff);
                               
             }
-            System.out.println("Before printing " + staff.size());
             printStaffNames();
             c.close();
         }
@@ -685,7 +684,6 @@ public class DiaryScreenDocumentController  implements Initializable
     
     public void printStaffNames()
     {
-        System.out.println(staff.size());
         for(int i=0; i<staff.size(); i++)
         {
             String value = "(" + staff.get(i).getID() + ") " + staff.get(i).getFirstName();
