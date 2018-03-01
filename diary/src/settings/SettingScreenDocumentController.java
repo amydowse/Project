@@ -254,14 +254,23 @@ public class SettingScreenDocumentController implements Initializable
             
             if(rs.next())
             {
-                initiallyBlood = true;
-                chbBlood.setSelected(true);
-                paneBloodDetails.setVisible(true);
-                txtExtraStart.setText(rs.getString("Start"));
-                txtExtraEnd.setText(rs.getString("End"));
-                txtExtraLength.setText(rs.getString("Duration"));
-                txtExtraBreakStart.setText(rs.getString("BreakStart"));
-                txtExtraBreakEnd.setText(rs.getString("BreakEnd"));
+                if(!rs.getString("Start").equals("00:00"))
+                {
+                    initiallyBlood = true;
+                    chbBlood.setSelected(true);
+                    paneBloodDetails.setVisible(true);
+                    txtExtraStart.setText(rs.getString("Start"));
+                    txtExtraEnd.setText(rs.getString("End"));
+                    txtExtraLength.setText(rs.getString("Duration"));
+                    txtExtraBreakStart.setText(rs.getString("BreakStart"));
+                    txtExtraBreakEnd.setText(rs.getString("BreakEnd"));
+                }
+                else
+                {
+                    initiallyBlood = false;
+                    chbBlood.setSelected(false);
+                    paneBloodDetails.setVisible(false);
+                }
             }
             else
             {
@@ -322,6 +331,7 @@ public class SettingScreenDocumentController implements Initializable
        
         if(day.equals("MONDAY") || day.equals("TUESDAY") || day.equals("WEDNESDAY") || day.equals("THURSDAY") || day.equals("FRIDAY"))
         {
+            //Creating a new blood clinic
             if(initiallyBlood == false && chbBlood.isSelected())
             {
                 try
@@ -348,6 +358,28 @@ public class SettingScreenDocumentController implements Initializable
                     Logger.getLogger(SettingScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
                 }
             }
+            
+            if(initiallyBlood == true && !chbBlood.isSelected())
+            {
+                try
+                {
+                    Connection c = DatabaseConnector.activateConnection();
+                    c.setAutoCommit(true);
+                    Statement stmt = c.createStatement();
+
+                    String sql = "DELETE FROM template WHERE Day ='" + date + "'";
+                    
+                    stmt.executeUpdate(sql);
+                    
+                    c.close();
+
+                }
+                catch(SQLException e)
+                {
+                    Logger.getLogger(SettingScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
+                }
+            }
+            
         }
         else
         {
@@ -366,6 +398,10 @@ public class SettingScreenDocumentController implements Initializable
             {
                 blood = 1;
                 addBlood();
+            }
+            else
+            {
+                deleteBlood();
             }
             
             if(chbPreop.isSelected())
@@ -446,6 +482,34 @@ public class SettingScreenDocumentController implements Initializable
     }
     
     
+    public void deleteBlood()
+    {
+        LocalDate selected = extraListDate.getValue();
+        String date = codeBank.dateToString(selected);
+        try 
+        {
+            // open a connection
+            Connection c = DatabaseConnector.activateConnection();
+            c.setAutoCommit(true);
+
+            // when creating a statement object, you MUST use a connection object to call the instance method
+            Statement stmt = c.createStatement();
+
+            String sql = "DELETE FROM template WHERE Day='" + date + "'";
+            stmt.executeUpdate(sql);
+           
+            c.close();
+        } 
+        catch (SQLException e) 
+        {
+            Logger.getLogger(SettingScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+    
+    
+    
+    
+    
     @FXML
     public void deleteExtra()
     {
@@ -465,7 +529,13 @@ public class SettingScreenDocumentController implements Initializable
                 Statement stmt = c.createStatement();
 
                 String sql = "DELETE FROM template WHERE Day ='" + date + "'";
-                stmt.executeUpdate(sql);
+                int returnedValue = stmt.executeUpdate(sql);
+                
+                if(returnedValue == 0)
+                {
+                    sql = "INSERT INTO template VALUES('" + date + "', '00:00', '00:00', '0', '00:00', '00:00')";
+                    stmt.executeUpdate(sql);
+                }
                 
                 sql = "DELETE FROM blood WHERE Date ='" + date + "'";
                 stmt.executeUpdate(sql);

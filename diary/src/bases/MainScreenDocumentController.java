@@ -260,14 +260,21 @@ public class MainScreenDocumentController implements Initializable
             rs = stmt.executeQuery("SELECT * FROM template WHERE Day ='" + date + "'");
             if(rs.next())
             {
-                //implement query
-                rs = stmt.executeQuery("SELECT count(*) AS total FROM blood WHERE Date ='" + date + "'"); 
+                if(!rs.getString("Start").equals("00:00"))
+                {
+                    //implement query
+                    rs = stmt.executeQuery("SELECT count(*) AS total FROM blood WHERE Date ='" + date + "'"); 
 
-                while(rs.next())
-                { 
-                    btnBlood.setText("Blood Clinic\n\n"+rs.getInt("total") + " booked");
+                    while(rs.next())
+                    { 
+                        btnBlood.setText("Blood Clinic\n\n"+rs.getInt("total") + " booked");
+                    }
+                    c.close();
                 }
-                c.close();
+                else
+                {
+                    btnBlood.setText("Blood Clinic\n\nNO CLINIC");
+                }
             }
             else
             {

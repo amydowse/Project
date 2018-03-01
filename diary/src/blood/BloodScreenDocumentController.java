@@ -140,43 +140,46 @@ public class BloodScreenDocumentController implements Initializable
             {
                 rs = stmt.executeQuery("SELECT * FROM template WHERE Day = '" + day + "'" );
             }
-
-            while(rs.next())
+            
+            if(!rs.getString("Start").equals("00:00"))
             {
-                String startTimeS = rs.getString("Start");
-                LocalTime startTime = LocalTime.parse(startTimeS, DateTimeFormatter.ISO_LOCAL_TIME);
-                
-                String endTimeS = rs.getString("End");
-                LocalTime endTime = LocalTime.parse(endTimeS, DateTimeFormatter.ISO_LOCAL_TIME);
-                
-                String durationS = rs.getString("Duration");
-                int duration = Integer.parseInt(durationS);
-                
-                String breakStartS = rs.getString("BreakStart");
-                LocalTime breakStart = LocalTime.parse(breakStartS, DateTimeFormatter.ISO_LOCAL_TIME);
-                
-                String breakEndS = rs.getString("BreakEnd");
-                LocalTime breakEnd = LocalTime.parse(breakEndS, DateTimeFormatter.ISO_LOCAL_TIME);
-                
-                blood x = new blood(null, startTime, "", "", "", "", "", "", "", "", 0); 
-                previousTime = startTime;
-                allTimes.add(x);
-                
-                while(previousTime != endTime)
+                while(rs.next())
                 {
-                    previousTime = previousTime.plusMinutes(duration);
-                    
-                    if(previousTime.compareTo(breakStart) < 0)
+                    String startTimeS = rs.getString("Start");
+                    LocalTime startTime = LocalTime.parse(startTimeS, DateTimeFormatter.ISO_LOCAL_TIME);
+
+                    String endTimeS = rs.getString("End");
+                    LocalTime endTime = LocalTime.parse(endTimeS, DateTimeFormatter.ISO_LOCAL_TIME);
+
+                    String durationS = rs.getString("Duration");
+                    int duration = Integer.parseInt(durationS);
+
+                    String breakStartS = rs.getString("BreakStart");
+                    LocalTime breakStart = LocalTime.parse(breakStartS, DateTimeFormatter.ISO_LOCAL_TIME);
+
+                    String breakEndS = rs.getString("BreakEnd");
+                    LocalTime breakEnd = LocalTime.parse(breakEndS, DateTimeFormatter.ISO_LOCAL_TIME);
+
+                    blood x = new blood(null, startTime, "", "", "", "", "", "", "", "", 0); 
+                    previousTime = startTime;
+                    allTimes.add(x);
+
+                    while(previousTime != endTime)
                     {
-                        x = new blood(null, previousTime, "", "", "", "", "", "", "", "", 0); 
-                        allTimes.add(x);
+                        previousTime = previousTime.plusMinutes(duration);
+
+                        if(previousTime.compareTo(breakStart) < 0)
+                        {
+                            x = new blood(null, previousTime, "", "", "", "", "", "", "", "", 0); 
+                            allTimes.add(x);
+                        }
+                        else if (previousTime.compareTo(breakEnd) >= 0)
+                        {
+                            x = new blood(null, previousTime, "", "", "", "", "", "", "", "", 0); 
+                            allTimes.add(x);
+                        }
+
                     }
-                    else if (previousTime.compareTo(breakEnd) >= 0)
-                    {
-                        x = new blood(null, previousTime, "", "", "", "", "", "", "", "", 0); 
-                        allTimes.add(x);
-                    }
-                    
                 }
             }
         }
