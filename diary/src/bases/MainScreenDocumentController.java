@@ -207,6 +207,7 @@ public class MainScreenDocumentController implements Initializable
     
     public void updateButtons()
     {
+        inUse();
         updateDiaryButton();
         updateBloodButton();
         updatePreopButton();
@@ -388,6 +389,88 @@ public class MainScreenDocumentController implements Initializable
         } 
     }
     
+    
+    public void inUse()
+    {
+        LocalDate selected = codeBank.getCurrentDate();
+        String day = selected.getDayOfWeek().name();
+        String date = codeBank.dateToString(selected);
+       
+        if(day.equals("MONDAY") || day.equals("TUESDAY") || day.equals("WEDNESDAY") || day.equals("THURSDAY") || day.equals("FRIDAY"))
+        {
+            btnDiary.setDisable(false);
+            btnBlood.setDisable(false);
+            btnPreOp.setDisable(false);
+            btnOncology.setDisable(false);
+            btnNonBed.setDisable(false);
+        }
+        else
+        {
+            try
+            {
+                Connection c = DatabaseConnector.activateConnection();
+                c.setAutoCommit( true ); 
+                ResultSet rs ;
+                Statement stmt = c.createStatement();          
+
+                rs = stmt.executeQuery("SELECT * FROM extra WHERE Date ='" + date + "'"); 
+
+                while(rs.next())
+                { 
+                    if(rs.getInt("Surgery") == 0)
+                    {
+                        btnDiary.setDisable(true);
+                    }
+                    else
+                    {
+                        btnDiary.setDisable(false);
+                    }
+                    
+                    if(rs.getInt("Blood") == 0)
+                    {
+                        btnBlood.setDisable(true);
+                    }
+                    else
+                    {
+                        btnBlood.setDisable(false);
+                    }
+                    
+                    if(rs.getInt("Preop") == 0)
+                    {
+                        btnPreOp.setDisable(true);
+                    }
+                    else
+                    {
+                        btnPreOp.setDisable(false);
+                    }
+                    
+                    if(rs.getInt("Oncology") == 0)
+                    {
+                        btnOncology.setDisable(true);
+                    }
+                    else
+                    {
+                        btnOncology.setDisable(false);
+                    }
+                    
+                    if(rs.getInt("Nonbed") == 0)
+                    {
+                        btnNonBed.setDisable(true);
+                    }
+                    else
+                    {
+                        btnNonBed.setDisable(false);
+                    }
+                }
+                c.close();
+            }
+            catch (SQLException e)
+            {
+
+            } 
+        }
+        
+    }
     
     
     
