@@ -82,34 +82,41 @@ public class BloodScreenDocumentController implements Initializable
     
     public void Go(String startTimeS, String endTimeS, int duration, String breakStartS, String breakEndS)
     {
-        if(!startTimeS.equals("00:00"))
+        System.out.println("INSIDE GO");
+        System.out.println(startTimeS);
+        System.out.println(endTimeS);
+        System.out.println(duration);
+        System.out.println(breakStartS);
+        System.out.println(breakEndS);
+        
+        LocalTime startTime = LocalTime.parse(startTimeS, DateTimeFormatter.ISO_LOCAL_TIME);
+        LocalTime endTime = LocalTime.parse(endTimeS, DateTimeFormatter.ISO_LOCAL_TIME);
+        LocalTime breakStart = LocalTime.parse(breakStartS, DateTimeFormatter.ISO_LOCAL_TIME);
+        LocalTime breakEnd = LocalTime.parse(breakEndS, DateTimeFormatter.ISO_LOCAL_TIME);
+        
+        System.out.println("CONVERSION");
+
+        blood x = new blood(null, startTime, "", "", "", "", "", "", "", "", 0);
+        previousTime = startTime;
+        allTimes.add(x);
+
+        while (previousTime != endTime && previousTime.compareTo(endTime)!= 1) 
         {
-            LocalTime startTime = LocalTime.parse(startTimeS, DateTimeFormatter.ISO_LOCAL_TIME);
-            LocalTime endTime = LocalTime.parse(endTimeS, DateTimeFormatter.ISO_LOCAL_TIME);
-            LocalTime breakStart = LocalTime.parse(breakStartS, DateTimeFormatter.ISO_LOCAL_TIME);
-            LocalTime breakEnd = LocalTime.parse(breakEndS, DateTimeFormatter.ISO_LOCAL_TIME);
+            previousTime = previousTime.plusMinutes(duration);
 
-            blood x = new blood(null, startTime, "", "", "", "", "", "", "", "", 0);
-            previousTime = startTime;
-            allTimes.add(x);
-
-            while (previousTime != endTime) 
+            if (previousTime.compareTo(breakStart) < 0) 
             {
-                previousTime = previousTime.plusMinutes(duration);
-
-                if (previousTime.compareTo(breakStart) < 0) 
-                {
-                    x = new blood(null, previousTime, "", "", "", "", "", "", "", "", 0);
-                    allTimes.add(x);
-                } 
-                else if (previousTime.compareTo(breakEnd) >= 0) 
-                {
-                    x = new blood(null, previousTime, "", "", "", "", "", "", "", "", 0);
-                    allTimes.add(x);
-                }
-
+                x = new blood(null, previousTime, "", "", "", "", "", "", "", "", 0);
+                allTimes.add(x);
+            } 
+            else if (previousTime.compareTo(breakEnd) >= 0) 
+            {
+                x = new blood(null, previousTime, "", "", "", "", "", "", "", "", 0);
+                allTimes.add(x);
             }
+
         }
+       
     }
     
     
@@ -189,7 +196,9 @@ public class BloodScreenDocumentController implements Initializable
 
                 if(rs.isBeforeFirst()) //found it by the date
                 {
+                    System.out.println("Found by date");
                     Go(rs.getString("Start"), rs.getString("End"), rs.getInt("Duration"), rs.getString("BreakStart"), rs.getString("BreakEnd"));
+                    System.out.println("Found by date - back");
                 }
                 else
                 {

@@ -753,8 +753,11 @@ public class SettingScreenDocumentController implements Initializable
 
             // when creating a statement object, you MUST use a connection object to call the instance method
             Statement stmt = c.createStatement();
+            
+            String sql = "DELETE FROM template WHERE Day='" + date + "'";
+            stmt.executeUpdate(sql);
 
-            String sql = "REPLACE INTO template (Day, Start, End, Duration, BreakStart, BreakEnd) VALUES ('" 
+            sql = "INSERT INTO template (Day, Start, End, Duration, BreakStart, BreakEnd) VALUES ('" 
                                                                                     + date + "','"
                                                                                     + txtAlterStart.getText() + "','"
                                                                                     + txtAlterEnd.getText() + "','"
