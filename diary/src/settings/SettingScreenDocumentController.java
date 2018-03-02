@@ -214,6 +214,12 @@ public class SettingScreenDocumentController implements Initializable
                         txtExtraLength.setText(rs.getString("Duration"));
                         txtExtraBreakStart.setText(rs.getString("BreakStart"));
                         txtExtraBreakEnd.setText(rs.getString("BreakEnd"));
+                        
+                        txtExtraStart.setEditable(false);
+                        txtExtraEnd.setEditable(false);
+                        txtExtraLength.setEditable(false);
+                        txtExtraBreakStart.setEditable(false);
+                        txtExtraBreakEnd.setEditable(false);
                     }
                     
                 }
@@ -267,6 +273,12 @@ public class SettingScreenDocumentController implements Initializable
                 txtExtraBreakStart.setText(rs.getString("BreakStart"));
                 txtExtraBreakEnd.setText(rs.getString("BreakEnd"));
                
+                txtExtraStart.setEditable(false);
+                txtExtraEnd.setEditable(false);
+                txtExtraLength.setEditable(false);
+                txtExtraBreakStart.setEditable(false);
+                txtExtraBreakEnd.setEditable(false);
+               
             }
             else
             {
@@ -281,18 +293,62 @@ public class SettingScreenDocumentController implements Initializable
                 {
                     sql = "SELECT * FROM template WHERE Day='" + day + "'";
                     rs = stmt.executeQuery(sql);
+                    
+                    LocalDate currentDate = codeBank.stringToDate(date);
 
-                    if(rs.next())
+                    while(rs.next())
                     {
-                        initiallyBlood = true;
-                        chbBlood.setSelected(true);
-                        paneBloodDetails.setVisible(true);
-                        txtExtraStart.setText(rs.getString("Start"));
-                        txtExtraEnd.setText(rs.getString("End"));
-                        txtExtraLength.setText(rs.getString("Duration"));
-                        txtExtraBreakStart.setText(rs.getString("BreakStart"));
-                        txtExtraBreakEnd.setText(rs.getString("BreakEnd"));
+
+                        String From = rs.getString("FromDate");
+                        String To = rs.getString("ToDate");
+
+                        if (To == null) 
+                        {
+                            LocalDate dateFrom = codeBank.stringToDate(From);
+                            if (currentDate.isAfter(dateFrom)) 
+                            {
+                                initiallyBlood = true;
+                                chbBlood.setSelected(true);
+                                paneBloodDetails.setVisible(true);
+                                txtExtraStart.setText(rs.getString("Start"));
+                                txtExtraEnd.setText(rs.getString("End"));
+                                txtExtraLength.setText(rs.getString("Duration"));
+                                txtExtraBreakStart.setText(rs.getString("BreakStart"));
+                                txtExtraBreakEnd.setText(rs.getString("BreakEnd"));
+                               
+                                txtExtraStart.setEditable(false);
+                                txtExtraEnd.setEditable(false);
+                                txtExtraLength.setEditable(false);
+                                txtExtraBreakStart.setEditable(false);
+                                txtExtraBreakEnd.setEditable(false);
+                                
+                            }
+                        } 
+                        else 
+                        {
+                            LocalDate dateFrom = codeBank.stringToDate(From);
+                            LocalDate dateTo = codeBank.stringToDate(To);
+
+                            if (currentDate.isBefore(dateTo) && (currentDate.isAfter(dateFrom) || currentDate.equals(dateFrom))) 
+                            {
+                                initiallyBlood = true;
+                                chbBlood.setSelected(true);
+                                paneBloodDetails.setVisible(true);
+                                txtExtraStart.setText(rs.getString("Start"));
+                                txtExtraEnd.setText(rs.getString("End"));
+                                txtExtraLength.setText(rs.getString("Duration"));
+                                txtExtraBreakStart.setText(rs.getString("BreakStart"));
+                                txtExtraBreakEnd.setText(rs.getString("BreakEnd"));
+                                
+                                txtExtraStart.setEditable(false);
+                                txtExtraEnd.setEditable(false);
+                                txtExtraLength.setEditable(false);
+                                txtExtraBreakStart.setEditable(false);
+                                txtExtraBreakEnd.setEditable(false);
+                            }
+                        }
                     }
+                       
                 }
             }
             c.close();
@@ -371,8 +427,8 @@ public class SettingScreenDocumentController implements Initializable
                     }
                     else
                     {
-                        sql = "DELETE FROM blood WHERE Date ='" + date + "'";
-                        stmt.executeUpdate(sql);
+                        //sql = "DELETE FROM blood WHERE Date ='" + date + "'";
+                        //stmt.executeUpdate(sql);
                     }
                     
                     c.close();
@@ -630,6 +686,12 @@ public class SettingScreenDocumentController implements Initializable
         txtExtraLength.setText("");
         txtExtraBreakStart.setText("");
         txtExtraBreakEnd.setText("");
+        
+        txtExtraStart.setEditable(true);
+        txtExtraEnd.setEditable(true);
+        txtExtraLength.setEditable(true);
+        txtExtraBreakStart.setEditable(true);
+        txtExtraBreakEnd.setEditable(true);
     }
     
     
@@ -664,10 +726,11 @@ public class SettingScreenDocumentController implements Initializable
             Statement stmt = c.createStatement();
             ResultSet rs;
             
+            //Get the templates by date
             String sql = "SELECT * FROM template WHERE Day='" + date + "'";
             rs = stmt.executeQuery(sql);
             
-            if(rs.next())
+            if(rs.next()) //found the date so show it
             {
                 
                 txtAlterStart.setText(rs.getString("Start"));
@@ -678,9 +741,9 @@ public class SettingScreenDocumentController implements Initializable
             }
             else
             {
-                rs = stmt.executeQuery("SELECT * FROM extra WHERE Date='" + date + "'");
+                rs = stmt.executeQuery("SELECT * FROM extra WHERE Date='" + date + "'"); //get the date from template 
             
-                if(rs.isBeforeFirst() && rs.getInt("Blood") == 0) //in extra with a 0
+                if(rs.isBeforeFirst() && rs.getInt("Blood") == 0) //If blood is 0 in extra, hide everything (data in extra, blood = 0)
                 {
                         lblNoClinic.setVisible(true);
                         txtAlterStart.setVisible(false);
@@ -690,20 +753,14 @@ public class SettingScreenDocumentController implements Initializable
                         txtAlterBreakEnd.setVisible(false);
                 }
 
-                if((rs.isBeforeFirst() && rs.getInt("Blood")==1) || !rs.isBeforeFirst()) //if has data and blood is 1 OR no data 
+                if((rs.isBeforeFirst() && rs.getInt("Blood")==1) || !rs.isBeforeFirst()) //if data in extra and blood = 1 OR no data in extra
                 {
-                    sql = "SELECT * FROM template WHERE Day='" + day + "'";
+                    sql = "SELECT * FROM template WHERE Day='" + day + "'"; //get the day from template 
                     rs = stmt.executeQuery(sql);
+                    
+                    LocalDate currentDate = codeBank.stringToDate(date);
 
-                    if(rs.next())
-                    {
-                        txtAlterStart.setText(rs.getString("Start"));
-                        txtAlterEnd.setText(rs.getString("End"));
-                        txtAlterLength.setText(rs.getString("Duration"));
-                        txtAlterBreakStart.setText(rs.getString("BreakStart"));
-                        txtAlterBreakEnd.setText(rs.getString("BreakEnd"));
-                    }
-                    else
+                    if(!rs.isBeforeFirst()) //If no data for that day 
                     {
                         lblNoClinic.setVisible(true);
                         txtAlterStart.setVisible(false);
@@ -711,8 +768,44 @@ public class SettingScreenDocumentController implements Initializable
                         txtAlterLength.setVisible(false);
                         txtAlterBreakStart.setVisible(false);
                         txtAlterBreakEnd.setVisible(false);
-
                     }
+                    
+                    while(rs.next()) //If there are multiple templates for that day, look at dates 
+                    {
+                        String From = rs.getString("FromDate");
+                        String To = rs.getString("ToDate");
+
+                        if (To == null) //if no To date it is the current, active template 
+                        {
+                            LocalDate dateFrom = codeBank.stringToDate(From);
+                            if (currentDate.isAfter(dateFrom)) //Checking the date is after the From date - make sure in rnage 
+                            {
+                                txtAlterStart.setText(rs.getString("Start"));
+                                txtAlterEnd.setText(rs.getString("End"));
+                                txtAlterLength.setText(rs.getString("Duration"));
+                                txtAlterBreakStart.setText(rs.getString("BreakStart"));
+                                txtAlterBreakEnd.setText(rs.getString("BreakEnd"));
+                            }
+                        } 
+                        else //If there is a To date, checks the range 
+                        {
+                            LocalDate dateFrom = codeBank.stringToDate(From);
+                            LocalDate dateTo = codeBank.stringToDate(To);
+
+                            //Current BEFORE TO
+                            //Current AFTER FROM   OR   Current == FROM
+                            if (currentDate.isBefore(dateTo) && (currentDate.isAfter(dateFrom) || currentDate.equals(dateFrom))) 
+                            {
+                                lblNoClinic.setVisible(false);
+                                txtAlterStart.setVisible(true);
+                                txtAlterEnd.setVisible(true);
+                                txtAlterLength.setVisible(true);
+                                txtAlterBreakStart.setVisible(true);
+                                txtAlterBreakEnd.setVisible(true);
+                            }
+                        }
+                    }
+                   
                 }
             }
             c.close();
