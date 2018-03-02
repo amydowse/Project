@@ -678,26 +678,41 @@ public class SettingScreenDocumentController implements Initializable
             }
             else
             {
-                sql = "SELECT * FROM template WHERE Day='" + day + "'";
-                rs = stmt.executeQuery(sql);
+                rs = stmt.executeQuery("SELECT * FROM extra WHERE Date='" + date + "'");
             
-                if(rs.next())
+                if(rs.isBeforeFirst() && rs.getInt("Blood") == 0) //in extra with a 0
                 {
-                    txtAlterStart.setText(rs.getString("Start"));
-                    txtAlterEnd.setText(rs.getString("End"));
-                    txtAlterLength.setText(rs.getString("Duration"));
-                    txtAlterBreakStart.setText(rs.getString("BreakStart"));
-                    txtAlterBreakEnd.setText(rs.getString("BreakEnd"));
+                        lblNoClinic.setVisible(true);
+                        txtAlterStart.setVisible(false);
+                        txtAlterEnd.setVisible(false);
+                        txtAlterLength.setVisible(false);
+                        txtAlterBreakStart.setVisible(false);
+                        txtAlterBreakEnd.setVisible(false);
                 }
-                else
+
+                if((rs.isBeforeFirst() && rs.getInt("Blood")==1) || !rs.isBeforeFirst()) //if has data and blood is 1 OR no data 
                 {
-                    lblNoClinic.setVisible(true);
-                    txtAlterStart.setVisible(false);
-                    txtAlterEnd.setVisible(false);
-                    txtAlterLength.setVisible(false);
-                    txtAlterBreakStart.setVisible(false);
-                    txtAlterBreakEnd.setVisible(false);
-                    
+                    sql = "SELECT * FROM template WHERE Day='" + day + "'";
+                    rs = stmt.executeQuery(sql);
+
+                    if(rs.next())
+                    {
+                        txtAlterStart.setText(rs.getString("Start"));
+                        txtAlterEnd.setText(rs.getString("End"));
+                        txtAlterLength.setText(rs.getString("Duration"));
+                        txtAlterBreakStart.setText(rs.getString("BreakStart"));
+                        txtAlterBreakEnd.setText(rs.getString("BreakEnd"));
+                    }
+                    else
+                    {
+                        lblNoClinic.setVisible(true);
+                        txtAlterStart.setVisible(false);
+                        txtAlterEnd.setVisible(false);
+                        txtAlterLength.setVisible(false);
+                        txtAlterBreakStart.setVisible(false);
+                        txtAlterBreakEnd.setVisible(false);
+
+                    }
                 }
             }
             c.close();
