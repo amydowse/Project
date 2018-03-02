@@ -78,6 +78,47 @@ public class BloodScreenDocumentController implements Initializable
         showInformation();
     }
     
+    
+    
+    public void Go(String startTimeS, String endTimeS, int duration, String breakStartS, String breakEndS)
+    {
+        if(!startTimeS.equals("00:00"))
+        {
+            LocalTime startTime = LocalTime.parse(startTimeS, DateTimeFormatter.ISO_LOCAL_TIME);
+            LocalTime endTime = LocalTime.parse(endTimeS, DateTimeFormatter.ISO_LOCAL_TIME);
+            LocalTime breakStart = LocalTime.parse(breakStartS, DateTimeFormatter.ISO_LOCAL_TIME);
+            LocalTime breakEnd = LocalTime.parse(breakEndS, DateTimeFormatter.ISO_LOCAL_TIME);
+
+            blood x = new blood(null, startTime, "", "", "", "", "", "", "", "", 0);
+            previousTime = startTime;
+            allTimes.add(x);
+
+            while (previousTime != endTime) 
+            {
+                previousTime = previousTime.plusMinutes(duration);
+
+                if (previousTime.compareTo(breakStart) < 0) 
+                {
+                    x = new blood(null, previousTime, "", "", "", "", "", "", "", "", 0);
+                    allTimes.add(x);
+                } 
+                else if (previousTime.compareTo(breakEnd) >= 0) 
+                {
+                    x = new blood(null, previousTime, "", "", "", "", "", "", "", "", 0);
+                    allTimes.add(x);
+                }
+
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     public void showInformation()
     {
         cbStaff.getItems().clear();
@@ -139,51 +180,42 @@ public class BloodScreenDocumentController implements Initializable
             if(!rs.isBeforeFirst())
             {
                 rs = stmt.executeQuery("SELECT * FROM template WHERE Day = '" + day + "'" );
-            }
-            
-            if(!rs.getString("Start").equals("00:00"))
-            {
+                
                 while(rs.next())
                 {
-                    String startTimeS = rs.getString("Start");
-                    LocalTime startTime = LocalTime.parse(startTimeS, DateTimeFormatter.ISO_LOCAL_TIME);
-
-                    String endTimeS = rs.getString("End");
-                    LocalTime endTime = LocalTime.parse(endTimeS, DateTimeFormatter.ISO_LOCAL_TIME);
-
-                    String durationS = rs.getString("Duration");
-                    int duration = Integer.parseInt(durationS);
-
-                    String breakStartS = rs.getString("BreakStart");
-                    LocalTime breakStart = LocalTime.parse(breakStartS, DateTimeFormatter.ISO_LOCAL_TIME);
-
-                    String breakEndS = rs.getString("BreakEnd");
-                    LocalTime breakEnd = LocalTime.parse(breakEndS, DateTimeFormatter.ISO_LOCAL_TIME);
-
-                    blood x = new blood(null, startTime, "", "", "", "", "", "", "", "", 0); 
-                    previousTime = startTime;
-                    allTimes.add(x);
-
-                    while(previousTime != endTime)
+                    String From = rs.getString("From");
+                    String To = rs.getString("To");
+                    
+                    System.out.println("FROM>>>> " + From);
+                    System.out.println("TO>>>> " + To);
+                   
+                    if(To == null)
                     {
-                        previousTime = previousTime.plusMinutes(duration);
-
-                        if(previousTime.compareTo(breakStart) < 0)
+                        LocalDate dateFrom = codeBank.stringToDate(From);
+                        if(currentDate.isAfter(dateFrom))
                         {
-                            x = new blood(null, previousTime, "", "", "", "", "", "", "", "", 0); 
-                            allTimes.add(x);
+                            Go(rs.getString("Start"), rs.getString("End"), rs.getInt("Duration"), rs.getString("BreakStart"), rs.getString("BreakEnd"));
                         }
-                        else if (previousTime.compareTo(breakEnd) >= 0)
+                    }
+                    else
+                    {
+                        LocalDate dateFrom = codeBank.stringToDate(From);
+                        LocalDate dateTo = codeBank.stringToDate(To);
+                        
+                        if(currentDate.isBefore(dateTo) && currentDate.isAfter(dateFrom))
                         {
-                            x = new blood(null, previousTime, "", "", "", "", "", "", "", "", 0); 
-                            allTimes.add(x);
+                            Go(rs.getString("Start"), rs.getString("End"), rs.getInt("Duration"), rs.getString("BreakStart"), rs.getString("BreakEnd"));
                         }
-
                     }
                 }
             }
+            else
+            {
+                Go(rs.getString("Start"), rs.getString("End"), rs.getInt("Duration"), rs.getString("BreakStart"), rs.getString("BreakEnd"));
+            }
+            c.close();
         }
-        catch(SQLException e)
+        catch (SQLException e)
         {
         }
                 
