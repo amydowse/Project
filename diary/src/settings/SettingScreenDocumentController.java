@@ -112,6 +112,7 @@ public class SettingScreenDocumentController implements Initializable
     
     
     ArrayList<String> week = new ArrayList<String>();
+    ArrayList<String> toDelete = new ArrayList<String>();
        
     @Override
     public void initialize(URL url, ResourceBundle rb) 
@@ -416,20 +417,20 @@ public class SettingScreenDocumentController implements Initializable
                     Connection c = DatabaseConnector.activateConnection();
                     c.setAutoCommit(true);
                     Statement stmt = c.createStatement();
-
+                    
+                    
                     String sql = "DELETE FROM template WHERE Day ='" + date + "'";
                     int result = stmt.executeUpdate(sql);
-                    
-                    if(result ==0)
+                                        
+                    //if day is a template day 
+                    if(templateDay(day))
                     {
                         sql = "INSERT INTO extra VALUES ('" + date + "', '1', '0', '1', '1', '1')";
                         stmt.executeUpdate(sql);
                     }
-                    else
-                    {
-                        //sql = "DELETE FROM blood WHERE Date ='" + date + "'";
-                        //stmt.executeUpdate(sql);
-                    }
+                    
+                    sql = "DELETE FROM blood WHERE Date ='" + date + "'";
+                    stmt.executeUpdate(sql);
                     
                     c.close();
 
@@ -441,7 +442,7 @@ public class SettingScreenDocumentController implements Initializable
             }
             
         }
-        else
+        else  //weekend 
         {
             int surgery = 0;
             int blood = 0;
@@ -453,7 +454,11 @@ public class SettingScreenDocumentController implements Initializable
             {
                 surgery = 1;
             }
-            
+            else
+            {
+                toDelete.add("DELETE FROM diary WHERE Date ='" + date + "'");
+            }
+                        
             if(chbBlood.isSelected())
             {
                 blood = 1;
@@ -468,17 +473,30 @@ public class SettingScreenDocumentController implements Initializable
             {
                 preop = 1;
             }
+            else
+            {
+                toDelete.add("DELETE FROM preop WHERE Date ='" + date + "'");
+            }
+                
             
             if(chbOncology.isSelected())
             {
                 oncology = 1;
+            }
+            else
+            {
+                toDelete.add("DELETE FROM oncology WHERE Date ='" + date + "'");
             }
             
             if(chbNonbed.isSelected())
             {
                 nonbed = 1;
             }
-            
+            else
+            {
+                toDelete.add("DELETE FROM nonbed WHERE Date ='" + date + "'");
+
+            }
             
             try
             {
@@ -486,7 +504,14 @@ public class SettingScreenDocumentController implements Initializable
                 c.setAutoCommit(true);
                 Statement stmt = c.createStatement();
 
-                String sql = "REPLACE INTO extra (Date, Surgery, Blood, Preop, Oncology, Nonbed) VALUES ('" 
+                if(surgery==0 & blood==0 & preop==0 & oncology==0 & nonbed==0)
+                {
+                    String sql = "DELETE FROM extra WHERE Date='" + date + "'";
+                    stmt.executeUpdate(sql);
+                }
+                else
+                {
+                    String sql = "REPLACE INTO extra (Date, Surgery, Blood, Preop, Oncology, Nonbed) VALUES ('" 
                                                                                         + date + "','"
                                                                                         + surgery + "','"
                                                                                         + blood + "','"
@@ -494,7 +519,15 @@ public class SettingScreenDocumentController implements Initializable
                                                                                         + oncology + "','"
                                                                                         + nonbed + "')";
                     
-                stmt.executeUpdate(sql);
+                    stmt.executeUpdate(sql);
+                }
+                
+                
+                for(int i=0; i<toDelete.size(); i++)
+                {
+                    stmt.executeUpdate(toDelete.get(i));
+                }
+                
                 c.close();
 
             }
@@ -506,6 +539,41 @@ public class SettingScreenDocumentController implements Initializable
         }
         
     }
+    
+    public boolean templateDay(String day)
+    {
+        boolean answer = false;
+        try 
+        {
+            Connection c = DatabaseConnector.activateConnection();
+            c.setAutoCommit(true);
+            Statement stmt = c.createStatement();
+            ResultSet rs;
+
+            String sql = "SELECT Day FROM template WHERE ToDate IS NULL";
+            rs = stmt.executeQuery(sql);
+            
+            while(rs.next())
+            {
+                System.out.println(">>>>>>>>>>> " + rs.getString("Day"));
+                System.out.println(day);
+                if(rs.getString("Day").equals(day))
+                {
+                    answer = true;
+                }
+            }
+            c.close();
+        } 
+        catch (SQLException e) 
+        {
+            Logger.getLogger(SettingScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return answer;
+    }
+    
+    
+    
+    
     
     public void addBlood()
     {
@@ -557,81 +625,81 @@ public class SettingScreenDocumentController implements Initializable
     
     
     
-    
-    @FXML
-    public void deleteExtra()
-    {
-        LocalDate selected = extraListDate.getValue();
-        String day = selected.getDayOfWeek().name();
-        String date = codeBank.dateToString(selected);
-       
-        if(day.equals("MONDAY") || day.equals("TUESDAY") || day.equals("WEDNESDAY") || day.equals("THURSDAY") || day.equals("FRIDAY"))
-        {
-            try 
-            {
-                Connection c = DatabaseConnector.activateConnection();
-                c.setAutoCommit(true);
-                Statement stmt = c.createStatement();
-
-                String sql = "DELETE FROM template WHERE Day ='" + date + "'";
-                int result = stmt.executeUpdate(sql);
-                
-                if (result == 0) 
-                {
-                    sql = "INSERT INTO extra VALUES ('" + date + "', '1', '0', '1', '1', '1')";
-                    stmt.executeUpdate(sql);
-                } 
-                else 
-                {
-                    sql = "DELETE FROM blood WHERE Date ='" + date + "'";
-                    stmt.executeUpdate(sql);
-                }
-            } 
-            catch (SQLException e) 
-            {
-                Logger.getLogger(SettingScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
-            }
-        }
-        else
-        {
-            try 
-            {
-                // open a connection
-                Connection c = DatabaseConnector.activateConnection();
-                c.setAutoCommit(true);
-
-                // when creating a statement object, you MUST use a connection object to call the instance method
-                Statement stmt = c.createStatement();
-
-                String sql = "DELETE FROM template WHERE Day ='" + date + "'";
-                stmt.executeUpdate(sql);
-                
-                sql = "DELETE FROM blood WHERE Date ='" + date + "'";
-                stmt.executeUpdate(sql);
-                
-                sql = "DELETE FROM diary WHERE Date ='" + date + "'";
-                stmt.executeUpdate(sql);
-                
-                sql = "DELETE FROM preop WHERE Date ='" + date + "'";
-                stmt.executeUpdate(sql);
-                
-                sql = "DELETE FROM oncology WHERE Date ='" + date + "'";
-                stmt.executeUpdate(sql);
-                
-                sql = "DELETE FROM nonbed WHERE Date ='" + date + "'";
-                stmt.executeUpdate(sql);
-                
-                sql = "DELETE FROM extra WHERE Date ='" + date + "'";
-                stmt.executeUpdate(sql);
-
-                c.close();
-            } 
-            catch (SQLException e) 
-            {
-                Logger.getLogger(SettingScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
-            }
-        }
-    }
+//    
+//    @FXML
+//    public void deleteExtra()
+//    {
+//        LocalDate selected = extraListDate.getValue();
+//        String day = selected.getDayOfWeek().name();
+//        String date = codeBank.dateToString(selected);
+//       
+//        if(day.equals("MONDAY") || day.equals("TUESDAY") || day.equals("WEDNESDAY") || day.equals("THURSDAY") || day.equals("FRIDAY"))
+//        {
+//            try 
+//            {
+//                Connection c = DatabaseConnector.activateConnection();
+//                c.setAutoCommit(true);
+//                Statement stmt = c.createStatement();
+//
+//                String sql = "DELETE FROM template WHERE Day ='" + date + "'";
+//                int result = stmt.executeUpdate(sql);
+//                
+//                if (result == 0) 
+//                {
+//                    sql = "INSERT INTO extra VALUES ('" + date + "', '1', '0', '1', '1', '1')";
+//                    stmt.executeUpdate(sql);
+//                } 
+//                else 
+//                {
+//                    sql = "DELETE FROM blood WHERE Date ='" + date + "'";
+//                    stmt.executeUpdate(sql);
+//                }
+//            } 
+//            catch (SQLException e) 
+//            {
+//                Logger.getLogger(SettingScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
+//            }
+//        }
+//        else
+//        {
+//            try 
+//            {
+//                // open a connection
+//                Connection c = DatabaseConnector.activateConnection();
+//                c.setAutoCommit(true);
+//
+//                // when creating a statement object, you MUST use a connection object to call the instance method
+//                Statement stmt = c.createStatement();
+//
+//                String sql = "DELETE FROM template WHERE Day ='" + date + "'";
+//                stmt.executeUpdate(sql);
+//                
+//                sql = "DELETE FROM blood WHERE Date ='" + date + "'";
+//                stmt.executeUpdate(sql);
+//                
+//                sql = "DELETE FROM diary WHERE Date ='" + date + "'";
+//                stmt.executeUpdate(sql);
+//                
+//                sql = "DELETE FROM preop WHERE Date ='" + date + "'";
+//                stmt.executeUpdate(sql);
+//                
+//                sql = "DELETE FROM oncology WHERE Date ='" + date + "'";
+//                stmt.executeUpdate(sql);
+//                
+//                sql = "DELETE FROM nonbed WHERE Date ='" + date + "'";
+//                stmt.executeUpdate(sql);
+//                
+//                sql = "DELETE FROM extra WHERE Date ='" + date + "'";
+//                stmt.executeUpdate(sql);
+//
+//                c.close();
+//            } 
+//            catch (SQLException e) 
+//            {
+//                Logger.getLogger(SettingScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
+//            }
+//        }
+//    }
     
     
     
@@ -666,6 +734,8 @@ public class SettingScreenDocumentController implements Initializable
     public void clearAllExtra()
     {
         initiallyBlood = false;
+        
+        toDelete.clear();
         
         chbSurgery.setSelected(false);
         chbBlood.setSelected(false);

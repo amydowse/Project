@@ -101,7 +101,7 @@
                </font>
             </Label>
             <Button fx:id="btnSaveExtra" layoutX="722.0" layoutY="874.0" mnemonicParsing="false" onAction="#saveExtra" prefHeight="54.0" prefWidth="90.0" text="SAVE" />
-            <Button fx:id="btnDeleteExtra" layoutX="597.0" layoutY="874.0" mnemonicParsing="false" onAction="#deleteExtra" prefHeight="54.0" prefWidth="90.0" text="DELETE" />
+           
          </children>
       </Pane>
       
