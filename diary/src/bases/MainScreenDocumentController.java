@@ -259,7 +259,7 @@ public class MainScreenDocumentController implements Initializable
             String date = codeBank.dateToString(codeBank.getCurrentDate());
             
             rs = stmt.executeQuery("SELECT * FROM template WHERE Day ='" + date + "'");
-            if(rs.next())
+            if(rs.next()) //Has the date in the template
             {
                 if(!rs.getString("Start").equals("00:00"))
                 {
@@ -268,11 +268,11 @@ public class MainScreenDocumentController implements Initializable
 
                     while(rs.next())
                     { 
-                        btnBlood.setText("Blood Clinic\n\n"+rs.getInt("total") + " booked");
+                        btnBlood.setText("Blood Clinic\n\n"+rs.getInt("total") + " booked"); //shows the number of appointments 
                     }
                     c.close();
                 }
-                else
+                else //template removed 
                 {
                     btnBlood.setText("Blood Clinic\n\nNO CLINIC");
                 }
@@ -280,8 +280,14 @@ public class MainScreenDocumentController implements Initializable
             else
             {
                 rs = stmt.executeQuery("SELECT * FROM template WHERE Day ='" + day + "'");
-                if(rs.next())
+                while (rs.next())
                 {
+                    
+                    rs = stmt.executeQuery("SELECT * FROM template WHERE Day ='" + day + "'");
+                    if(rs.next())
+                    {
+                    }
+                    
                     //implement query
                     rs = stmt.executeQuery("SELECT count(*) AS total FROM blood WHERE Date ='" + date + "'"); 
 
@@ -291,10 +297,7 @@ public class MainScreenDocumentController implements Initializable
                     }
                     c.close();
                 }
-                else
-                {
-                    btnBlood.setText("Blood Clinic\n\nNO CLINIC");
-                }
+                
             }
             
             c.close();

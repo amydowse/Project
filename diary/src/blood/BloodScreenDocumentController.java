@@ -162,64 +162,82 @@ public class BloodScreenDocumentController implements Initializable
         tblColPrevious.setEditable(true);
         tblColBooked.setEditable(true);
          
+        //Showing all of the times 
         try
         {
             Connection c = DatabaseConnector.activateConnection();
             c.setAutoCommit( true ); 
             ResultSet rs ;
-            Statement stmt = c.createStatement();    
+            Statement stmt = c.createStatement(); 
             
             //make localdate into string
             LocalDate currentDate = codeBank.getCurrentDate();
             String day = currentDate.getDayOfWeek().name();
             String date = codeBank.dateToString(currentDate);
             
-            //implement query
-            rs = stmt.executeQuery("SELECT * FROM template WHERE Day = '" + date + "'" );
+            rs = stmt.executeQuery("SELECT * FROM extra WHERE Date='" + date + "'");
             
-            if(!rs.isBeforeFirst())
+            if(rs.isBeforeFirst() && rs.getInt("Blood") == 0) //in extra with a 0
             {
-                rs = stmt.executeQuery("SELECT * FROM template WHERE Day = '" + day + "'" );
-                
-                while(rs.next())
+                //no clinic
+            }
+            
+            if((rs.isBeforeFirst() && rs.getInt("Blood")==1) || !rs.isBeforeFirst()) //if has data and blood is 1 OR no data 
+            {
+                //implement query
+                rs = stmt.executeQuery("SELECT * FROM template WHERE Day = '" + date + "'" );
+
+                if(rs.isBeforeFirst()) //found it by the date
                 {
-                    String From = rs.getString("From");
-                    String To = rs.getString("To");
+                    Go(rs.getString("Start"), rs.getString("End"), rs.getInt("Duration"), rs.getString("BreakStart"), rs.getString("BreakEnd"));
+                }
+                else
+                {
+                    rs = stmt.executeQuery("SELECT * FROM template WHERE Day = '" + day + "'" ); 
                     
-                    System.out.println("FROM>>>> " + From);
-                    System.out.println("TO>>>> " + To);
-                   
-                    if(To == null)
+                    if(rs.isBeforeFirst())//found it by the day
                     {
-                        LocalDate dateFrom = codeBank.stringToDate(From);
-                        if(currentDate.isAfter(dateFrom))
+                        while(rs.next())
                         {
-                            Go(rs.getString("Start"), rs.getString("End"), rs.getInt("Duration"), rs.getString("BreakStart"), rs.getString("BreakEnd"));
+                            String From = rs.getString("FromDate");
+                            String To = rs.getString("ToDate");
+
+                            if(To == null)
+                            {
+                                LocalDate dateFrom = codeBank.stringToDate(From);
+                                if(currentDate.isAfter(dateFrom))
+                                {
+                                    Go(rs.getString("Start"), rs.getString("End"), rs.getInt("Duration"), rs.getString("BreakStart"), rs.getString("BreakEnd"));
+                                }
+                            }
+                            else
+                            {
+                                LocalDate dateFrom = codeBank.stringToDate(From);
+                                LocalDate dateTo = codeBank.stringToDate(To);
+    
+                                if(currentDate.isBefore(dateTo) && (currentDate.isAfter(dateFrom)||currentDate.equals(dateFrom)))
+                                {
+                                    Go(rs.getString("Start"), rs.getString("End"), rs.getInt("Duration"), rs.getString("BreakStart"), rs.getString("BreakEnd"));
+                                }
+                            }
                         }
                     }
                     else
                     {
-                        LocalDate dateFrom = codeBank.stringToDate(From);
-                        LocalDate dateTo = codeBank.stringToDate(To);
-                        
-                        if(currentDate.isBefore(dateTo) && currentDate.isAfter(dateFrom))
-                        {
-                            Go(rs.getString("Start"), rs.getString("End"), rs.getInt("Duration"), rs.getString("BreakStart"), rs.getString("BreakEnd"));
-                        }
+                        //No clinic
                     }
                 }
-            }
-            else
-            {
-                Go(rs.getString("Start"), rs.getString("End"), rs.getInt("Duration"), rs.getString("BreakStart"), rs.getString("BreakEnd"));
             }
             c.close();
         }
         catch (SQLException e)
         {
-        }
                 
+        }
+ 
         
+        
+        //Showing the appointments 
         try
         {
             Connection c = DatabaseConnector.activateConnection();
