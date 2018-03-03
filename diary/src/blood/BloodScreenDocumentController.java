@@ -81,21 +81,12 @@ public class BloodScreenDocumentController implements Initializable
     
     
     public void Go(String startTimeS, String endTimeS, int duration, String breakStartS, String breakEndS)
-    {
-        System.out.println("INSIDE GO");
-        System.out.println(startTimeS);
-        System.out.println(endTimeS);
-        System.out.println(duration);
-        System.out.println(breakStartS);
-        System.out.println(breakEndS);
-        
+    {        
         LocalTime startTime = LocalTime.parse(startTimeS, DateTimeFormatter.ISO_LOCAL_TIME);
         LocalTime endTime = LocalTime.parse(endTimeS, DateTimeFormatter.ISO_LOCAL_TIME);
         LocalTime breakStart = LocalTime.parse(breakStartS, DateTimeFormatter.ISO_LOCAL_TIME);
         LocalTime breakEnd = LocalTime.parse(breakEndS, DateTimeFormatter.ISO_LOCAL_TIME);
         
-        System.out.println("CONVERSION");
-
         blood x = new blood(null, startTime, "", "", "", "", "", "", "", "", 0);
         previousTime = startTime;
         allTimes.add(x);

@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -369,7 +370,54 @@ public class SettingScreenDocumentController implements Initializable
     
     //SAVING--------------------------------------------------------------------------------------
         
+    public boolean allOk()
+    {
+        LocalTime start = LocalTime.parse(txtExtraStart.getText());
+        LocalTime end = LocalTime.parse(txtExtraEnd.getText());
+        LocalTime breakStart = LocalTime.parse(txtExtraBreakStart.getText());
+        LocalTime breakEnd = LocalTime.parse(txtExtraBreakEnd.getText());
+
+        if (start.isBefore(end)) 
+        {
+            if (breakStart.isBefore(breakEnd)) 
+            {
+                if (breakStart.isAfter(start) && breakEnd.isBefore(end)) 
+                {
+                    return true;
+                }
+            }
+        }
+         
+        return false;
+    }
     
+    
+    @FXML
+    public void saveExtraCheck()
+    {
+        if(codeBank.checkInteger(txtExtraLength.getText()))
+        {
+            if(codeBank.checkTime(txtExtraStart.getText()) && codeBank.checkTime(txtExtraEnd.getText()) && codeBank.checkTime(txtExtraBreakStart.getText()) && codeBank.checkTime(txtExtraBreakEnd.getText()))
+            {   
+                if(allOk())
+                {
+                    saveExtra();
+                }
+                else
+                {
+                    codeBank.timeError();
+                }
+            }
+            else
+            {
+                codeBank.timeOrderError();
+            }
+        }
+        else
+        {
+            codeBank.integerError();
+        }
+    }
     
     public void saveExtra()
     {
@@ -555,8 +603,6 @@ public class SettingScreenDocumentController implements Initializable
             
             while(rs.next())
             {
-                System.out.println(">>>>>>>>>>> " + rs.getString("Day"));
-                System.out.println(day);
                 if(rs.getString("Day").equals(day))
                 {
                     answer = true;
@@ -609,97 +655,6 @@ public class SettingScreenDocumentController implements Initializable
         }
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-   
-    
-    
-    
-    
-//    
-//    @FXML
-//    public void deleteExtra()
-//    {
-//        LocalDate selected = extraListDate.getValue();
-//        String day = selected.getDayOfWeek().name();
-//        String date = codeBank.dateToString(selected);
-//       
-//        if(day.equals("MONDAY") || day.equals("TUESDAY") || day.equals("WEDNESDAY") || day.equals("THURSDAY") || day.equals("FRIDAY"))
-//        {
-//            try 
-//            {
-//                Connection c = DatabaseConnector.activateConnection();
-//                c.setAutoCommit(true);
-//                Statement stmt = c.createStatement();
-//
-//                String sql = "DELETE FROM template WHERE Day ='" + date + "'";
-//                int result = stmt.executeUpdate(sql);
-//                
-//                if (result == 0) 
-//                {
-//                    sql = "INSERT INTO extra VALUES ('" + date + "', '1', '0', '1', '1', '1')";
-//                    stmt.executeUpdate(sql);
-//                } 
-//                else 
-//                {
-//                    sql = "DELETE FROM blood WHERE Date ='" + date + "'";
-//                    stmt.executeUpdate(sql);
-//                }
-//            } 
-//            catch (SQLException e) 
-//            {
-//                Logger.getLogger(SettingScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
-//            }
-//        }
-//        else
-//        {
-//            try 
-//            {
-//                // open a connection
-//                Connection c = DatabaseConnector.activateConnection();
-//                c.setAutoCommit(true);
-//
-//                // when creating a statement object, you MUST use a connection object to call the instance method
-//                Statement stmt = c.createStatement();
-//
-//                String sql = "DELETE FROM template WHERE Day ='" + date + "'";
-//                stmt.executeUpdate(sql);
-//                
-//                sql = "DELETE FROM blood WHERE Date ='" + date + "'";
-//                stmt.executeUpdate(sql);
-//                
-//                sql = "DELETE FROM diary WHERE Date ='" + date + "'";
-//                stmt.executeUpdate(sql);
-//                
-//                sql = "DELETE FROM preop WHERE Date ='" + date + "'";
-//                stmt.executeUpdate(sql);
-//                
-//                sql = "DELETE FROM oncology WHERE Date ='" + date + "'";
-//                stmt.executeUpdate(sql);
-//                
-//                sql = "DELETE FROM nonbed WHERE Date ='" + date + "'";
-//                stmt.executeUpdate(sql);
-//                
-//                sql = "DELETE FROM extra WHERE Date ='" + date + "'";
-//                stmt.executeUpdate(sql);
-//
-//                c.close();
-//            } 
-//            catch (SQLException e) 
-//            {
-//                Logger.getLogger(SettingScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
-//            }
-//        }
-//    }
     
     
     
@@ -903,6 +858,55 @@ public class SettingScreenDocumentController implements Initializable
     }
     
     @FXML
+    public void saveAlterCheck()
+    {
+        if(codeBank.checkInteger(txtAlterLength.getText()))
+        {
+            if(codeBank.checkTime(txtAlterStart.getText()) && codeBank.checkTime(txtAlterEnd.getText()) && codeBank.checkTime(txtAlterBreakStart.getText()) && codeBank.checkTime(txtAlterBreakEnd.getText()))
+            {
+                if(allOkAlter())
+                {
+                    saveAlter();
+                }
+                else
+                {
+                    codeBank.timeError();
+                }
+            }
+            else
+            {
+                codeBank.timeOrderError();
+            }
+        }
+        else
+        {
+            codeBank.integerError();
+        }
+    }
+    
+     public boolean allOkAlter()
+    {
+        LocalTime start = LocalTime.parse(txtAlterStart.getText());
+        LocalTime end = LocalTime.parse(txtAlterEnd.getText());
+        LocalTime breakStart = LocalTime.parse(txtAlterBreakStart.getText());
+        LocalTime breakEnd = LocalTime.parse(txtAlterBreakEnd.getText());
+
+        if (start.isBefore(end)) 
+        {
+            if (breakStart.isBefore(breakEnd)) 
+            {
+                if (breakStart.isAfter(start) && breakEnd.isBefore(end)) 
+                {
+                    return true;
+                }
+            }
+        }
+         
+        return false;
+    }
+    
+    
+    
     public void saveAlter()
     {
         LocalDate selected = alterDate.getValue();
@@ -1013,6 +1017,54 @@ public class SettingScreenDocumentController implements Initializable
     }
     
     @FXML
+    public void saveTemplateCheck()
+    {
+        if(codeBank.checkInteger(txtTempLength.getText()))
+        {
+            if(codeBank.checkTime(txtTempStart.getText()) && codeBank.checkTime(txtTempEnd.getText()) && codeBank.checkTime(txtTempBreakStart.getText()) && codeBank.checkTime(txtTempBreakEnd.getText()))
+            {   
+                if(allOkTemp())
+                {
+                    saveTemplate();
+                }
+                else
+                {
+                    codeBank.timeError();
+                }
+            }
+            else
+            {
+                codeBank.timeOrderError();
+            }
+        }
+        else
+        {
+            codeBank.integerError();
+        }
+    }
+    
+     public boolean allOkTemp()
+    {
+        LocalTime start = LocalTime.parse(txtTempStart.getText());
+        LocalTime end = LocalTime.parse(txtTempEnd.getText());
+        LocalTime breakStart = LocalTime.parse(txtTempBreakStart.getText());
+        LocalTime breakEnd = LocalTime.parse(txtTempBreakEnd.getText());
+
+        if (start.isBefore(end)) 
+        {
+            if (breakStart.isBefore(breakEnd)) 
+            {
+                if (breakStart.isAfter(start) && breakEnd.isBefore(end)) 
+                {
+                    return true;
+                }
+            }
+        }
+        
+        return false;
+    }
+    
+    
     public void saveTemplate()
     {
         setToNull();

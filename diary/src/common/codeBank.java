@@ -243,7 +243,7 @@ public class codeBank
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Error in Data");
         alert.setHeaderText("An value entered is not a number");
-        alert.setContentText("Please check duration and number of nurses");
+        alert.setContentText("Please check data");
         alert.showAndWait();
     }
     
@@ -264,6 +264,15 @@ public class codeBank
         alert.setTitle("Error in Time");
         alert.setHeaderText("A time is not entered in the correct format");
         alert.setContentText("Please a date in the 24-hour clocked: HH:mm");
+        alert.showAndWait();
+    }
+    
+    public static void timeOrderError()
+    {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Error in Times");
+        alert.setHeaderText("The entered times do not form a clinic");
+        alert.setContentText("Please check that:\nEnd is after Start\nBreak end is after break start\nThe break times are within the clinic times");
         alert.showAndWait();
     }
     

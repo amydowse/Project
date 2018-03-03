@@ -247,65 +247,162 @@ public class MainScreenDocumentController implements Initializable
     {
         try
         {
-            // open a connection
             Connection c = DatabaseConnector.activateConnection();
             c.setAutoCommit( true ); 
             ResultSet rs ;
+            Statement stmt = c.createStatement(); 
             
-            // when creating a statement object, you MUST use a connection object to call the instance method
-            Statement stmt = c.createStatement();
+            //make localdate into string
+            LocalDate currentDate = codeBank.getCurrentDate();
+            String day = currentDate.getDayOfWeek().name();
+            String date = codeBank.dateToString(currentDate);
             
-            String day = codeBank.getCurrentDate().getDayOfWeek().name();
-            String date = codeBank.dateToString(codeBank.getCurrentDate());
+            rs = stmt.executeQuery("SELECT * FROM extra WHERE Date='" + date + "'");
             
-            rs = stmt.executeQuery("SELECT * FROM template WHERE Day ='" + date + "'");
-            if(rs.next()) //Has the date in the template
+            if(rs.isBeforeFirst() && rs.getInt("Blood") == 0) //in extra with a 0
             {
-                if(!rs.getString("Start").equals("00:00"))
-                {
-                    //implement query
-                    rs = stmt.executeQuery("SELECT count(*) AS total FROM blood WHERE Date ='" + date + "'"); 
+                btnBlood.setText("Blood Clinic\n\nNO CLINIC");
+            }
+            
+            if((rs.isBeforeFirst() && rs.getInt("Blood")==1) || !rs.isBeforeFirst()) //if has data and blood is 1 OR no data 
+            {
+                //implement query
+                rs = stmt.executeQuery("SELECT * FROM template WHERE Day = '" + date + "'" );
 
-                    while(rs.next())
+                if(rs.isBeforeFirst()) //found it by the date
+                {
+                    rs = stmt.executeQuery("SELECT count(*) AS total FROM blood WHERE Date ='" + date + "'"); 
+                    if(rs.next())
                     { 
                         btnBlood.setText("Blood Clinic\n\n"+rs.getInt("total") + " booked"); //shows the number of appointments 
                     }
                     c.close();
                 }
-                else //template removed 
+                else
                 {
-                    btnBlood.setText("Blood Clinic\n\nNO CLINIC");
-                }
-            }
-            else
-            {
-                rs = stmt.executeQuery("SELECT * FROM template WHERE Day ='" + day + "'");
-                while (rs.next())
-                {
+                    rs = stmt.executeQuery("SELECT * FROM template WHERE Day = '" + day + "'" ); 
                     
-                    rs = stmt.executeQuery("SELECT * FROM template WHERE Day ='" + day + "'");
-                    if(rs.next())
+                    if(rs.isBeforeFirst())//found it by the day
                     {
-                    }
-                    
-                    //implement query
-                    rs = stmt.executeQuery("SELECT count(*) AS total FROM blood WHERE Date ='" + date + "'"); 
+                        while(rs.next())
+                        {
+                            String From = rs.getString("FromDate");
+                            String To = rs.getString("ToDate");
 
-                    while(rs.next())
-                    { 
-                        btnBlood.setText("Blood Clinic\n\n"+rs.getInt("total") + " booked");
+                            if(To == null)
+                            {
+                                LocalDate dateFrom = codeBank.stringToDate(From);
+                                if(currentDate.isAfter(dateFrom))
+                                {
+                                        rs = stmt.executeQuery("SELECT count(*) AS total FROM blood WHERE Date ='" + date + "'");
+                                        while(rs.next())
+                                        { 
+                                            btnBlood.setText("Blood Clinic\n\n"+rs.getInt("total") + " booked");
+                                        }
+                                        c.close();
+                                }
+                            }
+                            else
+                            {
+                                LocalDate dateFrom = codeBank.stringToDate(From);
+                                LocalDate dateTo = codeBank.stringToDate(To);
+    
+                                if(currentDate.isBefore(dateTo) && (currentDate.isAfter(dateFrom)||currentDate.equals(dateFrom)))
+                                {
+                                    rs = stmt.executeQuery("SELECT count(*) AS total FROM blood WHERE Date ='" + date + "'");
+                                    while(rs.next())
+                                    { 
+                                        btnBlood.setText("Blood Clinic\n\n"+rs.getInt("total") + " booked");
+                                    }
+                                    c.close();
+                                }
+                            }
+                        }
                     }
-                    c.close();
+                    else
+                    {
+                        btnBlood.setText("Blood Clinic\n\nNO CLINIC");
+                    }
                 }
-                
             }
-            
             c.close();
         }
         catch (SQLException e)
         {
-            
-        } 
+                
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+//        try
+//        {
+//            // open a connection
+//            Connection c = DatabaseConnector.activateConnection();
+//            c.setAutoCommit( true ); 
+//            ResultSet rs ;
+//            
+//            // when creating a statement object, you MUST use a connection object to call the instance method
+//            Statement stmt = c.createStatement();
+//            
+//            String day = codeBank.getCurrentDate().getDayOfWeek().name();
+//            String date = codeBank.dateToString(codeBank.getCurrentDate());
+//            
+//            rs = stmt.executeQuery("SELECT * FROM template WHERE Day ='" + date + "'");
+//            if(rs.next()) //Has the date in the template
+//            {
+//                if(!rs.getString("Start").equals("00:00"))
+//                {
+//                    //implement query
+//                    rs = stmt.executeQuery("SELECT count(*) AS total FROM blood WHERE Date ='" + date + "'"); 
+//
+//                    while(rs.next())
+//                    { 
+//                        btnBlood.setText("Blood Clinic\n\n"+rs.getInt("total") + " booked"); //shows the number of appointments 
+//                    }
+//                    c.close();
+//                }
+//                else //template removed 
+//                {
+//                    btnBlood.setText("Blood Clinic\n\nNO CLINIC");
+//                }
+//            }
+//            else
+//            {
+//                rs = stmt.executeQuery("SELECT * FROM template WHERE Day ='" + day + "'");
+//                while (rs.next())
+//                {
+//                    
+//                    rs = stmt.executeQuery("SELECT * FROM template WHERE Day ='" + day + "'");
+//                    if(rs.next())
+//                    {
+//                    }
+//                    
+//                    //implement query
+//                    rs = stmt.executeQuery("SELECT count(*) AS total FROM blood WHERE Date ='" + date + "'"); 
+//
+//                    while(rs.next())
+//                    { 
+//                        btnBlood.setText("Blood Clinic\n\n"+rs.getInt("total") + " booked");
+//                    }
+//                    c.close();
+//                }
+//                
+//            }
+//            
+//            c.close();
+//        }
+//        catch (SQLException e)
+//        {
+//            
+//        } 
     }
     
     public void updatePreopButton()

@@ -100,7 +100,7 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Button fx:id="btnSaveExtra" layoutX="722.0" layoutY="874.0" mnemonicParsing="false" onAction="#saveExtra" prefHeight="54.0" prefWidth="90.0" text="SAVE" />
+            <Button fx:id="btnSaveExtra" layoutX="722.0" layoutY="874.0" mnemonicParsing="false" onAction="#saveExtraCheck" prefHeight="54.0" prefWidth="90.0" text="SAVE" />
            
          </children>
       </Pane>
@@ -151,7 +151,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button fx:id="btnSaveTemplate" layoutX="832.0" layoutY="353.0" mnemonicParsing="false" onAction="#saveTemplate" prefHeight="54.0" prefWidth="90.0" text="SAVE" />
+            <Button fx:id="btnSaveTemplate" layoutX="832.0" layoutY="353.0" mnemonicParsing="false" onAction="#saveTemplateCheck" prefHeight="54.0" prefWidth="90.0" text="SAVE" />
          </children>
       </Pane>
       
@@ -202,7 +202,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button fx:id="btnSaveAlter" layoutX="844.0" layoutY="439.0" mnemonicParsing="false" onAction="#saveAlter" prefHeight="54.0" prefWidth="90.0" text="SAVE" />
+            <Button fx:id="btnSaveAlter" layoutX="844.0" layoutY="439.0" mnemonicParsing="false" onAction="#saveAlterCheck" prefHeight="54.0" prefWidth="90.0" text="SAVE" />
             <Label fx:id="lblNoClinic" layoutX="309.0" layoutY="157.0" text="CURRENTLY NO CLINIC">
                <font>
                   <Font name="System Bold" size="15.0" />
