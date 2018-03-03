@@ -80,11 +80,26 @@ public class MainScreenDocumentController implements Initializable
     public void initialize(URL url, ResourceBundle rb) 
     {
         //Image from http://www.stickpng.com/img/icons-logos-emojis/home-icons/chimney-home-icon
-        Image image = new Image(getClass().getResourceAsStream("/bases/home.png"));
-        ImageView IV = new ImageView(image);
-        IV.setFitHeight(53);
-        IV.setFitWidth(60);
-        btnHome.setGraphic(IV);
+        Image home = new Image(getClass().getResourceAsStream("/bases/home.png"));
+        ImageView IVHome = new ImageView(home);
+        IVHome.setFitHeight(43);
+        IVHome.setFitWidth(50);
+        btnHome.setGraphic(IVHome);
+        
+        Image left = new Image(getClass().getResourceAsStream("/bases/LeftArrow.png"));
+        ImageView IVLeft = new ImageView(left);
+        IVLeft.setFitHeight(30);
+        IVLeft.setFitWidth(50);
+        btnLeft.setGraphic(IVLeft);
+        
+        Image right = new Image(getClass().getResourceAsStream("/bases/RightArrow.png"));
+        ImageView IVRight = new ImageView(right);
+        IVRight.setFitHeight(30);
+        IVRight.setFitWidth(50);
+        btnRight.setGraphic(IVRight);
+        
+        
+        
               
         ContentPane = this.Content;
         try 
