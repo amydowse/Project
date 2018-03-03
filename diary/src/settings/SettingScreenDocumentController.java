@@ -379,9 +379,9 @@ public class SettingScreenDocumentController implements Initializable
 
         if (start.isBefore(end)) 
         {
-            if (breakStart.isBefore(breakEnd)) 
+            if (breakStart.isBefore(breakEnd) || breakStart.equals(breakEnd)) 
             {
-                if (breakStart.isAfter(start) && breakEnd.isBefore(end)) 
+                if ((breakStart.isAfter(start) && breakEnd.isBefore(end)) || (breakStart.equals(end) && breakEnd.equals(end)))
                 {
                     return true;
                 }
@@ -405,12 +405,12 @@ public class SettingScreenDocumentController implements Initializable
                 }
                 else
                 {
-                    codeBank.timeError();
+                    codeBank.timeOrderError();
                 }
             }
             else
             {
-                codeBank.timeOrderError();
+                codeBank.timeError();
             }
         }
         else
@@ -870,12 +870,12 @@ public class SettingScreenDocumentController implements Initializable
                 }
                 else
                 {
-                    codeBank.timeError();
+                    codeBank.timeOrderError();
                 }
             }
             else
             {
-                codeBank.timeOrderError();
+                codeBank.timeError();
             }
         }
         else
@@ -893,9 +893,9 @@ public class SettingScreenDocumentController implements Initializable
 
         if (start.isBefore(end)) 
         {
-            if (breakStart.isBefore(breakEnd)) 
+            if (breakStart.isBefore(breakEnd) || breakStart.equals(breakEnd)) 
             {
-                if (breakStart.isAfter(start) && breakEnd.isBefore(end)) 
+                if ((breakStart.isAfter(start) && breakEnd.isBefore(end)) || (breakStart.equals(end) && breakEnd.equals(end)))
                 {
                     return true;
                 }
@@ -1029,12 +1029,12 @@ public class SettingScreenDocumentController implements Initializable
                 }
                 else
                 {
-                    codeBank.timeError();
+                    codeBank.timeOrderError();
                 }
             }
             else
             {
-                codeBank.timeOrderError();
+                codeBank.timeError();
             }
         }
         else
@@ -1052,9 +1052,9 @@ public class SettingScreenDocumentController implements Initializable
 
         if (start.isBefore(end)) 
         {
-            if (breakStart.isBefore(breakEnd)) 
+            if (breakStart.isBefore(breakEnd) || breakStart.equals(breakEnd)) 
             {
-                if (breakStart.isAfter(start) && breakEnd.isBefore(end)) 
+                if ((breakStart.isAfter(start) && breakEnd.isBefore(end)) || (breakStart.equals(end) && breakEnd.equals(end)))
                 {
                     return true;
                 }
