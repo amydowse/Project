@@ -56,31 +56,11 @@
       
        
        <!--Data-->
-       <TextField fx:id="txtFirstName" layoutX="935.0" layoutY="57.0" prefHeight="44.0" prefWidth="358.0">
-           <font>
-               <Font size="20.0" />
-           </font>
-       </TextField>
-       <TextField fx:id="txtLastName" layoutX="935.0" layoutY="138.0" prefHeight="44.0" prefWidth="358.0">
-           <font>
-               <Font size="20.0" />
-           </font>
-       </TextField>
-       <TextField fx:id="txtDOB" layoutX="935.0" layoutY="223.0" prefHeight="44.0" prefWidth="358.0">
-           <font>
-               <Font size="20.0" />
-           </font>
-       </TextField>
-       <TextField fx:id="txtNHS" editable="false" layoutX="935.0" layoutY="309.0" prefHeight="44.0" prefWidth="358.0">
-           <font>
-               <Font size="20.0" />
-           </font>
-       </TextField> 
-       <TextField fx:id="txtNumber" layoutX="935.0" layoutY="390.0" prefHeight="44.0" prefWidth="358.0">
-           <font>
-               <Font size="20.0" />
-           </font>
-       </TextField> 
+       <TextField fx:id="txtFirstName" layoutX="935.0" layoutY="57.0" prefHeight="44.0" prefWidth="358.0" />
+       <TextField fx:id="txtLastName" layoutX="935.0" layoutY="138.0" prefHeight="44.0" prefWidth="358.0" />
+       <TextField fx:id="txtDOB" layoutX="935.0" layoutY="223.0" prefHeight="44.0" prefWidth="358.0" />
+       <TextField fx:id="txtNHS" editable="false" layoutX="935.0" layoutY="309.0" prefHeight="44.0" prefWidth="358.0" /> 
+       <TextField fx:id="txtNumber" layoutX="935.0" layoutY="390.0" prefHeight="44.0" prefWidth="358.0" /> 
        <RadioButton fx:id="rdbWhite" layoutX="935.0" layoutY="488.0" mnemonicParsing="false" text="White Band" />
        <RadioButton fx:id="rdbRed" layoutX="1193.0" layoutY="488.0" mnemonicParsing="false" text="Red Band" />       
        <TextArea fx:id="txtExtraInfo" layoutX="935.0" layoutY="628.0" prefHeight="123.0" prefWidth="358.0" />

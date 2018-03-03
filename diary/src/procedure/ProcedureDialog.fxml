@@ -5,7 +5,6 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="procedure.ProcedureDialogController">
     <children>
        
@@ -47,21 +46,9 @@
    
    
         <!--Data-->     
-        <TextField fx:id="txtName" layoutX="198.0" layoutY="79.0" prefHeight="44.0" prefWidth="358.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
-        <TextField fx:id="txtDuration" layoutX="198.0" layoutY="160.0" prefHeight="44.0" prefWidth="358.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
-        <TextField fx:id="txtNurses" layoutX="198.0" layoutY="245.0" prefHeight="44.0" prefWidth="358.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
+        <TextField fx:id="txtName" layoutX="198.0" layoutY="79.0" prefHeight="44.0" prefWidth="358.0" />
+        <TextField fx:id="txtDuration" layoutX="198.0" layoutY="160.0" prefHeight="44.0" prefWidth="358.0" />
+        <TextField fx:id="txtNurses" layoutX="198.0" layoutY="245.0" prefHeight="44.0" prefWidth="358.0" />
         <ChoiceBox fx:id="cbLocation" layoutX="198.0" layoutY="331.0" prefHeight="44.0" prefWidth="358.0" />
       
     </children>

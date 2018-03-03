@@ -78,31 +78,11 @@
                 <Font name="System Bold" size="20.0" />
             </font>
         </Label>
-        <TextField fx:id="txtFirstName" layoutX="925.0" layoutY="127.0" prefHeight="44.0" prefWidth="358.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
-        <TextField fx:id="txtLastName" layoutX="925.0" layoutY="208.0" prefHeight="44.0" prefWidth="358.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
-        <TextField fx:id="txtPosition" layoutX="925.0" layoutY="293.0" prefHeight="44.0" prefWidth="358.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
-        <TextField fx:id="txtAgency" layoutX="925.0" layoutY="379.0" prefHeight="44.0" prefWidth="358.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
-        <TextField fx:id="txtNumber" layoutX="925.0" layoutY="460.0" prefHeight="44.0" prefWidth="358.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
+        <TextField fx:id="txtFirstName" layoutX="925.0" layoutY="127.0" prefHeight="44.0" prefWidth="358.0" />
+        <TextField fx:id="txtLastName" layoutX="925.0" layoutY="208.0" prefHeight="44.0" prefWidth="358.0" />
+        <TextField fx:id="txtPosition" layoutX="925.0" layoutY="293.0" prefHeight="44.0" prefWidth="358.0" />
+        <TextField fx:id="txtAgency" layoutX="925.0" layoutY="379.0" prefHeight="44.0" prefWidth="358.0" />
+        <TextField fx:id="txtNumber" layoutX="925.0" layoutY="460.0" prefHeight="44.0" prefWidth="358.0" />
         <TextArea fx:id="txtExtraInfo" layoutX="925.0" layoutY="553.0" prefHeight="173.0" prefWidth="358.0" />
         
         

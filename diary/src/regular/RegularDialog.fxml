@@ -54,32 +54,12 @@
        
        
         <!--Data-->
-        <TextField fx:id="txtFirstName" layoutX="203.0" layoutY="94.0" prefHeight="44.0" prefWidth="358.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
-        <TextField fx:id="txtLastName" layoutX="203.0" layoutY="175.0" prefHeight="44.0" prefWidth="358.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
-        <TextField fx:id="txtDOB" layoutX="203.0" layoutY="260.0" prefHeight="44.0" prefWidth="358.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
-        <TextField fx:id="txtNHS" layoutX="203.0" layoutY="346.0" prefHeight="44.0" prefWidth="358.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
-        <TextField fx:id="txtNumber" layoutX="203.0" layoutY="427.0" prefHeight="44.0" prefWidth="358.0">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </TextField>
-        
+        <TextField fx:id="txtFirstName" layoutX="203.0" layoutY="94.0" prefHeight="44.0" prefWidth="358.0"/>
+        <TextField fx:id="txtLastName" layoutX="203.0" layoutY="175.0" prefHeight="44.0" prefWidth="358.0"/>
+        <TextField fx:id="txtDOB" layoutX="203.0" layoutY="260.0" prefHeight="44.0" prefWidth="358.0"/>
+        <TextField fx:id="txtNHS" layoutX="203.0" layoutY="346.0" prefHeight="44.0" prefWidth="358.0"/>
+        <TextField fx:id="txtNumber" layoutX="203.0" layoutY="427.0" prefHeight="44.0" prefWidth="358.0"/>
+            
         <RadioButton fx:id="rdbRed" layoutX="461.0" layoutY="525.0" mnemonicParsing="false" text="Red Band" />
         <RadioButton fx:id="rdbWhite" layoutX="203.0" layoutY="525.0" mnemonicParsing="false" text="White Band" />
         <CheckBox fx:id="cbOncology" layoutX="203.0" layoutY="598.0" mnemonicParsing="false" text="Oncology" />
