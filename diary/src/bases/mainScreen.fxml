@@ -19,16 +19,19 @@
     <top>
         <Pane id="topBar" prefHeight="75.0" prefWidth="850.0" style="-fx-background-color: #80bdff" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
          <children>
-            <DatePicker fx:id="dpCalandar" editable="false" layoutX="1623.0" prefHeight="75.0" prefWidth="298.0" onAction="#selectedDate" stylesheets="@datepickerStyle.css" />
+            <DatePicker fx:id="dpCalandar" editable="false" layoutX="1623.0" onAction="#selectedDate" prefHeight="75.0" prefWidth="298.0" stylesheets="@datepickerStyle.css" />
             <Button fx:id="btnHome" mnemonicParsing="false" onAction="#Home" prefHeight="75.0" prefWidth="75.0" />
-            <Button fx:id="btnRight" layoutX="1770.0" mnemonicParsing="false" onAction="#plusOneDay" prefHeight="75.0" prefWidth="75.0"/>
-            <Button fx:id="btnLeft" layoutX="1695.0" mnemonicParsing="false" onAction="#minusOneDay" prefHeight="75.0" prefWidth="75.0"/>
+            <Button fx:id="btnRight" layoutX="1770.0" mnemonicParsing="false" onAction="#plusOneDay" prefHeight="75.0" prefWidth="75.0" />
+            <Button fx:id="btnLeft" layoutX="1695.0" mnemonicParsing="false" onAction="#minusOneDay" prefHeight="75.0" prefWidth="75.0" />
             <Label fx:id="lblDate" layoutX="90.0" layoutY="9.0" prefHeight="58.0" prefWidth="1139.0" text="DATE">
                <font>
                   <Font size="40.0" />
                </font>
             </Label>
-            <Button fx:id="btnToday" layoutX="1620.0" mnemonicParsing="false" onAction="#today" prefHeight="75.0" prefWidth="75.0" text="TODAY" />
+            <Button fx:id="btnToday" layoutX="1620.0" mnemonicParsing="false" onAction="#today" prefHeight="75.0" prefWidth="75.0" text="TODAY">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></Button>
          </children>
         </Pane>
     </top>
@@ -40,11 +43,11 @@
     <right>
         <Pane fx:id="navigaion" prefHeight="500.0" prefWidth="150.0" style="-fx-background-color: pink;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnNonBed" layoutY="780.0" mnemonicParsing="false" onAction="#showNonbed" prefHeight="195.0" prefWidth="150.0" text="Non-bed" stylesheets="@buttonStyle.css"/>
-            <Button fx:id="btnPreOp" layoutY="390.0" mnemonicParsing="false" onAction="#showPreop" prefHeight="195.0" prefWidth="150.0" text="Pre-op" stylesheets="@buttonStyle.css" />
-            <Button fx:id="btnBlood" layoutY="195.0" mnemonicParsing="false" onAction="#showBlood" prefHeight="195.0" prefWidth="150.0" text="Blood Clinic" stylesheets="@buttonStyle.css"/>
-            <Button fx:id="btnOncology" layoutY="585.0" mnemonicParsing="false" onAction="#showOncology" prefHeight="195.0" prefWidth="150.0" text="Oncology" stylesheets="@buttonStyle.css" />
-            <Button fx:id="btnDiary" mnemonicParsing="false" onAction="#showDiary" prefHeight="195.0" prefWidth="150.0" text="Diary" stylesheets="@buttonStyle.css"  />
+            <Button fx:id="btnNonBed" layoutY="780.0" mnemonicParsing="false" onAction="#showNonbed" prefHeight="195.0" prefWidth="150.0" stylesheets="@buttonStyle.css" text="Non-bed" />
+            <Button fx:id="btnPreOp" layoutY="390.0" mnemonicParsing="false" onAction="#showPreop" prefHeight="195.0" prefWidth="150.0" stylesheets="@buttonStyle.css" text="Pre-op" />
+            <Button fx:id="btnBlood" layoutY="195.0" mnemonicParsing="false" onAction="#showBlood" prefHeight="195.0" prefWidth="150.0" stylesheets="@buttonStyle.css" text="Blood Clinic" />
+            <Button fx:id="btnOncology" layoutY="585.0" mnemonicParsing="false" onAction="#showOncology" prefHeight="195.0" prefWidth="150.0" stylesheets="@buttonStyle.css" text="Oncology" />
+            <Button fx:id="btnDiary" mnemonicParsing="false" onAction="#showDiary" prefHeight="195.0" prefWidth="150.0" stylesheets="@buttonStyle.css" text="Diary" />
          </children></Pane>
    </right> 
  
