@@ -40,7 +40,7 @@
      
      
 
-      <ImageView fx:id="imgLogo" fitHeight="200.0" fitWidth="200.0" layoutX="1531.0" layoutY="663.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imgLogo" fitHeight="200.0" fitWidth="268.0" layoutX="1497.0" layoutY="663.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="btnProcedureSearch" layoutX="677.0" layoutY="663.0" mnemonicParsing="false" onAction="#showSearchProcedureMain" prefHeight="200.0" prefWidth="200.0" text="Procedure Search">
          <font>
             <Font size="20.0" />

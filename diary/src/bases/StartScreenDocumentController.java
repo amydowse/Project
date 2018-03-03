@@ -44,7 +44,7 @@ public class StartScreenDocumentController implements Initializable
         ContentPane = this.Content;
        
         //http://www.java2s.com/Code/Java/JavaFX/LoadajpgimagewithImageanduseImageViewtodisplay.htm - accessed 15/1/18
-        Image image1 = new Image(Start.class.getResourceAsStream("/bases/logo.jpg"));
+        Image image1 = new Image(Start.class.getResourceAsStream("/bases/Safari.png"));
         imgLogo.setImage(image1);
 
       
