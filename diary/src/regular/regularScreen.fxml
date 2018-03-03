@@ -9,7 +9,7 @@
    <children>
        
        <!--Regular table-->
-       <TableView fx:id="tblNames" layoutX="78.0" layoutY="57.0" prefHeight="876.0" prefWidth="428.0">
+       <TableView fx:id="tblNames" layoutX="78.0" layoutY="57.0" prefHeight="876.0" prefWidth="428.0" stylesheets="@/common/tableStyle.css">
            <columns>
                <TableColumn fx:id="tblColName" prefWidth="427.0" text="Patient Name" />
            </columns>

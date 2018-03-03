@@ -27,7 +27,7 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <TableView fx:id="tblSearchResult" layoutX="61.0" layoutY="313.0" prefHeight="603.0" prefWidth="1064.0">
+      <TableView fx:id="tblSearchResult" layoutX="61.0" layoutY="313.0" prefHeight="603.0" prefWidth="1064.0" stylesheets="@/common/tableStyle.css">
         <columns>
           <TableColumn fx:id="tblColDate" prefWidth="150.0" text="Date" />
           <TableColumn fx:id="tblColTime" minWidth="0.0" prefWidth="150.0" text="Time" />
