@@ -316,6 +316,10 @@ public class MainScreenDocumentController implements Initializable
                                         }
                                         c.close();
                                 }
+                                else
+                                {
+                                    btnBlood.setText("Blood Clinic\n\nNO CLINIC");
+                                }
                             }
                             else
                             {
@@ -331,6 +335,10 @@ public class MainScreenDocumentController implements Initializable
                                     }
                                     c.close();
                                 }
+                                else
+                                {
+                                    btnBlood.setText("Blood Clinic\n\nNO CLINIC");
+                                }
                             }
                         }
                     }
@@ -340,6 +348,11 @@ public class MainScreenDocumentController implements Initializable
                     }
                 }
             }
+            else
+            {
+                btnBlood.setText("Blood Clinic\n\nNO CLINIC");
+            }
+            
             c.close();
         }
         catch (SQLException e)
