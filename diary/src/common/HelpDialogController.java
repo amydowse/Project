@@ -68,7 +68,7 @@ public class HelpDialogController implements Initializable
                 break;    
             case("Procedure"):  
                 lblHelpTitle.setText("Help - Procedures");
-                fileName = "C:/Users/amydo/Documents/NetBeansProjects/Diary/diary/src/help/Procedurs.txt";
+                fileName = "C:/Users/amydo/Documents/NetBeansProjects/Diary/diary/src/help/Procedures.txt";
                 break;    
             case("PatientSearch"):  
                 lblHelpTitle.setText("Help - Patient Search");

@@ -7,6 +7,8 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="procedure.ProcedureDialogController">
     <children>
+        
+ 
        
         <!--Instructions-->
         <Label layoutX="25.0" layoutY="31.0" text="Enter the details of a new procedure:">

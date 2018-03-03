@@ -7,6 +7,12 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="975.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="staff.StaffScreenDocumentController">
     <children>
+        
+        <Hyperlink fx:id="hlHelp" layoutX="1885.0" onAction="#help" text="?">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Hyperlink>
        
         <!-- Staff table -->
         <TableView fx:id="tblNames" layoutX="68.0" layoutY="47.0" prefHeight="876.0" prefWidth="428.0" stylesheets="@/common/tableStyle.css">

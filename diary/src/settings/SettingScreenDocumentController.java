@@ -6,6 +6,7 @@
 package settings;
 
 import common.DatabaseConnector;
+import common.HelpDialogController;
 import common.codeBank;
 import java.io.IOException;
 import java.net.URL;
@@ -28,12 +29,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 /**
  *
  * @author amydo
@@ -110,6 +114,8 @@ public class SettingScreenDocumentController implements Initializable
     @FXML private TextField txtAlterBreakEnd = new TextField();
     
     @FXML private Button btnSaveAlter = new Button();
+    
+    @FXML Hyperlink hlHlep = new Hyperlink();
     
     
     ArrayList<String> week = new ArrayList<String>();
@@ -1216,4 +1222,40 @@ public class SettingScreenDocumentController implements Initializable
             paneBloodDetails.setVisible(false);
         }
     }
-}
+    
+    
+    private HelpDialogController HDC;
+    private Pane Hx;
+    
+    @FXML
+    public void help()
+    {
+        try 
+        {    
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Help");
+            
+            FXMLLoader DL = new FXMLLoader(getClass().getResource("/common/HelpDialog.fxml"));   
+            
+            Hx = DL.load(); //ISSUE
+            HDC = DL.getController();
+            
+            HDC.show("Settings");
+            
+            final Scene scene = new Scene(Hx, 795, 876);
+            stage.setScene(scene);
+            stage.setOnHidden(e -> HDC.shutdown());
+            stage.show();
+                      
+        } 
+        catch (IOException ex) 
+        {
+            //Logger.getLogger(ProcedureScreenDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("ISSUE IN MAIN");
+        }
+    }
+    
+    
+    
+}//end of class

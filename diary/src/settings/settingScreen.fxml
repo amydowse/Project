@@ -9,11 +9,10 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="975.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="settings.SettingScreenDocumentController">
    <children>
-       
      
       
       <Pane fx:id="paneAlter1" layoutX="884.0" layoutY="429.0" onMouseClicked="#alterClicked" prefHeight="547.0" prefWidth="1036.0" />
-      <Pane fx:id="paneTemplateContainer" layoutX="883.0" onMouseClicked="#templateClicked" prefHeight="431.0" prefWidth="1042.0" />
+      <Pane fx:id="paneTemplateContainer" layoutX="883.0" onMouseClicked="#templateClicked" prefHeight="431.0" prefWidth="959.0" />
       <Pane fx:id="paneExtraContainer" onMouseClicked="#extraClicked" prefHeight="975.0" prefWidth="885.0" />
       
       
@@ -105,10 +104,10 @@
          </children>
       </Pane>
       
+            
       
-      
-      
-      <Pane fx:id="paneTemplate" layoutX="885.0" prefHeight="431.0" prefWidth="1036.0">
+            
+      <Pane fx:id="paneTemplate" layoutX="885.0" prefHeight="431.0" prefWidth="959.0">
          <children>
             <Label fx:id="lblTemplate" layoutX="46.0" layoutY="48.0" text="Blood Clinic Template">
                <font>
@@ -126,7 +125,7 @@
             <TextField fx:id="txtTempBreakStart" layoutX="572.0" layoutY="296.0" />
             <TextField fx:id="txtTempBreakEnd" layoutX="572.0" layoutY="345.0" />
             
-            <Label fx:id="lblTempBreakEnd" layoutX="367.0" layoutY="346.0" text="Break EndTime">
+                  <Label fx:id="lblTempBreakEnd" layoutX="367.0" layoutY="346.0" text="Break EndTime">
                <font>
                   <Font size="20.0" />
                </font>
@@ -210,6 +209,12 @@
             </Label>
          </children>
       </Pane>
+       
+       <Hyperlink fx:id="hlHelp" layoutX="1885.0" onAction="#help" text="?">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Hyperlink>
    </children>
    
    

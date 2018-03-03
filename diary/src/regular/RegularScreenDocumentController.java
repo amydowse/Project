@@ -6,6 +6,7 @@
 package regular;
 
 import common.DatabaseConnector;
+import common.HelpDialogController;
 import common.codeBank;
 import java.io.IOException;
 import java.net.URL;
@@ -33,6 +34,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -67,6 +69,8 @@ public class RegularScreenDocumentController implements Initializable
     @FXML Button btnSave;
     @FXML Button btnAdd;
     @FXML Button btnDelete;
+    
+    @FXML Hyperlink hlHlep = new Hyperlink();
     
     ObservableList allPatients = FXCollections.observableArrayList();
     
@@ -346,6 +350,38 @@ public class RegularScreenDocumentController implements Initializable
             System.out.println("ISSUE IN MAIN");
         }
      
+    }
+    
+    private HelpDialogController HDC;
+    private Pane Hx;
+    
+    @FXML
+    public void help()
+    {
+        try 
+        {    
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Help");
+            
+            FXMLLoader DL = new FXMLLoader(getClass().getResource("/common/HelpDialog.fxml"));   
+            
+            Hx = DL.load(); //ISSUE
+            HDC = DL.getController();
+            
+            HDC.show("Regular");
+            
+            final Scene scene = new Scene(Hx, 795, 876);
+            stage.setScene(scene);
+            stage.setOnHidden(e -> HDC.shutdown());
+            stage.show();
+                      
+        } 
+        catch (IOException ex) 
+        {
+            //Logger.getLogger(ProcedureScreenDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("ISSUE IN MAIN");
+        }
     }
 
     

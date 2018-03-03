@@ -6,6 +6,7 @@
 package staff;
 
 import common.DatabaseConnector;
+import common.HelpDialogController;
 import common.codeBank;
 import java.io.IOException;
 import java.net.URL;
@@ -29,6 +30,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -66,6 +68,8 @@ public class StaffScreenDocumentController implements Initializable
     @FXML Button btnSave;
     @FXML Button btnAdd;
     @FXML Button btnDelete;
+    
+    @FXML Hyperlink hlHlep = new Hyperlink();
         
     ObservableList allStaff = FXCollections.observableArrayList();
     ObservableList<skill> allProcedures = FXCollections.observableArrayList();
@@ -431,4 +435,38 @@ public class StaffScreenDocumentController implements Initializable
      
     }
     
-}
+    
+    private HelpDialogController HDC;
+    private Pane Hx;
+    
+    @FXML
+    public void help()
+    {
+        try 
+        {    
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Help");
+            
+            FXMLLoader DL = new FXMLLoader(getClass().getResource("/common/HelpDialog.fxml"));   
+            
+            Hx = DL.load(); //ISSUE
+            HDC = DL.getController();
+            
+            HDC.show("Staff");
+            
+            final Scene scene = new Scene(Hx, 795, 876);
+            stage.setScene(scene);
+            stage.setOnHidden(e -> HDC.shutdown());
+            stage.show();
+                      
+        } 
+        catch (IOException ex) 
+        {
+            //Logger.getLogger(ProcedureScreenDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("ISSUE IN MAIN");
+        }
+    }
+    
+    
+}//end of class

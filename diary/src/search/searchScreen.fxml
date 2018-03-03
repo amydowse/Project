@@ -7,6 +7,13 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="975.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="search.SearchScreenDocumentController">
    <children>
+       
+       <Hyperlink fx:id="hlHelp" layoutX="1885.0" onAction="#help" text="?">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Hyperlink>
+       
       <TextField fx:id="txtSearchName" layoutX="61.0" layoutY="144.0" prefHeight="31.0" prefWidth="851.0">
          <font>
             <Font size="20.0" />
