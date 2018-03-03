@@ -963,7 +963,7 @@ public class SettingScreenDocumentController implements Initializable
             Statement stmt = c.createStatement();
             ResultSet rs;
             
-            String sql = "SELECT * FROM template";
+            String sql = "SELECT * FROM template WHERE ToDate IS NULL";
             
             rs = stmt.executeQuery(sql);
             
