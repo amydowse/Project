@@ -6,6 +6,7 @@
 package common;
 
 import diary.DiaryScreenDocumentController;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,8 +20,12 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 /**
  *
@@ -109,7 +114,7 @@ public class codeBank
         if(info.equals("") || info.equals(null))
         {
             txt.setText("");
-            txt.setStyle("-fx-font-weight: regular");
+            //txt.setStyle("font-weight: regular");
         }
         else
         {
@@ -285,6 +290,8 @@ public class codeBank
         alert.showAndWait();
     }
     
+    
+   
     
     
 }

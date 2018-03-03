@@ -6,6 +6,7 @@
 package preop;
 
 import common.DatabaseConnector;
+import common.HelpDialogController;
 import common.codeBank;
 import diary.DialogController;
 import diary.DiaryScreenDocumentController;
@@ -34,6 +35,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ContextMenu;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -185,6 +187,8 @@ public class PreopScreenDocumentController implements Initializable
     
     @FXML ChoiceBox cbAMNurse = new ChoiceBox();
     @FXML ChoiceBox cbPMNurse = new ChoiceBox();
+    
+    @FXML private Hyperlink hlHelp = new Hyperlink();
     
     private ArrayList<preop> allBookings = new ArrayList<preop>();
     int[] attendanceArray = new int[11];
@@ -763,6 +767,38 @@ public class PreopScreenDocumentController implements Initializable
         contextMenu1.getItems().add(delete);
         timeList.get(i).setContextMenu(contextMenu1);
 
+    }
+    
+    private HelpDialogController HDC;
+    private Pane Hx;
+    
+    @FXML
+    public void help()
+    {
+        try 
+        {    
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Help");
+            
+            FXMLLoader DL = new FXMLLoader(getClass().getResource("/common/HelpDialog.fxml"));   
+            
+            Hx = DL.load(); //ISSUE
+            HDC = DL.getController();
+            
+            HDC.show("Preop");
+            
+            final Scene scene = new Scene(Hx, 795, 876);
+            stage.setScene(scene);
+            stage.setOnHidden(e -> HDC.shutdown());
+            stage.show();
+                      
+        } 
+        catch (IOException ex) 
+        {
+            //Logger.getLogger(ProcedureScreenDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("ISSUE IN MAIN");
+        }
     }
     
     

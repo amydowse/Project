@@ -6,7 +6,9 @@
 package blood;
 
 import common.DatabaseConnector;
+import common.HelpDialogController;
 import common.codeBank;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -22,10 +24,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ContentDisplay;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.TableCell;
@@ -41,7 +46,10 @@ import javafx.scene.control.TableRow;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
 /**
@@ -63,6 +71,8 @@ public class BloodScreenDocumentController implements Initializable
     @FXML TableColumn tblColAtt1;
     @FXML TableColumn tblColAtt2;
     @FXML ChoiceBox cbStaff = new ChoiceBox();
+    
+    @FXML Hyperlink hlHlep = new Hyperlink();
     
     ObservableList<String> workingStaff;
     ObservableList<blood> allBookings;
@@ -673,6 +683,42 @@ public class BloodScreenDocumentController implements Initializable
             
         } 
     }
+    
+    private HelpDialogController DC;
+    private Pane x;
+    
+    @FXML
+    public void help()
+    {
+        try 
+        {    
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Help");
+            
+            FXMLLoader DL = new FXMLLoader(getClass().getResource("/common/HelpDialog.fxml"));   
+            
+            x = DL.load(); //ISSUE
+            DC = DL.getController();
+            
+            DC.show("Blood");
+            
+            final Scene scene = new Scene(x, 795, 876);
+            stage.setScene(scene);
+            stage.setOnHidden(e -> DC.shutdown());
+            stage.show();
+                      
+        } 
+        catch (IOException ex) 
+        {
+            //Logger.getLogger(ProcedureScreenDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("ISSUE IN MAIN");
+        }
+    }
+    
+    
+    
+    
     
     
 }//END OF CLASS

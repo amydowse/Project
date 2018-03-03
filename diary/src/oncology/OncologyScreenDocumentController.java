@@ -6,7 +6,9 @@
 package oncology;
 
 import common.DatabaseConnector;
+import common.HelpDialogController;
 import common.codeBank;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -28,14 +30,19 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ContextMenu;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 /**
  *
@@ -195,6 +202,8 @@ public class OncologyScreenDocumentController implements Initializable
     @FXML private List<TextField> wristbandList;
     @FXML private List<TextArea> reasonList;
     @FXML private List<TextField> notesList;
+    
+    @FXML private Hyperlink hlHelp = new Hyperlink();
       
     int[] attendanceArray = new int[14];
     int[] notesArray = new int[14];
@@ -998,6 +1007,38 @@ public class OncologyScreenDocumentController implements Initializable
         contextMenu1.getItems().add(delete);
         timeList.get(i).setContextMenu(contextMenu1);
 
+    }
+    
+    private HelpDialogController HDC;
+    private Pane Hx;
+    
+    @FXML
+    public void help()
+    {
+        try 
+        {    
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Help");
+            
+            FXMLLoader DL = new FXMLLoader(getClass().getResource("/common/HelpDialog.fxml"));   
+            
+            Hx = DL.load(); //ISSUE
+            HDC = DL.getController();
+            
+            HDC.show("Oncology");
+            
+            final Scene scene = new Scene(Hx, 795, 876);
+            stage.setScene(scene);
+            stage.setOnHidden(e -> HDC.shutdown());
+            stage.show();
+                      
+        } 
+        catch (IOException ex) 
+        {
+            //Logger.getLogger(ProcedureScreenDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("ISSUE IN MAIN");
+        }
     }
     
     

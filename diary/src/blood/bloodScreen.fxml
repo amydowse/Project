@@ -39,6 +39,12 @@
             <TableColumn fx:id="tblColBooked" prefWidth="116.0" text="Booked By" />
         </columns>
       </TableView>
+      
+      <Hyperlink fx:id="hlHelp" layoutX="1744.0" layoutY="3.0" onAction="#help" text="?">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Hyperlink>
      
 
    </children>

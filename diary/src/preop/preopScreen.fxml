@@ -9,6 +9,13 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="975.0" prefWidth="1770.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="preop.PreopScreenDocumentController">
     
     <children>
+        
+        <Hyperlink fx:id="hlHelp" layoutX="1744.0" layoutY="3.0" onAction="#help" text="?">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Hyperlink>
+        
         <Label layoutX="46.0" layoutY="43.0" text="PRE-OPS">
          <font>
             <Font name="System Bold" size="30.0" />

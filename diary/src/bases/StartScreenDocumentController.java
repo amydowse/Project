@@ -5,15 +5,21 @@
  */
 package bases;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -36,6 +42,8 @@ public class StartScreenDocumentController implements Initializable
     @FXML private Button btnExtra = new Button();
     @FXML private ImageView imgLogo = new ImageView();
     
+    @FXML private TextArea txtTesting = new TextArea();
+        
     public static String selection;
     
     @Override
@@ -46,8 +54,6 @@ public class StartScreenDocumentController implements Initializable
         //http://www.java2s.com/Code/Java/JavaFX/LoadajpgimagewithImageanduseImageViewtodisplay.htm - accessed 15/1/18
         Image image1 = new Image(Start.class.getResourceAsStream("/bases/Safari.png"));
         imgLogo.setImage(image1);
-
-      
     }
     
     //OK
