@@ -486,6 +486,25 @@ public class NonbedScreenDocumentController implements Initializable
     
     
     
+    public boolean beforeSave()
+    {
+        for(int i=0; i<14; i++)
+        {
+            if(!timeList.get(i).getText().equals("") & !nameList.get(i).getText().equals("") & procedureList.get(i).getValue() != null)
+            {
+                //Nothing entered
+            }
+            else if(!timeList.get(i).getText().equals("") || !nameList.get(i).getText().equals("") || procedureList.get(i).getValue() != null)
+            {
+                codeBank.missingError();
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    
+    
     
     public void save(LocalDate today)
     {
@@ -508,11 +527,7 @@ public class NonbedScreenDocumentController implements Initializable
             }
             c.close();
             saveStaff();
-            if(issue)
-            {
-                System.out.println("Nonbed");
-                codeBank.missingError();
-            }
+            
             clearAll();
         }
         catch (SQLException e)
@@ -545,20 +560,13 @@ public class NonbedScreenDocumentController implements Initializable
             }
             else
             {
-                reportIssue(i);
                 return "";
             }
         }
     }   
     
     
-    public void reportIssue(int i)
-    {
-        if(!timeList.get(i).getText().equals("") || !nameList.get(i).getText().equals("") || !procedureList.get(i).getValue().equals(""))
-        {
-            issue = true;
-        }
-    }
+   
     
     public void saveStaff()
     {

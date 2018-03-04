@@ -532,6 +532,40 @@ public class PreopScreenDocumentController implements Initializable
     
     
    
+    
+    
+    public boolean beforeSave()
+    {
+        for(int i =0; i<11; i++)
+        {
+            if(!timeList.get(i).getText().equals("") & !nameList.get(i).getText().equals("") & !ageList.get(i).getText().equals("") & !hospitalList.get(i).getText().equals("") & !specialityList.get(i).getText().equals(""))
+            {
+                //no data
+            }
+            else 
+            {
+                if(i == 10 || i == 9 || i == 8)
+                {
+                    if(!timeList.get(i).getText().equals("") || !nameList.get(i).getText().equals("") || !ageList.get(i).getText().equals("") || !hospitalList.get(i).getText().equals("") || !specialityList.get(i).getText().equals(""))
+                    {
+                        codeBank.missingError();
+                        return false;
+                    }
+                }
+                else
+                {
+                    if(!nameList.get(i).getText().equals("") || !ageList.get(i).getText().equals("") || !hospitalList.get(i).getText().equals("") || !specialityList.get(i).getText().equals(""))
+                    {
+                        codeBank.missingError();
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+    
+    
     //Saving the lines and the staff 
     public void save(LocalDate today)
     {
@@ -554,11 +588,6 @@ public class PreopScreenDocumentController implements Initializable
             }
             c.close();
             saveStaff(today);
-            if(issue)
-            {
-                System.out.println("Preop");
-                codeBank.missingError();
-            }
             
             clearInformation();
             
@@ -588,29 +617,12 @@ public class PreopScreenDocumentController implements Initializable
         }
         else
         {
-            reportIssue(i);
             return "";
         }
     }   
     
     
-    public void reportIssue(int i)
-    {
-        if(i == 10 || i == 9 || i == 8)
-        {
-            if(!timeList.get(i).getText().equals("") || !nameList.get(i).getText().equals("") || !ageList.get(i).getText().equals("") || !hospitalList.get(i).getText().equals("") || !specialityList.get(i).getText().equals(""))
-            {
-                issue = true;
-            }
-        }
-        else
-        {
-            if(!nameList.get(i).getText().equals("") || !ageList.get(i).getText().equals("") || !hospitalList.get(i).getText().equals("") || !specialityList.get(i).getText().equals(""))
-            {
-                issue = true;
-            }
-        }
-    }
+    
     
     //Saving the selected staff
     public void saveStaff(LocalDate today)

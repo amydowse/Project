@@ -541,7 +541,22 @@ public class OncologyScreenDocumentController implements Initializable
     
     
     
-   
+    public boolean beforeSave()
+    {
+        for(int i=0; i<14; i++)
+        {
+            if(!timeList.get(i).getText().equals("") & nameList.get(i).getValue() != null & !reasonList.get(i).getText().equals(""))
+            {
+                //No data
+            }
+            else if(!timeList.get(i).getText().equals("") & nameList.get(i).getValue() != null & !reasonList.get(i).getText().equals(""))
+            {
+                codeBank.missingError();
+                return false;
+            } 
+        }
+        return true;
+    }
  
     
      public void save(LocalDate today)
@@ -574,11 +589,7 @@ public class OncologyScreenDocumentController implements Initializable
             c.close();
             
             saveStaff();
-            if(issue)
-            {
-                System.out.println("Oncology");
-                codeBank.missingError();
-            }
+            
             clearAll();
         }
         catch (SQLException e)
@@ -609,7 +620,6 @@ public class OncologyScreenDocumentController implements Initializable
             }
             else
             {
-                reportIssue(i);
                 return "";
             }
         }
@@ -642,7 +652,6 @@ public class OncologyScreenDocumentController implements Initializable
             }
             else
             {
-                reportIssue(i);
                 return "";
             }
         }
@@ -650,14 +659,7 @@ public class OncologyScreenDocumentController implements Initializable
     }   
     
     
-    public void reportIssue(int i)
-    {
-        if(!timeList.get(i).getText().equals("") || !nameList.get(i).getValue().equals("") || !reasonList.get(i).getText().equals(""))
-        {
-            issue = true;
-        }
-    }
-    
+  
     public void saveStaff()
     {
         try

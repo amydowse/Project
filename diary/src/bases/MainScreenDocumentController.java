@@ -548,70 +548,75 @@ public class MainScreenDocumentController implements Initializable
     @FXML
     public void today()
     {     
-        save();
-        
-        //todays date into a localDate format 
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate Today = LocalDate.now();
-        codeBank.setCurrentDate(Today);
-        
-        updateDate();
-        updateButtons();
-        
-        show();
+        if(save())
+        {
+            //todays date into a localDate format 
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate Today = LocalDate.now();
+            codeBank.setCurrentDate(Today);
+
+            updateDate();
+            updateButtons();
+
+            show();
+        }
     }
     
     @FXML 
     public void plusOneDay()
     {
-        save();
-        
-        LocalDate changingDate = codeBank.getCurrentDate().plusDays(1);
-        DayOfWeek day = DayOfWeek.from(changingDate);
-                        
-        while((day == DayOfWeek.SATURDAY || day == DayOfWeek.SUNDAY) && !Extra(changingDate))
+        if(save())
         {
-            changingDate = changingDate.plusDays(1);
-            day = DayOfWeek.from(changingDate);
+            LocalDate changingDate = codeBank.getCurrentDate().plusDays(1);
+            DayOfWeek day = DayOfWeek.from(changingDate);
+
+            while((day == DayOfWeek.SATURDAY || day == DayOfWeek.SUNDAY) && !Extra(changingDate))
+            {
+                changingDate = changingDate.plusDays(1);
+                day = DayOfWeek.from(changingDate);
+            }
+
+            codeBank.setCurrentDate(changingDate);
+            updateDate();
+            updateButtons();
+
+            show();
         }
-        
-        codeBank.setCurrentDate(changingDate);
-        updateDate();
-        updateButtons();
-        
-        show();
     }
     
     @FXML 
     public void minusOneDay()
     {
-        save();
-        
-        LocalDate changingDate = codeBank.getCurrentDate().minusDays(1);
-        DayOfWeek day = DayOfWeek.from(changingDate);
-                        
-        while((day == DayOfWeek.SATURDAY || day == DayOfWeek.SUNDAY) && !Extra(changingDate))
+        if(save())
         {
-            changingDate = changingDate.minusDays(1);
-            day = DayOfWeek.from(changingDate);
+            LocalDate changingDate = codeBank.getCurrentDate().minusDays(1);
+            DayOfWeek day = DayOfWeek.from(changingDate);
+
+            while((day == DayOfWeek.SATURDAY || day == DayOfWeek.SUNDAY) && !Extra(changingDate))
+            {
+                changingDate = changingDate.minusDays(1);
+                day = DayOfWeek.from(changingDate);
+            }
+
+            codeBank.setCurrentDate(changingDate);
+            updateDate();
+            updateButtons();
+
+            show();
         }
-        
-        codeBank.setCurrentDate(changingDate);
-        updateDate();
-        updateButtons();
-        
-        show();
     }
     
     @FXML
     //method for date picker 
     public void selectedDate()
     {
-        save();
-        codeBank.setCurrentDate(dpCalandar.getValue());
-        updateDate();
-        updateButtons();
-        show();
+        if(save())
+        {
+            codeBank.setCurrentDate(dpCalandar.getValue());
+            updateDate();
+            updateButtons();
+            show();
+        }
     }
     
     
@@ -622,8 +627,6 @@ public class MainScreenDocumentController implements Initializable
     
     public void show()
     {
-        //System.out.println("SHOWING: " + ContentPane.getChildren().get(0).getAccessibleText());
-        
         switch(ContentPane.getChildren().get(0).getAccessibleText())
         {
             case "Diary":   
@@ -646,8 +649,6 @@ public class MainScreenDocumentController implements Initializable
     
     public boolean save()
     {
-        //System.out.println("GOING FROM: " + ContentPane.getChildren().get(0).getAccessibleText());
-        
         switch(ContentPane.getChildren().get(0).getAccessibleText())
         {
             case "Diary":   
@@ -658,16 +659,28 @@ public class MainScreenDocumentController implements Initializable
                 }
                 break;
             case "Preop":
-                PSDC.save(codeBank.getCurrentDate());
+                if(PSDC.beforeSave())
+                {
+                    PSDC.save(codeBank.getCurrentDate());
+                    return true;
+                }
                 break;
             case "Blood":
-                BSDC.save();
-                break;
+                BSDC.showInformation();
+                return true;
             case "Nonbed":
-                NSDC.save(codeBank.getCurrentDate());
+                if(NSDC.beforeSave())
+                {
+                    NSDC.save(codeBank.getCurrentDate());
+                    return true;
+                }
                 break;
             case "Oncology":
-                OSDC.save(codeBank.getCurrentDate());
+                if(OSDC.beforeSave())
+                {
+                    OSDC.save(codeBank.getCurrentDate());
+                    return true;
+                }
                 break;
         }
         return false;
@@ -689,39 +702,47 @@ public class MainScreenDocumentController implements Initializable
     @FXML
     public void showBlood() throws IOException
     {
-        save();
-        BSDC.showInformation();
-        updateButtons();
-        changeContentPane(BloodPane); 
+        if(save())
+        {
+            BSDC.showInformation();
+            updateButtons();
+            changeContentPane(BloodPane); 
+        }
          
     }
     
     @FXML
     public void showPreop() throws IOException
     {
-        save();
-        PSDC.loadInformation();
-        updateButtons();
-        changeContentPane(PreopPane);
+        if(save())
+        {
+            PSDC.loadInformation();
+            updateButtons();
+            changeContentPane(PreopPane);
+        }
     }
     
     @FXML
     public void showOncology() throws IOException
     {
-        save();
-        OSDC.showInformation(codeBank.getCurrentDate());
-        updateButtons();
-        changeContentPane(OncologyPane);
+        if(save())
+        {
+            OSDC.showInformation(codeBank.getCurrentDate());
+            updateButtons();
+            changeContentPane(OncologyPane);
+        }
         
     }
     
     @FXML
     public void showNonbed() throws IOException
     {
-        save();
-        NSDC.showInformation(codeBank.getCurrentDate());
-        updateButtons();
-        changeContentPane(NonbedPane);
+        if(save())
+        {
+            NSDC.showInformation(codeBank.getCurrentDate());
+            updateButtons();
+            changeContentPane(NonbedPane);
+        }
        
     }
     
@@ -730,10 +751,12 @@ public class MainScreenDocumentController implements Initializable
     public void Home() throws IOException
     {
         Parent root = FXMLLoader.load(getClass().getResource("/bases/startScreen.fxml"));
-        save();
-        codeBank.setCurrentDate(LocalDate.now());
-        Scene scene = new Scene(root);
-        bases.Start.stage.setScene(scene);
+        if(save())
+        {
+            codeBank.setCurrentDate(LocalDate.now());
+            Scene scene = new Scene(root);
+            bases.Start.stage.setScene(scene);
+        }
         
     }
     
