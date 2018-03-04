@@ -49,9 +49,10 @@
    
         <!--Data-->     
         <TextField fx:id="txtName" layoutX="198.0" layoutY="79.0" prefHeight="44.0" prefWidth="358.0" />
-        <TextField fx:id="txtDuration" layoutX="198.0" layoutY="160.0" prefHeight="44.0" prefWidth="358.0" />
         <TextField fx:id="txtNurses" layoutX="198.0" layoutY="245.0" prefHeight="44.0" prefWidth="358.0" />
         <ChoiceBox fx:id="cbLocation" layoutX="198.0" layoutY="331.0" prefHeight="44.0" prefWidth="358.0" />
+      <ChoiceBox fx:id="cbLength" layoutX="406.0" layoutY="160.0" prefHeight="44.0" prefWidth="150.0" />
+      <TextField fx:id="txtDuration" layoutX="198.0" layoutY="160.0" prefHeight="44.0" prefWidth="208.0" />
       
     </children>
 </Pane>

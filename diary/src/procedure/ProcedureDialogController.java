@@ -32,13 +32,14 @@ public class ProcedureDialogController implements Initializable
     @FXML TextField txtDuration;
     @FXML TextField txtNurses;
     @FXML ChoiceBox cbLocation;
-    
+    @FXML ChoiceBox cbLength;
     @FXML Button btnSave;
     
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
         cbLocation.getItems().addAll("Bed", "Non-bed");
+        cbLength.getItems().addAll("", "minutes", "hour(s)");
         
         txtDuration.focusedProperty().addListener((ObservableValue<? extends Boolean> ov, Boolean oldV, Boolean newV) -> {
             if (!newV) 
@@ -70,6 +71,12 @@ public class ProcedureDialogController implements Initializable
     {
         if (!txtName.getText().equals("") && !txtDuration.equals("") && !txtNurses.getText().equals("") && cbLocation.getValue()!=null) 
         {
+            int duration = Integer.parseInt(txtDuration.getText());
+            if(cbLength.getValue().equals("hour(s)"))
+            {
+                duration = duration * 60;
+            }
+            
             try 
             {
                 Connection c = DatabaseConnector.activateConnection();
@@ -78,7 +85,7 @@ public class ProcedureDialogController implements Initializable
 
                 String sql = "INSERT INTO procedures(Name, Duration, NumberOfNurses, Location) VALUES('" 
                                                                 + txtName.getText() + "','"
-                                                                + txtDuration.getText() + "','"
+                                                                + duration + "','"
                                                                 + txtNurses.getText() + "','"
                                                                 + cbLocation.getValue().toString() + "')";
 

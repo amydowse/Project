@@ -53,6 +53,7 @@ public class ProcedureScreenDocumentController implements Initializable
     @FXML TextField txtDuration;
     @FXML TextField txtNurses;
     @FXML ChoiceBox cbLocation;
+    @FXML ChoiceBox cbLength;
     
     @FXML Button btnSave;
     @FXML Button btnAdd;
@@ -67,6 +68,7 @@ public class ProcedureScreenDocumentController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         cbLocation.getItems().addAll("", "Bed", "Non-bed");
+        cbLength.getItems().addAll("", "minutes", "hour(s)");
         showInformation();
     }
     
@@ -79,6 +81,7 @@ public class ProcedureScreenDocumentController implements Initializable
         txtDuration.setText("");
         txtNurses.setText("");
         cbLocation.setValue("");
+        cbLength.setValue("");
         
         txtDuration.focusedProperty().addListener((ObservableValue<? extends Boolean> ov, Boolean oldV, Boolean newV) -> {
             if (!newV) 
@@ -129,6 +132,19 @@ public class ProcedureScreenDocumentController implements Initializable
                     {
                         txtName.setText(((procedure)newSelection).getName());
                         txtDuration.setText(""+((procedure)newSelection).getDuration());
+                        
+                        int duration = ((procedure)newSelection).getDuration();
+                        if(duration < 60)
+                        {
+                            txtDuration.setText(""+duration);
+                            cbLength.setValue("minutes");
+                        }
+                        else
+                        {
+                            txtDuration.setText(""+(duration/60));
+                            cbLength.setValue("hour(s)");
+                        }
+                        
                         txtNurses.setText(""+((procedure)newSelection).getNurses());
                         cbLocation.setValue(((procedure)newSelection).getLocation());
                     }
@@ -204,13 +220,22 @@ public class ProcedureScreenDocumentController implements Initializable
         //checks that all of the info has been entered
         if (!txtName.getText().equals("") && !txtDuration.equals("") && !txtNurses.getText().equals("") && !cbLocation.getValue().equals("")) 
         {
+            int duration = Integer.parseInt(txtDuration.getText());
+            System.out.println(">>>> " + duration);
+            if(cbLength.getValue().equals("hour(s)"))
+            {
+                duration = duration * 60;
+            }
+            
+            System.out.println(">>>> " + duration);
+            
             try 
             {
                 Connection c = DatabaseConnector.activateConnection();
                 c.setAutoCommit(true);
                 Statement stmt = c.createStatement();
 
-                String sql = "UPDATE procedures SET     Duration = '" + txtDuration.getText()
+                String sql = "UPDATE procedures SET     Duration = '" + duration
                                                         + "', NumberOfNurses = '" + txtNurses.getText()
                                                         + "', Location = '" + cbLocation.getValue().toString() + "' WHERE  Name = '" + txtName.getText() + "'";
 
