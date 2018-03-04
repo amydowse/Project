@@ -1,0 +1,34 @@
+USE
+
+You can alter the times of a specific blood clinic that is already set up.
+
+
+
+If you alter a blood clinic that already has bookings, these bookings will remain (even if the new times do not allow for that appointment time).
+
+
+
+Select the date from the calendar and the current details will be shown - if there is no blood clinic on this day, this will be stated.
+
+You can edit the details of the blood clinic.
+
+The times must be a valid 24-hour time in the format of HH:mm
+
+
+The start of the blood clinic must be before the end of the blood clinic.
+
+The start of the break must be before the end of the break.
+
+If you do not want any break in the clinic set the breaks start time and break end time the same as the clinic end time.
+
+
+The duration of the blood clinic must be a number.
+
+
+You must enter all of the details - nothing can be left blank.
+
+When you have entered the details, press the 'Save' button.
+
+If any of the values are not in the correct format, an error message will be displayed.
+
+

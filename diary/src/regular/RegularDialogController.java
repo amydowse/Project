@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -55,6 +56,20 @@ public class RegularDialogController implements Initializable
         rdbRed.setToggleGroup(group);
         rdbWhite.setToggleGroup(group);
         rdbWhite.setSelected(true);
+        
+        txtDOB.focusedProperty().addListener((ObservableValue<? extends Boolean> ov, Boolean oldV, Boolean newV) -> {
+            if (!newV) {
+                checkingDate(txtDOB.getText());
+            }
+        });
+    }
+    
+    public void checkingDate(String value)
+    {
+        if(!codeBank.checkDate(value))
+        {
+            codeBank.dateError();
+        }
     }
     
     @FXML

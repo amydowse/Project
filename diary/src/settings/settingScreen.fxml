@@ -11,13 +11,13 @@
    <children>
      
       
-      <Pane fx:id="paneAlter1" layoutX="884.0" layoutY="429.0" onMouseClicked="#alterClicked" prefHeight="547.0" prefWidth="1036.0" />
+      <Pane fx:id="paneAlter1" layoutX="884.0" layoutY="429.0" onMouseClicked="#alterClicked" prefHeight="547.0" prefWidth="994.0" />
       <Pane fx:id="paneTemplateContainer" layoutX="883.0" onMouseClicked="#templateClicked" prefHeight="431.0" prefWidth="959.0" />
-      <Pane fx:id="paneExtraContainer" onMouseClicked="#extraClicked" prefHeight="975.0" prefWidth="885.0" />
+      <Pane fx:id="paneExtraContainer" onMouseClicked="#extraClicked" prefHeight="975.0" prefWidth="835.0" />
       
       
       
-      <Pane fx:id="paneExtra" prefHeight="975.0" prefWidth="885.0">
+      <Pane fx:id="paneExtra" prefHeight="975.0" prefWidth="835.0">
          <children>
             <Label fx:id="lblExtraDate" layoutX="46.0" layoutY="125.0" text="Date">
                <font>
@@ -158,7 +158,7 @@
       
       
       
-      <Pane fx:id="paneAlter" layoutX="884.0" layoutY="430.0" prefHeight="547.0" prefWidth="1042.0">
+      <Pane fx:id="paneAlter" layoutX="884.0" layoutY="430.0" prefHeight="547.0" prefWidth="994.0">
          <children>
             <Label fx:id="lblAlter" layoutX="46.0" layoutY="36.0" text="Alter Specific Blood Clinic">
                <font>
@@ -210,7 +210,17 @@
          </children>
       </Pane>
        
-       <Hyperlink fx:id="hlHelp" layoutX="1885.0" onAction="#help" text="?">
+       <Hyperlink fx:id="hlHelpTemplate" layoutX="1885.0" onAction="#helpTemplate" text="?">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Hyperlink>
+      <Hyperlink fx:id="hlHelpAlter" layoutX="1885.0" layoutY="468.0" onAction="#helpAlter" text="?">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Hyperlink>
+      <Hyperlink fx:id="hlHelpExtra" layoutX="846.0" onAction="#helpExtra" text="?">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>

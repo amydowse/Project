@@ -78,10 +78,18 @@ public class HelpDialogController implements Initializable
                 lblHelpTitle.setText("HELP : PROCEDURE SEARCH");
                 fileName = "C:/Users/amydo/Documents/NetBeansProjects/Diary/diary/src/help/ProcedureSearch.txt";
                 break;  
-            case("Settings"):  
-                lblHelpTitle.setText("HELP : SETTINGS");
-                fileName = "C:/Users/amydo/Documents/NetBeansProjects/Diary/diary/src/help/Settings.txt";
+            case("SettingsExtra"):  
+                lblHelpTitle.setText("HELP : SETTINGS - EXTRA CLINIC");
+                fileName = "C:/Users/amydo/Documents/NetBeansProjects/Diary/diary/src/help/SettingsExtra.txt";
                 break;    
+            case("SettingsAlter"):  
+                lblHelpTitle.setText("HELP : SETTINGS - ALTER CLINIC");
+                fileName = "C:/Users/amydo/Documents/NetBeansProjects/Diary/diary/src/help/SettingsAlter.txt";
+                break;    
+            case("SettingsTemplate"):  
+                lblHelpTitle.setText("HELP : SETTINGS - TEMPLATE");
+                fileName = "C:/Users/amydo/Documents/NetBeansProjects/Diary/diary/src/help/SettingsTemplate.txt";
+                break;       
         }
         
         
@@ -114,6 +122,8 @@ public class HelpDialogController implements Initializable
                 e.printStackTrace();
             }
         }
+        //https://stackoverflow.com/questions/39098633/how-to-control-the-javafx-textarea-auto-scroll accessed 4/3
+        txtHelpArea.positionCaret(0);
         
     }
 

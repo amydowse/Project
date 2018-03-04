@@ -1,2 +1,62 @@
-Staff
-x
+EDITING AN EXISTING MEMBER OF STAFF
+
+Select an existing staff member from the list on the left hand side of the screen.
+
+All of their current details will then be displayed in the text boxes at the centre of the screen.
+
+On the right hand side of the screen, there is a lit of all that staff members skills.
+
+You can then edit this information - you can edit all information except for their ID (this is unique to each staff member and it automatically generated).
+
+Click into the area where you want to enter data, enter the data and click off of it. You can press the 'Tab' button on the keyboard to go to each section.
+
+You must have a first and last name entered - the other sections can be left blank.
+
+When you have finished editing them, press the 'Save' button. If the save is successful the text boxes and the procedure list will be cleared.
+
+
+ALTERING AN EXISTING MEMBER OF STAFFS SKILLS
+
+Select an existing staff member from the list on the left hand side of the screen.
+
+All of their current details will then be displayed in the text boxes at the centre of the screen.
+
+On the right hand side of the screen, there is a lit of all of the procedures that the ward is able to do.
+
+✔   The staff member does have this skill
+✘   The staff member does not have this skill
+
+Click on the ✔/✘ to change it
+
+When you have finished editing their skills, press the 'Save' button. If the save is successful the text boxes and the procedure list will be cleared.
+
+
+DELETING A MEMBER OF STAFF
+
+Select an existing staff member from the list on the left hand side of the screen.
+
+All of their current details will then be displayed in the text boxes at the centre of the screen.
+
+You then press the 'Delete' button - you will be asked to confirm that you want to delete that staff members record.
+
+When you say 'Yes', their details are deleted and the text boxes are cleared.
+
+If a staff member has bookings, these bookings will still be visible in the diary - they will appear on the main diary but not in the specific area they were working in.
+
+
+ADDING A NEW MEMBER OF STAFF 
+
+Click on the 'Add' button to bring up a new window.
+
+The ID of the new staff member will be automatically generated and shown.
+
+You then fill in the staff members information.
+
+You must have a first and last name entered - the other sections can be left blank.
+
+You can then select the skills that the new staff members has - click on the 'Status' next to each procedure to toggle between ✔ and ✘.
+
+When finished, click the 'Save' button.
+
+The window will close and the new staff member will appear in the main staff list.
+

@@ -1,0 +1,115 @@
+USE
+
+You are able to schedule extra clinics.
+
+There is different functionality depending on the date that is selected.
+
+---------------------------------------------------------------------------------------------------
+
+MONDAY TO FRIDAY WITH A TEMPLATED BLOOD CLINIC
+
+When you select a date, all of the tick boxes will be selected.
+
+You will not be able to un-tick Surgery, Pre-op, Oncology or Non-bed as these run every Monday to Friday.
+
+The details of the templated blood clinic will be displayed.
+
+You will NOT be able to edit the time of the blood clinic.
+
+
+To cancel the blood clinic on that specific day, un-tick the 'Blood' option and press save.
+
+Any appointments booked for that blood clinic will be deleted.
+
+---------------------------------------------------------------------------------------------------
+
+MONDAY TO FRIDAY WITH A TEMPLATED, BUT ALTERED, BLOOD CLINIC
+
+When you select a date, all of the tick boxes will be selected.
+
+You will not be able to un-tick Surgery, Pre-op, Oncology or Non-bed as these run every Monday to Friday.
+
+The details of the altered blood clinic will be displayed - the template is altered in the Alter section.
+
+You will NOT be able to edit the time of the blood clinic.
+
+
+To cancel the blood clinic on that specific day, un-tick the 'Blood' option and press save.
+
+Any appointments booked for that blood clinic will be deleted.
+
+---------------------------------------------------------------------------------------------------
+
+MONDAY TO FRIDAY WITHOUT A TEMPLATED BLOOD CLINIC
+
+When you select a date Surgery, Pre-op, Oncology and Non-bed will be ticked.
+
+You will not be able to un-tick Surgery, Pre-op, Oncology or Non-bed as these run every Monday to Friday.
+
+Initially, the blood option will not be ticked.
+
+If you then click the blood option, the text boxes appear for you enter the details of the new blood clinic.
+
+You must enter all of the details for the blood clinic.
+
+
+The times must be a valid 24-hour time in the format of HH:mm
+
+
+The start of the blood clinic must be before the end of the blood clinic.
+
+The start of the break must be before the end of the break.
+
+If you do not want any break in the clinic set the breaks start time and break end time the same as the clinic end time.
+
+
+The duration of the blood clinic must be a number.
+
+
+To save this extra blood clinic, press the 'Save' button.
+
+
+To cancel the blood clinic on that specific day, un-tick the 'Blood' option and press save.
+
+Any appointments booked for that blood clinic will be deleted.
+
+---------------------------------------------------------------------------------------------------
+
+SATURDAY OR SUNDAY
+
+When you select a date, none of the boxes will be ticked
+
+You then select the clinic that you would like to run on that day.
+
+If you select for a blood clinic to run, you need to enter all of the time information.
+
+The times must be a valid 24-hour time in the format of HH:mm
+
+
+The start of the blood clinic must be before the end of the blood clinic.
+
+The start of the break must be before the end of the break.
+
+If you do not want any break in the clinic set the breaks start time and break end time the same as the clinic end time.
+
+
+The duration of the blood clinic must be a number.
+
+To save these extra clinics, press the 'Save' button.
+
+
+When you then look at the diary, this date will be selectable from the calender.
+
+All of the options that you have ticked will be able to be booked.
+
+For all of the options that were not ticked, those buttons will be 'locked' so you cannot click into them.
+
+
+
+To cancel some of the clinics on that specific day, un-tick the option and press save.
+
+Any appointments booked for that clinic will be deleted.
+
+
+If you un-tick all of the clinics for a specific day, that day will no longer be accessible on the calendar - it will all be cancelled.
+

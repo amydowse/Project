@@ -1,1 +1,40 @@
-Procedures
+EDITING AN EXISTING PROCEDURE
+
+Select a procedure from the list on the left hand side of the screen.
+
+All of the information will then be displayed in the text boxes at the centre of the screen.
+
+You can then edit this information.
+
+Click into the area where you want to enter data, enter the data and click off of it. You can press the 'Tab' button on the keyboard  to go to each section.
+
+You must fill in all of the information.
+
+When you have finished editing them, press the 'Save' button. If the save is successful the text boxes will be cleared.
+
+
+DELETING A EXISTING PROCEDURE
+
+Select an existing procedure the list on the left hand side of the screen.
+
+All of the information will then be displayed in the text boxes at the centre of the screen.
+
+You then press the 'Delete' button - you will be asked to confirm that you want to delete that procedure.
+
+When you say 'Yes', their details are deleted and the text boxes are cleared.
+
+If an appointment has been made for that procedure, that appointments will still be visible in the diary.
+
+
+ADDING A NEW PROCEDURE
+
+Click on the 'Add' button to bring up a new window.
+
+You then fill in the procedures information - you must fill in all information.
+
+You need to enter a number for the duration and number of nurses required, if you don't you will get an error message.
+
+When finished, click the 'Save' button.
+
+The window will close and the new procedure will appear in the main procedure list and will be available in making appointments.
+

@@ -1,1 +1,59 @@
-Nonbed
+TO BOOK AN APPOINTMENT
+
+To make an appointment you need to enter the time, patient name and select a procedure. Without these pieces of information you cannot make an appointment.
+
+Click into the area where you want to enter data, enter the data and click off of it. You can press the 'Tab' button on the keyboard to go along a row and enter all of the information for a single appointment.
+
+You need to select the procedure from the drop down.
+
+All of the appointments you enter will be saved when you click off of the screen - if there is either missing data or incorrect input, an error message will come up.
+
+The time entered must be a valid time in the 24-hour clock - when you click off of the time, if it is not in the correct format you will get an error message.
+
+
+TO EDIT AN APPOINTMENT
+
+You can only alter the time or reason of the appointment.
+
+Click into the area where you want to edit the data, enter the new data and click off of it. 
+
+The altered appointment will be saved when you click off of the screen - if there is either missing data or incorrect input, an error message will come up.
+
+
+PATIENT NOTES
+
+The 'Notes' columns tells you the status of the patients case notes.
+
+-   You have no information about the notes
+O   You are aware of the notes - they are on your list to be collected
+✓   You have the case notes - they are on the ward
+
+
+EXTRA INFORMATION
+
+You can add in extra information about the appointment - click on the 'Extra Information' area and entered the information that you need.
+
+
+TO DELETE AN APPOINTMENT
+
+Right click on the time of the appointment and select 'Delete'. A pop-up box will appear to confirm that you want to delete the appointment.
+
+When you click 'Yes', the appointment is deleted.
+
+
+TO MARK THE ATTENDANCE OF AN APPOINTMENT
+
+You mark the patients attendance by clicking on the blank square to the left of the time.
+
+If you click once, the box turns green to show that the patient attended. 
+
+If you press it a second time, the box turns red to show that the patient did not attend. 
+
+If you click it a third time, the box becomes white so show that you do not know their attendance status.
+
+
+STAFF
+
+You can select the staff specific member of staff who will carryout the non-bed appointments.
+
+The staff that show in the drop down menu are the ones who are scheduled to work that day. As there is such a range of possible procedures, it will be down to the person making the appointment to check that the staff working can carryout that procedure.

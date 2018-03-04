@@ -1,1 +1,57 @@
-Regular
+USE
+
+This is a list of all of the patients who regularly attend the ward.
+
+Patients marked an Oncology can be selected from a list when making oncology appointments.
+
+Other types of regular attenders are stored here for efficency - their details are easily accessible. 
+
+
+EDITING AN EXISTING REGULAR ATTENDER
+
+Select an regular attender from the list on the left hand side of the screen.
+
+All of their current details will then be displayed in the text boxes at the centre of the screen.
+
+You can then edit this information.
+
+Click into the area where you want to enter data, enter the data and click off of it. You can press the 'Tab' button on the keyboard  to go to each section.
+
+You must have a first name, last name, hospital/NHS number and date of birth entered - the rest can be left blank.
+
+You need to enter a valid date of birth in the format: dd/mm/YYYY - when you click off of the date of birth box, if it is not in this format, you will get an error message.
+
+When you have finished editing them, press the 'Save' button. If the save is successful the text boxes will be cleared.
+
+
+DELETING AN EXISTING REGULAR ATTENDER
+
+Select an existing regular attender from the list on the left hand side of the screen.
+
+All of their current details will then be displayed in the text boxes at the centre of the screen.
+
+You then press the 'Delete' button - you will be asked to confirm that you want to delete that patients record.
+
+When you say 'Yes', their details are deleted and the text boxes are cleared.
+
+If a regular attender is an oncology patients and has had appointments, these appointments will still be visible in the oncology booking page.
+
+
+ADDING A NEW REGULAR ATTENDER
+
+Click on the 'Add' button to bring up a new window.
+
+You then fill in the regular attenders information.
+
+It is automatically set that the patient will have a white wristband - it can either be red or white.
+
+You can tick to say that the patient is an oncology patient.
+
+You must have a first name, last name, hospital/NHS number and date of birth entered - the rest can be left blank.
+
+You need to enter a valid date of birth in the format: dd/mm/YYYY - when you click off of the date of birth box, if it is not in this format, you will get an error message.
+
+When finished, click the 'Save' button.
+
+The window will close and the new regular attender will appear in the main patient list and will be available in making appointments.
+

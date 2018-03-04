@@ -1,1 +1,28 @@
-Blood information
+TO BOOK AN APPOINTMENT
+
+To make a blood clinic appointment you must enter the patients name. You should fill in as much information as possible but a name is the minimum.
+
+Click into the area where you want to enter data, enter the data and press the 'Enter' key.
+
+All of the appointments you enter will be saved when you click off of the screen - if there is either missing data or incorrect input, an error message will come up.
+
+
+TO EDIT AN APPOINTMENT
+
+Click into the area where you want to edit the data, enter the new data and press the 'Enter' key.
+
+
+TO DELETE AN APPOINTMENT
+
+Click into the 'Name' of the appointment you want to delete and delete the name. 
+
+If you want to book another appointment into this slot, click the 'Blood Clinic' button on the left hand side - this will save that the original appointment has been deleted.
+
+
+TO MARK THE ATTENDANCE OF AN APPOINTMENT
+
+At the very left of the appointment, click once - this turns the box next to it green to show that the patient attended. If you press is a second time, the box turns red to show that the patient did not attend. If you click it a third time, it becomes white so show that you do not know their attendance status.
+
+
+
+If there is no blood clinic scheduled, you can create one in 'Settings'.

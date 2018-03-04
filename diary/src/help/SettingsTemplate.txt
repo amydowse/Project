@@ -1,0 +1,30 @@
+USE
+
+This is used to set up a recurring template for the blood clinic.
+
+Initially, it will display the current, active, template.
+
+
+If you want to alter this, it will set up a new template from todays date going forward - the previous templates will no longer be used.
+
+
+Select the days that you want the template to be set up for.
+
+The times must be a valid 24-hour time in the format of HH:mm
+
+
+The start of the blood clinic must be before the end of the blood clinic.
+
+The start of the break must be before the end of the break.
+
+If you do not want any break in the clinic set the breaks start time and break end time the same as the clinic end time.
+
+
+The duration of the blood clinic must be a number.
+
+
+You must enter all of the details - nothing can be left blank.
+
+When you have entered the details, press the 'Save' button.
+
+If any of the values are not in the correct format, an error message will be displayed.

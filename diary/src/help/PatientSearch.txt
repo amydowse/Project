@@ -1,1 +1,17 @@
-Patient search
+USE
+
+This is used to look for the appointments that a specific patient has.
+
+You can look for just future appointments, just past appointments or both - you select this at the top of the screen.
+
+You then enter the name, or part of the name, of the patient you are searching for. You can use any mixture of capital letters and lower case.
+
+You do not need to know the full name - just any part of their first or last name.
+
+You then press 'Search'.
+
+A label will confirm that text that was being search for.
+
+The table will then show all of the appointments for patients that matched the search criteria.
+
+This is a read only table - you cannot edit anything.

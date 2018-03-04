@@ -1223,12 +1223,33 @@ public class SettingScreenDocumentController implements Initializable
         }
     }
     
+    @FXML 
+    public void helpExtra()
+    {
+        String toShow = "SettingsExtra";
+        help(toShow);
+    }
+    
+    @FXML 
+    public void helpAlter()
+    {
+        String toShow = "SettingsAlter";
+        help(toShow);
+    }
+    
+    @FXML 
+    public void helpTemplate()
+    {
+        String toShow = "SettingsTemplate";
+        help(toShow);
+    }
+    
     
     private HelpDialogController HDC;
     private Pane Hx;
     
-    @FXML
-    public void help()
+    
+    public void help(String toShow)
     {
         try 
         {    
@@ -1241,7 +1262,7 @@ public class SettingScreenDocumentController implements Initializable
             Hx = DL.load(); //ISSUE
             HDC = DL.getController();
             
-            HDC.show("Settings");
+            HDC.show(toShow);
             
             final Scene scene = new Scene(Hx, 795, 876);
             stage.setScene(scene);
