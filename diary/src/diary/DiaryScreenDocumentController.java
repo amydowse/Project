@@ -970,6 +970,24 @@ public class DiaryScreenDocumentController  implements Initializable
     
     
     //SAVING-----------------------------------------------------------------
+    public boolean beforeSave()
+    {
+        for(int i=0; i<24; i++)
+        {
+            if(!timeList.get(i).getText().equals("") & !nameList.get(i).getText().equals("") & !ageList.get(i).getText().equals("") & !hospitalList.get(i).getText().equals("") & !specialityList.get(i).getText().equals(""))
+            {
+                //not data entered 
+            }
+            else if(!timeList.get(i).getText().equals("") || !nameList.get(i).getText().equals("") || !ageList.get(i).getText().equals("") || !hospitalList.get(i).getText().equals("") || !specialityList.get(i).getText().equals(""))
+            {
+                System.out.println("Diary");
+                codeBank.missingError();
+                return false;
+            }
+        }
+        return true;
+    }
+    
     
     
     public void save(LocalDate today)
@@ -1003,12 +1021,6 @@ public class DiaryScreenDocumentController  implements Initializable
             }
             
             c.close();
-            
-            if(issue)
-            {
-                System.out.println("Diary");
-                codeBank.missingError();
-            }
             
             clearAll();
         }
@@ -1071,21 +1083,11 @@ public class DiaryScreenDocumentController  implements Initializable
         }
         else
         {
-            reportIssue(i);
             return "";
-        }
+        }        
     }   
     
-    
-    public void reportIssue(int i)
-    {
-        if(!timeList.get(i).getText().equals("") || !nameList.get(i).getText().equals("") || !ageList.get(i).getText().equals("") || !hospitalList.get(i).getText().equals("") || !specialityList.get(i).getText().equals(""))
-        {
-            System.out.println("NOT ALL THE DATA");
-            issue = true;
-        }
-    }
-       
+   
     //OK
     public String saveNotes(String date)
     {

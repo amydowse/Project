@@ -359,79 +359,8 @@ public class MainScreenDocumentController implements Initializable
         {
                 
         }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-//        try
-//        {
-//            // open a connection
-//            Connection c = DatabaseConnector.activateConnection();
-//            c.setAutoCommit( true ); 
-//            ResultSet rs ;
-//            
-//            // when creating a statement object, you MUST use a connection object to call the instance method
-//            Statement stmt = c.createStatement();
-//            
-//            String day = codeBank.getCurrentDate().getDayOfWeek().name();
-//            String date = codeBank.dateToString(codeBank.getCurrentDate());
-//            
-//            rs = stmt.executeQuery("SELECT * FROM template WHERE Day ='" + date + "'");
-//            if(rs.next()) //Has the date in the template
-//            {
-//                if(!rs.getString("Start").equals("00:00"))
-//                {
-//                    //implement query
-//                    rs = stmt.executeQuery("SELECT count(*) AS total FROM blood WHERE Date ='" + date + "'"); 
-//
-//                    while(rs.next())
-//                    { 
-//                        btnBlood.setText("Blood Clinic\n\n"+rs.getInt("total") + " booked"); //shows the number of appointments 
-//                    }
-//                    c.close();
-//                }
-//                else //template removed 
-//                {
-//                    btnBlood.setText("Blood Clinic\n\nNO CLINIC");
-//                }
-//            }
-//            else
-//            {
-//                rs = stmt.executeQuery("SELECT * FROM template WHERE Day ='" + day + "'");
-//                while (rs.next())
-//                {
-//                    
-//                    rs = stmt.executeQuery("SELECT * FROM template WHERE Day ='" + day + "'");
-//                    if(rs.next())
-//                    {
-//                    }
-//                    
-//                    //implement query
-//                    rs = stmt.executeQuery("SELECT count(*) AS total FROM blood WHERE Date ='" + date + "'"); 
-//
-//                    while(rs.next())
-//                    { 
-//                        btnBlood.setText("Blood Clinic\n\n"+rs.getInt("total") + " booked");
-//                    }
-//                    c.close();
-//                }
-//                
-//            }
-//            
-//            c.close();
-//        }
-//        catch (SQLException e)
-//        {
-//            
-//        } 
     }
+    
     
     public void updatePreopButton()
     {
@@ -715,14 +644,18 @@ public class MainScreenDocumentController implements Initializable
         }
     }
     
-    public void save()
+    public boolean save()
     {
         //System.out.println("GOING FROM: " + ContentPane.getChildren().get(0).getAccessibleText());
         
         switch(ContentPane.getChildren().get(0).getAccessibleText())
         {
             case "Diary":   
-                DSDC.save(codeBank.getCurrentDate());
+                if(DSDC.beforeSave())
+                {
+                    DSDC.save(codeBank.getCurrentDate());
+                    return true;
+                }
                 break;
             case "Preop":
                 PSDC.save(codeBank.getCurrentDate());
@@ -737,15 +670,20 @@ public class MainScreenDocumentController implements Initializable
                 OSDC.save(codeBank.getCurrentDate());
                 break;
         }
+        return false;
     }
     
-     @FXML
+    
+    
+    @FXML
     public void showDiary() throws IOException
     {
-        save();     
-        DSDC.showInformation(codeBank.getCurrentDate());
-        updateButtons();
-        changeContentPane(DiaryPane); 
+        if(save())
+        {        
+            DSDC.showInformation(codeBank.getCurrentDate());
+            updateButtons();
+            changeContentPane(DiaryPane); 
+        }
     }
    
     @FXML
