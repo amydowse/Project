@@ -14,6 +14,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -38,6 +39,30 @@ public class ProcedureDialogController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         cbLocation.getItems().addAll("Bed", "Non-bed");
+        
+        txtDuration.focusedProperty().addListener((ObservableValue<? extends Boolean> ov, Boolean oldV, Boolean newV) -> {
+            if (!newV) 
+            { 
+                checkingInteger(txtDuration);
+            }
+            });
+        
+        txtNurses.focusedProperty().addListener((ObservableValue<? extends Boolean> ov, Boolean oldV, Boolean newV) -> {
+            if (!newV) 
+            { 
+                checkingInteger(txtNurses);
+            }
+            });
+    }
+    
+    public void checkingInteger(TextField selected)
+    {
+        String value = selected.getText();
+        
+        if(!codeBank.checkInteger(value))
+        {
+            codeBank.integerError();
+        }
     }
     
     @FXML
