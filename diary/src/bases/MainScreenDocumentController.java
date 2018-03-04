@@ -380,7 +380,7 @@ public class MainScreenDocumentController implements Initializable
                 
             while(rs.next())
             { 
-                btnPreOp.setText("Preop\n\n"+rs.getInt("total") + " booked");
+                btnPreOp.setText("Pre-op\n\n"+rs.getInt("total") + " booked");
             }
             c.close();
         }

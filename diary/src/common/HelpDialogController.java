@@ -39,47 +39,47 @@ public class HelpDialogController implements Initializable
         switch(screen)
         {
             case("Diary"):  
-                lblHelpTitle.setText("Help - Diary");
+                lblHelpTitle.setText("HELP : DIARY");
                 fileName = "C:/Users/amydo/Documents/NetBeansProjects/Diary/diary/src/help/Diary.txt";
                 break;
             case("Blood"):  
-                lblHelpTitle.setText("Help - Blood Clinic");
+                lblHelpTitle.setText("HELP : BLOOD CLINIC");
                 fileName = "C:/Users/amydo/Documents/NetBeansProjects/Diary/diary/src/help/Blood.txt";
                 break;
             case("Preop"):  
-                lblHelpTitle.setText("Help - Pre-op");
+                lblHelpTitle.setText("HELP : PRE-OP");
                 fileName = "C:/Users/amydo/Documents/NetBeansProjects/Diary/diary/src/help/Preop.txt";
                 break; 
             case("Oncology"):  
-                lblHelpTitle.setText("Help - Oncology");
+                lblHelpTitle.setText("HELP - ONCOLOGYY");
                 fileName = "C:/Users/amydo/Documents/NetBeansProjects/Diary/diary/src/help/Oncology.txt";
                 break; 
             case("Nonbed"):  
-                lblHelpTitle.setText("Help - Non-bed");
+                lblHelpTitle.setText("HELP : NON-BED");
                 fileName = "C:/Users/amydo/Documents/NetBeansProjects/Diary/diary/src/help/Nonbed.txt";
                 break;    
             case("Staff"):  
-                lblHelpTitle.setText("Help - Staff");
+                lblHelpTitle.setText("HELP : STAFF");
                 fileName = "C:/Users/amydo/Documents/NetBeansProjects/Diary/diary/src/help/Staff.txt";
                 break; 
             case("Regular"):  
-                lblHelpTitle.setText("Help - Regular Attenders");
+                lblHelpTitle.setText("HELP : REGULAR ATTENDERS");
                 fileName = "C:/Users/amydo/Documents/NetBeansProjects/Diary/diary/src/help/Regular.txt";
                 break;    
             case("Procedure"):  
-                lblHelpTitle.setText("Help - Procedures");
+                lblHelpTitle.setText("HELP : PROCEDURES");
                 fileName = "C:/Users/amydo/Documents/NetBeansProjects/Diary/diary/src/help/Procedures.txt";
                 break;    
             case("PatientSearch"):  
-                lblHelpTitle.setText("Help - Patient Search");
+                lblHelpTitle.setText("HELP : PATIENT SEARCH");
                 fileName = "C:/Users/amydo/Documents/NetBeansProjects/Diary/diary/src/help/PatientSearch.txt";
                 break;    
             case("ProcedureSearch"):  
-                lblHelpTitle.setText("Help - Procedure Search");
+                lblHelpTitle.setText("HELP : PROCEDURE SEARCH");
                 fileName = "C:/Users/amydo/Documents/NetBeansProjects/Diary/diary/src/help/ProcedureSearch.txt";
                 break;  
             case("Settings"):  
-                lblHelpTitle.setText("Help - Settings");
+                lblHelpTitle.setText("HELP : SETTINGS");
                 fileName = "C:/Users/amydo/Documents/NetBeansProjects/Diary/diary/src/help/Settings.txt";
                 break;    
         }
