@@ -547,9 +547,9 @@ public class OncologyScreenDocumentController implements Initializable
         {
             if(!timeList.get(i).getText().equals("") & nameList.get(i).getValue() != null & !reasonList.get(i).getText().equals(""))
             {
-                //No data
+                
             }
-            else if(!timeList.get(i).getText().equals("") & nameList.get(i).getValue() != null & !reasonList.get(i).getText().equals(""))
+            else if(!timeList.get(i).getText().equals("") || nameList.get(i).getValue() != null || !reasonList.get(i).getText().equals(""))
             {
                 codeBank.missingError();
                 return false;

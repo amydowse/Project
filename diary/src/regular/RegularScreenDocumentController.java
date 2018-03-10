@@ -248,7 +248,7 @@ public class RegularScreenDocumentController implements Initializable
                 }
                 else //they dont have any appointents 
                 {
-                    sql = "DELETE FROM oncology WHERE Regular_HospitalNumber ='" + txtNHS.getText() + "'";
+                    sql = "DELETE FROM regular WHERE HospitalNumber='" + txtNHS.getText() + "'";
                     stmt.executeUpdate(sql);
                 }
 

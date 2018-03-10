@@ -490,9 +490,13 @@ public class NonbedScreenDocumentController implements Initializable
     {
         for(int i=0; i<14; i++)
         {
-            if(!timeList.get(i).getText().equals("") & !nameList.get(i).getText().equals("") & procedureList.get(i).getValue() != null)
+            if(!timeList.get(i).getText().equals("") & !nameList.get(i).getText().equals("") &  procedureList.get(i).getValue() != null)
             {
-                //Nothing entered
+                //Nothing entered and you are ok to procede
+            }
+            else if(timeList.get(i).getText().equals("") & nameList.get(i).getText().equals("") &  (procedureList.get(i).getValue() != null))
+            {
+                //no person - ok to procede 
             }
             else if(!timeList.get(i).getText().equals("") || !nameList.get(i).getText().equals("") || procedureList.get(i).getValue() != null)
             {
@@ -553,7 +557,7 @@ public class NonbedScreenDocumentController implements Initializable
                                                                                             + ageList.get(i).getText() + "','"
                                                                                             + hospitalList.get(i).getText() + "','"
                                                                                             + procedureList.get(i).getValue() + "','"
-                                                                                            + txtReason1.getText() + "','"
+                                                                                            + reasonList.get(i).getText() + "','"
                                                                                             + notesArray[i] + "','"
                                                                                             + attendanceArray[i] + "')"
                         );

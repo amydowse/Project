@@ -16,7 +16,7 @@ TO DELETE AN APPOINTMENT
 
 Click into the 'Name' of the appointment you want to delete and delete the name. 
 
-If you want to book another appointment into this slot, click the 'Blood Clinic' button on the left hand side - this will save that the original appointment has been deleted.
+If you want to book another appointment into this slot, click the 'Blood Clinic' button on the right hand side - this will save that the original appointment has been deleted.
 
 
 TO MARK THE ATTENDANCE OF AN APPOINTMENT

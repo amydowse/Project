@@ -283,7 +283,7 @@ public class StaffScreenDocumentController implements Initializable
                 Statement stmt = c.createStatement(); 
                 ResultSet rs;
                 
-                String sql = "SELECT * FROM working WHERE ID='" + lblID.getText() + "'";
+                String sql = "SELECT * FROM working WHERE Staff_ID='" + lblID.getText() + "'";
                 
                 rs = stmt.executeQuery(sql);
                 
