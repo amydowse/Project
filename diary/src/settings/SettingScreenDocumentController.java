@@ -403,20 +403,27 @@ public class SettingScreenDocumentController implements Initializable
     {
         if(codeBank.checkInteger(txtExtraLength.getText()))
         {
-            if(codeBank.checkTime(txtExtraStart.getText()) && codeBank.checkTime(txtExtraEnd.getText()) && codeBank.checkTime(txtExtraBreakStart.getText()) && codeBank.checkTime(txtExtraBreakEnd.getText()))
-            {   
-                if(allOk())
-                {
-                    saveExtra();
+            if(chbBlood.isSelected())
+            {
+                if(codeBank.checkTime(txtExtraStart.getText()) && codeBank.checkTime(txtExtraEnd.getText()) && codeBank.checkTime(txtExtraBreakStart.getText()) && codeBank.checkTime(txtExtraBreakEnd.getText()))
+                {   
+                    if(allOk())
+                    {
+                        saveExtra();
+                    }
+                    else
+                    {
+                        codeBank.timeOrderError();
+                    }
                 }
                 else
                 {
-                    codeBank.timeOrderError();
+                    codeBank.timeError();
                 }
             }
             else
             {
-                codeBank.timeError();
+                saveExtra();
             }
         }
         else
@@ -425,11 +432,14 @@ public class SettingScreenDocumentController implements Initializable
         }
     }
     
+    
     public void saveExtra()
     {
         LocalDate selected = extraListDate.getValue();
         String day = selected.getDayOfWeek().name();
         String date = codeBank.dateToString(selected);
+        
+        System.out.println(day);
        
         if(day.equals("MONDAY") || day.equals("TUESDAY") || day.equals("WEDNESDAY") || day.equals("THURSDAY") || day.equals("FRIDAY"))
         {
@@ -551,6 +561,12 @@ public class SettingScreenDocumentController implements Initializable
                 toDelete.add("DELETE FROM nonbed WHERE Date ='" + date + "'");
 
             }
+            
+            System.out.println(surgery);
+            System.out.println(blood);
+            System.out.println(preop);
+            System.out.println(oncology);
+            System.out.println(nonbed);
             
             try
             {
