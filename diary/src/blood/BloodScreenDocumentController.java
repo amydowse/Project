@@ -488,7 +488,6 @@ public class BloodScreenDocumentController implements Initializable
                         stmt.executeUpdate(sql);
                         c.close();
                         
-                        setToNull(index);
                         showInformation();
                     } 
                     catch (SQLException x) 
@@ -579,22 +578,7 @@ public class BloodScreenDocumentController implements Initializable
     }
     
     
-    public void setToNull(int index)
-    {
-        allBookings.get(index).setName("");
-        allBookings.get(index).setDOB("");
-        allBookings.get(index).setNHS("");
-        allBookings.get(index).setNumber("");
-        allBookings.get(index).setForm("");
-        allBookings.get(index).setExtra("");
-        allBookings.get(index).setPrevious("");
-        allBookings.get(index).setBooked("");
-        allBookings.get(index).setAttendance(0);
-        
-        
-    }
-    
-    
+     
     public void changeAttendance(int index)
     {
         if(allBookings.get(index).getAttendance() == 0)
