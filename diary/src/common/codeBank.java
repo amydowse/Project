@@ -149,7 +149,7 @@ public class codeBank
                 String firstname = rs.getString("FirstName");
                 int ID = rs.getInt("ID");
 
-                String text = "(" + ID + ") " + firstname;
+                String text = "(" + ID + ") " + firstname + " - " + rs.getString("Shift");
 
                 workingStaff.add(text);
             }
