@@ -38,11 +38,16 @@
                 <Font name="System Bold" size="20.0" />
             </font>
         </Label>
-        <Label layoutX="751.0" layoutY="230.0" text="Number of Nurses">
+        <Label layoutX="935.0" layoutY="230.0" text="nurse(s) to every">
             <font>
                 <Font name="System Bold" size="20.0" />
             </font>
         </Label>
+        <Label layoutX="1202.0" layoutY="237.0" text="patient(s)">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
         <Label layoutX="838.0" layoutY="316.0" text="Location">
             <font>
                 <Font name="System Bold" size="20.0" />
@@ -55,9 +60,13 @@
         <!--Data-->
         <TextField fx:id="txtName" editable="false" layoutX="935.0" layoutY="57.0" prefHeight="44.0" prefWidth="358.0" />
         <TextField fx:id="txtDuration" layoutX="935.0" layoutY="138.0" prefHeight="44.0" prefWidth="208.0" />
-        <TextField fx:id="txtNurses" layoutX="935.0" layoutY="223.0" prefHeight="44.0" prefWidth="358.0" />
+        <ChoiceBox fx:id="cbLength" layoutX="1143.0" layoutY="138.0" prefHeight="44.0" prefWidth="150.0" />
+        <TextField fx:id="txtNurses" layoutX="837.0" layoutY="223.0" prefHeight="44.0" prefWidth="70.0" />
+        <TextField fx:id="txtPatients" layoutX="1108.0" layoutY="230.0" prefHeight="44.0" prefWidth="70.0" />
         <ChoiceBox fx:id="cbLocation" layoutX="935.0" layoutY="309.0" prefHeight="44.0" prefWidth="358.0" />
-      <ChoiceBox fx:id="cbLength" layoutX="1143.0" layoutY="138.0" prefHeight="44.0" prefWidth="150.0" />
+      
+      
+      
       
       
       

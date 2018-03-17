@@ -52,6 +52,7 @@ public class ProcedureScreenDocumentController implements Initializable
     @FXML TextField txtName;
     @FXML TextField txtDuration;
     @FXML TextField txtNurses;
+    @FXML TextField txtPatients;
     @FXML ChoiceBox cbLocation;
     @FXML ChoiceBox cbLength;
     
@@ -80,6 +81,7 @@ public class ProcedureScreenDocumentController implements Initializable
         txtName.setText("");
         txtDuration.setText("");
         txtNurses.setText("");
+        txtPatients.setText("");
         cbLocation.setValue("");
         cbLength.setValue("");
         
@@ -94,6 +96,13 @@ public class ProcedureScreenDocumentController implements Initializable
             if (!newV) 
             { 
                 checkingInteger(txtNurses);
+            }
+            });
+        
+        txtPatients.focusedProperty().addListener((ObservableValue<? extends Boolean> ov, Boolean oldV, Boolean newV) -> {
+            if (!newV) 
+            { 
+                checkingInteger(txtPatients);
             }
             });
         
@@ -114,9 +123,10 @@ public class ProcedureScreenDocumentController implements Initializable
                 String name = rs.getString("Name");
                 Integer duration = rs.getInt("Duration");
                 Integer nurses = rs.getInt("NumberOfNurses");
+                Integer patients = rs.getInt("NumberOfPatients");
                 String location = rs.getString("Location");
                 
-                procedure x = new procedure(name, duration, nurses, location);
+                procedure x = new procedure(name, duration, nurses, patients, location);
                 allProcedures.add(x);
                 
             }
@@ -146,6 +156,7 @@ public class ProcedureScreenDocumentController implements Initializable
                         }
                         
                         txtNurses.setText(""+((procedure)newSelection).getNurses());
+                        txtPatients.setText(""+((procedure)newSelection).getPatients());
                         cbLocation.setValue(((procedure)newSelection).getLocation());
                     }
                 });
@@ -218,7 +229,7 @@ public class ProcedureScreenDocumentController implements Initializable
     public void Save() 
     {
         //checks that all of the info has been entered
-        if (!txtName.getText().equals("") && !txtDuration.equals("") && !txtNurses.getText().equals("") && !cbLocation.getValue().equals("")) 
+        if (!txtName.getText().equals("") && !txtDuration.equals("") && !txtNurses.getText().equals("") && !txtPatients.getText().equals("") && !cbLocation.getValue().equals("")) 
         {
             int duration = Integer.parseInt(txtDuration.getText());
             System.out.println(">>>> " + duration);
@@ -237,6 +248,7 @@ public class ProcedureScreenDocumentController implements Initializable
 
                 String sql = "UPDATE procedures SET     Duration = '" + duration
                                                         + "', NumberOfNurses = '" + txtNurses.getText()
+                                                        + "', NumberOfPatients = '" + txtPatients.getText()
                                                         + "', Location = '" + cbLocation.getValue().toString() + "' WHERE  Name = '" + txtName.getText() + "'";
 
                 stmt.executeUpdate(sql);
@@ -250,7 +262,7 @@ public class ProcedureScreenDocumentController implements Initializable
 
             }
         }
-        else if (!txtName.getText().equals("") || !txtDuration.equals("") || !txtNurses.getText().equals("") || !cbLocation.getValue().equals(""))
+        else if (!txtName.getText().equals("") || !txtDuration.equals("") || !txtNurses.getText().equals("") || !txtPatients.getText().equals("") || !cbLocation.getValue().equals(""))
         {
             System.out.println("Procedure");
             codeBank.missingError();

@@ -14,13 +14,15 @@ public class procedure
     private String name;
     private int duration;
     private int nurses;
+    private int patients;
     private String location;
     
-    public procedure(String name, int duration, int nurses, String location)
+    public procedure(String name, int duration, int nurses, int patients, String location)
     {
         this.name = name;
         this.duration = duration;
         this.nurses = nurses;
+        this.patients = patients;
         this.location = location;
     }
     
@@ -38,6 +40,11 @@ public class procedure
     public int getNurses()
     {
         return nurses;
+    }
+    
+    public int getPatients()
+    {
+        return patients;
     }
     
     public String getLocation()
@@ -61,6 +68,11 @@ public class procedure
     public void setNurses(int nurses)
     {
         this.nurses = nurses;
+    }
+    
+    public void setPatients(int patients)
+    {
+        this.patients = patients;
     }
     
     public void setLocation(String location)

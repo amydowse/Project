@@ -31,6 +31,7 @@ public class ProcedureDialogController implements Initializable
     @FXML TextField txtName;
     @FXML TextField txtDuration;
     @FXML TextField txtNurses;
+    @FXML TextField txtPatients;
     @FXML ChoiceBox cbLocation;
     @FXML ChoiceBox cbLength;
     @FXML Button btnSave;
@@ -54,6 +55,13 @@ public class ProcedureDialogController implements Initializable
                 checkingInteger(txtNurses);
             }
             });
+        
+        txtPatients.focusedProperty().addListener((ObservableValue<? extends Boolean> ov, Boolean oldV, Boolean newV) -> {
+            if (!newV) 
+            { 
+                checkingInteger(txtPatients);
+            }
+            });
     }
     
     public void checkingInteger(TextField selected)
@@ -69,7 +77,7 @@ public class ProcedureDialogController implements Initializable
     @FXML
     public void Save()
     {
-        if (!txtName.getText().equals("") && !txtDuration.equals("") && !txtNurses.getText().equals("") && cbLocation.getValue()!=null) 
+        if (!txtName.getText().equals("") && !txtDuration.equals("") && !txtNurses.getText().equals("") && !txtPatients.getText().equals("") && cbLocation.getValue()!=null) 
         {
             int duration = Integer.parseInt(txtDuration.getText());
             if(cbLength.getValue().equals("hour(s)"))
@@ -83,10 +91,11 @@ public class ProcedureDialogController implements Initializable
                 c.setAutoCommit(true);
                 Statement stmt = c.createStatement();
 
-                String sql = "INSERT INTO procedures(Name, Duration, NumberOfNurses, Location) VALUES('" 
+                String sql = "INSERT INTO procedures(Name, Duration, NumberOfNurses, NumberOfPatients, Location) VALUES('" 
                                                                 + txtName.getText() + "','"
                                                                 + duration + "','"
                                                                 + txtNurses.getText() + "','"
+                                                                + txtPatients.getText() + "','"
                                                                 + cbLocation.getValue().toString() + "')";
 
                 stmt.executeUpdate(sql);
@@ -103,7 +112,7 @@ public class ProcedureDialogController implements Initializable
             stage.close();
             
         }
-        else if(!txtName.getText().equals("") || !txtDuration.equals("") || !txtNurses.getText().equals("") || !cbLocation.getValue().equals(""))
+        else if(!txtName.getText().equals("") || !txtDuration.equals("") || !txtNurses.getText().equals("") || !txtPatients.getText().equals("") || !cbLocation.getValue().equals(""))
         {
             System.out.println("Procedure Add");
             codeBank.missingError();
