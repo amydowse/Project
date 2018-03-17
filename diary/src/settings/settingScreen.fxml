@@ -100,6 +100,11 @@
                </font>
             </Label>
             <Button fx:id="btnSaveExtra" layoutX="722.0" layoutY="874.0" mnemonicParsing="false" onAction="#saveExtraCheck" prefHeight="54.0" prefWidth="90.0" text="SAVE" />
+            <Label fx:id="lblSaveExtra" layoutX="712.0" layoutY="940.0" text="Save Successful">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
            
          </children>
       </Pane>
@@ -150,7 +155,12 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button fx:id="btnSaveTemplate" layoutX="832.0" layoutY="353.0" mnemonicParsing="false" onAction="#saveTemplateCheck" prefHeight="54.0" prefWidth="90.0" text="SAVE" />
+            <Button fx:id="btnSaveTemplate" layoutX="833.0" layoutY="334.0" mnemonicParsing="false" onAction="#saveTemplateCheck" prefHeight="54.0" prefWidth="90.0" text="SAVE" />
+            <Label fx:id="lblSaveTemplate" layoutX="823.0" layoutY="396.0" text="Save Successful">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
       
@@ -207,6 +217,11 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
+            <Label fx:id="lblSaveAlter" layoutX="838.0" layoutY="505.0" text="Save Successful">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
        
@@ -225,6 +240,7 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Hyperlink>
+      <Label text="Label" />
    </children>
    
    

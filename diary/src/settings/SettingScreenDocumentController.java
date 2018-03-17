@@ -21,6 +21,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.fxml.FXMLLoader;
@@ -38,6 +40,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 /**
  *
  * @author amydo
@@ -60,7 +63,7 @@ public class SettingScreenDocumentController implements Initializable
     @FXML private Pane paneBloodDetails = new Pane();
     
     @FXML private Button btnSaveExtra = new Button();
-    @FXML private Button btnDeleteExtra = new Button();
+    @FXML private Label lblSaveExtra = new Label();
     
     @FXML private TextField txtExtraStart = new TextField();
     @FXML private TextField txtExtraEnd = new TextField();
@@ -91,6 +94,7 @@ public class SettingScreenDocumentController implements Initializable
     @FXML private TextField txtTempBreakEnd = new TextField();
     
     @FXML private Button btnSaveTemplate = new Button();
+    @FXML private Label lblSaveTemplate = new Label();
     
     //ALTER EXISTING BLOOD CLINIC
     @FXML private Pane paneAlter = new Pane();
@@ -114,6 +118,7 @@ public class SettingScreenDocumentController implements Initializable
     @FXML private TextField txtAlterBreakEnd = new TextField();
     
     @FXML private Button btnSaveAlter = new Button();
+    @FXML private Label lblSaveAlter = new Label();
     
     @FXML Hyperlink hlHlep = new Hyperlink();
     
@@ -128,6 +133,9 @@ public class SettingScreenDocumentController implements Initializable
         templateInactive();
         alterInactive();
         paneBloodDetails.setVisible(false);
+        lblSaveAlter.setVisible(false);
+        lblSaveTemplate.setVisible(false);
+        lblSaveExtra.setVisible(false);
         
         showTemplate();
         week.add("MONDAY");
@@ -410,6 +418,12 @@ public class SettingScreenDocumentController implements Initializable
                     if(allOk())
                     {
                         saveExtra();
+                        lblSaveExtra.setVisible(true);
+                        Timeline timeline = new Timeline(new KeyFrame(
+                        Duration.millis(1000),
+                        ae -> extraSaveSuccessful()));
+                        timeline.play();
+
                     }
                     else
                     {
@@ -424,12 +438,25 @@ public class SettingScreenDocumentController implements Initializable
             else
             {
                 saveExtra();
+                lblSaveExtra.setVisible(true);
+                Timeline timeline = new Timeline(new KeyFrame(
+                Duration.millis(1000),
+                ae -> extraSaveSuccessful()));
+                timeline.play();
             }
         }
         else
         {
             codeBank.integerError();
         }
+    }
+    
+    public void extraSaveSuccessful()
+    {
+        lblSaveExtra.setVisible(false);
+        clearAllExtra();
+        extraListDate.getEditor().clear();
+
     }
     
     
@@ -889,6 +916,12 @@ public class SettingScreenDocumentController implements Initializable
                 if(allOkAlter())
                 {
                     saveAlter();
+                    //http://tomasmikula.github.io/blog/2014/06/04/timers-in-javafx-and-reactfx.html accessed 17/3
+                    lblSaveAlter.setVisible(true);
+                    Timeline timeline = new Timeline(new KeyFrame(
+                    Duration.millis(1000),
+                    ae -> alterSaveSuccessful()));
+                    timeline.play();
                 }
                 else
                 {
@@ -904,6 +937,13 @@ public class SettingScreenDocumentController implements Initializable
         {
             codeBank.integerError();
         }
+    }
+    
+    public void alterSaveSuccessful()
+    {
+        lblSaveAlter.setVisible(false);
+        clearAllAlter();
+        alterDate.getEditor().clear();
     }
     
      public boolean allOkAlter()
@@ -1048,6 +1088,12 @@ public class SettingScreenDocumentController implements Initializable
                 if(allOkTemp())
                 {
                     saveTemplate();
+                    lblSaveTemplate.setVisible(true);
+                    Timeline timeline = new Timeline(new KeyFrame(
+                    Duration.millis(1000),
+                    ae -> templateSaveSuccessful()));
+                    timeline.play();
+
                 }
                 else
                 {
@@ -1063,6 +1109,11 @@ public class SettingScreenDocumentController implements Initializable
         {
             codeBank.integerError();
         }
+    }
+    
+    public void templateSaveSuccessful()
+    {
+        lblSaveTemplate.setVisible(false);
     }
     
      public boolean allOkTemp()
