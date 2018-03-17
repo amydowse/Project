@@ -666,7 +666,7 @@ public class MainScreenDocumentController implements Initializable
                 }
                 break;
             case "Blood":
-                BSDC.showInformation();
+                BSDC.save();
                 return true;
             case "Nonbed":
                 if(NSDC.beforeSave())

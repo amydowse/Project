@@ -270,7 +270,7 @@ public class PreopScreenDocumentController implements Initializable
     {
         String value = selected.getText();
         
-        if(!codeBank.checkInteger(value))
+        if(!codeBank.checkAge(value))
         {
             codeBank.ageError();
         }

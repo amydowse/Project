@@ -209,6 +209,35 @@ public class codeBank
         } 
     }
     
+    public static boolean checkAge(String input)
+    {
+        try 
+        { 
+            if(input.equals(""))
+            {
+                return true;
+            }
+            else
+            {
+                int locationOfSlash = input.indexOf("/");
+                if(input.substring(locationOfSlash+1, input.length()).equals("52"))
+                {
+                    return true;
+                }
+                if(input.substring(locationOfSlash+1, input.length()).equals("12"))
+                {
+                    return true;
+                }
+            }
+            Integer.parseInt(input);
+            return true;
+        } 
+        catch(NumberFormatException e)  
+        { 
+            return false; 
+        } 
+    }
+    
     public static boolean checkTime(String input)
     {
         try

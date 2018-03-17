@@ -308,25 +308,42 @@ public class BloodScreenDocumentController implements Initializable
             allBookings = FXCollections.observableArrayList(allTimes);
     
             
+            //-----------------------TESTING
+            tblClinic.setEditable(true);
+		Callback<TableColumn, TableCell> cellFactory = new Callback<TableColumn, TableCell>() {
+			public TableCell call(TableColumn p) {
+				return new EditingCell();
+			}
+		};   
             
+            //-----------------------------------
             
-                       
+                    
             //https://docs.oracle.com/javafx/2/ui_controls/table-view.htm accessed 10/2/18
             tblColName.setCellValueFactory(new PropertyValueFactory<blood, String>("Name"));
-            tblColName.setCellFactory(TextFieldTableCell.forTableColumn());
+            tblColName.setCellFactory(cellFactory);
             tblColName.setOnEditCommit(
                     new EventHandler<CellEditEvent<blood, String>>() {
                 @Override
                 public void handle(CellEditEvent<blood, String> t) {
-                    ((blood) t.getTableView().getItems().get(
-                            t.getTablePosition().getRow())).setName(t.getNewValue());
+                    System.out.println("HANDLED");
+                    System.out.println(t.getTablePosition().getRow());
+                    System.out.println(t.getNewValue());
+                    
+                    ((blood) t.getTableView().getItems().get(t.getTablePosition().getRow())).setName(t.getNewValue());
+                    int row = t.getTablePosition().getRow();
+                    System.out.println(allBookings.get(row).getName());
+//                    blood change = allBookings.get(row);
+//                    change.setName(t.getNewValue());
+//                    allBookings.set(row, change);
                 }
             }
             );
             
             
+            
             tblColDOB.setCellValueFactory(new PropertyValueFactory<blood, String>("DateOfBirth"));
-            tblColDOB.setCellFactory(TextFieldTableCell.forTableColumn());        
+            tblColDOB.setCellFactory(cellFactory);        
             tblColDOB.setOnEditCommit(
                     new EventHandler<CellEditEvent<blood, String>>() 
                     {
@@ -343,8 +360,16 @@ public class BloodScreenDocumentController implements Initializable
             );
             
             
+            
+            
+            
+            
+            
+            
+            
+            
             tblColNHS.setCellValueFactory(new PropertyValueFactory<blood, String>("NHSNumber"));
-            tblColNHS.setCellFactory(TextFieldTableCell.forTableColumn());
+            tblColNHS.setCellFactory(cellFactory);
             tblColNHS.setOnEditCommit(
                     new EventHandler<CellEditEvent<blood, String>>() {
                 @Override
@@ -356,7 +381,7 @@ public class BloodScreenDocumentController implements Initializable
             );
             
             tblColNumber.setCellValueFactory(new PropertyValueFactory<blood, String>("Number"));
-            tblColNumber.setCellFactory(TextFieldTableCell.forTableColumn());
+            tblColNumber.setCellFactory(cellFactory);
             tblColNumber.setOnEditCommit(
                     new EventHandler<CellEditEvent<blood, String>>() {
                 @Override
@@ -368,7 +393,7 @@ public class BloodScreenDocumentController implements Initializable
             );
             
             tblColForm.setCellValueFactory(new PropertyValueFactory<blood, String>("Form"));
-            tblColForm.setCellFactory(TextFieldTableCell.forTableColumn());
+            tblColForm.setCellFactory(cellFactory);
             tblColForm.setOnEditCommit(
                     new EventHandler<CellEditEvent<blood, String>>() {
                 @Override
@@ -380,7 +405,7 @@ public class BloodScreenDocumentController implements Initializable
             );
             
             tblColNotes.setCellValueFactory(new PropertyValueFactory<blood, String>("Notes"));
-            tblColNotes.setCellFactory(TextFieldTableCell.forTableColumn());
+            tblColNotes.setCellFactory(cellFactory);
             tblColNotes.setOnEditCommit(
                     new EventHandler<CellEditEvent<blood, String>>() {
                 @Override
@@ -392,7 +417,7 @@ public class BloodScreenDocumentController implements Initializable
             );
             
             tblColPrevious.setCellValueFactory(new PropertyValueFactory<blood, String>("Previous"));
-            tblColPrevious.setCellFactory(TextFieldTableCell.forTableColumn());
+            tblColPrevious.setCellFactory(cellFactory);
             tblColPrevious.setOnEditCommit(
                     new EventHandler<CellEditEvent<blood, String>>() {
                 @Override
@@ -404,7 +429,7 @@ public class BloodScreenDocumentController implements Initializable
             );
             
             tblColBooked.setCellValueFactory(new PropertyValueFactory<blood, String>("BookedBy"));   
-            tblColBooked.setCellFactory(TextFieldTableCell.forTableColumn());
+            tblColBooked.setCellFactory(cellFactory);
             tblColBooked.setOnEditCommit(
                     new EventHandler<CellEditEvent<blood, String>>() {
                 @Override
@@ -483,7 +508,7 @@ public class BloodScreenDocumentController implements Initializable
             
             
             
-            tblClinic.getItems().addAll(allBookings);
+        tblClinic.getItems().addAll(allBookings);
             
             c.close();
         }
@@ -530,8 +555,10 @@ public class BloodScreenDocumentController implements Initializable
     
     public void save()
     {
+        System.out.println("SAVE");
         for (blood appointment : allBookings)
         {
+            System.out.println(appointment.getName());
             if(!appointment.getName().equals(""))
             {
                 saveToDatabase(appointment);
@@ -543,6 +570,7 @@ public class BloodScreenDocumentController implements Initializable
         }
         saveStaff();
     }
+    
     
     public void saveToDatabase(blood appointment)
     {
