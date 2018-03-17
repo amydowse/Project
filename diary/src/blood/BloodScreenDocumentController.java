@@ -22,6 +22,7 @@ import java.util.Collections;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,9 +31,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ContentDisplay;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.ContextMenuBuilder;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.MenuItemBuilder;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
@@ -307,17 +312,14 @@ public class BloodScreenDocumentController implements Initializable
             
             allBookings = FXCollections.observableArrayList(allTimes);
     
-            
-            //-----------------------TESTING
+           
             tblClinic.setEditable(true);
 		Callback<TableColumn, TableCell> cellFactory = new Callback<TableColumn, TableCell>() {
 			public TableCell call(TableColumn p) {
 				return new EditingCell();
 			}
 		};   
-            
-            //-----------------------------------
-            
+          
                     
             //https://docs.oracle.com/javafx/2/ui_controls/table-view.htm accessed 10/2/18
             tblColName.setCellValueFactory(new PropertyValueFactory<blood, String>("Name"));
@@ -333,9 +335,6 @@ public class BloodScreenDocumentController implements Initializable
                     ((blood) t.getTableView().getItems().get(t.getTablePosition().getRow())).setName(t.getNewValue());
                     int row = t.getTablePosition().getRow();
                     System.out.println(allBookings.get(row).getName());
-//                    blood change = allBookings.get(row);
-//                    change.setName(t.getNewValue());
-//                    allBookings.set(row, change);
                 }
             }
             );
@@ -358,13 +357,6 @@ public class BloodScreenDocumentController implements Initializable
                         }
                     }
             );
-            
-            
-            
-            
-            
-            
-            
             
             
             
@@ -445,13 +437,71 @@ public class BloodScreenDocumentController implements Initializable
             
             
             //-----------------------------------------------------------------------------------------
+           //Setting up the context menu
+            ContextMenu contextMenu = new ContextMenu();
+            MenuItem delete = new MenuItem("Delete");
+            contextMenu.getItems().add(delete);
             
             
-             //https://stackoverflow.com/questions/35562037/how-to-set-click-event-for-a-cell-of-a-table-column-in-a-tableview accessed 11/2/1
-            tblColTime.setCellValueFactory(new PropertyValueFactory<blood, String>("Time"));   
+            //https://stackoverflow.com/questions/13984466/context-menu-visibility-in-tableview-javafx accedd 17/3  
+            tblColTime.setCellValueFactory(new PropertyValueFactory("Time"));
+            tblColTime.setCellFactory(new Callback<TableColumn, TableCell>() {
+                @Override
+                public TableCell call(final TableColumn param) {
+
+                    final TableCell cell = new TableCell() {
+
+                        @Override
+                        public void updateItem(Object item, boolean empty) {
+                            super.updateItem(item, empty);
+                            if (empty) {
+                                setText(null);
+                            } else {
+                                if (isEditing()) {
+                                    setText(null);
+                                } else {
+                                    setText(getItem().toString());
+                                    setGraphic(null);
+                                }
+                            }
+                        }
+                    };
+                    cell.setContextMenu(contextMenu);
+                    return cell;
+                }
+            });
             
             
             
+            delete.setOnAction(new EventHandler<ActionEvent>() 
+            {
+                public void handle(ActionEvent e) 
+                {
+                    int index = tblClinic.getSelectionModel().getSelectedIndex();
+                    String name = allBookings.get(index).getName();
+                    try 
+                    {
+                        Connection c = DatabaseConnector.activateConnection();
+                        c.setAutoCommit(true);
+                        Statement stmt = c.createStatement();
+                        String sql = "DELETE FROM blood WHERE Date = '" + codeBank.dateToString(codeBank.getCurrentDate()) + "' AND Name = '" + name + "'";
+                        stmt.executeUpdate(sql);
+                        c.close();
+                        
+                        setToNull(index);
+                        showInformation();
+                    } 
+                    catch (SQLException x) 
+                    {
+
+                    }
+                    
+                }
+            });
+            
+            
+            
+            //https://stackoverflow.com/questions/35562037/how-to-set-click-event-for-a-cell-of-a-table-column-in-a-tableview accessed 11/2/1
             //https://stackoverflow.com/questions/27281370/javafx-tableview-format-one-cell-based-on-the-value-of-another-in-the-row accessed 10/2/18
             tblColAtt1.setCellValueFactory(new PropertyValueFactory<blood, Integer>("Att"));
             tblColAtt1.setCellFactory(tc -> {
@@ -528,6 +578,21 @@ public class BloodScreenDocumentController implements Initializable
            
     }
     
+    
+    public void setToNull(int index)
+    {
+        allBookings.get(index).setName("");
+        allBookings.get(index).setDOB("");
+        allBookings.get(index).setNHS("");
+        allBookings.get(index).setNumber("");
+        allBookings.get(index).setForm("");
+        allBookings.get(index).setExtra("");
+        allBookings.get(index).setPrevious("");
+        allBookings.get(index).setBooked("");
+        allBookings.get(index).setAttendance(0);
+        
+        
+    }
     
     
     public void changeAttendance(int index)
