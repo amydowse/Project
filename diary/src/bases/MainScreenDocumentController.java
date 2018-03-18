@@ -79,6 +79,13 @@ public class MainScreenDocumentController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
+        btnDiary.setOpacity(1);
+        btnBlood.setOpacity(1);
+        btnPreOp.setOpacity(1);
+        btnOncology.setOpacity(1);
+        btnNonBed.setOpacity(1);
+        
+        
         //Image from http://www.stickpng.com/img/icons-logos-emojis/home-icons/chimney-home-icon
         Image home = new Image(getClass().getResourceAsStream("/bases/home.png"));
         ImageView IVHome = new ImageView(home);
@@ -98,7 +105,7 @@ public class MainScreenDocumentController implements Initializable
         IVRight.setFitWidth(50);
         btnRight.setGraphic(IVRight);
         
-        
+        dpCalandar.setShowWeekNumbers(false);
         
               
         ContentPane = this.Content;
@@ -164,7 +171,7 @@ public class MainScreenDocumentController implements Initializable
                         if ((day == DayOfWeek.SATURDAY || day == DayOfWeek.SUNDAY) && !Extra(item))
                         {
                             this.setDisable ( true );
-                            this.setStyle(" -fx-background-color: #ff0000; ") ;
+                            this.setStyle(" -fx-background-color: #c7c7c7; ") ;
                         }
                         
                         
@@ -222,12 +229,12 @@ public class MainScreenDocumentController implements Initializable
     
     public void updateButtons()
     {
-        inUse();
         updateDiaryButton();
         updateBloodButton();
         updatePreopButton();
         updateOncologyButton();
         updateNonBedButton();
+        inUse();
     }
     
     public void updateDiaryButton()
@@ -276,6 +283,8 @@ public class MainScreenDocumentController implements Initializable
             
             if(rs.isBeforeFirst() && rs.getInt("Blood") == 0) //in extra with a 0
             {
+                btnBlood.setDisable(false);
+                btnBlood.setStyle(null);
                 btnBlood.setText("Blood Clinic\n\nNO CLINIC");
             }
             
@@ -289,6 +298,8 @@ public class MainScreenDocumentController implements Initializable
                     rs = stmt.executeQuery("SELECT count(*) AS total FROM blood WHERE Date ='" + date + "'"); 
                     if(rs.next())
                     { 
+                        btnBlood.setDisable(false);
+                        btnBlood.setStyle(null);
                         btnBlood.setText("Blood Clinic\n\n"+rs.getInt("total") + " booked"); //shows the number of appointments 
                     }
                     c.close();
@@ -312,12 +323,16 @@ public class MainScreenDocumentController implements Initializable
                                         rs = stmt.executeQuery("SELECT count(*) AS total FROM blood WHERE Date ='" + date + "'");
                                         while(rs.next())
                                         { 
+                                            btnBlood.setDisable(false);
+                                            btnBlood.setStyle(null);
                                             btnBlood.setText("Blood Clinic\n\n"+rs.getInt("total") + " booked");
                                         }
                                         c.close();
                                 }
                                 else
                                 {
+                                    btnBlood.setDisable(true);
+                                    btnBlood.setStyle("-fx-background-color: #c7c7c7");
                                     btnBlood.setText("Blood Clinic\n\nNO CLINIC");
                                 }
                             }
@@ -331,12 +346,16 @@ public class MainScreenDocumentController implements Initializable
                                     rs = stmt.executeQuery("SELECT count(*) AS total FROM blood WHERE Date ='" + date + "'");
                                     while(rs.next())
                                     { 
+                                        btnBlood.setDisable(false);
+                                        btnBlood.setStyle(null);
                                         btnBlood.setText("Blood Clinic\n\n"+rs.getInt("total") + " booked");
                                     }
                                     c.close();
                                 }
                                 else
                                 {
+                                    btnBlood.setDisable(true);
+                                    btnBlood.setStyle("-fx-background-color: #c7c7c7");
                                     btnBlood.setText("Blood Clinic\n\nNO CLINIC");
                                 }
                             }
@@ -344,12 +363,16 @@ public class MainScreenDocumentController implements Initializable
                     }
                     else
                     {
+                        btnBlood.setDisable(true);
+                        btnBlood.setStyle("-fx-background-color: #c7c7c7");
                         btnBlood.setText("Blood Clinic\n\nNO CLINIC");
                     }
                 }
             }
             else
             {
+                btnBlood.setDisable(true);
+                btnBlood.setStyle("-fx-background-color: #c7c7c7");
                 btnBlood.setText("Blood Clinic\n\nNO CLINIC");
             }
             
@@ -456,10 +479,16 @@ public class MainScreenDocumentController implements Initializable
         if(day.equals("MONDAY") || day.equals("TUESDAY") || day.equals("WEDNESDAY") || day.equals("THURSDAY") || day.equals("FRIDAY"))
         {
             btnDiary.setDisable(false);
-            btnBlood.setDisable(false);
+            btnDiary.setStyle(null);
+            
             btnPreOp.setDisable(false);
+            btnPreOp.setStyle(null);
+            
             btnOncology.setDisable(false);
+            btnOncology.setStyle(null);
+            
             btnNonBed.setDisable(false);
+            btnNonBed.setStyle(null);
         }
         else
         {
@@ -477,46 +506,60 @@ public class MainScreenDocumentController implements Initializable
                     if(rs.getInt("Surgery") == 0)
                     {
                         btnDiary.setDisable(true);
+                        btnDiary.setStyle("-fx-background-color: #c7c7c7");
+                        btnDiary.setText("Diary\n\nNO CLINIC");
                     }
                     else
                     {
                         btnDiary.setDisable(false);
+                        btnDiary.setStyle(null);
                     }
                     
                     if(rs.getInt("Blood") == 0)
                     {
                         btnBlood.setDisable(true);
+                        btnBlood.setStyle("-fx-background-color: #c7c7c7");
                     }
                     else
                     {
                         btnBlood.setDisable(false);
+                        btnBlood.setStyle(null);
                     }
                     
                     if(rs.getInt("Preop") == 0)
                     {
                         btnPreOp.setDisable(true);
+                        btnPreOp.setStyle("-fx-background-color: #c7c7c7");
+                        btnPreOp.setText("Pre-op\n\nNO CLINIC");
                     }
                     else
                     {
                         btnPreOp.setDisable(false);
+                        btnPreOp.setStyle(null);
                     }
                     
                     if(rs.getInt("Oncology") == 0)
                     {
                         btnOncology.setDisable(true);
+                        btnOncology.setStyle("-fx-background-color: #c7c7c7");
+                        btnOncology.setText("Oncology\n\nNO CLINIC");
                     }
                     else
                     {
                         btnOncology.setDisable(false);
+                        btnOncology.setStyle(null);
                     }
                     
                     if(rs.getInt("Nonbed") == 0)
                     {
                         btnNonBed.setDisable(true);
+                        btnNonBed.setStyle("-fx-background-color: #c7c7c7");
+                        btnNonBed.setText("Non-bed\n\nNO CLINIC");
                     }
                     else
                     {
                         btnNonBed.setDisable(false);
+                        btnNonBed.setStyle(null);
                     }
                 }
                 c.close();

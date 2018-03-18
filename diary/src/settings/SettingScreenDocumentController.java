@@ -153,6 +153,10 @@ public class SettingScreenDocumentController implements Initializable
         
         showTemplate();
         
+        alterDate.setShowWeekNumbers(false);
+        extraListDate.setShowWeekNumbers(false);
+        
+        
         alterDateShowingDays();
     }
     
