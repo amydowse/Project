@@ -14,8 +14,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -30,6 +32,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
@@ -40,6 +43,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import javafx.util.Duration;
 /**
  *
@@ -132,6 +136,7 @@ public class SettingScreenDocumentController implements Initializable
         extraInactive();
         templateInactive();
         alterInactive();
+        
         paneBloodDetails.setVisible(false);
         lblSaveAlter.setVisible(false);
         lblSaveTemplate.setVisible(false);
@@ -147,7 +152,128 @@ public class SettingScreenDocumentController implements Initializable
         lblNoClinic.setVisible(false);
         
         showTemplate();
+        
+        alterDateShowingDays();
     }
+    
+    
+    public void alterDateShowingDays()
+    {
+        // Create a day cell factory
+        Callback<DatePicker, DateCell> dayCellFactory = new Callback<DatePicker, DateCell>()
+        {
+            public DateCell call(final DatePicker datePicker)
+            {
+                return new DateCell()
+                {
+                    @Override
+                    public void updateItem(LocalDate item, boolean empty)
+                    {
+                        // Must call super
+                        super.updateItem(item, empty);
+
+                        if(hasBlood(item))
+                        {
+                            this.setStyle(" -fx-background-color: #80bdff; ") ;
+                        }
+                        
+                        
+                    }
+                };
+            }
+        };
+
+        // Set the day cell factory to the DatePicker
+       alterDate.setDayCellFactory(dayCellFactory);
+    }
+    
+    
+    public boolean hasBlood(LocalDate date)
+    {
+        try
+        {
+            Connection c = DatabaseConnector.activateConnection();
+            c.setAutoCommit( true ); 
+            ResultSet rs ;
+            Statement stmt = c.createStatement(); 
+            
+            //make localdate into string
+            String day = date.getDayOfWeek().name();
+            String stringDate = codeBank.dateToString(date);
+            
+            rs = stmt.executeQuery("SELECT * FROM extra WHERE Date='" + stringDate + "'");
+            if(rs.isBeforeFirst())
+            {
+                if(rs.getInt("Blood")==1)
+                {
+                    c.close();
+                    return true; //it is set in extra to be there 
+                }
+                else
+                {
+                    c.close();
+                    return false;
+                }
+            }
+            
+            rs = stmt.executeQuery("SELECT * FROM template WHERE Day ='" + stringDate + "'");
+            if(rs.isBeforeFirst())
+            {
+                c.close();
+                return true; //found template by date 
+            }
+            
+            rs = stmt.executeQuery("SELECT * FROM template WHERE Day ='" + day + "'");
+            if (rs.isBeforeFirst())//found it by the day
+            {
+                while (rs.next()) 
+                {
+                    String From = rs.getString("FromDate");
+                    String To = rs.getString("ToDate");
+
+                    if (To == null) 
+                    {
+                        LocalDate dateFrom = codeBank.stringToDate(From);
+                        if (date.isAfter(dateFrom)) 
+                        {
+                            c.close();
+                            return true;
+                        }
+                    } 
+                    else 
+                    {
+                        LocalDate dateFrom = codeBank.stringToDate(From);
+                        LocalDate dateTo = codeBank.stringToDate(To);
+
+                        if (date.isBefore(dateTo) && (date.isAfter(dateFrom) || date.equals(dateFrom))) 
+                        {
+                            c.close();
+                            return true;
+                        }
+                    }
+                }
+            } 
+            else 
+            {
+               c.close();
+               return false;
+            }          
+        }
+        catch(SQLException e)
+        {
+            
+        }
+        return false;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     //>>>>>>>>>>>>> ADDING EXTRA CLINICS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     private boolean initiallyBlood = false;
@@ -456,6 +582,7 @@ public class SettingScreenDocumentController implements Initializable
         lblSaveExtra.setVisible(false);
         clearAllExtra();
         extraListDate.getEditor().clear();
+        alterDateShowingDays();
 
     }
     

@@ -478,13 +478,15 @@ public class BloodScreenDocumentController implements Initializable
                 public void handle(ActionEvent e) 
                 {
                     int index = tblClinic.getSelectionModel().getSelectedIndex();
-                    String name = allBookings.get(index).getName();
+                    LocalTime Time = allBookings.get(index).getTime();
+                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
+                    String time = Time.format(dtf);
                     try 
                     {
                         Connection c = DatabaseConnector.activateConnection();
                         c.setAutoCommit(true);
                         Statement stmt = c.createStatement();
-                        String sql = "DELETE FROM blood WHERE Date = '" + codeBank.dateToString(codeBank.getCurrentDate()) + "' AND Name = '" + name + "'";
+                        String sql = "DELETE FROM blood WHERE Date = '" + codeBank.dateToString(codeBank.getCurrentDate()) + "' AND Time = '" + time + "'";
                         stmt.executeUpdate(sql);
                         c.close();
                         

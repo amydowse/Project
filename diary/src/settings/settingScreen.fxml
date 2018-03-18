@@ -240,7 +240,6 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Hyperlink>
-      <Label text="Label" />
    </children>
    
    
