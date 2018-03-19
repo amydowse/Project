@@ -297,10 +297,7 @@ public class MainScreenDocumentController implements Initializable
             
             if(rs.isBeforeFirst() && rs.getInt("Blood") == 0) //in extra with a 0
             {
-                    noBloodClinic();
-//                btnBlood.setDisable(false);
-//                btnBlood.setStyle(null);
-//                btnBlood.setText("Blood Clinic\n\nNO CLINIC");
+                noBloodClinic();
             }
             
             if((rs.isBeforeFirst() && rs.getInt("Blood")==1) || !rs.isBeforeFirst()) //if has data and blood is 1 OR no data 
@@ -314,9 +311,6 @@ public class MainScreenDocumentController implements Initializable
                     if(rs.next())
                     { 
                         bloodClinic(rs.getInt("total"));
-//                        btnBlood.setDisable(false);
-//                        btnBlood.setStyle(null);
-//                        btnBlood.setText("Blood Clinic\n\n"+rs.getInt("total") + " booked"); //shows the number of appointments 
                     }
                     c.close();
                 }
@@ -340,18 +334,12 @@ public class MainScreenDocumentController implements Initializable
                                         while(rs.next())
                                         { 
                                             bloodClinic(rs.getInt("total"));
-//                                            btnBlood.setDisable(false);
-//                                            btnBlood.setStyle(null);
-//                                            btnBlood.setText("Blood Clinic\n\n"+rs.getInt("total") + " booked");
                                         }
                                         c.close();
                                 }
                                 else
                                 {
                                       noBloodClinic();
-//                                    btnBlood.setDisable(true);
-//                                    btnBlood.setStyle("-fx-background-color: #c7c7c7");
-//                                    btnBlood.setText("Blood Clinic\n\nNO CLINIC");
                                 }
                             }
                             else
@@ -365,18 +353,12 @@ public class MainScreenDocumentController implements Initializable
                                     while(rs.next())
                                     { 
                                         bloodClinic(rs.getInt("total"));
-//                                        btnBlood.setDisable(false);
-//                                        btnBlood.setStyle(null);
-//                                        btnBlood.setText("Blood Clinic\n\n"+rs.getInt("total") + " booked");
                                     }
                                     c.close();
                                 }
                                 else
                                 {
                                     noBloodClinic();
-//                                    btnBlood.setDisable(true);
-//                                    btnBlood.setStyle("-fx-background-color: #c7c7c7");
-//                                    btnBlood.setText("Blood Clinic\n\nNO CLINIC");
                                 }
                             }
                         }
@@ -384,9 +366,6 @@ public class MainScreenDocumentController implements Initializable
                     else
                     {
                         noBloodClinic();
-//                        btnBlood.setDisable(true);
-//                        btnBlood.setStyle("-fx-background-color: #c7c7c7");
-//                        btnBlood.setText("Blood Clinic\n\nNO CLINIC");
                     }
                 }
             }
