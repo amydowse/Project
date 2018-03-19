@@ -265,6 +265,20 @@ public class MainScreenDocumentController implements Initializable
         } 
     }
     
+    public void noBloodClinic()
+    {
+        btnBlood.setDisable(true);
+        btnBlood.setStyle("-fx-background-color: #c7c7c7");
+        btnBlood.setText("Blood Clinic\n\nNO CLINIC");
+    }
+    
+    public void bloodClinic(int total)
+    {
+        btnBlood.setDisable(false);
+        btnBlood.setStyle(null);
+        btnBlood.setText("Blood Clinic\n\n"+ total + " booked"); //shows the number of appointments 
+    }
+    
     public void updateBloodButton()
     {
         try
@@ -283,9 +297,10 @@ public class MainScreenDocumentController implements Initializable
             
             if(rs.isBeforeFirst() && rs.getInt("Blood") == 0) //in extra with a 0
             {
-                btnBlood.setDisable(false);
-                btnBlood.setStyle(null);
-                btnBlood.setText("Blood Clinic\n\nNO CLINIC");
+                    noBloodClinic();
+//                btnBlood.setDisable(false);
+//                btnBlood.setStyle(null);
+//                btnBlood.setText("Blood Clinic\n\nNO CLINIC");
             }
             
             if((rs.isBeforeFirst() && rs.getInt("Blood")==1) || !rs.isBeforeFirst()) //if has data and blood is 1 OR no data 
@@ -298,9 +313,10 @@ public class MainScreenDocumentController implements Initializable
                     rs = stmt.executeQuery("SELECT count(*) AS total FROM blood WHERE Date ='" + date + "'"); 
                     if(rs.next())
                     { 
-                        btnBlood.setDisable(false);
-                        btnBlood.setStyle(null);
-                        btnBlood.setText("Blood Clinic\n\n"+rs.getInt("total") + " booked"); //shows the number of appointments 
+                        bloodClinic(rs.getInt("total"));
+//                        btnBlood.setDisable(false);
+//                        btnBlood.setStyle(null);
+//                        btnBlood.setText("Blood Clinic\n\n"+rs.getInt("total") + " booked"); //shows the number of appointments 
                     }
                     c.close();
                 }
@@ -323,17 +339,19 @@ public class MainScreenDocumentController implements Initializable
                                         rs = stmt.executeQuery("SELECT count(*) AS total FROM blood WHERE Date ='" + date + "'");
                                         while(rs.next())
                                         { 
-                                            btnBlood.setDisable(false);
-                                            btnBlood.setStyle(null);
-                                            btnBlood.setText("Blood Clinic\n\n"+rs.getInt("total") + " booked");
+                                            bloodClinic(rs.getInt("total"));
+//                                            btnBlood.setDisable(false);
+//                                            btnBlood.setStyle(null);
+//                                            btnBlood.setText("Blood Clinic\n\n"+rs.getInt("total") + " booked");
                                         }
                                         c.close();
                                 }
                                 else
                                 {
-                                    btnBlood.setDisable(true);
-                                    btnBlood.setStyle("-fx-background-color: #c7c7c7");
-                                    btnBlood.setText("Blood Clinic\n\nNO CLINIC");
+                                      noBloodClinic();
+//                                    btnBlood.setDisable(true);
+//                                    btnBlood.setStyle("-fx-background-color: #c7c7c7");
+//                                    btnBlood.setText("Blood Clinic\n\nNO CLINIC");
                                 }
                             }
                             else
@@ -346,34 +364,38 @@ public class MainScreenDocumentController implements Initializable
                                     rs = stmt.executeQuery("SELECT count(*) AS total FROM blood WHERE Date ='" + date + "'");
                                     while(rs.next())
                                     { 
-                                        btnBlood.setDisable(false);
-                                        btnBlood.setStyle(null);
-                                        btnBlood.setText("Blood Clinic\n\n"+rs.getInt("total") + " booked");
+                                        bloodClinic(rs.getInt("total"));
+//                                        btnBlood.setDisable(false);
+//                                        btnBlood.setStyle(null);
+//                                        btnBlood.setText("Blood Clinic\n\n"+rs.getInt("total") + " booked");
                                     }
                                     c.close();
                                 }
                                 else
                                 {
-                                    btnBlood.setDisable(true);
-                                    btnBlood.setStyle("-fx-background-color: #c7c7c7");
-                                    btnBlood.setText("Blood Clinic\n\nNO CLINIC");
+                                    noBloodClinic();
+//                                    btnBlood.setDisable(true);
+//                                    btnBlood.setStyle("-fx-background-color: #c7c7c7");
+//                                    btnBlood.setText("Blood Clinic\n\nNO CLINIC");
                                 }
                             }
                         }
                     }
                     else
                     {
-                        btnBlood.setDisable(true);
-                        btnBlood.setStyle("-fx-background-color: #c7c7c7");
-                        btnBlood.setText("Blood Clinic\n\nNO CLINIC");
+                        noBloodClinic();
+//                        btnBlood.setDisable(true);
+//                        btnBlood.setStyle("-fx-background-color: #c7c7c7");
+//                        btnBlood.setText("Blood Clinic\n\nNO CLINIC");
                     }
                 }
             }
             else
             {
-                btnBlood.setDisable(true);
-                btnBlood.setStyle("-fx-background-color: #c7c7c7");
-                btnBlood.setText("Blood Clinic\n\nNO CLINIC");
+                noBloodClinic();
+//                btnBlood.setDisable(true);
+//                btnBlood.setStyle("-fx-background-color: #c7c7c7");
+//                btnBlood.setText("Blood Clinic\n\nNO CLINIC");
             }
             
             c.close();
