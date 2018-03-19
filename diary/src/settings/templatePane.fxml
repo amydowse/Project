@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane fx:id="paneTemplate" prefHeight="431.0" prefWidth="959.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="settings.TemplatePaneDocumentController">
+   <children>
+      <Label fx:id="lblTemplate" layoutX="46.0" layoutY="48.0" text="Blood Clinic Template">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <CheckBox fx:id="chbMonday" layoutX="46.0" layoutY="119.0" mnemonicParsing="false" text="Monday" />
+      <CheckBox fx:id="chbTuesday" layoutX="46.0" layoutY="176.0" mnemonicParsing="false" text="Tuesday" />
+      <CheckBox fx:id="chbWednesday" layoutX="46.0" layoutY="237.0" mnemonicParsing="false" text="Wednesday" />
+      <CheckBox fx:id="chbThursday" layoutX="46.0" layoutY="297.0" mnemonicParsing="false" text="Thursday" />
+      <CheckBox fx:id="chbFriday" layoutX="46.0" layoutY="366.0" mnemonicParsing="false" text="Friday" />
+      <TextField fx:id="txtTempStart" layoutX="572.0" layoutY="120.0" />
+      <TextField fx:id="txtTempEnd" layoutX="572.0" layoutY="172.0" />
+      <TextField fx:id="txtTempLength" layoutX="572.0" layoutY="226.0" />
+      <TextField fx:id="txtTempBreakStart" layoutX="572.0" layoutY="296.0" />
+      <TextField fx:id="txtTempBreakEnd" layoutX="572.0" layoutY="345.0" />
+      <Label fx:id="lblTempBreakEnd" layoutX="367.0" layoutY="346.0" text="Break EndTime">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblTempBreakStart" layoutX="367.0" layoutY="297.0" text="Break Start Time">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblTempLength" layoutX="371.0" layoutY="227.0" text="Appointment Length">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblTempEnd" layoutX="367.0" layoutY="173.0" text="End Time">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblTempStart" layoutX="367.0" layoutY="121.0" text="Start Time">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnSaveTemplate" layoutX="833.0" layoutY="334.0" mnemonicParsing="false" onAction="#saveTemplateCheck" prefHeight="54.0" prefWidth="90.0" text="SAVE" />
+      <Label fx:id="lblSaveTemplate" layoutX="823.0" layoutY="396.0" text="Save Successful">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

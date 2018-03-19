@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane fx:id="paneExtra" prefHeight="975.0" prefWidth="835.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="settings.ExtraPaneDocumentController">
+   <children>
+      <Label fx:id="lblExtraDate" layoutX="46.0" layoutY="125.0" text="Date">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="extraListDate" layoutX="134.0" layoutY="118.0" onAction="#selectedExtraDate" prefHeight="44.0" prefWidth="230.0" />
+      <Label fx:id="lblExtraInstructions" layoutX="46.0" layoutY="190.0" text="Please select the types of procedures that will occur on">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <CheckBox fx:id="chbSurgery" layoutX="46.0" layoutY="240.0" mnemonicParsing="false" text="Surgery (Bays)">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="chbBlood" layoutX="46.0" layoutY="318.0" mnemonicParsing="false" onAction="#showBlood" text="Blood Clinic">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="chbPreop" layoutX="46.0" layoutY="393.0" mnemonicParsing="false" text="Pre-op">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="chbOncology" layoutX="46.0" layoutY="471.0" mnemonicParsing="false" text="Oncology">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="chbNonbed" layoutX="46.0" layoutY="537.0" mnemonicParsing="false" text="Non-bed">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </CheckBox>
+      <Pane fx:id="paneBloodDetails" layoutX="7.0" layoutY="593.0" prefHeight="392.0" prefWidth="571.0">
+         <children>
+            <Label fx:id="lblExtraStart" layoutX="41.0" layoutY="69.0" text="Start Time">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblExtraEnd" layoutX="41.0" layoutY="121.0" text="End Time">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblExtraLength" layoutX="45.0" layoutY="175.0" text="Appointment Length">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblExtraBreakStart" layoutX="41.0" layoutY="245.0" text="Break Start Time">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblExtraBreakEnd" layoutX="41.0" layoutY="294.0" text="Break EndTime">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtExtraStart" layoutX="246.0" layoutY="68.0" />
+            <TextField fx:id="txtExtraEnd" layoutX="246.0" layoutY="120.0" />
+            <TextField fx:id="txtExtraLength" layoutX="246.0" layoutY="174.0" />
+            <TextField fx:id="txtExtraBreakStart" layoutX="246.0" layoutY="244.0" />
+            <TextField fx:id="txtExtraBreakEnd" layoutX="246.0" layoutY="293.0" />
+            <Label layoutX="41.0" layoutY="22.0" text="Please enter the details for the Blood Clinic">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Label fx:id="lblExtra" layoutX="46.0" layoutY="48.0" text="Extra List">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnSaveExtra" layoutX="722.0" layoutY="874.0" mnemonicParsing="false" onAction="#saveExtraCheck" prefHeight="54.0" prefWidth="90.0" text="SAVE" />
+      <Label fx:id="lblSaveExtra" layoutX="712.0" layoutY="940.0" text="Save Successful">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>
