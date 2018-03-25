@@ -381,7 +381,7 @@ public class NonbedScreenDocumentController implements Initializable
             Statement stmt = c.createStatement();          
             
             //implement query
-            rs = stmt.executeQuery("SELECT Name FROM procedures"); 
+            rs = stmt.executeQuery("SELECT Name FROM procedures WHERE Location= 'Non-bed'"); 
             
             procedures.add("");
             

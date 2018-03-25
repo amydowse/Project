@@ -98,7 +98,7 @@ public class TopMenuDocumentController implements Initializable
                     lblHeading.setText("PATIENT SEARCH");
                     break;
                 case "Search Procedure": 
-                    newLoadedPane = FXMLLoader.load(getClass().getResource("/search/searchProcedureScreen.fxml"));
+                    newLoadedPane = FXMLLoader.load(getClass().getResource("/schedule/searchProcedureScreen.fxml"));
                     changeContentPaneNewLoad(newLoadedPane);  
                     lblHeading.setText("PROCEDURE SEARCH");
                     break;
