@@ -881,7 +881,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
 
                 int endAdd = appointments.get(j).getDuration() / 5;   //the number of spaces to add for that duration 
 
-                for (int k = arraySpace; k < arraySpace + endAdd; k++) 
+                for (int k = arraySpace; k < arraySpace + endAdd && k<145; k++) 
                 {
                     System.out.print("DIARY ");
                     scheduleLOCATION[index][k] = true;
@@ -1128,7 +1128,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
         {
             int mostEmpty = findMostFreeStaff(arrayStart, arrayDuration);
 
-            for (int k = arrayStart; k < (arrayStart + arrayDuration); k++) 
+            for (int k = arrayStart; k < (arrayStart + arrayDuration) && k<145; k++) 
             {
                 scheduleSTAFF[mostEmpty][k] = true;
             }
@@ -1146,7 +1146,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
         for(int i=0; i<workingStaff.size(); i++)
         {
             int count = 0;
-            for(int j=arrayStart; j<arrayStart+arrayDuration; j++)
+            for(int j=arrayStart; j<arrayStart+arrayDuration && j<145; j++)
             {
                 if(!scheduleSTAFF[i][j])
                 {
