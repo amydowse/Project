@@ -17,6 +17,8 @@ public class schedule
     int duration;
     String bedNumber;
     String name;
+    int nurse;
+    int patient;
     
     public schedule(LocalTime time, int duration)
     {
@@ -45,6 +47,15 @@ public class schedule
         return name;
     }
     
+    public int getNurse()
+    {
+        return nurse;
+    }
+    
+    public int getPatient()
+    {
+        return patient;
+    }
     
     //Setters
     public void setTime(LocalTime time)
@@ -65,5 +76,15 @@ public class schedule
     public void setName(String name)
     {
         this.name = name;
+    }
+    
+    public void setNurse(int nurse)
+    {
+        this.nurse = nurse;
+    }
+    
+    public void setPatient(int patient)
+    {
+        this.patient = patient;
     }
 }

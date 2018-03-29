@@ -82,6 +82,11 @@ public class SearchProcedureScreenDocumentController implements Initializable
     String[] locations;
     int foodchallangeCount = 0;
     
+    ArrayList<multiple> multiplePatientsAM = new ArrayList<multiple>();
+    ArrayList<multiple> multiplePatientsPM = new ArrayList<multiple>();
+    
+    ArrayList<schedule> bedAppointments = new ArrayList<schedule>();
+    
     ObservableList results = FXCollections.observableArrayList();
     
     
@@ -126,7 +131,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
     @FXML
     public void search()
     {
-        findWhatIsOn(codeBank.stringToDate("23/03/2018"));
+        findWhatIsOn(codeBank.stringToDate("29/03/2018"));
         System.out.println("STEP 1");
         
         for(int i=0; i<scheduleSTAFF.length; i++)
@@ -231,6 +236,10 @@ public class SearchProcedureScreenDocumentController implements Initializable
         scheduleLOCATION = new boolean[16][145];
         foodchallangeCount = 0;
         
+        multiplePatientsAM.clear();
+        multiplePatientsPM.clear();
+        bedAppointments.clear();
+        
         results.clear();
         tblSearchResult.getItems().clear();
         
@@ -279,12 +288,12 @@ public class SearchProcedureScreenDocumentController implements Initializable
             Logger.getLogger(SearchProcedureScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
         }
         
-        System.out.println("ARRAY SIZES-------------");
-        System.out.println(workingStaff.size());
-        System.out.println(shift.size());
-        System.out.println(specificStaff.size());
-        System.out.println(bedProcedures.size());
-        System.out.println(nonbedProcedures.size());
+//        System.out.println("ARRAY SIZES-------------");
+//        System.out.println(workingStaff.size());
+//        System.out.println(shift.size());
+//        System.out.println(specificStaff.size());
+//        System.out.println(bedProcedures.size());
+//        System.out.println(nonbedProcedures.size());
         
         //Gets a list of unassigned staff for that day 
         boolean match;
@@ -842,6 +851,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
             ResultSet rs;
             Statement stmt = c.createStatement();
 
+            //Gettng all of the appointments from the database
             rs = stmt.executeQuery("SELECT * FROM diary WHERE Date ='" + date + "'"); //get all the diary/bed appoinments for that day  
             while (rs.next()) 
             {
@@ -857,7 +867,10 @@ public class SearchProcedureScreenDocumentController implements Initializable
         
                 appointments.add(x);
             }
+            
+            bedAppointments = appointments;
 
+            //Blocking out the bed space for these appointments 
             for (int j = 0; j < appointments.size(); j++) 
             {
                 LocalTime dayStart = LocalTime.parse("07:00");
@@ -875,61 +888,264 @@ public class SearchProcedureScreenDocumentController implements Initializable
                 }
             }
             
-            int unassignedStaffCount = 0;
-            int foodchallangeCount = 0;
-            boolean assigned = false;
-            boolean fits = true;
-            
-            for(int i=0 ;i<appointments.size(); i++)
-            {
-                if(appointments.get(i).getName().equals("Food Challenge"))
-                {
-                    foodchallangeCount++;
-                }
-                
-                while(!assigned && unassignedStaffCount < unassignedStaff.size())
-                {
-                    fits = true;
-                    int staffID = findIndex(unassignedStaff.get(unassignedStaffCount));
-                    
-                    LocalTime dayStart = LocalTime.parse("07:00");
-                    LocalTime appointmentTime = appointments.get(i).getTime();
-                    
-                    long minutesToStart = ChronoUnit.MINUTES.between(dayStart, appointmentTime); 
-                    int arrayStart = (int) minutesToStart/5; 
-                    
-                    int arrayDuration = appointments.get(i).getDuration() / 5;
-                    
-                    for(int j=arrayStart; j<arrayStart+arrayDuration-1; j++)
-                    {
-                        if(scheduleSTAFF[staffID][j])
-                        {
-                            fits = false;
-                            
-                        }
-                    }
-                    
-                    if(fits)
-                    {
-                        for(int j=arrayStart; j<arrayStart+arrayDuration-1; j++)
-                        {
-                            System.out.print("DIARYS ");
-                            scheduleSTAFF[staffID][j] = true;
-                        }
-                        
-                        assigned = true;
-                        unassignedStaffCount++;
-                    }
-                }
-            }
-            
-            
+            blockOutStaff(appointments);
             
         } 
         catch (SQLException e) 
         {
             Logger.getLogger(SearchProcedureScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
         }    
+    }
+    
+    
+    
+    public void blockOutStaff(ArrayList<schedule> appointments)
+    {
+        System.out.println("Block out");
+        //if there is at least 1 surgery in a room, assigns 1 nurse and then stops looking at that room 
+        blockOutStaffSurgery(appointments, "MA", "07:30");
+        blockOutStaffSurgery(appointments, "LA", "07:30");
+        blockOutStaffSurgery(appointments, "MP", "13:30");
+        blockOutStaffSurgery(appointments, "LP", "13:30");
+        
+        blockOutStaffOther(appointments);
+    }
+    
+    //assigning a nurse 
+    public void blockOutStaffSurgery(ArrayList<schedule> appointments, String search, String time)
+    {
+        System.out.println("Block out SURGERY");
+        int x = 0;
+        boolean assigned = false;
+        while(x < appointments.size() && !assigned)
+        {
+            String compare = (appointments.get(x).getBedNumber()).substring(1);
+            if(compare.equals(search) && !inProcedures(appointments.get(x).getName()))
+            {
+                assignStaff(LocalTime.parse(time), appointments.get(x).getDuration());
+                assigned = true;
+            }
+            x++;
+        }
+    }
+    
+    
+    public void blockOutStaffOther(ArrayList<schedule> appointments)
+    {
+        System.out.println("Block out OTHER");
+        try 
+        {
+            Connection c = DatabaseConnector.activateConnection();
+            c.setAutoCommit(true);
+            ResultSet rs;
+            Statement stmt = c.createStatement();
+
+            int nurses=0;
+            int patients=0;
+            
+            for(int i=0; i<appointments.size(); i++)
+            {
+                if(inProcedures(appointments.get(i).getName()))
+                {
+                    rs = stmt.executeQuery("SELECT * FROM procedures WHERE Name ='" + appointments.get(i).getName() + "'"); 
+                    while (rs.next())
+                    {
+                        nurses = rs.getInt("NumberOfNurses");
+                        patients = rs.getInt("NumberOfPatients");
+                    }
+                    
+                    //If there is multiple staff to an appointment, blocks off that many 
+                    for(int j=0; j<nurses; j++)
+                    {
+                        System.out.println("ASSIGNING");
+                        assignStaff(appointments.get(i).getTime(), appointments.get(i).getDuration());
+                    }
+                    
+                    //If there are multiple patients allowed, records this
+                    if(patients > 1)
+                    {
+                        if(appointments.get(i).getTime().isBefore(LocalTime.parse("12:00")))
+                        {
+                            int index = inList(appointments.get(i).getName(), "AM");
+                            if(index != -1)
+                            {
+                                multiplePatientsAM.get(index).setCount(multiplePatientsAM.get(index).getCount()+1);
+                            }
+                            else
+                            {
+                                multiplePatientsAM.add(new multiple(appointments.get(i).getName(), 1, patients));
+                            }
+                        }
+                        else
+                        {
+                            int index = inList(appointments.get(i).getName(), "PM");
+                            if(index != -1)
+                            {
+                                multiplePatientsPM.get(index).setCount(multiplePatientsPM.get(index).getCount()+1);
+                            }
+                            else
+                            {
+                                multiplePatientsPM.add(new multiple(appointments.get(i).getName(), 1, patients));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        catch(SQLException e)
+        {
+            
+        }
+    }
+    
+    
+    //finds if a procedure is in the list - if it is not, then it is a surgery appointment 
+    public boolean inProcedures(String name)
+    {
+        for(int i=0; i<bedProcedures.size(); i++)
+        {
+            if(bedProcedures.get(i).getName().equals(name))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    
+    //checks to see if a proceuder that allows for multiple patients is already in the this - gives its index if it is 
+    public int inList(String name, String time)
+    {
+        if(time.equals("AM"))
+        {
+            for(int i=0; i<multiplePatientsAM.size(); i++)
+            {
+                if(multiplePatientsAM.get(i).getName().equals(name))
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+        else
+        {
+            for(int i=0; i<multiplePatientsPM.size(); i++)
+            {
+                if(multiplePatientsPM.get(i).getName().equals(name))
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+        
+    }
+    
+    
+    //block off staff - first looking at unassigned, and then checking for spaces in assigned 
+    public void assignStaff(LocalTime startTime, int duration)
+    {
+        boolean assigned = false;
+        int staffID;
+        
+        //getting the array points set 
+        LocalTime dayStart = LocalTime.parse("07:00");
+        long minutesToStart = ChronoUnit.MINUTES.between(dayStart, startTime); 
+        int arrayStart = (int) minutesToStart/5; 
+        int arrayDuration = duration / 5;
+
+        //go through all the unassignedStaff
+        for (int j = 0; j < unassignedStaff.size(); j++) 
+        {
+            if (!assigned) // as long as it hasnt already been assigned to staff member
+            {
+                staffID = findIndex(unassignedStaff.get(j));//get the staff ID index
+                
+                //if an unassiged staff member has space, block that off and say it has been assigned 
+                if (fits(staffID, arrayStart, arrayDuration)) 
+                {
+                    //If they have space, block it out
+                    for (int x = arrayStart; x < arrayStart + arrayDuration; x++) 
+                    {
+                        scheduleSTAFF[staffID][x] = true;
+                        assigned = true;
+                    }
+                }
+            }
+        }
+       
+        if(!assigned) // as long as it hasnt already been assigned to staff member
+        {
+            for (int j = 0; j < specificStaff.size(); j++) 
+            {
+                if (!assigned) // as long as it hasnt already been assigned to staff member
+                {
+                    staffID = findIndex(specificStaff.get(j).getID());//get the staff ID index 
+
+                    //if they have space, block it out 
+                    if(fits(staffID, arrayStart, arrayDuration))
+                    {
+                        for(int x=arrayStart; x<arrayStart+arrayDuration; x++)
+                        {
+                            scheduleSTAFF[staffID][x] = true;
+                            assigned = true;
+                        }
+                    }//end of assigned fit
+                }
+            }
+        }
+        
+        if (!assigned) //still not assigned as noone has full clear space - assign to most clear
+        {
+            int mostEmpty = findMostFreeStaff(arrayStart, arrayDuration);
+
+            for (int k = arrayStart; k < (arrayStart + arrayDuration); k++) 
+            {
+                scheduleSTAFF[mostEmpty][k] = true;
+            }
+        }
+    }//end of method
+
+    
+    
+    //finds the member of staff who has the most free spaces in that time period 
+    public int findMostFreeStaff(int arrayStart, int arrayDuration)
+    {
+        int highestCount = 0;
+        int highestIndex = 0;
+        
+        for(int i=0; i<workingStaff.size(); i++)
+        {
+            int count = 0;
+            for(int j=arrayStart; j<arrayStart+arrayDuration; j++)
+            {
+                if(!scheduleSTAFF[i][j])
+                {
+                    count++;
+                }
+            }
+            if(count > highestCount)
+            {
+                highestCount = count;
+                highestIndex = i;
+            }
+        }
+        
+        return highestIndex;
+    }
+    
+    //determins if a staff member if free for that peroid of time 
+    public boolean fits(int staffID, int arrayStart, int arrayDuration)
+    {
+        for(int k=arrayStart; k<arrayStart+arrayDuration; k++)
+        {
+            if(scheduleSTAFF[staffID][k])
+            {
+                return false;
+
+            }
+        }
+        return true;
     }
     
     //find the duration of a bed procedure 
@@ -942,10 +1158,12 @@ public class SearchProcedureScreenDocumentController implements Initializable
                 return bedProcedures.get(i).getDuration();
             }
         }
-        return 360;    //if not in list, must be a surgery so staff for 6 hours with is 360 mins
+        //if not in list, must be a surgery so staff for 6 hours with is 360 mins
+        return 360;   
     }
     
     
+    //given a bed number, gives the index of that bed in the schedule array
     public int getArrayIndex(String bedNumber)
     {
         String search = bedNumber.substring(0, 2);
@@ -959,28 +1177,6 @@ public class SearchProcedureScreenDocumentController implements Initializable
         }
         return -1;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     //Helper method - finds the index of a specific member of staff 
@@ -999,41 +1195,40 @@ public class SearchProcedureScreenDocumentController implements Initializable
     
     
     
-    
+    //determines if non-bed or bed procedure and then calls the method to make that suggestion 
     public void suggest(String procedure, LocalDate date) 
     {
-        for (int i = 0; i < bedProcedures.size(); i++) 
-        {
-            if (bedProcedures.get(i).getName().equals(procedure)) 
-            {  
-                if(procedure.equals("Food Challange"))
-                {
-                    makeSuggestions(-1, bedProcedures.get(i).getDuration(), date);
-                }
-                else if(procedure.equals("Oncology"))
-                {
-                    makeSuggestions(14, bedProcedures.get(i).getDuration(), date);
-                }
-                else
-                {
-                    makeSuggestions(-2, bedProcedures.get(i).getDuration(), date);
-                }
-            }
-        }
-
         for (int i = 0; i < nonbedProcedures.size(); i++) 
         {
             if (nonbedProcedures.get(i).getName().equals(procedure)) 
             {
                 int index = findLocationIndex(procedure);                
-                makeSuggestions(index, nonbedProcedures.get(i).getDuration(), date);
+                makeSuggestions(index, nonbedProcedures.get(i).getDuration(), date, procedure);
             }
         }
+        
+        for (int i = 0; i < bedProcedures.size(); i++) 
+        {
+            if (bedProcedures.get(i).getName().equals(procedure)) 
+            {  
+                if(procedure.equals("Oncology"))
+                {
+                    makeSuggestions(14, bedProcedures.get(i).getDuration(), date, procedure);
+                }
+                else
+                {
+                    makeSuggestions(-1, bedProcedures.get(i).getDuration(), date, procedure);
+                }
+            }
+        }
+
+        
     }
     
-    
-    public void makeSuggestions(int index, int duration, LocalDate date)
+    //makes the actual suggestions
+    public void makeSuggestions(int index, int duration, LocalDate date, String name)
     {
+        System.out.println("MAKE SUGGESTIONS");
         if(index == 12) //blood
         {
            findEmptyAppointments(date);
@@ -1077,33 +1272,99 @@ public class SearchProcedureScreenDocumentController implements Initializable
                     i = ((i + (duration/5)) - 2); //moves forward by that duration 
                 }
             }
-            System.out.println("SIZE " + results.size());
         }
-        else if(index == -2 || index == -1 && foodchallangeCount < 3) //food challange with already booked <3 or any other bed procedure 
+        else if(index == -1) //any other bed procedure 
         {
-            if(foodchallangeCount < 3)
+            System.out.println("BED PROCEDURES");
+            //SCHEDULING FOR 1 - TO - MANY RELATIONSHIP 
+            
+            int MPIndexAM = inList(name, "AM");
+            int MPIndexPM = inList(name, "PM");
+            
+            System.out.println("++ " + MPIndexAM);
+            System.out.println("++ " + MPIndexPM);
+            
+            if(MPIndexAM != -1 || MPIndexPM != -1)
             {
-                for(int i=0; i<145; i++)
+                //AM MULTPLE
+                if(MPIndexAM != -1)
                 {
-                    for(int j=0; j<12; j++)
+                    for(int i = multiplePatientsAM.get(MPIndexAM).getCount(); i<multiplePatientsAM.get(MPIndexAM).getMaximum(); i++)
                     {
-                        if(checkIfSpace(i, j, duration))
-                        {
-                            LocalTime time = LocalTime.parse("07:00").plusMinutes(i*5);
-                            results.add(new result(date, time));
-                            i = i + duration/5 - 1;
-                        }
+                        results.add(new result(date, calculateTime(name).plusMinutes(10)));
+                    }
+                }
+
+                //PM MULTIPLE
+                if(MPIndexPM != -1)
+                {
+                    for(int i = multiplePatientsPM.get(MPIndexPM).getCount(); i<multiplePatientsPM.get(MPIndexPM).getMaximum(); i++)
+                    {
+                        results.add(new result(date, calculateTime(name).plusMinutes(10)));
                     }
                 }
             }
+            else
+            {
+                System.out.println("1-TO-1");
+                //SCHEDULING FOR 1 - TO - 1 RELATIONSHIP
+                
+                //find if staff free
+                for(int i=0; i<145; i=i+2) //move forward 10 minutes
+                {
+                    for(int j=0; j<scheduleSTAFF.length; j++)
+                    {
+                        if(checkIfStaff(j, i, duration))  //int row, int startPosition, int duration
+                        {
+                            System.out.println("FREE STAFF: " + workingStaff.get(j));
+                            //check if staff has skill
+                            if(hasSkill(workingStaff.get(j)))
+                            {
+                                System.out.println("SKILLS");
+                                //check if there is a free bed 
+                                if(freeBed(i, duration))
+                                {
+                                    System.out.println("------>");
+                                    LocalTime time = LocalTime.parse("07:00").plusMinutes(i*5);
+                                    results.add(new result(date, time));
+                                    i = (i+duration)-2; //moving forward by the duration
+                                }
+                            }
+                        }
+                    }
+                }   
+            }
+                   
+            //SCHEDULING FOR MANY - TO - 1 RELATIONSHIP 
+            
+            
         }
     }
     
     
+    //method to calculate the suggested time for a multiple person appointment
+    public LocalTime calculateTime(String name)
+    {
+        LocalTime latest = LocalTime.parse("00:01");
+        for(int i=0; i<bedAppointments.size(); i++)
+        {
+            if(bedAppointments.get(i).getName().equals(name))
+            {
+                if(bedAppointments.get(i).getTime().isAfter(latest))
+                {
+                    latest = bedAppointments.get(i).getTime();
+                }
+            }
+        }
+        return latest;
+    }
     
+    
+    
+    
+    //method to check if a bed has space 
     public boolean checkIfSpace(int row, int startPosition, int duration)
     {
-        System.out.println("CHECK IF SPACE");
         int numberOfBoxes = duration / 5;
           
         for(int i=startPosition; i<(startPosition+numberOfBoxes) && i<145; i++)
@@ -1116,6 +1377,67 @@ public class SearchProcedureScreenDocumentController implements Initializable
         return true;
     }
     
+    //method to check if the staff memeber is free 
+    public boolean checkIfStaff(int row, int startPosition, int duration)
+    {
+        //System.out.println("CHECK IF SPACE");
+        int numberOfBoxes = duration / 5;
+          
+        for(int i=startPosition; i<(startPosition+numberOfBoxes) && i<145; i++)
+        {
+            if(scheduleSTAFF[row][i])
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    
+    //returns if the staff member has the skill you are trying to schedule for 
+    public boolean hasSkill(int staffID)
+    {
+        try
+        {
+            Connection c = DatabaseConnector.activateConnection();
+            c.setAutoCommit( true ); 
+            ResultSet rs ;
+            Statement stmt = c.createStatement();
+            
+            rs = stmt.executeQuery("SELECT * FROM skill WHERE Staff_ID ='" + staffID + "'"); //get all the skills of a specific staff member 
+            while(rs.next())
+            { 
+                System.out.println(rs.getString("Procedure_Name") + " ______ " + cmbSearchProcedure.getValue().toString());
+                if(rs.getString("Procedure_Name").equals(cmbSearchProcedure.getValue().toString()))
+                {
+                    return true;
+                }
+            }
+        }
+        catch(SQLException e)
+        {
+            Logger.getLogger(SearchProcedureScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return false;
+    }
+    
+    
+    //tells you if you have a bed free to be able to suggest an appointment
+    public boolean freeBed(int start, int duration)
+    {
+        for(int i=0; i<11; i++) //not looking at the extra beds
+        {
+            if(i!=4)
+            {
+                if(checkIfSpace(i, start, duration))
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+                            
     
     public int findLocationIndex(String procedure)
     {
