@@ -908,6 +908,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
         blockOutStaffSurgery(appointments, "MP", "13:30");
         blockOutStaffSurgery(appointments, "LP", "13:30");
         
+        multiples();
         blockOutStaffOther(appointments);
     }
     
@@ -929,6 +930,39 @@ public class SearchProcedureScreenDocumentController implements Initializable
         }
     }
     
+    public void multiples()
+    {
+        try
+        {
+            Connection c = DatabaseConnector.activateConnection();
+            c.setAutoCommit(true);
+            ResultSet rs;
+            Statement stmt = c.createStatement();
+            
+            int nurses=0;
+            int patients=0;
+            
+            rs = stmt.executeQuery("SELECT * FROM procedures"); 
+            while (rs.next())
+            {
+                nurses = rs.getInt("NumberOfNurses");
+                patients = rs.getInt("NumberOfPatients");
+                
+                //If there are multiple patients allowed, records this
+                if(patients > 1)
+                {
+                    multiplePatientsAM.add(new multiple(rs.getString("Name"), 0, patients));
+                    multiplePatientsPM.add(new multiple(rs.getString("Name"), 0, patients));
+                }
+                
+            }
+            
+        }
+        catch(SQLException e)
+        {
+            
+        }
+    }
     
     public void blockOutStaffOther(ArrayList<schedule> appointments)
     {
@@ -961,19 +995,13 @@ public class SearchProcedureScreenDocumentController implements Initializable
                         assignStaff(appointments.get(i).getTime(), appointments.get(i).getDuration());
                     }
                     
-                    //If there are multiple patients allowed, records this
-                    if(patients > 1)
-                    {
+                        //If there are multiple patients allowed, records this
                         if(appointments.get(i).getTime().isBefore(LocalTime.parse("12:00")))
                         {
                             int index = inList(appointments.get(i).getName(), "AM");
                             if(index != -1)
                             {
                                 multiplePatientsAM.get(index).setCount(multiplePatientsAM.get(index).getCount()+1);
-                            }
-                            else
-                            {
-                                multiplePatientsAM.add(new multiple(appointments.get(i).getName(), 1, patients));
                             }
                         }
                         else
@@ -983,13 +1011,14 @@ public class SearchProcedureScreenDocumentController implements Initializable
                             {
                                 multiplePatientsPM.get(index).setCount(multiplePatientsPM.get(index).getCount()+1);
                             }
-                            else
-                            {
-                                multiplePatientsPM.add(new multiple(appointments.get(i).getName(), 1, patients));
-                            }
                         }
-                    }
+                    
                 }
+            }
+            
+            for(int i=0; i<multiplePatientsAM.size(); i++)
+            {
+                System.out.println("MULTI " + multiplePatientsAM.get(i).getName() + " - " + multiplePatientsAM.get(i).getCount() );
             }
         }
         catch(SQLException e)
@@ -1278,6 +1307,9 @@ public class SearchProcedureScreenDocumentController implements Initializable
             System.out.println("BED PROCEDURES");
             //SCHEDULING FOR 1 - TO - MANY RELATIONSHIP 
             
+            System.out.println(multiplePatientsAM.size());
+            System.out.println(multiplePatientsPM.size());
+            
             int MPIndexAM = inList(name, "AM");
             int MPIndexPM = inList(name, "PM");
             
@@ -1291,7 +1323,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
                 {
                     for(int i = multiplePatientsAM.get(MPIndexAM).getCount(); i<multiplePatientsAM.get(MPIndexAM).getMaximum(); i++)
                     {
-                        results.add(new result(date, calculateTime(name).plusMinutes(10)));
+                        results.add(new result(date, calculateTime(name, "AM").plusMinutes(i*10)));
                     }
                 }
 
@@ -1300,7 +1332,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
                 {
                     for(int i = multiplePatientsPM.get(MPIndexPM).getCount(); i<multiplePatientsPM.get(MPIndexPM).getMaximum(); i++)
                     {
-                        results.add(new result(date, calculateTime(name).plusMinutes(10)));
+                        results.add(new result(date, calculateTime(name, "PM").plusMinutes(i * 10)));
                     }
                 }
             }
@@ -1343,19 +1375,45 @@ public class SearchProcedureScreenDocumentController implements Initializable
     
     
     //method to calculate the suggested time for a multiple person appointment
-    public LocalTime calculateTime(String name)
+    public LocalTime calculateTime(String name, String time)
     {
-        LocalTime latest = LocalTime.parse("00:01");
-        for(int i=0; i<bedAppointments.size(); i++)
+        LocalTime latest;
+        
+        if(time.equals("AM"))
         {
-            if(bedAppointments.get(i).getName().equals(name))
+            latest = LocalTime.parse("09:00");
+            for(int i=0; i<bedAppointments.size(); i++)
             {
-                if(bedAppointments.get(i).getTime().isAfter(latest))
+                if(bedAppointments.get(i).getName().equals(name))
                 {
-                    latest = bedAppointments.get(i).getTime();
+                    if(bedAppointments.get(i).getTime().isAfter(latest) && bedAppointments.get(i).getTime().isBefore(LocalTime.parse("12:00")))
+                    {
+                        latest = bedAppointments.get(i).getTime();
+                    }
                 }
             }
         }
+        else
+        {
+            latest = LocalTime.parse("13:00");
+            
+            for(int i=0; i<bedAppointments.size(); i++)
+            {
+                if(bedAppointments.get(i).getName().equals(name))
+                {
+                    if(bedAppointments.get(i).getTime().isAfter(latest))
+                    {
+                        latest = bedAppointments.get(i).getTime();
+                    }
+                }
+            }
+        }
+        
+        
+        
+        
+        
+        System.out.println(">>>>>>>>>>>> " + latest);
         return latest;
     }
     
@@ -1410,9 +1468,12 @@ public class SearchProcedureScreenDocumentController implements Initializable
                 System.out.println(rs.getString("Procedure_Name") + " ______ " + cmbSearchProcedure.getValue().toString());
                 if(rs.getString("Procedure_Name").equals(cmbSearchProcedure.getValue().toString()))
                 {
+                    c.close();
                     return true;
                 }
             }
+            c.close();
+            
         }
         catch(SQLException e)
         {
