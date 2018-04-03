@@ -713,14 +713,15 @@ public class OncologyScreenDocumentController implements Initializable
             String stringDate = codeBank.dateToString(SearchDate);          
             
             //implement query
-            rs = stmt.executeQuery("SELECT * FROM staff, specificworking WHERE specificworking.Date = '" + stringDate + "' AND staff.ID = specificworking.ID AND specificworking.Place = 'Oncology'"); 
+            rs = stmt.executeQuery("SELECT * FROM staff, specificworking, working WHERE specificworking.Date = '" + stringDate + "' AND staff.ID = specificworking.ID AND staff.ID = working.Staff_ID AND working.Date = '" + stringDate + "' AND specificworking.Place = 'Oncology'"); 
                         
             while(rs.next())
             { 
                 String firstname = rs.getString("FirstName");
                 int ID = rs.getInt("ID");
+                String shift = rs.getString("Shift");
                 
-                String text = "(" +ID + ") " + firstname;
+                String text = "(" +ID + ") " + firstname + " - " + shift;
                 
                 cbStaff.setValue(text);
                 

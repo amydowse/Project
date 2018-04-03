@@ -703,27 +703,29 @@ public class PreopScreenDocumentController implements Initializable
             String stringDate = codeBank.dateToString(SearchDate);          
             
             //implement query
-            rs = stmt.executeQuery("SELECT * FROM staff, specificworking WHERE specificworking.Date = '" + stringDate + "' AND staff.ID = specificworking.ID AND specificworking.Place = 'PreopAM'"); 
+            rs = stmt.executeQuery("SELECT * FROM staff, specificworking, working WHERE specificworking.Date = '" + stringDate + "' AND staff.ID = specificworking.ID AND staff.ID = working.Staff_ID AND working.Date = '" + stringDate + "' AND specificworking.Place = 'PreopAM'"); 
                         
             while(rs.next())
             { 
                 String firstname = rs.getString("FirstName");
                 int ID = rs.getInt("ID");
+                String shift = rs.getString("Shift");
                 
-                String text = "(" +ID + ") " + firstname;
+                String text = "(" +ID + ") " + firstname + " - " + shift;
                 
                 cbAMNurse.setValue(text);
                 
             }
-            
-            rs = stmt.executeQuery("SELECT * FROM staff, specificworking WHERE specificworking.Date = '" + stringDate + "' AND staff.ID = specificworking.ID AND specificworking.Place = 'PreopPM'"); 
+           
+            rs = stmt.executeQuery("SELECT * FROM staff, specificworking, working WHERE specificworking.Date = '" + stringDate + "' AND staff.ID = specificworking.ID AND staff.ID = working.Staff_ID AND working.Date = '" + stringDate + "' AND specificworking.Place = 'PreopPM'"); 
                         
             while(rs.next())
             { 
                 String firstname = rs.getString("FirstName");
                 int ID = rs.getInt("ID");
+                String shift = rs.getString("Shift");
                 
-                String text = "(" +ID + ") " + firstname;
+                String text = "(" +ID + ") " + firstname + " - " + shift;
                 
                 cbPMNurse.setValue(text);
                 
