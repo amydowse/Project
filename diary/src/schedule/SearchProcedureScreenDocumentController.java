@@ -141,12 +141,26 @@ public class SearchProcedureScreenDocumentController implements Initializable
         for(int i=0; i<days.size(); i++)
         {
             findWhatIsOn(days.get(i));
+            
+                
+        for(int k=0; k<scheduleSTAFF.length; k++)
+        {
+            for(int j=0; j<145; j++)
+            {
+                System.out.print("(" + j  +")" + scheduleSTAFF[k][j] + "-");
+            }
+            System.out.println("");
+        }
+            
+            
             suggest(cmbSearchProcedure.getValue().toString(), days.get(i));
         }
         
+        
+        
         displayResult();
     }
-    
+//    
 //    for(int i=0; i<scheduleSTAFF.length; i++)
 //        {
 //            for(int j=0; j<145; j++)
@@ -175,7 +189,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
         for(int i=0; i<count; i++)
         {
             System.out.println(">>>> " + considering);
-            if(considering.getDayOfWeek().toString().equals("SAUTRDAY") || considering.getDayOfWeek().toString().equals("SUNDAY") )
+            if(considering.getDayOfWeek().toString().equals("SATURDAY") || considering.getDayOfWeek().toString().equals("SUNDAY") )
             {
                 //check database if its a weekend 
                 try
@@ -1375,21 +1389,50 @@ public class SearchProcedureScreenDocumentController implements Initializable
             System.out.println("++ " + MPIndexAM);
             System.out.println("++ " + MPIndexPM);
             
+            //-1 if it is not in the list 
             if(MPIndexAM != -1 || MPIndexPM != -1)
             {
                 //AM MULTPLE
                 if(MPIndexAM != -1)
                 {
-                    for(int i = multiplePatientsAM.get(MPIndexAM).getCount(); i<multiplePatientsAM.get(MPIndexAM).getMaximum(); i++)
+                    boolean done = false;
+                    LocalTime startTime = calculateTime(name, "AM");
+                    long minutesBetween = ChronoUnit.MINUTES.between(LocalTime.parse("07:00"), startTime);
+                    int startPlace = (int) minutesBetween / 5;
+                    
+                    if(multiplePatientsAM.get(MPIndexAM).getCount() == 0)
                     {
-                        LocalTime startTime = calculateTime(name, "AM").plusMinutes(i*10);
-                        long minutesBetween = ChronoUnit.MINUTES.between(LocalTime.parse("07:00"), startTime);
-                        int startPlace = (int) minutesBetween / 5;
-                        
-                        //if bed free
-                        if(freeBed(startPlace, duration))
+                        for(int j=0; j<scheduleSTAFF.length; j++)
                         {
-                            results.add(new result(date, startTime));
+                            if(!done)
+                            {
+                                int boxesBooked = timeAlreadyBooked(j, startPlace, duration);
+                                if(boxesBooked <= (duration/5))
+                                {
+                                    if(hasSkill(workingStaff.get(j)) && freeBed(startPlace, duration))  
+                                    {  
+                                        for(int i = 0; i<multiplePatientsAM.get(MPIndexAM).getMaximum(); i++)
+                                        {
+                                            results.add(new result(date, startTime));
+                                            startTime = startTime.plusMinutes(10);
+                                        }
+                                        done = true; 
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        startTime = startTime.plusMinutes(10);
+                        for(int i = multiplePatientsAM.get(MPIndexAM).getCount(); i<multiplePatientsAM.get(MPIndexAM).getMaximum(); i++)
+                        {
+                            //if bed free
+                            if(freeBed(startPlace, duration))
+                            {
+                                results.add(new result(date, startTime));
+                                startTime = startTime.plusMinutes(i * 10);
+                            }
                         }
                     }
                 }
@@ -1397,18 +1440,47 @@ public class SearchProcedureScreenDocumentController implements Initializable
                 //PM MULTIPLE
                 if(MPIndexPM != -1)
                 {
-                    for(int i = multiplePatientsPM.get(MPIndexPM).getCount(); i<multiplePatientsPM.get(MPIndexPM).getMaximum(); i++)
+                    boolean done = false;
+                    LocalTime startTime = calculateTime(name, "PM");
+                    long minutesBetween = ChronoUnit.MINUTES.between(LocalTime.parse("07:00"), startTime);
+                    int startPlace = (int) minutesBetween / 5;
+                    
+                    if(multiplePatientsPM.get(MPIndexPM).getCount() == 0)
                     {
-                        LocalTime startTime = calculateTime(name, "PM").plusMinutes(i*10);
-                        long minutesBetween = ChronoUnit.MINUTES.between(LocalTime.parse("07:00"), startTime);
-                        int startPlace = (int) minutesBetween / 5;
-                        
-                        //if bed free
-                        if(freeBed(startPlace, duration))
+                        for(int j=0; j<scheduleSTAFF.length; j++)
                         {
-                            results.add(new result(date, startTime));
+                            if(!done)
+                            {
+                                int boxesBooked = timeAlreadyBooked(j, startPlace, duration);
+                                if(boxesBooked <= (duration/5))
+                                {
+                                    if(hasSkill(workingStaff.get(j)) && freeBed(startPlace, duration))  
+                                    {  
+                                        for(int i = 0; i<multiplePatientsPM.get(MPIndexPM).getMaximum(); i++)
+                                        {
+                                            results.add(new result(date, startTime));
+                                            startTime = startTime.plusMinutes(10);
+                                        }
+                                        done = true;
+                                    }
+                                }
+                            }
                         }
                     }
+                    else
+                    {
+                        startTime = startTime.plusMinutes(10);
+                        for(int i = multiplePatientsPM.get(MPIndexPM).getCount(); i<multiplePatientsPM.get(MPIndexPM).getMaximum(); i++)
+                        {
+                            //if bed free
+                            if(freeBed(startPlace, duration))
+                            {
+                                results.add(new result(date, startTime));
+                                startTime = startTime.plusMinutes(i * 10);
+                            }
+                        }
+                    }
+                    
                 }
             }
             else if(nurses == 1)
@@ -1477,6 +1549,21 @@ public class SearchProcedureScreenDocumentController implements Initializable
         }//end of bed scheduling 
     }
     
+    
+    public int timeAlreadyBooked(int row, int startPosition, int duration)
+    {
+        int count = 0;
+        int numberOfBoxes = duration / 5;
+          
+        for(int i=startPosition; i<(startPosition+numberOfBoxes) && i<145; i++)
+        {
+            if(scheduleSTAFF[row][i])
+            {
+                count++;
+            }
+        }
+        return count;
+    }
     
     //method to calculate the suggested time for a multiple person appointment
     public LocalTime calculateTime(String name, String time)
