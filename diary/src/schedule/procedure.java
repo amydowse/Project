@@ -13,11 +13,13 @@ public class procedure
 {
     String name;
     int duration;
+    int nurses;
     
-    public procedure(String name, int duration)
+    public procedure(String name, int duration, int nurses)
     {
         this.name = name;
         this.duration = duration;
+        this.nurses = nurses;
     }
     
     //GETTERS
@@ -31,6 +33,11 @@ public class procedure
         return duration;
     }
     
+    public int getNurses()
+    {
+        return nurses;
+    }
+    
     
     //SETTERS
     public void setName(String name)
@@ -41,6 +48,11 @@ public class procedure
     public void setDuration(int duration)
     {
         this.duration = duration;
+    }
+    
+    public void setNurses(int nurses)
+    {
+        this.nurses = nurses;
     }
     
     
