@@ -319,6 +319,24 @@ public class codeBank
         alert.showAndWait();
     }
     
+    public static void nonBedError()
+    {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Error");
+        alert.setHeaderText("You can only have 1 nurse to 1 patient for non-bed procedures");
+        alert.setContentText("Please try again");
+        alert.showAndWait();
+    }
+    
+    public static void bedError()
+    {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Error");
+        alert.setHeaderText("You can only have 1 nurse to many patients or many nurses to 1 patient");
+        alert.setContentText("Please try again");
+        alert.showAndWait();
+    }
+    
     
    
     

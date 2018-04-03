@@ -74,51 +74,90 @@ public class ProcedureDialogController implements Initializable
         }
     }
     
-    @FXML
-    public void Save()
+    @FXML    
+    public void Save() 
     {
-        if (!txtName.getText().equals("") && !txtDuration.equals("") && !txtNurses.getText().equals("") && !txtPatients.getText().equals("") && cbLocation.getValue()!=null) 
+        //checks that all of the info has been entered
+        if (!txtName.getText().equals("") && !txtDuration.equals("") && !txtNurses.getText().equals("") && !txtPatients.getText().equals("") && !cbLocation.getValue().equals("")) 
         {
-            int duration = Integer.parseInt(txtDuration.getText());
-            if(cbLength.getValue().equals("hour(s)"))
+            if(cbLocation.getValue().equals("Non-bed"))
             {
-                duration = duration * 60;
+                if(txtNurses.getText().equals("1") && txtPatients.getText().equals("1") )
+                {
+                    saveProcess();
+                }
+                else
+                {
+                    codeBank.nonBedError();
+                }
             }
-            
-            try 
+            else
             {
-                Connection c = DatabaseConnector.activateConnection();
-                c.setAutoCommit(true);
-                Statement stmt = c.createStatement();
-
-                String sql = "INSERT INTO procedures(Name, Duration, NumberOfNurses, NumberOfPatients, Location) VALUES('" 
-                                                                + txtName.getText() + "','"
-                                                                + duration + "','"
-                                                                + txtNurses.getText() + "','"
-                                                                + txtPatients.getText() + "','"
-                                                                + cbLocation.getValue().toString() + "')";
-
-                stmt.executeUpdate(sql);
-                c.close();
-                
-            } 
-            catch (SQLException e) 
-            {
-                    
+                if(txtNurses.getText().equals("1") || txtPatients.getText().equals("1") )
+                {
+                    saveProcess();
+                }
+                else
+                {
+                    codeBank.bedError();
+                }
             }
-            TopMenuDocumentController.PrSDC.showInformation();
-            //https://stackoverflow.com/questions/13567019/close-fxml-window-by-code-javafx accessed 21/2
-            Stage stage = (Stage) btnSave.getScene().getWindow();
-            stage.close();
             
         }
-        else if(!txtName.getText().equals("") || !txtDuration.equals("") || !txtNurses.getText().equals("") || !txtPatients.getText().equals("") || !cbLocation.getValue().equals(""))
+        else if (!txtName.getText().equals("") || !txtDuration.equals("") || !txtNurses.getText().equals("") || !txtPatients.getText().equals("") || !cbLocation.getValue().equals(""))
         {
-            System.out.println("Procedure Add");
+            System.out.println("Procedure");
             codeBank.missingError();
         }
+                
     }
-   
+    
+    //the process of saving once you have done the checks 
+    public void saveProcess() 
+    {
+        int duration = Integer.parseInt(txtDuration.getText());
+        
+        if (cbLength.getValue().equals("hour(s)")) 
+        {
+            duration = duration * 60;
+        }
+
+        try 
+        {
+            Connection c = DatabaseConnector.activateConnection();
+            c.setAutoCommit(true);
+            Statement stmt = c.createStatement();
+
+            String sql = "UPDATE procedures SET     Duration = '" + duration
+                    + "', NumberOfNurses = '" + txtNurses.getText()
+                    + "', NumberOfPatients = '" + txtPatients.getText()
+                    + "', Location = '" + cbLocation.getValue().toString() + "' WHERE  Name = '" + txtName.getText() + "'";
+
+            stmt.executeUpdate(sql);
+            c.close();
+
+        } 
+        catch (SQLException e) 
+        {
+
+        }
+        
+        TopMenuDocumentController.PrSDC.showInformation();
+        //https://stackoverflow.com/questions/13567019/close-fxml-window-by-code-javafx accessed 21/2
+        Stage stage = (Stage) btnSave.getScene().getWindow();
+        stage.close();
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     public void shutdown() 
     {

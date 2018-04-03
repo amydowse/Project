@@ -231,36 +231,29 @@ public class ProcedureScreenDocumentController implements Initializable
         //checks that all of the info has been entered
         if (!txtName.getText().equals("") && !txtDuration.equals("") && !txtNurses.getText().equals("") && !txtPatients.getText().equals("") && !cbLocation.getValue().equals("")) 
         {
-            int duration = Integer.parseInt(txtDuration.getText());
-            System.out.println(">>>> " + duration);
-            if(cbLength.getValue().equals("hour(s)"))
+            if(cbLocation.getValue().equals("Non-bed"))
             {
-                duration = duration * 60;
+                if(txtNurses.getText().equals("1") && txtPatients.getText().equals("1") )
+                {
+                    saveProcess();
+                }
+                else
+                {
+                    codeBank.nonBedError();
+                }
+            }
+            else
+            {
+                if(txtNurses.getText().equals("1") || txtPatients.getText().equals("1") )
+                {
+                    saveProcess();
+                }
+                else
+                {
+                    codeBank.bedError();
+                }
             }
             
-            System.out.println(">>>> " + duration);
-            
-            try 
-            {
-                Connection c = DatabaseConnector.activateConnection();
-                c.setAutoCommit(true);
-                Statement stmt = c.createStatement();
-
-                String sql = "UPDATE procedures SET     Duration = '" + duration
-                                                        + "', NumberOfNurses = '" + txtNurses.getText()
-                                                        + "', NumberOfPatients = '" + txtPatients.getText()
-                                                        + "', Location = '" + cbLocation.getValue().toString() + "' WHERE  Name = '" + txtName.getText() + "'";
-
-                stmt.executeUpdate(sql);
-                c.close();
-
-                tblProcedures.getItems().clear();
-                showInformation();
-            } 
-            catch (SQLException e) 
-            {
-
-            }
         }
         else if (!txtName.getText().equals("") || !txtDuration.equals("") || !txtNurses.getText().equals("") || !txtPatients.getText().equals("") || !cbLocation.getValue().equals(""))
         {
@@ -268,6 +261,39 @@ public class ProcedureScreenDocumentController implements Initializable
             codeBank.missingError();
         }
                 
+    }
+    
+    //the process of saving once you have done the checks 
+    public void saveProcess() 
+    {
+        int duration = Integer.parseInt(txtDuration.getText());
+        
+        if (cbLength.getValue().equals("hour(s)")) 
+        {
+            duration = duration * 60;
+        }
+
+        try 
+        {
+            Connection c = DatabaseConnector.activateConnection();
+            c.setAutoCommit(true);
+            Statement stmt = c.createStatement();
+
+            String sql = "UPDATE procedures SET     Duration = '" + duration
+                    + "', NumberOfNurses = '" + txtNurses.getText()
+                    + "', NumberOfPatients = '" + txtPatients.getText()
+                    + "', Location = '" + cbLocation.getValue().toString() + "' WHERE  Name = '" + txtName.getText() + "'";
+
+            stmt.executeUpdate(sql);
+            c.close();
+
+            tblProcedures.getItems().clear();
+            showInformation();
+        } 
+        catch (SQLException e) 
+        {
+
+        }
     }
     
     private ProcedureDialogController DC;
