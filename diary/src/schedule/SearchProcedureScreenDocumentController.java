@@ -89,6 +89,8 @@ public class SearchProcedureScreenDocumentController implements Initializable
     
     ObservableList results = FXCollections.observableArrayList();
     
+    ArrayList<LocalDate> days = new ArrayList<LocalDate>();
+    
     
 
     @Override
@@ -134,24 +136,78 @@ public class SearchProcedureScreenDocumentController implements Initializable
         results.clear();
         tblSearchResult.getItems().clear();
         
-        findWhatIsOn(codeBank.stringToDate("03/04/2018"));
-        System.out.println("STEP 1");
+        calculateDays();
         
-        for(int i=0; i<scheduleSTAFF.length; i++)
+        for(int i=0; i<days.size(); i++)
         {
-            for(int j=0; j<145; j++)
-            {
-                System.out.print("(" + j  +")" + scheduleSTAFF[i][j] + "-");
-            }
-            System.out.println("");
+            findWhatIsOn(days.get(i));
+            suggest(cmbSearchProcedure.getValue().toString(), days.get(i));
         }
         
-        suggest(cmbSearchProcedure.getValue().toString(), LocalDate.now());
-        System.out.println("STEP 2");
         displayResult();
-        System.out.println("STEP 3");
     }
     
+//    for(int i=0; i<scheduleSTAFF.length; i++)
+//        {
+//            for(int j=0; j<145; j++)
+//            {
+//                System.out.print("(" + j  +")" + scheduleSTAFF[i][j] + "-");
+//            }
+//            System.out.println("");
+//        }
+    
+    
+    public void calculateDays()
+    {
+        int count = 0;
+        
+        if(rb1W.isSelected())
+            count = 7;
+        if(rb2W.isSelected())
+            count = 14;
+        if(rb3W.isSelected())
+            count = 21;
+        if(rb4W.isSelected())
+            count = 28;
+        
+        LocalDate considering = LocalDate.now();
+        
+        for(int i=0; i<count; i++)
+        {
+            System.out.println(">>>> " + considering);
+            if(considering.getDayOfWeek().toString().equals("SAUTRDAY") || considering.getDayOfWeek().toString().equals("SUNDAY") )
+            {
+                //check database if its a weekend 
+                try
+                {
+                    Connection c = DatabaseConnector.activateConnection();
+                    c.setAutoCommit( true ); 
+                    ResultSet rs ;
+                    Statement stmt = c.createStatement();
+                    
+                    String date = codeBank.dateToString(considering);
+                    
+                    rs = stmt.executeQuery("SELECT * FROM extra WHERE Date ='" + date + "'"); 
+                    if(rs.isBeforeFirst())
+                    {
+                        days.add(considering);
+                    }
+                    
+                    c.close();
+                }
+                catch(SQLException e)
+                {
+                    Logger.getLogger(SearchProcedureScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
+                }
+            }
+            else //week day, need to consider
+            {
+                days.add(considering);
+            }
+            
+            considering = considering.plusDays(1);
+        }
+    }
     
     
     public void findWhatIsOn(LocalDate Date)
