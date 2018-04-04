@@ -35,6 +35,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.MenuItem;
@@ -47,6 +48,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.controlsfx.control.textfield.TextFields;
 
 /**
  *
@@ -358,6 +360,8 @@ public class DiaryScreenDocumentController  implements Initializable
         showInformation(codeBank.getCurrentDate());
         fillStaffDropDowns(); 
         delete();
+        
+        setUpAutoComplete();
         
         //https://stackoverflow.com/questions/42943652/how-to-trigger-an-event-on-focus-out-for-a-textfield-in-javafx-using-fxml accessed 24/2
         for(int i=0; i<24; i++)
@@ -1187,6 +1191,40 @@ public class DiaryScreenDocumentController  implements Initializable
             //Logger.getLogger(ProcedureScreenDocumentController.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("ISSUE IN MAIN");
         }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    public void setUpAutoComplete()
+    {
+        ArrayList<String> procedures = new ArrayList<String>();
+        try
+        {
+            Connection c = DatabaseConnector.activateConnection();
+            c.setAutoCommit(true);
+            Statement stmt = c.createStatement();
+            ResultSet rs;
+            String sql = "SELECT * FROM procedures WHERE Location = 'Bed'";
+            rs = stmt.executeQuery(sql);
+            
+            while(rs.next())
+            {
+                procedures.add(rs.getString("Name"));
+            }
+        }
+        catch (SQLException e)
+        {
+            
+        }
+        
+        for(int i =0; i<specialityList.size(); i++)        
+        TextFields.bindAutoCompletion(specialityList.get(i), procedures);  
     }
     
     
