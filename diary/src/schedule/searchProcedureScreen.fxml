@@ -38,7 +38,7 @@
             <TableColumn fx:id="tblColBook" minWidth="0.0" prefWidth="225.0" text="Book" />
         </columns>
       </TableView>
-      <RadioButton fx:id="rbW3" layoutX="661.0" layoutY="76.0" mnemonicParsing="false" text="Within 3 weeks">
+      <RadioButton fx:id="rb3W" layoutX="661.0" layoutY="76.0" mnemonicParsing="false" text="Within 3 weeks">
          <font>
             <Font size="20.0" />
          </font>
@@ -53,7 +53,7 @@
             <Font size="20.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="rbW4" layoutX="954.0" layoutY="76.0" mnemonicParsing="false" text="Within 4 weeks">
+      <RadioButton fx:id="rb4W" layoutX="954.0" layoutY="76.0" mnemonicParsing="false" text="Within 4 weeks">
          <font>
             <Font size="20.0" />
          </font>

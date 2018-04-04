@@ -67,7 +67,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
     
     @FXML Hyperlink hlHlep = new Hyperlink();
     
-    ObservableList searchResult = FXCollections.observableArrayList();
+    //ObservableList searchResult = FXCollections.observableArrayList();
     
     //Data structures to use 
     String date;
@@ -80,14 +80,14 @@ public class SearchProcedureScreenDocumentController implements Initializable
     boolean[][] scheduleSTAFF;
     boolean[][] scheduleLOCATION;
     String[] locations;
-    int foodchallangeCount = 0;
+    //int foodchallangeCount = 0;
     
     ArrayList<multiple> multiplePatientsAM = new ArrayList<multiple>();
     ArrayList<multiple> multiplePatientsPM = new ArrayList<multiple>();
     
     ArrayList<schedule> bedAppointments = new ArrayList<schedule>();
     
-    ObservableList results = FXCollections.observableArrayList();
+    ObservableList<result> results = FXCollections.observableArrayList();
     
     ArrayList<LocalDate> days = new ArrayList<LocalDate>();
     
@@ -135,6 +135,20 @@ public class SearchProcedureScreenDocumentController implements Initializable
     {
         results.clear();
         tblSearchResult.getItems().clear();
+               
+        workingStaff.clear();
+        shift.clear();
+        specificStaff.clear();
+        unassignedStaff.clear();
+        bedProcedures.clear();
+        nonbedProcedures.clear();
+        scheduleLOCATION = new boolean[16][145];
+        
+        multiplePatientsAM.clear();
+        multiplePatientsPM.clear();
+        bedAppointments.clear();
+        
+        days.clear();
         
         calculateDays();
         
@@ -143,16 +157,16 @@ public class SearchProcedureScreenDocumentController implements Initializable
             findWhatIsOn(days.get(i));
             
                 
-        for(int k=0; k<scheduleSTAFF.length; k++)
-        {
-            for(int j=0; j<145; j++)
-            {
-                System.out.print("(" + j  +")" + scheduleSTAFF[k][j] + "-");
-            }
-            System.out.println("");
-        }
+//        for(int k=0; k<scheduleSTAFF.length; k++)
+//        {
+//            for(int j=0; j<145; j++)
+//            {
+//                System.out.print("(" + j  +")" + scheduleSTAFF[k][j] + "-");
+//            }
+//            System.out.println("");
+//        }
             
-            
+            System.out.println(days.get(i));
             suggest(cmbSearchProcedure.getValue().toString(), days.get(i));
         }
         
@@ -188,7 +202,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
         
         for(int i=0; i<count; i++)
         {
-            System.out.println(">>>> " + considering);
+            //System.out.println(">>>> " + considering);
             if(considering.getDayOfWeek().toString().equals("SATURDAY") || considering.getDayOfWeek().toString().equals("SUNDAY") )
             {
                 //check database if its a weekend 
@@ -241,7 +255,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
                 rs = stmt.executeQuery("SELECT * FROM extra WHERE Date ='" + date + "'"); //either no data or there is not blood clinic 
                 if(rs.isBeforeFirst())
                 {
-                    System.out.println("1");
+                    //System.out.println("1");
                     if(rs.getInt("Blood") == 0)
                     {
                         fill(Date, 1, 0, 1, 1, 1);
@@ -252,7 +266,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
                     rs = stmt.executeQuery("SELECT * FROM template WHERE Day ='" + date + "'"); //find blood clinic by date 
                     if(rs.isBeforeFirst())
                     {
-                        System.out.println("2");
+                        //System.out.println("2");
                         fill(Date, 1, 1, 1, 1, 1);
                     }
                     else
@@ -260,12 +274,12 @@ public class SearchProcedureScreenDocumentController implements Initializable
                         rs = stmt.executeQuery("SELECT * FROM template WHERE Day ='" + day + "' AND ToDate IS NULL");//find blood clinic by day
                         if(rs.isBeforeFirst())
                         {
-                            System.out.println("3");
+                            //System.out.println("3");
                             fill(Date, 1, 1, 1, 1, 1);
                         }
                         else
                         {
-                            System.out.println("4");
+                            //System.out.println("4");
                             fill(Date, 1, 0, 1, 1, 1);
                         }
                     }
@@ -277,7 +291,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
                 rs = stmt.executeQuery("SELECT * FROM extra WHERE Date ='" + date + "'"); //get all the staff working that day and their shifts 
                 while(rs.next())
                 {
-                    System.out.println("5");
+                    //System.out.println("5");
                     fill(Date, rs.getInt("Diary"), rs.getInt("Blood"), rs.getInt("Preop"), rs.getInt("Oncology"), rs.getInt("Nonbed"));
                 }
             }
@@ -307,7 +321,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
         bedProcedures.clear();
         nonbedProcedures.clear();
         scheduleLOCATION = new boolean[16][145];
-        foodchallangeCount = 0;
+        //foodchallangeCount = 0;
         
         multiplePatientsAM.clear();
         multiplePatientsPM.clear();
@@ -383,7 +397,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
             }
         }
         
-        System.out.println("UN: " + unassignedStaff.size());
+        //System.out.println("UN: " + unassignedStaff.size());
         
         //Setting up the schedule for the staff working that day
         scheduleSTAFF = new boolean[workingStaff.size()][145]; //the number of 5 min slots in 7:00-7:00 (0-144)
@@ -516,7 +530,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
     //This is not set in stone - user can overbook these break times but does scheudle in for a break
     public void breaks()
     {
-        System.out.println(">>>>>>>>>BREAKS");
+        //System.out.println(">>>>>>>>>BREAKS");
         int LDCount = 0;
         int ECount = 0;
         int LCount = 0;
@@ -584,12 +598,12 @@ public class SearchProcedureScreenDocumentController implements Initializable
         {
             if(specificStaff.get(i).getLocation().equals("PreopAM"))
             {
-                System.out.println("AM PREOP HIT");
+                //System.out.println("AM PREOP HIT");
                 AMStaff = findIndex(specificStaff.get(i).getID());
             }        
             if(specificStaff.get(i).getLocation().equals("PreopPM") )
             {
-                System.out.println("PM PREOP HIT");
+                //System.out.println("PM PREOP HIT");
                 PMStaff = findIndex(specificStaff.get(i).getID());
             }
             
@@ -657,7 +671,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
     //blocks out the booked appointments 
     public void blood()
     {
-        System.out.println("INSIDE BLOOD");
+        //System.out.println("INSIDE BLOOD");
         
         ArrayList<schedule> appointments = new ArrayList<schedule>();
         
@@ -689,7 +703,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
                     }
                     else
                     {
-                        rs = stmt.executeQuery("SELECT * FROM template WHERE Day ='" + day + "' AND ToDate = 'null'"); //get all the pre-op appoinments for that day  
+                        rs = stmt.executeQuery("SELECT * FROM template WHERE Day ='" + day + "' AND ToDate IS NULL"); //get all the pre-op appoinments for that day  
                         if(rs.isBeforeFirst())
                         { 
                             duration = rs.getInt("Duration");
@@ -707,7 +721,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
                         appointments.add(new schedule(time, duration));
                     }
                     
-                    System.out.println("APPPP " + appointments.size());
+                    //System.out.println("APPPP " + appointments.size());
                     
                     LocalTime dayStart = LocalTime.parse("07:00");
                     int durationBoxes = duration/5;
@@ -724,7 +738,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
                     
                     for(int j=arrayStart; j<arrayEnd-1; j++)
                     {
-                        System.out.print("BLOODB ");
+                        //System.out.print("BLOODB ");
                         scheduleSTAFF[index][j] = true;
                     }
                     
@@ -736,7 +750,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
                                                 
                         for(int k=arraySpace; k<(arraySpace+durationBoxes); k++) 
                         {
-                            System.out.print("BLOOD APPOINTMENT BLOCKED");
+                            //System.out.print("BLOOD APPOINTMENT BLOCKED");
                             scheduleSTAFF[index][k] = true;
                             scheduleLOCATION[15][k] = true;
                         }
@@ -777,7 +791,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
     //block out the times that there are oncology appointments scheduled for the specific person working in that area 
     public void oncology()
     {
-        System.out.println("INSIDE ONCOLOGU");
+        //System.out.println("INSIDE ONCOLOGU");
         ArrayList<schedule> appointments = new ArrayList<schedule>();
         
         for(int i=0; i<specificStaff.size(); i++)
@@ -809,7 +823,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
                         int arraySpace = (int) minutesBetween/5;
                         for(int k=arraySpace; k<arraySpace+12; k++) //12 spaces make up an hour 
                         {
-                            System.out.print("ONC ");
+                            //System.out.print("ONC ");
                             scheduleSTAFF[index][k] = true;
                             scheduleLOCATION[14][k] = true;
                         }
@@ -883,7 +897,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
                         
                         for(int k=arraySpace; k< arraySpace+endAdd ; k++) 
                         {
-                            System.out.print("NON ");
+                            //System.out.print("NON ");
                             scheduleSTAFF[index][k] = true;
                             scheduleLOCATION[15][k] = true;
                         }
@@ -953,7 +967,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
 
                 for (int k = arraySpace; k < arraySpace + endAdd && k<145; k++) 
                 {
-                    System.out.print("DIARY ");
+                    //System.out.print("DIARY ");
                     scheduleLOCATION[index][k] = true;
                 }
             }
@@ -971,7 +985,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
     
     public void blockOutStaff(ArrayList<schedule> appointments)
     {
-        System.out.println("Block out");
+        //System.out.println("Block out");
         //if there is at least 1 surgery in a room, assigns 1 nurse and then stops looking at that room 
         blockOutStaffSurgery(appointments, "MA", "07:30");
         blockOutStaffSurgery(appointments, "LA", "07:30");
@@ -985,7 +999,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
     //assigning a nurse 
     public void blockOutStaffSurgery(ArrayList<schedule> appointments, String search, String time)
     {
-        System.out.println("Block out SURGERY");
+        //System.out.println("Block out SURGERY");
         int x = 0;
         boolean assigned = false;
         while(x < appointments.size() && !assigned)
@@ -1036,7 +1050,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
     
     public void blockOutStaffOther(ArrayList<schedule> appointments)
     {
-        System.out.println("Block out OTHER");
+        //System.out.println("Block out OTHER");
         try 
         {
             Connection c = DatabaseConnector.activateConnection();
@@ -1064,7 +1078,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
                     //If there is multiple staff to an appointment, blocks off that many 
                     for(int j=0; j<nurses; j++)
                     {
-                        System.out.println("ASSIGNING");
+                        //System.out.println("ASSIGNING");
                         assignStaff(appointments.get(i).getTime(), appointments.get(i).getDuration());
                     }
                     
@@ -1091,7 +1105,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
             
             for(int i=0; i<multiplePatientsAM.size(); i++)
             {
-                System.out.println("MULTI " + multiplePatientsAM.get(i).getName() + " - " + multiplePatientsAM.get(i).getCount() );
+                //System.out.println("MULTI " + multiplePatientsAM.get(i).getName() + " - " + multiplePatientsAM.get(i).getCount() );
             }
         }
         catch(SQLException e)
@@ -1330,7 +1344,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
     //makes the actual suggestions
     public void makeSuggestions(int index, int duration, LocalDate date, String name, int nurses)
     {
-        System.out.println("MAKE SUGGESTIONS");
+        //System.out.println("MAKE SUGGESTIONS");
         if(index == 12) //blood
         {
            findEmptyAppointments(date);
@@ -1351,7 +1365,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
         }
         else if(index == 14) //oncology 
         {
-            System.out.println("Making oncology suggestion");
+            //System.out.println("Making oncology suggestion");
             for(int i=0; i<145; i=i+6) //move forward 1/2 hour
             {
                 if(checkIfSpace(index, i, 60))
@@ -1364,7 +1378,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
         }
         else if(index == 15) //nonbed
         {
-            System.out.println("DUR " + duration);
+            //System.out.println("DUR " + duration);
             for(int i=0; i<145; i=i+2) //looks at 10 minute intervals 
             {
                 if(checkIfSpace(index, i, duration))
@@ -1377,17 +1391,17 @@ public class SearchProcedureScreenDocumentController implements Initializable
         }
         else if(index == -1) //any other bed procedure 
         {
-            System.out.println("BED PROCEDURES");
+            //System.out.println("BED PROCEDURES");
             //SCHEDULING FOR 1 - TO - MANY RELATIONSHIP 
             
-            System.out.println(multiplePatientsAM.size());
-            System.out.println(multiplePatientsPM.size());
+            //System.out.println(multiplePatientsAM.size());
+            //System.out.println(multiplePatientsPM.size());
             
             int MPIndexAM = inList(name, "AM");
             int MPIndexPM = inList(name, "PM");
             
-            System.out.println("++ " + MPIndexAM);
-            System.out.println("++ " + MPIndexPM);
+            //System.out.println("++ " + MPIndexAM);
+            //System.out.println("++ " + MPIndexPM);
             
             //-1 if it is not in the list 
             if(MPIndexAM != -1 || MPIndexPM != -1)
@@ -1485,8 +1499,8 @@ public class SearchProcedureScreenDocumentController implements Initializable
             }
             else if(nurses == 1)
             {
-                printBedAllocation();
-                System.out.println("1-TO-1");
+                //printBedAllocation();
+                //System.out.println("1-TO-1");
                 //SCHEDULING FOR 1 - TO - 1 RELATIONSHIP
                 
                 //find if staff free
@@ -1496,15 +1510,17 @@ public class SearchProcedureScreenDocumentController implements Initializable
                     {
                         if(checkIfStaff(j, i, duration))  //int row, int startPosition, int duration
                         {
-                            System.out.println("FREE STAFF: " + workingStaff.get(j));
+                            //System.out.println("FREE STAFF: " + workingStaff.get(j));
                             //check if staff has skill
                             if(hasSkill(workingStaff.get(j)))
                             {
-                                System.out.println("SKILLS");
+                                //System.out.println("SKILLS");
                                 //check if there is a free bed 
                                 if(freeBed(i, duration))
                                 {
-                                    System.out.println("------>");
+                                    //System.out.println("------>");
+                                    
+                                        System.out.println("Results size before adding " + results.size());
                                     LocalTime time = LocalTime.parse("07:00").plusMinutes(i*5);
                                     results.add(new result(date, time));
                                     i = (i+duration)-2; //moving forward by the duration
@@ -1658,7 +1674,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
             rs = stmt.executeQuery("SELECT * FROM skill WHERE Staff_ID ='" + staffID + "'"); //get all the skills of a specific staff member 
             while(rs.next())
             { 
-                System.out.println(rs.getString("Procedure_Name") + " ______ " + cmbSearchProcedure.getValue().toString());
+                //System.out.println(rs.getString("Procedure_Name") + " ______ " + cmbSearchProcedure.getValue().toString());
                 if(rs.getString("Procedure_Name").equals(cmbSearchProcedure.getValue().toString()))
                 {
                     c.close();
@@ -1683,7 +1699,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
         {
             if(i!=4)
             {
-                System.out.println("checking bed at " + i);
+                //System.out.println("checking bed at " + i);
                 if(checkIfSpace(i, start, duration))
                 {
                     return true;
@@ -1711,7 +1727,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
     //method used to find the blood clinic appointments that have not been booked 
     public void findEmptyAppointments(LocalDate date)
     {
-        System.out.println("EMPTY");
+        //System.out.println("EMPTY");
         ArrayList<result> allTimes = new ArrayList<result>();
         ArrayList<result> allAppointments = new ArrayList<result>();
         
@@ -1743,7 +1759,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
             } 
             else 
             {
-                rs = stmt.executeQuery("SELECT * FROM template WHERE Day ='" + Day + "' AND ToDate = 'null'"); //get all the pre-op appoinments for that day  
+                rs = stmt.executeQuery("SELECT * FROM template WHERE Day ='" + Day + "' AND ToDate IS NULL"); //get all the pre-op appoinments for that day  
                 if (rs.next()) 
                 {
                     startTimeS = rs.getString("Start");
@@ -1794,8 +1810,8 @@ public class SearchProcedureScreenDocumentController implements Initializable
                 allAppointments.add(x);
             }
             
-            System.out.println("TIMES : " + allTimes.size());
-            System.out.println("APP : " + allAppointments.size());
+            //System.out.println("TIMES : " + allTimes.size());
+            //System.out.println("APP : " + allAppointments.size());
             
             boolean match = false;
             for(int i=0; i<allTimes.size(); i++)
@@ -1813,7 +1829,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
                     results.add(allTimes.get(i));
                 }
             }
-            System.out.println("SHOW : " + results.size());
+            //System.out.println("SHOW : " + results.size());
         }
         catch(SQLException e)
         {
@@ -1887,4 +1903,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
             System.out.println("");
         }
     }
+    
+    
+   
 }
