@@ -674,13 +674,21 @@ public class OncologyScreenDocumentController implements Initializable
             String date = codeBank.dateToString(codeBank.getCurrentDate());
             
             String staff = cbStaff.getValue().toString();
+            String sql;
             
-            staff = staff.substring(staff.indexOf("(") + 1);
-            staff = staff.substring(0, staff.indexOf(")"));
+            if(staff == "")
+            {
+                sql = "DELETE FROM specificworking WHERE Date = '" + date + "' AND Place = 'Blood'";
+            }
+            else
+            {
+                staff = staff.substring(staff.indexOf("(") + 1);
+                staff = staff.substring(0, staff.indexOf(")"));
             
-            String sql = "REPLACE INTO specificworking (Date, Place, ID) VALUES('"
+                sql = "REPLACE INTO specificworking (Date, Place, ID) VALUES('"
                                                             + date + "','Oncology','"                                           
                                                             + staff + "')";
+            }
             
             stmt.executeUpdate(sql);                 
                     

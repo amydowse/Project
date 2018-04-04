@@ -586,11 +586,19 @@ public class NonbedScreenDocumentController implements Initializable
             String date = codeBank.dateToString(codeBank.getCurrentDate());
             
             String staff = cbStaff.getValue().toString();
+            String sql;
             
-            staff = staff.substring(staff.indexOf("(") + 1);
-            staff = staff.substring(0, staff.indexOf(")"));
-            
-            String sql = "REPLACE INTO specificworking (Date, Place, ID) VALUES ('" + date + "', 'Nonbed', '" + staff + "')";
+            if(staff == "")
+            {
+                sql = "DELETE FROM specificworking WHERE Date = '" + date + "' AND Place = 'Nonbed'";
+            }
+            else
+            {
+                staff = staff.substring(staff.indexOf("(") + 1);
+                staff = staff.substring(0, staff.indexOf(")"));
+
+                sql = "REPLACE INTO specificworking (Date, Place, ID) VALUES ('" + date + "', 'Nonbed', '" + staff + "')";
+            }
                                                            
             
             stmt.executeUpdate(sql);                 
