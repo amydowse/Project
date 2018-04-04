@@ -63,7 +63,6 @@ public class SearchProcedureScreenDocumentController implements Initializable
     @FXML TableView tblSearchResult = new TableView();
     @FXML TableColumn tblColDate = new TableColumn();
     @FXML TableColumn tblColTime = new TableColumn();
-    @FXML TableColumn tblColBook = new TableColumn();
     
     @FXML Hyperlink hlHlep = new Hyperlink();
     
