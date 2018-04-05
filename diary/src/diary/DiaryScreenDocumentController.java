@@ -1223,8 +1223,10 @@ public class DiaryScreenDocumentController  implements Initializable
             
         }
         
-        for(int i =0; i<specialityList.size(); i++)        
-        TextFields.bindAutoCompletion(specialityList.get(i), procedures);  
+        for(int i =0; i<specialityList.size(); i++) 
+        {
+            TextFields.bindAutoCompletion(specialityList.get(i), procedures);
+        }
     }
     
     

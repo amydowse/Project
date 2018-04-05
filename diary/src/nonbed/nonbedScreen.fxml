@@ -83,7 +83,7 @@
         <TextField fx:id="txtName1" alignment="CENTER" layoutX="231.0" layoutY="254.0" prefHeight="48.0" prefWidth="285.0" />
         <TextField fx:id="txtAge1" alignment="CENTER" layoutX="516.0" layoutY="254.0" prefHeight="48.0" prefWidth="159.0" />
         <TextField fx:id="txtHospital1" alignment="CENTER" layoutX="675.0" layoutY="254.0" prefHeight="48.0" prefWidth="204.0" />  
-        <ChoiceBox fx:id="cbProcedure1" layoutX="879.0" layoutY="254.0" prefHeight="48.0" prefWidth="363.0" />      
+        <TextField fx:id="txtProcedure1" alignment="CENTER" layoutX="879.0" layoutY="254.0" prefHeight="48.0" prefWidth="363.0" />      
         <TextArea fx:id="txtReason1" layoutX="1242.0" layoutY="254.0" prefHeight="49.0" prefWidth="373.0" />
         <TextField fx:id="txtNotes1" alignment="CENTER" editable="false" layoutX="1614.0" layoutY="254.0" onMouseClicked="#Notes1" prefHeight="48.0" prefWidth="111.0" />
 
@@ -100,7 +100,7 @@
         <TextField fx:id="txtAge2" alignment="CENTER" layoutX="516.0" layoutY="302.0" prefHeight="48.0" prefWidth="159.0" />
         <TextField fx:id="txtHospital2" alignment="CENTER" layoutX="675.0" layoutY="302.0" prefHeight="48.0" prefWidth="204.0" />
         <TextArea fx:id="txtReason2" layoutX="1242.0" layoutY="301.0" prefHeight="49.0" prefWidth="373.0" />
-        <ChoiceBox fx:id="cbProcedure2" layoutX="879.0" layoutY="302.0" prefHeight="48.0" prefWidth="363.0" />
+        <TextField fx:id="txtProcedure2" alignment="CENTER" layoutX="879.0" layoutY="302.0" prefHeight="48.0" prefWidth="363.0" />
         <TextField fx:id="txtNotes2" alignment="CENTER" editable="false" layoutX="1614.0" layoutY="302.0" onMouseClicked="#Notes2" prefHeight="48.0" prefWidth="111.0" />
 
 
@@ -115,7 +115,7 @@
         <TextField fx:id="txtName3" alignment="CENTER" layoutX="231.0" layoutY="350.0" prefHeight="48.0" prefWidth="285.0" /> 
         <TextField fx:id="txtAge3" alignment="CENTER" layoutX="516.0" layoutY="350.0" prefHeight="48.0" prefWidth="159.0" />        
         <TextField fx:id="txtHospital3" alignment="CENTER" layoutX="675.0" layoutY="350.0" prefHeight="48.0" prefWidth="204.0" /> 
-        <ChoiceBox fx:id="cbProcedure3" layoutX="879.0" layoutY="350.0" prefHeight="48.0" prefWidth="363.0" />                      
+        <TextField fx:id="txtProcedure3" alignment="CENTER" layoutX="879.0" layoutY="350.0" prefHeight="48.0" prefWidth="363.0" />                      
         <TextArea fx:id="txtReason3" layoutX="1242.0" layoutY="350.0" prefHeight="49.0" prefWidth="373.0" />       
         <TextField fx:id="txtNotes3" alignment="CENTER" editable="false" layoutX="1614.0" layoutY="350.0" onMouseClicked="#Notes3" prefHeight="48.0" prefWidth="111.0" />                      
                        
@@ -132,7 +132,7 @@
         <TextField fx:id="txtName4" alignment="CENTER" layoutX="231.0" layoutY="398.0" prefHeight="48.0" prefWidth="285.0" />      
         <TextField fx:id="txtAge4" alignment="CENTER" layoutX="516.0" layoutY="398.0" prefHeight="48.0" prefWidth="159.0" />        
         <TextField fx:id="txtHospital4" alignment="CENTER" layoutX="675.0" layoutY="398.0" prefHeight="48.0" prefWidth="204.0" />        
-        <ChoiceBox fx:id="cbProcedure4" layoutX="879.0" layoutY="398.0" prefHeight="48.0" prefWidth="363.0" />      
+        <TextField fx:id="txtProcedure4" alignment="CENTER" layoutX="879.0" layoutY="398.0" prefHeight="48.0" prefWidth="363.0" />      
         <TextArea fx:id="txtReason4" layoutX="1242.0" layoutY="397.0" prefHeight="49.0" prefWidth="373.0" />
         <TextField fx:id="txtNotes4" alignment="CENTER" editable="false" layoutX="1614.0" layoutY="398.0" onMouseClicked="#Notes4" prefHeight="48.0" prefWidth="111.0" />        
 
@@ -148,7 +148,7 @@
         <TextField fx:id="txtName5" alignment="CENTER" layoutX="231.0" layoutY="446.0" prefHeight="48.0" prefWidth="285.0" />
         <TextField fx:id="txtAge5" alignment="CENTER" layoutX="516.0" layoutY="446.0" prefHeight="48.0" prefWidth="159.0" />
         <TextField fx:id="txtHospital5" alignment="CENTER" layoutX="675.0" layoutY="446.0" prefHeight="48.0" prefWidth="204.0" />
-        <ChoiceBox fx:id="cbProcedure5" layoutX="879.0" layoutY="446.0" prefHeight="48.0" prefWidth="363.0" />
+        <TextField fx:id="txtProcedure5" alignment="CENTER" layoutX="879.0" layoutY="446.0" prefHeight="48.0" prefWidth="363.0" />
         <TextArea fx:id="txtReason5" layoutX="1242.0" layoutY="446.0" prefHeight="49.0" prefWidth="373.0" />
         <TextField fx:id="txtNotes5" alignment="CENTER" editable="false" layoutX="1614.0" layoutY="446.0" onMouseClicked="#Notes5" prefHeight="48.0" prefWidth="111.0" />
 
@@ -165,7 +165,7 @@
         <TextField fx:id="txtName6" alignment="CENTER" layoutX="231.0" layoutY="494.0" prefHeight="48.0" prefWidth="285.0" /> 
         <TextField fx:id="txtAge6" alignment="CENTER" layoutX="516.0" layoutY="494.0" prefHeight="48.0" prefWidth="159.0" />
         <TextField fx:id="txtHospital6" alignment="CENTER" layoutX="675.0" layoutY="494.0" prefHeight="48.0" prefWidth="204.0" />
-        <ChoiceBox fx:id="cbProcedure6" layoutX="879.0" layoutY="494.0" prefHeight="48.0" prefWidth="363.0" />    
+        <TextField fx:id="txtProcedure6" alignment="CENTER" layoutX="879.0" layoutY="494.0" prefHeight="48.0" prefWidth="363.0" />    
         <TextArea fx:id="txtReason6" layoutX="1242.0" layoutY="493.0" prefHeight="49.0" prefWidth="373.0" />            
         <TextField fx:id="txtNotes6" alignment="CENTER" editable="false" layoutX="1614.0" layoutY="494.0" onMouseClicked="#Notes6" prefHeight="48.0" prefWidth="111.0" />      
         
@@ -182,9 +182,9 @@
         <TextField fx:id="txtName7" alignment="CENTER" layoutX="231.0" layoutY="542.0" prefHeight="48.0" prefWidth="285.0" />        
         <TextField fx:id="txtAge7" alignment="CENTER" layoutX="516.0" layoutY="542.0" prefHeight="48.0" prefWidth="159.0" />
         <TextField fx:id="txtHospital7" alignment="CENTER" layoutX="675.0" layoutY="542.0" prefHeight="48.0" prefWidth="204.0" />
-        <ChoiceBox fx:id="cbProcedure7" layoutX="879.0" layoutY="542.0" prefHeight="48.0" prefWidth="363.0" />
+        <TextField fx:id="txtProcedure7" alignment="CENTER" layoutX="879.0" layoutY="542.0" prefHeight="48.0" prefWidth="363.0" />
         <TextArea fx:id="txtReason7" layoutX="1242.0" layoutY="542.0" prefHeight="49.0" prefWidth="373.0" /> 
-       <TextField fx:id="txtNotes7" alignment="CENTER" editable="false" layoutX="1614.0" layoutY="542.0" onMouseClicked="#Notes7" prefHeight="48.0" prefWidth="111.0" />  
+        <TextField fx:id="txtNotes7" alignment="CENTER" editable="false" layoutX="1614.0" layoutY="542.0" onMouseClicked="#Notes7" prefHeight="48.0" prefWidth="111.0" />  
              
         
         
@@ -201,7 +201,7 @@
         <TextField fx:id="txtName8" alignment="CENTER" layoutX="231.0" layoutY="590.0" prefHeight="48.0" prefWidth="285.0" />
         <TextField fx:id="txtAge8" alignment="CENTER" layoutX="516.0" layoutY="590.0" prefHeight="48.0" prefWidth="159.0" />
         <TextField fx:id="txtHospital8" alignment="CENTER" layoutX="675.0" layoutY="590.0" prefHeight="48.0" prefWidth="204.0" />
-        <ChoiceBox fx:id="cbProcedure8" layoutX="879.0" layoutY="590.0" prefHeight="48.0" prefWidth="363.0" />
+        <TextField fx:id="txtProcedure8" alignment="CENTER" layoutX="879.0" layoutY="590.0" prefHeight="48.0" prefWidth="363.0" />
         <TextArea fx:id="txtReason8" layoutX="1242.0" layoutY="589.0" prefHeight="49.0" prefWidth="373.0" />
         <TextField fx:id="txtNotes8" alignment="CENTER" editable="false" layoutX="1614.0" layoutY="590.0" onMouseClicked="#Notes8" prefHeight="48.0" prefWidth="111.0" />
         
@@ -218,7 +218,7 @@
         <TextField fx:id="txtName9" alignment="CENTER" layoutX="231.0" layoutY="638.0" prefHeight="48.0" prefWidth="285.0" />
         <TextField fx:id="txtAge9" alignment="CENTER" layoutX="516.0" layoutY="638.0" prefHeight="48.0" prefWidth="159.0" />
         <TextField fx:id="txtHospital9" alignment="CENTER" layoutX="675.0" layoutY="638.0" prefHeight="48.0" prefWidth="204.0" />
-        <ChoiceBox fx:id="cbProcedure9" layoutX="879.0" layoutY="638.0" prefHeight="48.0" prefWidth="363.0" />
+        <TextField fx:id="txtProcedure9" alignment="CENTER" layoutX="879.0" layoutY="638.0" prefHeight="48.0" prefWidth="363.0" />
         <TextArea fx:id="txtReason9" layoutX="1242.0" layoutY="638.0" prefHeight="49.0" prefWidth="373.0" />
         <TextField fx:id="txtNotes9" alignment="CENTER" editable="false" layoutX="1614.0" layoutY="638.0" onMouseClicked="#Notes9" prefHeight="48.0" prefWidth="111.0" />
         
@@ -235,7 +235,7 @@
         <TextField fx:id="txtName10" alignment="CENTER" layoutX="231.0" layoutY="686.0" prefHeight="48.0" prefWidth="285.0" />
         <TextField fx:id="txtAge10" alignment="CENTER" layoutX="516.0" layoutY="686.0" prefHeight="48.0" prefWidth="159.0" />
         <TextField fx:id="txtHospital10" alignment="CENTER" layoutX="675.0" layoutY="686.0" prefHeight="48.0" prefWidth="204.0" />
-        <ChoiceBox fx:id="cbProcedure10" layoutX="879.0" layoutY="686.0" prefHeight="48.0" prefWidth="363.0" />
+        <TextField fx:id="txtProcedure10" alignment="CENTER" layoutX="879.0" layoutY="686.0" prefHeight="48.0" prefWidth="363.0" />
         <TextArea fx:id="txtReason10" layoutX="1242.0" layoutY="685.0" prefHeight="49.0" prefWidth="373.0" />
         <TextField fx:id="txtNotes10" alignment="CENTER" editable="false" layoutX="1614.0" layoutY="686.0" onMouseClicked="#Notes10" prefHeight="48.0" prefWidth="111.0" />
         
@@ -253,7 +253,7 @@
         <TextField fx:id="txtName11" alignment="CENTER" layoutX="231.0" layoutY="734.0" prefHeight="48.0" prefWidth="285.0" />
         <TextField fx:id="txtAge11" alignment="CENTER" layoutX="516.0" layoutY="734.0" prefHeight="48.0" prefWidth="159.0" />
         <TextField fx:id="txtHospital11" alignment="CENTER" layoutX="675.0" layoutY="734.0" prefHeight="48.0" prefWidth="204.0" />
-        <ChoiceBox fx:id="cbProcedure11" layoutX="879.0" layoutY="734.0" prefHeight="48.0" prefWidth="363.0" />
+        <TextField fx:id="txtProcedure11" alignment="CENTER" layoutX="879.0" layoutY="734.0" prefHeight="48.0" prefWidth="363.0" />
         <TextArea fx:id="txtReason11" layoutX="1242.0" layoutY="734.0" prefHeight="49.0" prefWidth="373.0" />
         <TextField fx:id="txtNotes11" alignment="CENTER" editable="false" layoutX="1614.0" layoutY="734.0" onMouseClicked="#Notes11" prefHeight="48.0" prefWidth="111.0" />
         
@@ -270,7 +270,7 @@
         <TextField fx:id="txtName12" alignment="CENTER" layoutX="231.0" layoutY="782.0" prefHeight="48.0" prefWidth="285.0" />        
         <TextField fx:id="txtAge12" alignment="CENTER" layoutX="516.0" layoutY="782.0" prefHeight="48.0" prefWidth="159.0" />
         <TextField fx:id="txtHospital12" alignment="CENTER" layoutX="675.0" layoutY="782.0" prefHeight="48.0" prefWidth="204.0" />
-        <ChoiceBox fx:id="cbProcedure12" layoutX="879.0" layoutY="782.0" prefHeight="48.0" prefWidth="363.0" />
+        <TextField fx:id="txtProcedure12" alignment="CENTER" layoutX="879.0" layoutY="782.0" prefHeight="48.0" prefWidth="363.0" />
         <TextArea fx:id="txtReason12" layoutX="1242.0" layoutY="781.0" prefHeight="49.0" prefWidth="373.0" />
         <TextField fx:id="txtNotes12" alignment="CENTER" editable="false" layoutX="1614.0" layoutY="782.0" onMouseClicked="#Notes12" prefHeight="48.0" prefWidth="111.0" />
         
@@ -290,7 +290,7 @@
         <TextField fx:id="txtName13" alignment="CENTER" layoutX="231.0" layoutY="830.0" prefHeight="48.0" prefWidth="285.0" />
         <TextField fx:id="txtAge13" alignment="CENTER" layoutX="516.0" layoutY="830.0" prefHeight="48.0" prefWidth="159.0" />
         <TextField fx:id="txtHospital13" alignment="CENTER" layoutX="675.0" layoutY="830.0" prefHeight="48.0" prefWidth="204.0" />
-        <ChoiceBox fx:id="cbProcedure13" layoutX="879.0" layoutY="830.0" prefHeight="48.0" prefWidth="363.0" /> 
+        <TextField fx:id="txtProcedure13" alignment="CENTER" layoutX="879.0" layoutY="830.0" prefHeight="48.0" prefWidth="363.0" /> 
         <TextArea fx:id="txtReason13" layoutX="1242.0" layoutY="830.0" prefHeight="49.0" prefWidth="373.0" />
         <TextField fx:id="txtNotes13" alignment="CENTER" editable="false" layoutX="1614.0" layoutY="830.0" onMouseClicked="#Notes13" prefHeight="48.0" prefWidth="111.0" />
         
@@ -308,7 +308,7 @@
         <TextField fx:id="txtName14" alignment="CENTER" layoutX="231.0" layoutY="878.0" prefHeight="48.0" prefWidth="285.0" />
         <TextField fx:id="txtAge14" alignment="CENTER" layoutX="516.0" layoutY="878.0" prefHeight="48.0" prefWidth="159.0" />
         <TextField fx:id="txtHospital14" alignment="CENTER" layoutX="675.0" layoutY="878.0" prefHeight="48.0" prefWidth="204.0" />
-        <ChoiceBox fx:id="cbProcedure14" layoutX="879.0" layoutY="878.0" prefHeight="48.0" prefWidth="363.0" />
+        <TextField fx:id="txtProcedure14" alignment="CENTER" layoutX="879.0" layoutY="878.0" prefHeight="48.0" prefWidth="363.0" />
         <TextArea fx:id="txtReason14" layoutX="1242.0" layoutY="877.0" prefHeight="49.0" prefWidth="373.0" />
         <TextField fx:id="txtNotes14" alignment="CENTER" editable="false" layoutX="1614.0" layoutY="878.0" onMouseClicked="#Notes14" prefHeight="48.0" prefWidth="111.0" />
         
@@ -403,20 +403,20 @@
         </ArrayList>
         
         <ArrayList fx:id="procedureList">
-            <fx:reference source="cbProcedure1"/>
-            <fx:reference source="cbProcedure2"/>      
-            <fx:reference source="cbProcedure3"/>
-            <fx:reference source="cbProcedure4"/>
-            <fx:reference source="cbProcedure5"/>
-            <fx:reference source="cbProcedure6"/>
-            <fx:reference source="cbProcedure7"/>
-            <fx:reference source="cbProcedure8"/>
-            <fx:reference source="cbProcedure9"/>
-            <fx:reference source="cbProcedure10"/>
-            <fx:reference source="cbProcedure11"/>
-            <fx:reference source="cbProcedure12"/>
-            <fx:reference source="cbProcedure13"/>
-            <fx:reference source="cbProcedure14"/>            
+            <fx:reference source="txtProcedure1"/>
+            <fx:reference source="txtProcedure2"/>      
+            <fx:reference source="txtProcedure3"/>
+            <fx:reference source="txtProcedure4"/>
+            <fx:reference source="txtProcedure5"/>
+            <fx:reference source="txtProcedure6"/>
+            <fx:reference source="txtProcedure7"/>
+            <fx:reference source="txtProcedure8"/>
+            <fx:reference source="txtProcedure9"/>
+            <fx:reference source="txtProcedure10"/>
+            <fx:reference source="txtProcedure11"/>
+            <fx:reference source="txtProcedure12"/>
+            <fx:reference source="txtProcedure13"/>
+            <fx:reference source="txtProcedure14"/>            
         </ArrayList>
        
        

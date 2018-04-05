@@ -42,6 +42,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import oncology.oncology;
+import org.controlsfx.control.textfield.TextFields;
 
 /**
  *
@@ -55,7 +56,7 @@ public class NonbedScreenDocumentController implements Initializable
     @FXML TextField txtName1 = new TextField();
     @FXML TextField txtAge1 = new TextField();
     @FXML TextField txtHospital1 = new TextField();
-    @FXML ChoiceBox cbProcedure1 = new ChoiceBox();
+    @FXML TextField txtProcedure1 = new TextField();
     @FXML TextArea txtReason1 = new TextArea();
     @FXML TextField txtNotes1 = new TextField();
     
@@ -64,7 +65,7 @@ public class NonbedScreenDocumentController implements Initializable
     @FXML TextField txtName2 = new TextField();
     @FXML TextField txtAge2 = new TextField();
     @FXML TextField txtHospital2 = new TextField();
-    @FXML ChoiceBox cbProcedure2 = new ChoiceBox();
+    @FXML TextField txtProcedure2 = new TextField();
     @FXML TextArea txtReason2 = new TextArea();
     @FXML TextField txtNotes2 = new TextField();
     
@@ -73,7 +74,7 @@ public class NonbedScreenDocumentController implements Initializable
     @FXML TextField txtName3 = new TextField();
     @FXML TextField txtAge3 = new TextField();
     @FXML TextField txtHospital3 = new TextField();
-    @FXML ChoiceBox cbProcedure3 = new ChoiceBox();
+    @FXML TextField txtProcedure3 = new TextField();
     @FXML TextArea txtReason3 = new TextArea();
     @FXML TextField txtNotes3 = new TextField();
     
@@ -82,7 +83,7 @@ public class NonbedScreenDocumentController implements Initializable
     @FXML TextField txtName4 = new TextField();
     @FXML TextField txtAge4 = new TextField();
     @FXML TextField txtHospital4 = new TextField();
-    @FXML ChoiceBox cbProcedure4 = new ChoiceBox();
+    @FXML TextField txtProcedure4 = new TextField();
     @FXML TextArea txtReason4 = new TextArea();
     @FXML TextField txtNotes4 = new TextField();
     
@@ -91,7 +92,7 @@ public class NonbedScreenDocumentController implements Initializable
     @FXML TextField txtName5 = new TextField();
     @FXML TextField txtAge5 = new TextField();
     @FXML TextField txtHospital5 = new TextField();
-    @FXML ChoiceBox cbProcedure5 = new ChoiceBox();
+    @FXML TextField txtProcedure5 = new TextField();
     @FXML TextArea txtReason5 = new TextArea();
     @FXML TextField txtNotes5 = new TextField();
     
@@ -100,7 +101,7 @@ public class NonbedScreenDocumentController implements Initializable
     @FXML TextField txtName6 = new TextField();
     @FXML TextField txtAge6 = new TextField();
     @FXML TextField txtHospital6 = new TextField();
-    @FXML ChoiceBox cbProcedure6 = new ChoiceBox();
+    @FXML TextField txtProcedure6 = new TextField();
     @FXML TextArea txtReason6 = new TextArea();
     @FXML TextField txtNotes6 = new TextField();
     
@@ -109,7 +110,7 @@ public class NonbedScreenDocumentController implements Initializable
     @FXML TextField txtName7 = new TextField();
     @FXML TextField txtAge7 = new TextField();
     @FXML TextField txtHospital7 = new TextField();
-    @FXML ChoiceBox cbProcedure7 = new ChoiceBox();
+    @FXML TextField txtProcedure7 = new TextField();
     @FXML TextArea txtReason7 = new TextArea();
     @FXML TextField txtNotes7 = new TextField();
     
@@ -118,7 +119,7 @@ public class NonbedScreenDocumentController implements Initializable
     @FXML TextField txtName8 = new TextField();
     @FXML TextField txtAge8 = new TextField();
     @FXML TextField txtHospital8 = new TextField();
-    @FXML ChoiceBox cbProcedure8 = new ChoiceBox();
+    @FXML TextField txtProcedure8 = new TextField();
     @FXML TextArea txtReason8 = new TextArea();
     @FXML TextField txtNotes8 = new TextField();
     
@@ -127,7 +128,7 @@ public class NonbedScreenDocumentController implements Initializable
     @FXML TextField txtName9 = new TextField();
     @FXML TextField txtAge9 = new TextField();
     @FXML TextField txtHospital9 = new TextField();
-    @FXML ChoiceBox cbProcedure9 = new ChoiceBox();
+    @FXML TextField txtProcedure9 = new TextField();
     @FXML TextArea txtReason9 = new TextArea();
     @FXML TextField txtNotes9 = new TextField();
     
@@ -136,7 +137,7 @@ public class NonbedScreenDocumentController implements Initializable
     @FXML TextField txtName10 = new TextField();
     @FXML TextField txtAge10 = new TextField();
     @FXML TextField txtHospital10 = new TextField();
-    @FXML ChoiceBox cbProcedure10 = new ChoiceBox();
+    @FXML TextField txtProcedure10 = new TextField();
     @FXML TextArea txtReason10 = new TextArea();
     @FXML TextField txtNotes10 = new TextField();
     
@@ -145,7 +146,7 @@ public class NonbedScreenDocumentController implements Initializable
     @FXML TextField txtName11 = new TextField();
     @FXML TextField txtAge11 = new TextField();
     @FXML TextField txtHospital11 = new TextField();
-    @FXML ChoiceBox cbProcedure11 = new ChoiceBox();
+    @FXML TextField txtProcedure11 = new TextField();
     @FXML TextArea txtReason11 = new TextArea();
     @FXML TextField txtNotes11 = new TextField();
     
@@ -154,7 +155,7 @@ public class NonbedScreenDocumentController implements Initializable
     @FXML TextField txtName12 = new TextField();
     @FXML TextField txtAge12 = new TextField();
     @FXML TextField txtHospital12 = new TextField();
-    @FXML ChoiceBox cbProcedure12 = new ChoiceBox();
+    @FXML TextField txtProcedure12 = new TextField();
     @FXML TextArea txtReason12 = new TextArea();
     @FXML TextField txtNotes12 = new TextField();
     
@@ -163,7 +164,7 @@ public class NonbedScreenDocumentController implements Initializable
     @FXML TextField txtName13 = new TextField();
     @FXML TextField txtAge13 = new TextField();
     @FXML TextField txtHospital13 = new TextField();
-    @FXML ChoiceBox cbProcedure13 = new ChoiceBox();
+    @FXML TextField txtProcedure13 = new TextField();
     @FXML TextArea txtReason13 = new TextArea();
     @FXML TextField txtNotes13 = new TextField();
     
@@ -172,7 +173,7 @@ public class NonbedScreenDocumentController implements Initializable
     @FXML TextField txtName14 = new TextField();
     @FXML TextField txtAge14 = new TextField();
     @FXML TextField txtHospital14 = new TextField();
-    @FXML ChoiceBox cbProcedure14 = new ChoiceBox();
+    @FXML TextField txtProcedure14 = new TextField();
     @FXML TextArea txtReason14 = new TextArea();
     @FXML TextField txtNotes14 = new TextField();
    
@@ -184,7 +185,7 @@ public class NonbedScreenDocumentController implements Initializable
     @FXML private List<TextField> nameList;
     @FXML private List<TextField> ageList;
     @FXML private List<TextField> hospitalList;
-    @FXML private List<ChoiceBox> procedureList;
+    @FXML private List<TextField> procedureList;
     @FXML private List<TextArea> reasonList;
     @FXML private List<TextField> notesList;
     
@@ -203,7 +204,7 @@ public class NonbedScreenDocumentController implements Initializable
     {
        
         showInformation(codeBank.getCurrentDate());
-        fillDropDowns(); //fills to procedure drop down 
+        setUpAutoComplete();
         delete();
         
         for(int i=0; i<14; i++)
@@ -254,7 +255,6 @@ public class NonbedScreenDocumentController implements Initializable
     public void showInformation(LocalDate date)
     {
         clearAll();
-        fillDropDowns();
         workingStaff = codeBank.fillStaffDropDowns();
         cbStaff.getItems().addAll(workingStaff);
         showStaff(codeBank.getCurrentDate());
@@ -326,14 +326,7 @@ public class NonbedScreenDocumentController implements Initializable
             nameList.get(i).setText(singleBooking.getName());
             ageList.get(i).setText(""+singleBooking.getAge());
             hospitalList.get(i).setText(singleBooking.getHospital());
-            
-            //If a proceudre has been deleted, add that already booked optoin to the list
-            if(!inList(singleBooking.getProcudure()))
-            {
-                 procedureList.get(i).getItems().add(singleBooking.getProcudure());
-            }
-            procedureList.get(i).setValue(singleBooking.getProcudure());
-            
+            procedureList.get(i).setText(singleBooking.getProcudure());            
             reasonList.get(i).setText(singleBooking.getReason());
             notesArray[i] = singleBooking.getNotes();
             
@@ -368,42 +361,6 @@ public class NonbedScreenDocumentController implements Initializable
     }
     
     
-    public void fillDropDowns()
-    {
-       try
-        {
-            // open a connection
-            Connection c = DatabaseConnector.activateConnection();
-            c.setAutoCommit( true ); 
-            ResultSet rs ;
-            
-            // when creating a statement object, you MUST use a connection object to call the instance method
-            Statement stmt = c.createStatement();          
-            
-            //implement query
-            rs = stmt.executeQuery("SELECT Name FROM procedures WHERE Location= 'Non-bed'"); 
-            
-            procedures.add("");
-            
-            while(rs.next())
-            { 
-                String name = rs.getString("Name");
-                procedures.add(name);
-            }
-            
-            for(int i=0; i< procedureList.size(); i++)
-            {
-                    procedureList.get(i).getItems().addAll(procedures);
-            }
-            
-            c.close();
-            
-        }
-        catch (SQLException e)
-        {
-            
-        } 
-    }
     
     public void clearAll()
     {
@@ -426,7 +383,7 @@ public class NonbedScreenDocumentController implements Initializable
         nameList.get(i).setText("");
         ageList.get(i).setText("");
         hospitalList.get(i).setText("");
-        procedureList.get(i).getItems().clear();
+        procedureList.get(i).setText("");
         reasonList.get(i).setText("");
         txtReason1.setText("");
         attendanceArray[i] = 0;
@@ -450,7 +407,7 @@ public class NonbedScreenDocumentController implements Initializable
         TextField time = timeList.get(i);
         TextField name = nameList.get(i);
         TextField age = ageList.get(i);
-        ChoiceBox procedure = procedureList.get(i);
+        TextField procedure = procedureList.get(i);
 
         //https://stackoverflow.com/questions/32980159/javafx-append-to-right-click-menu-for-textfield accessed 18/2
         //https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/ContextMenu.html accessed 18/2
@@ -466,7 +423,7 @@ public class NonbedScreenDocumentController implements Initializable
                     // when creating a statement object, you MUST use a connection object to call the instance method
                     Statement stmt = c.createStatement();
 
-                    String sql = "DELETE FROM nonbed WHERE Date = '" + codeBank.dateToString(codeBank.getCurrentDate()) + "' AND Time = '" + time.getText() + "' AND Age = '" + age.getText() + "'AND Name ='" + name.getText() + "' AND Procedure ='" + procedure.getValue() + "'";
+                    String sql = "DELETE FROM nonbed WHERE Date = '" + codeBank.dateToString(codeBank.getCurrentDate()) + "' AND Time = '" + time.getText() + "' AND Age = '" + age.getText() + "'AND Name ='" + name.getText() + "' AND Procedure ='" + procedure.getText() + "'";
 
                     stmt.executeUpdate(sql);
 
@@ -490,15 +447,15 @@ public class NonbedScreenDocumentController implements Initializable
     {
         for(int i=0; i<14; i++)
         {
-            if(!timeList.get(i).getText().equals("") & !nameList.get(i).getText().equals("") &  procedureList.get(i).getValue() != null)
+            if(!timeList.get(i).getText().equals("") & !nameList.get(i).getText().equals("") &  procedureList.get(i).getText().equals(""))
             {
                 //Nothing entered and you are ok to procede
             }
-            else if(timeList.get(i).getText().equals("") & nameList.get(i).getText().equals("") &  (procedureList.get(i).getValue() != null))
+            else if(timeList.get(i).getText().equals("") & nameList.get(i).getText().equals("") &  (procedureList.get(i).getText().equals("")))
             {
                 //no person - ok to procede 
             }
-            else if(!timeList.get(i).getText().equals("") || !nameList.get(i).getText().equals("") || procedureList.get(i).getValue() != null)
+            else if(!timeList.get(i).getText().equals("") || !nameList.get(i).getText().equals("") || procedureList.get(i).getText().equals(""))
             {
                 codeBank.missingError();
                 return false;
@@ -542,13 +499,13 @@ public class NonbedScreenDocumentController implements Initializable
     
     public String SQLLine(int i, String date)
     {
-        if(procedureList.get(i).getValue()==null)
+        if(procedureList.get(i).getText().equals(""))
         {
             return "";
         }
         else
         {
-            if(!timeList.get(i).getText().equals("") & !nameList.get(i).getText().equals("") & !procedureList.get(i).getValue().equals(""))
+            if(!timeList.get(i).getText().equals("") & !nameList.get(i).getText().equals("") & !procedureList.get(i).getText().equals(""))
             {
                 return  ("REPLACE INTO nonbed (Date, Time, Name, Age, HospitalNumber, Procedure, Reason, Notes, Attendance) VALUES('"      
                                                                                             + date + "','"
@@ -556,7 +513,7 @@ public class NonbedScreenDocumentController implements Initializable
                                                                                             + nameList.get(i).getText() + "','"
                                                                                             + ageList.get(i).getText() + "','"
                                                                                             + hospitalList.get(i).getText() + "','"
-                                                                                            + procedureList.get(i).getValue() + "','"
+                                                                                            + procedureList.get(i).getText() + "','"
                                                                                             + reasonList.get(i).getText() + "','"
                                                                                             + notesArray[i] + "','"
                                                                                             + attendanceArray[i] + "')"
@@ -764,6 +721,35 @@ public class NonbedScreenDocumentController implements Initializable
         {
             //Logger.getLogger(ProcedureScreenDocumentController.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("ISSUE IN MAIN");
+        }
+    }
+    
+    
+    public void setUpAutoComplete()
+    {
+        ArrayList<String> procedures = new ArrayList<String>();
+        try
+        {
+            Connection c = DatabaseConnector.activateConnection();
+            c.setAutoCommit(true);
+            Statement stmt = c.createStatement();
+            ResultSet rs;
+            String sql = "SELECT * FROM procedures WHERE Location = 'Non-bed'";
+            rs = stmt.executeQuery(sql);
+            
+            while(rs.next())
+            {
+                procedures.add(rs.getString("Name"));
+            }
+        }
+        catch (SQLException e)
+        {
+            
+        }
+        
+        for(int i =0; i<procedureList.size(); i++) 
+        {
+            TextFields.bindAutoCompletion(procedureList.get(i), procedures);
         }
     }
     
