@@ -57,5 +57,10 @@
             <Font size="20.0" />
          </font>
       </RadioButton>
+      <Label layoutX="661.0" layoutY="313.0" prefHeight="59.0" prefWidth="478.0" text="BE AWARE - if you choose the make an appointment from one of the suggestions, that may change other suggested appointment times" wrapText="true">
+         <font>
+            <Font name="System Italic" size="15.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

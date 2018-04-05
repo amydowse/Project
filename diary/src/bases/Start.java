@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 
 
@@ -41,6 +42,10 @@ public class Start extends Application
         //scene.getStylesheets().add(getClass().getResource("tableComponent.css").toExternalForm());
         
         stage.setTitle("Safari Day Unit");
+        
+        Image image = new Image(Start.class.getResourceAsStream("/bases/Safari.png"));
+        stage.getIcons().add(image);
+        
         stage.setScene(scene);
         stage.setResizable(false);
         stage.setMaximized(true);

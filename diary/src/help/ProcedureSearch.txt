@@ -13,3 +13,5 @@ A label will confirm that text that was being search for.
 The table will then show all of the dates and times that the system suggests you can fit in that type of appointment.
 
 This is a read only table - you cannot edit anything.
+
+Dates will only be considered for suggestions if there are staff members assigned to work that day. If you are looking for suggestions for a procedure that requires a specific member of staff assigned, you must have this staff member assigned to be able to make suggestions on that day.
