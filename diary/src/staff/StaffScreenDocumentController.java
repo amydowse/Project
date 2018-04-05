@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -217,6 +218,7 @@ public class StaffScreenDocumentController implements Initializable
             }
         }
         
+        Collections.sort(allProcedures);
         tblProcedures.getItems().addAll(allProcedures);
         
         tblColProcedure.setCellValueFactory(new PropertyValueFactory("ProcedureName"));

@@ -9,7 +9,7 @@ package staff;
  *
  * @author amydo
  */
-public class skill 
+public class skill implements Comparable<skill>
 {
     private String ProcedureName;
     private String hasSkill;
@@ -41,5 +41,11 @@ public class skill
     public void setHasSkill(String hasSkill)
     {
         this.hasSkill = hasSkill;
+    }
+
+    @Override
+    public int compareTo(skill o) 
+    {
+        return getProcedureName().compareTo(o.getProcedureName());
     }
 }

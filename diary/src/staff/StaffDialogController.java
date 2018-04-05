@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Collections;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -117,6 +118,7 @@ public class StaffDialogController implements Initializable
     
     public void display()
     {
+        Collections.sort(allProcedures);
         tblProcedures.getItems().addAll(allProcedures);
         tblColProcedure.setCellValueFactory(new PropertyValueFactory("ProcedureName"));
         tblColStatus.setCellValueFactory(new PropertyValueFactory("hasSkill"));
