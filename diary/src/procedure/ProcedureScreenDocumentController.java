@@ -132,7 +132,7 @@ public class ProcedureScreenDocumentController implements Initializable
                 
             }
              
-            
+                Collections.sort(allProcedures);
                 tblColName.setCellValueFactory(new PropertyValueFactory("Name"));
 
                 tblProcedures.getItems().addAll(allProcedures);

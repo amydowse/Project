@@ -9,7 +9,7 @@ package procedure;
  *
  * @author amydo
  */
-public class procedure 
+public class procedure implements Comparable<procedure>
 {
     private String name;
     private int duration;
@@ -78,6 +78,12 @@ public class procedure
     public void setLocation(String location)
     {
         this.location = location;
+    }
+
+    @Override
+    public int compareTo(procedure o) 
+    {
+       return getName().compareTo(o.getName());
     }
     
     
