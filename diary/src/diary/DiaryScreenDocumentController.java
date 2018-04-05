@@ -1200,7 +1200,7 @@ public class DiaryScreenDocumentController  implements Initializable
     
     
     
-    
+    //https://stackoverflow.com/questions/22749621/how-to-implement-autocomplete-textfield-using-controlsfx
     public void setUpAutoComplete()
     {
         ArrayList<String> procedures = new ArrayList<String>();

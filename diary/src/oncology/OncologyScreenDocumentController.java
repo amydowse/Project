@@ -43,6 +43,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.controlsfx.control.textfield.AutoCompletionBinding;
+import org.controlsfx.control.textfield.AutoCompletionBinding.AutoCompletionEvent;
+import org.controlsfx.control.textfield.TextFields;
 
 /**
  *
@@ -53,7 +56,7 @@ public class OncologyScreenDocumentController implements Initializable
     //FXML Elements
     @FXML TextField txtAttendance1 = new TextField();
     @FXML TextField txtTime1 = new TextField();
-    @FXML ChoiceBox cbName1 = new ChoiceBox();
+    @FXML TextField txtName1 = new TextField();
     @FXML TextField txtAge1 = new TextField();
     @FXML TextField txtHospital1 = new TextField();
     @FXML TextField txtNumber1 = new TextField();
@@ -63,7 +66,7 @@ public class OncologyScreenDocumentController implements Initializable
    
     @FXML TextField txtAttendance2 = new TextField();
     @FXML TextField txtTime2 = new TextField();
-    @FXML ChoiceBox cbName2 = new ChoiceBox();
+    @FXML TextField txtName2 = new TextField();
     @FXML TextField txtAge2 = new TextField();
     @FXML TextField txtHospital2 = new TextField();
     @FXML TextField txtNumber2 = new TextField();
@@ -73,7 +76,7 @@ public class OncologyScreenDocumentController implements Initializable
     
     @FXML TextField txtAttendance3 = new TextField();
     @FXML TextField txtTime3 = new TextField();
-    @FXML ChoiceBox cbName3 = new ChoiceBox();
+    @FXML TextField txtName3 = new TextField();
     @FXML TextField txtAge3 = new TextField();
     @FXML TextField txtHospital3 = new TextField();
     @FXML TextField txtNumber3 = new TextField();
@@ -83,7 +86,7 @@ public class OncologyScreenDocumentController implements Initializable
     
     @FXML TextField txtAttendance4 = new TextField();
     @FXML TextField txtTime4 = new TextField();
-    @FXML ChoiceBox cbName4 = new ChoiceBox();
+    @FXML TextField txtName4 = new TextField();
     @FXML TextField txtAge4 = new TextField();
     @FXML TextField txtHospital4 = new TextField();
     @FXML TextField txtNumber4 = new TextField();
@@ -93,7 +96,7 @@ public class OncologyScreenDocumentController implements Initializable
     
     @FXML TextField txtAttendance5 = new TextField();
     @FXML TextField txtTime5 = new TextField();
-    @FXML ChoiceBox cbName5 = new ChoiceBox();
+    @FXML TextField txtName5 = new TextField();
     @FXML TextField txtAge5 = new TextField();
     @FXML TextField txtHospital5 = new TextField();
     @FXML TextField txtNumber5 = new TextField();
@@ -103,7 +106,7 @@ public class OncologyScreenDocumentController implements Initializable
     
     @FXML TextField txtAttendance6 = new TextField();
     @FXML TextField txtTime6 = new TextField();
-    @FXML ChoiceBox cbName6 = new ChoiceBox();
+    @FXML TextField txtName6 = new TextField();
     @FXML TextField txtAge6 = new TextField();
     @FXML TextField txtHospital6 = new TextField();
     @FXML TextField txtNumber6 = new TextField();
@@ -113,7 +116,7 @@ public class OncologyScreenDocumentController implements Initializable
     
     @FXML TextField txtAttendance7 = new TextField();
     @FXML TextField txtTime7 = new TextField();
-    @FXML ChoiceBox cbName7 = new ChoiceBox();
+    @FXML TextField txtName7 = new TextField();
     @FXML TextField txtAge7 = new TextField();
     @FXML TextField txtHospital7 = new TextField();
     @FXML TextField txtNumber7 = new TextField();
@@ -123,7 +126,7 @@ public class OncologyScreenDocumentController implements Initializable
     
     @FXML TextField txtAttendance8 = new TextField();
     @FXML TextField txtTime8 = new TextField();
-    @FXML ChoiceBox cbName8 = new ChoiceBox();
+    @FXML TextField txtName8 = new TextField();
     @FXML TextField txtAge8 = new TextField();
     @FXML TextField txtHospital8 = new TextField();
     @FXML TextField txtNumber8 = new TextField();
@@ -133,7 +136,7 @@ public class OncologyScreenDocumentController implements Initializable
     
     @FXML TextField txtAttendance9 = new TextField();
     @FXML TextField txtTime9 = new TextField();
-    @FXML ChoiceBox cbName9 = new ChoiceBox();
+    @FXML TextField txtName9 = new TextField();
     @FXML TextField txtAge9 = new TextField();
     @FXML TextField txtHospital9 = new TextField();
     @FXML TextField txtNumber9 = new TextField();
@@ -143,7 +146,7 @@ public class OncologyScreenDocumentController implements Initializable
     
     @FXML TextField txtAttendance10 = new TextField();
     @FXML TextField txtTime10 = new TextField();
-    @FXML ChoiceBox cbName10 = new ChoiceBox();
+    @FXML TextField txtName10 = new TextField();
     @FXML TextField txtAge10 = new TextField();
     @FXML TextField txtHospital10 = new TextField();
     @FXML TextField txtNumber10 = new TextField();
@@ -153,7 +156,7 @@ public class OncologyScreenDocumentController implements Initializable
     
     @FXML TextField txtAttendance11 = new TextField();
     @FXML TextField txtTime11 = new TextField();
-    @FXML ChoiceBox cbName11 = new ChoiceBox();
+    @FXML TextField txtName11 = new TextField();
     @FXML TextField txtAge11 = new TextField();
     @FXML TextField txtHospital11 = new TextField();
     @FXML TextField txtNumber11 = new TextField();
@@ -163,7 +166,7 @@ public class OncologyScreenDocumentController implements Initializable
     
     @FXML TextField txtAttendance12 = new TextField();
     @FXML TextField txtTime12 = new TextField();
-    @FXML ChoiceBox cbName12 = new ChoiceBox();
+    @FXML TextField txtName12 = new TextField();
     @FXML TextField txtAge12 = new TextField();
     @FXML TextField txtHospital12 = new TextField();
     @FXML TextField txtNumber12 = new TextField();
@@ -173,7 +176,7 @@ public class OncologyScreenDocumentController implements Initializable
     
     @FXML TextField txtAttendance13 = new TextField();
     @FXML TextField txtTime13 = new TextField();
-    @FXML ChoiceBox cbName13 = new ChoiceBox();
+    @FXML TextField txtName13 = new TextField();
     @FXML TextField txtAge13 = new TextField();
     @FXML TextField txtHospital13 = new TextField();
     @FXML TextField txtNumber13 = new TextField();
@@ -183,7 +186,7 @@ public class OncologyScreenDocumentController implements Initializable
     
     @FXML TextField txtAttendance14 = new TextField();
     @FXML TextField txtTime14 = new TextField();
-    @FXML ChoiceBox cbName14 = new ChoiceBox();
+    @FXML TextField txtName14 = new TextField();
     @FXML TextField txtAge14 = new TextField();
     @FXML TextField txtHospital14 = new TextField();
     @FXML TextField txtNumber14 = new TextField();
@@ -195,7 +198,7 @@ public class OncologyScreenDocumentController implements Initializable
     
     @FXML private List<TextField> attendanceList;
     @FXML private List<TextField> timeList;
-    @FXML private List<ChoiceBox> nameList;
+    @FXML private List<TextField> nameList;
     @FXML private List<TextField> ageList;
     @FXML private List<TextField> hospitalList;
     @FXML private List<TextField> numberList;
@@ -215,11 +218,13 @@ public class OncologyScreenDocumentController implements Initializable
     
     boolean issue = false;
     
+    boolean addedBySelection = false;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
         showInformation(codeBank.getCurrentDate());
-        fillDropDowns();
+        setUpAutoComplete();
         delete();
                
         for(int i=0; i<14; i++)
@@ -233,7 +238,6 @@ public class OncologyScreenDocumentController implements Initializable
             });
         }
         
-       
     
     }
     
@@ -253,7 +257,6 @@ public class OncologyScreenDocumentController implements Initializable
     public void showInformation(LocalDate date)
     {
         clearAll();
-        fillDropDowns();
         
         for(int i=0; i<14; i++)
         {
@@ -374,11 +377,7 @@ public class OncologyScreenDocumentController implements Initializable
         
             timeList.get(i).setText((singleBooking.getTime()).toString());
             
-            if(!inList(singleBooking.getName()))
-            {
-                nameList.get(i).getItems().add(singleBooking.getName());
-            }
-            nameList.get(i).setValue(singleBooking.getName());
+            nameList.get(i).setText(singleBooking.getName());
             
             ageList.get(i).setText("" + singleBooking.getAge());
             hospitalList.get(i).setText(singleBooking.getHospitalNumber());
@@ -406,61 +405,7 @@ public class OncologyScreenDocumentController implements Initializable
         
     }
     
-    public boolean inList(String name)
-    {
-        for(int i=0; i<patients.size(); i++)
-        {
-            if(patients.get(i).equals(name))
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    
-                        
-    
-    //Fill the name drop downs with the names of regular attenders 
-    public void fillDropDowns()
-    {
-        try
-        {
-            // open a connection
-            Connection c = DatabaseConnector.activateConnection();
-            c.setAutoCommit( true ); 
-            ResultSet rs ;
-            
-            // when creating a statement object, you MUST use a connection object to call the instance method
-            Statement stmt = c.createStatement();          
-            
-            //implement query
-            rs = stmt.executeQuery("SELECT FirstName, LastName FROM regular WHERE Oncology='" + 1 + "'"); 
-            
-            patients.add(" ");
-            
-            while(rs.next())
-            { 
-                String FirstName = rs.getString("FirstName");
-                String LastName = rs.getString("LastName");
-                
-                patients.add(FirstName + " " + LastName);
-            }
-            
-            for(int i=0; i<14; i++)
-            {
-                nameList.get(i).getItems().addAll(patients);
-            }
-            c.close();
-                        
-        }
-        catch (SQLException e)
-        {
-            
-        } 
-    }
-    
-    
+
     
     
     
@@ -545,11 +490,11 @@ public class OncologyScreenDocumentController implements Initializable
     {
         for(int i=0; i<14; i++)
         {
-            if(!timeList.get(i).getText().equals("") & nameList.get(i).getValue() != null & !reasonList.get(i).getText().equals(""))
+            if(!timeList.get(i).getText().equals("") & !nameList.get(i).getText().equals("") & !reasonList.get(i).getText().equals(""))
             {
                 
             }
-            else if(!timeList.get(i).getText().equals("") || nameList.get(i).getValue() != null || !reasonList.get(i).getText().equals(""))
+            else if(!timeList.get(i).getText().equals("") || !nameList.get(i).getText().equals("") || !reasonList.get(i).getText().equals(""))
             {
                 codeBank.missingError();
                 return false;
@@ -601,13 +546,13 @@ public class OncologyScreenDocumentController implements Initializable
     
     public String SQLLine(int i, String date)
     {
-        if(nameList.get(i).getValue()==null)
+        if(nameList.get(i).getText().equals(""))
         {
             return "";
         }
         else
         {
-            if(!timeList.get(i).getText().equals("") & !nameList.get(i).getValue().equals("") & !reasonList.get(i).getText().equals(""))
+            if(!timeList.get(i).getText().equals("") & !nameList.get(i).getText().equals("") & !reasonList.get(i).getText().equals(""))
             {
                 return ("REPLACE INTO oncology (Date, Time, Regular_HospitalNumber, Reason, Notes, Attendance) VALUES('"      
                                                                                     + date + "','"
@@ -629,13 +574,13 @@ public class OncologyScreenDocumentController implements Initializable
     
     public String SQLLineDeleted(int i, String date)
     {
-        if(nameList.get(i).getValue()==null)
+        if(nameList.get(i).getText().equals(""))
         {
             return "";
         }
         else
         {
-            if(!timeList.get(i).getText().equals("") & !nameList.get(i).getValue().equals("") & !reasonList.get(i).getText().equals(""))
+            if(!timeList.get(i).getText().equals("") & !nameList.get(i).getText().equals("") & !reasonList.get(i).getText().equals(""))
             {
                 return ("REPLACE INTO oncology (Date, Time, Regular_HospitalNumber, Reason, Notes, Attendance, Name, Age, ContactNumber, Wristband) VALUES('"      
                                                                                     + date + "','"
@@ -644,7 +589,7 @@ public class OncologyScreenDocumentController implements Initializable
                                                                                     + reasonList.get(i).getText() + "','"
                                                                                     + notesArray[i] + "','"
                                                                                     + attendanceArray[i] + "','"
-                                                                                    + nameList.get(i).getValue().toString() + "','"
+                                                                                    + nameList.get(i).getText().equals("") + "','"
                                                                                     + ageList.get(i).getText() + "','"
                                                                                     + numberList.get(i).getText() + "','"
                                                                                     + wristbandList.get(i).getText() + "')"
@@ -742,156 +687,13 @@ public class OncologyScreenDocumentController implements Initializable
         } 
     }
    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    //Loading a patients information when you select them from the drop down 
-    
-    @FXML public void LoadPatient1()
-    {
-        if(cbName1.getValue() != null)
-        {
-            String patient = cbName1.getValue().toString(); 
-            Load(0, patient);
-        }
-    }
-    
-    @FXML public void LoadPatient2()
-    {
-        if(cbName2.getValue() != null)
-        {
-            String patient = cbName2.getValue().toString(); 
-            Load(1, patient);
-        }
-    }
-    
-    @FXML public void LoadPatient3()
-    {
-        if(cbName3.getValue() != null)
-        {
-            String patient = cbName3.getValue().toString(); 
-            Load(2, patient);
-        }
-    }
-    
-    @FXML public void LoadPatient4()
-    {
-        if(cbName4.getValue() != null)
-        {
-            String patient = cbName4.getValue().toString(); 
-            Load(3, patient);
-        }
-    }
-    
-    @FXML public void LoadPatient5()
-    {
-        if(cbName5.getValue() != null)
-        {
-            String patient = cbName5.getValue().toString(); 
-            Load(4, patient);
-        }
-    }
-    
-    @FXML public void LoadPatient6()
-    {
-        if(cbName6.getValue() != null)
-        {
-            String patient = cbName6.getValue().toString(); 
-            Load(5, patient);
-        }
-    }
-    
-    @FXML public void LoadPatient7()
-    {
-        if(cbName7.getValue() != null)
-        {
-            String patient = cbName7.getValue().toString(); 
-            Load(6, patient);
-        }
-    }
-    
-    @FXML public void LoadPatient8()
-    {
-        if(cbName8.getValue() != null)
-        {
-            String patient = cbName8.getValue().toString(); 
-            Load(7, patient);
-        }
-    }
-    
-    @FXML public void LoadPatient9()
-    {
-        if(cbName9.getValue() != null)
-        {
-            String patient = cbName9.getValue().toString(); 
-            Load(8, patient);
-        }
-    }
-    
-    @FXML public void LoadPatient10()
-    {
-        if(cbName10.getValue() != null)
-        {
-            String patient = cbName10.getValue().toString(); 
-            Load(9, patient);
-        }
-    }
-    
-    @FXML public void LoadPatient11()
-    {
-        if(cbName11.getValue() != null)
-        {
-            String patient = cbName11.getValue().toString(); 
-            Load(10, patient);
-        }
-    }
-    
-    @FXML public void LoadPatient12()
-    {
-        if(cbName12.getValue() != null)
-        {
-            String patient = cbName12.getValue().toString(); 
-            Load(11, patient);
-        }
-    }
-    
-    @FXML public void LoadPatient13()
-    {
-        if(cbName13.getValue() != null)
-        {
-            String patient = cbName13.getValue().toString(); 
-            Load(12, patient);
-        }
-    }
-    
-    @FXML public void LoadPatient14()
-    {
-        if(cbName14.getValue() != null)
-        {
-            String patient = cbName14.getValue().toString(); 
-            Load(13, patient);
-        }
-    }
-    
-    
-    
-    
+  
+      
     
     @FXML
     public void Load(int position, String patient)
     {
-        if(patient == null || patient.equals(""))
+        if(patient.equals(""))
         {
             ageList.get(position).setText(""); 
             hospitalList.get(position).setText("");
@@ -960,8 +762,7 @@ public class OncologyScreenDocumentController implements Initializable
     
     public void clearSingle(int i)
     {
-        nameList.get(i).getItems().clear();
-        
+        nameList.get(i).setText("");        
         timeList.get(i).setText("");       
         ageList.get(i).setText("");
         hospitalList.get(i).setText("");
@@ -987,7 +788,7 @@ public class OncologyScreenDocumentController implements Initializable
     public void deleteOption(int i)
     {
         TextField time = timeList.get(i);
-        ChoiceBox name = nameList.get(i);
+        TextField name = nameList.get(i);
         TextField hospital = hospitalList.get(i);
 
         //https://stackoverflow.com/questions/32980159/javafx-append-to-right-click-menu-for-textfield accessed 18/2
@@ -1052,15 +853,69 @@ public class OncologyScreenDocumentController implements Initializable
         }
     }
     
+    public void setUpAutoComplete()
+    {
+        ArrayList<String> procedures = new ArrayList<String>();
+        try
+        {
+            Connection c = DatabaseConnector.activateConnection();
+            c.setAutoCommit(true);
+            Statement stmt = c.createStatement();
+            ResultSet rs;
+            String sql = "SELECT * FROM regular WHERE Oncology = '1'";
+            rs = stmt.executeQuery(sql);
+            
+            while(rs.next())
+            {
+                procedures.add(rs.getString("FirstName") + " " + rs.getString("LastName"));
+            }
+            
+            setUpAutoFill(procedures);
+        }
+        catch (SQLException e)
+        {
+            
+        }
+    }
+    
+    public void setUpAutoFill(ArrayList<String> procedures)
+    {        
+        for(int i=0; i<nameList.size(); i++)
+        {
+            LoadPatient(nameList.get(i), i, procedures);
+        }
+        
+        
+    }
+    
+    
+    
+   
     
     
     
     
     
     
+    //Loading a patients information when you select them from the drop down 
+    public void LoadPatient(TextField text, int index, ArrayList<String> procedures)
+    {
+        AutoCompletionBinding<String> bind = TextFields.bindAutoCompletion(text, procedures);
+        bind.setOnAutoCompleted(new EventHandler<AutoCompletionEvent<String>>() {
+        @Override
+        public void handle(AutoCompletionEvent<String> event) 
+        {
+            if(text.getText() != null)
+            {
+                Load(index, text.getText());
+            } 
+        }
+        });
+    }
+ 
+   
     
-    
-    
+      
     
     
 
