@@ -11,7 +11,7 @@ import java.time.LocalDate;
  *
  * @author amydo
  */
-public class regular 
+public class regular implements Comparable<regular>
 {
     String hospitalNumber;
     String firstName;
@@ -120,6 +120,12 @@ public class regular
     public void setOncology(int oncology)
     {
         this.oncology = oncology;
+    }
+
+    @Override
+    public int compareTo(regular o) 
+    {
+        return getName().compareTo(o.getName());
     }
    
     

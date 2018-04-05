@@ -16,6 +16,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Collections;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -144,7 +145,7 @@ public class RegularScreenDocumentController implements Initializable
                 allPatients.add(x);
                 
             }
-             
+                Collections.sort(allPatients);
             
                 tblColName.setCellValueFactory(new PropertyValueFactory("name"));
 
