@@ -14,6 +14,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Collections;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -158,6 +159,15 @@ public class ProcedureScreenDocumentController implements Initializable
                         txtNurses.setText(""+((procedure)newSelection).getNurses());
                         txtPatients.setText(""+((procedure)newSelection).getPatients());
                         cbLocation.setValue(((procedure)newSelection).getLocation());
+                        
+                        if(txtName.getText().equals("Preop") || txtName.getText().equals("Blood") || txtName.getText().equals("Oncology"))
+                        {
+                            btnDelete.setDisable(true);
+                        }
+                        else
+                        {
+                            btnDelete.setDisable(false);
+                        }
                     }
                 });
 
@@ -204,8 +214,6 @@ public class ProcedureScreenDocumentController implements Initializable
                 Statement stmt = c.createStatement();    
 
                 String sql = "DELETE FROM procedures WHERE Name = '" + txtName.getText() + "'"; 
-                
-                //DELETE FROM STAFF SKILLS
                 
                 stmt.executeUpdate(sql); 
                 

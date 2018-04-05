@@ -115,6 +115,7 @@ public class ProcedureDialogController implements Initializable
     //the process of saving once you have done the checks 
     public void saveProcess() 
     {
+        System.out.println("SAVE ROCESS");
         int duration = Integer.parseInt(txtDuration.getText());
         
         if (cbLength.getValue().equals("hour(s)")) 
@@ -128,18 +129,20 @@ public class ProcedureDialogController implements Initializable
             c.setAutoCommit(true);
             Statement stmt = c.createStatement();
 
-            String sql = "UPDATE procedures SET     Duration = '" + duration
-                    + "', NumberOfNurses = '" + txtNurses.getText()
-                    + "', NumberOfPatients = '" + txtPatients.getText()
-                    + "', Location = '" + cbLocation.getValue().toString() + "' WHERE  Name = '" + txtName.getText() + "'";
-
+            String sql = "INSERT INTO procedures (Name, Duration, NumberOfNurses, NumberOfPatients, Location) VALUES('" 
+                                                                + txtName.getText() + "','"
+                                                                + duration + "','"
+                                                                + txtNurses.getText() + "','"
+                                                                + txtPatients.getText() + "','"
+                                                                + cbLocation.getValue().toString() + "')";
+                    
             stmt.executeUpdate(sql);
             c.close();
 
         } 
         catch (SQLException e) 
         {
-
+            System.out.println("ISSUE");
         }
         
         TopMenuDocumentController.PrSDC.showInformation();

@@ -101,6 +101,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
         rb2W.setToggleGroup(group);
         rb3W.setToggleGroup(group);
         rb4W.setToggleGroup(group);
+        tblSearchResult.setPlaceholder(new Label("There are no available appointments within that range"));
     }
     
     public void fillDropDown()
@@ -132,6 +133,8 @@ public class SearchProcedureScreenDocumentController implements Initializable
     @FXML
     public void search()
     {
+        lblSearchCriteria.setText(cmbSearchProcedure.getValue().toString());
+                
         results.clear();
         tblSearchResult.getItems().clear();
                
