@@ -9,7 +9,7 @@ package schedule;
  *
  * @author amydo
  */
-public class procedure 
+public class procedure implements Comparable<procedure>
 {
     String name;
     int duration;
@@ -53,6 +53,12 @@ public class procedure
     public void setNurses(int nurses)
     {
         this.nurses = nurses;
+    }
+
+    @Override
+    public int compareTo(procedure o) 
+    {
+        return getName().compareTo(o.getName());
     }
     
     

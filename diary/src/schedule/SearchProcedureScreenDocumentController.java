@@ -22,6 +22,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -121,6 +122,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
                 procedures.add(rs.getString("Name"));
             }
             
+            Collections.sort(procedures);
             cmbSearchProcedure.getItems().addAll(procedures);
             
         }

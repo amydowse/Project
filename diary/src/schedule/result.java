@@ -13,7 +13,7 @@ import java.time.LocalTime;
  *
  * @author amydo
  */
-public class result 
+public class result implements Comparable<result>
 {
     LocalDate date;
     LocalTime time;
@@ -49,5 +49,18 @@ public class result
     public void setTime(LocalTime time)
     {
         this.time = time;
+    }
+
+    @Override
+    public int compareTo(result o) 
+    {
+        if(getDate().compareTo(o.getDate()) == 0)
+        {
+            return getTime().compareTo(o.getTime());
+        }
+        else
+        {
+            return getDate().compareTo(o.getDate());
+        }
     }
 }
