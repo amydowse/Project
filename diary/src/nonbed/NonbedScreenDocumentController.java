@@ -447,15 +447,15 @@ public class NonbedScreenDocumentController implements Initializable
     {
         for(int i=0; i<14; i++)
         {
-            if(!timeList.get(i).getText().equals("") & !nameList.get(i).getText().equals("") &  procedureList.get(i).getText().equals(""))
+            if(!timeList.get(i).getText().equals("") & !nameList.get(i).getText().equals("") &  !procedureList.get(i).getText().equals(""))
             {
-                //Nothing entered and you are ok to procede
+                //All entered as needed 
             }
             else if(timeList.get(i).getText().equals("") & nameList.get(i).getText().equals("") &  (procedureList.get(i).getText().equals("")))
             {
-                //no person - ok to procede 
+                //No data at all - ok to procced 
             }
-            else if(!timeList.get(i).getText().equals("") || !nameList.get(i).getText().equals("") || procedureList.get(i).getText().equals(""))
+            else if(timeList.get(i).getText().equals("") || nameList.get(i).getText().equals("") || procedureList.get(i).getText().equals(""))
             {
                 codeBank.missingError();
                 return false;
