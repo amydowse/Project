@@ -18,7 +18,7 @@ public class oncology implements Comparable<oncology>
     private LocalDate date;
     private LocalTime time;
     private String name;
-    private int age;
+    private String age;
     private String hospitalNumber;
     private String number;
     private String wristband;
@@ -26,7 +26,7 @@ public class oncology implements Comparable<oncology>
     private int notes;
     private int attendance;
     
-    public oncology(LocalDate date, LocalTime time, String name, int age, String hospitalNumber, String number, String wristband, String reason, int notes, int attendance)
+    public oncology(LocalDate date, LocalTime time, String name, String age, String hospitalNumber, String number, String wristband, String reason, int notes, int attendance)
     {
         this.date = date;
         this.time = time;
@@ -61,7 +61,7 @@ public class oncology implements Comparable<oncology>
         return name;
     }
     
-    public int getAge()
+    public String getAge()
     {
         return age;
     }
@@ -118,7 +118,7 @@ public class oncology implements Comparable<oncology>
         this.name = name;
     }
     
-    public void setAge(int age)
+    public void setAge(String age)
     {
         this.age = age;
     }

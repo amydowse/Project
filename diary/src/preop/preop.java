@@ -17,14 +17,14 @@ public class preop
     private LocalDate date;
     private LocalTime time;
     private String name;
-    private int age;
+    private String age;
     private String hospitalNumber;
     private String speciality;
     private String extraInfo;
     private int notes;
     private int attendance;
     
-    public preop(LocalDate date, LocalTime time, String name, int age, String hospitalNumber, String speciality, String extraInfo, int notes, int attendance)
+    public preop(LocalDate date, LocalTime time, String name, String age, String hospitalNumber, String speciality, String extraInfo, int notes, int attendance)
     {
         this.date = date;
         this.time = time;
@@ -53,7 +53,7 @@ public class preop
         return name;
     }
     
-    public int getAge()
+    public String getAge()
     {
         return age;
     }

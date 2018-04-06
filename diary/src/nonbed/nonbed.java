@@ -18,14 +18,14 @@ public class nonbed implements Comparable<nonbed>
     private LocalDate date;
     private LocalTime time;
     private String name;
-    private int age;
+    private String age;
     private String hospital;
     private String procedure;
     private String reason;
     private int notes;
     private int attendance;
     
-    public nonbed(LocalDate date, LocalTime time, String name, int age, String hospital, String procedure, String reason, int notes, int attendance)
+    public nonbed(LocalDate date, LocalTime time, String name, String age, String hospital, String procedure, String reason, int notes, int attendance)
     {
         this.date = date;
         this.time = time;
@@ -55,7 +55,7 @@ public class nonbed implements Comparable<nonbed>
         return name;
     }
     
-    public int getAge()
+    public String getAge()
     {
         return age;
     }
@@ -104,7 +104,7 @@ public class nonbed implements Comparable<nonbed>
         this.name = name;
     }
     
-    public void setAge(int age)
+    public void setAge(String age)
     {
         this.age = age;
     }

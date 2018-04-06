@@ -774,7 +774,7 @@ public class DiaryScreenDocumentController  implements Initializable
                 
                 String bedNumber = rs.getString("BedNumber");
                 String name = rs.getString("Name");
-                int age = rs.getInt("Age");
+                String age = rs.getString("Age");
                 String hospitalNumber = rs.getString("HospitalNumber");
                 String speciality = rs.getString("Speciality");
                 String extraInfo = rs.getString("ExtraInfo");

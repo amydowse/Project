@@ -299,7 +299,7 @@ public class OncologyScreenDocumentController implements Initializable
                 int attendance = rs.getInt("Attendance");
                 
                 String name = rs.getString("Name");
-                int age = rs.getInt("Age");
+                String age = rs.getString("Age");
                 String number = rs.getString("ContactNumber");
                 String wristband = rs.getString("Wristband");
                 
@@ -315,7 +315,7 @@ public class OncologyScreenDocumentController implements Initializable
         }
             for(int i=0; i<allBookings.size(); i++)
             {
-                if(allBookings.get(i).getName() == null)
+                if(allBookings.get(i).getName() == null || allBookings.get(i).getName().equals("false"))
                 {
                     try
                     {
@@ -341,8 +341,21 @@ public class OncologyScreenDocumentController implements Initializable
                             String dob = rs2.getString("DateOfBirth");
                             LocalDate dobDate = codeBank.stringToDate(dob);
                             Period period = Period.between(dobDate, LocalDate.now());
-                            allBookings.get(i).setAge(period.getYears()); 
                             
+                            if(period.getYears() >= 1)
+                            {
+                                allBookings.get(i).setAge(period.getYears()+"");
+                            }
+                            else if(period.getMonths() > 4)
+                            {
+                                allBookings.get(i).setAge(period.getMonths()+"/12");
+                            }
+                            else
+                            {
+                                allBookings.get(i).setAge((period.getDays())%7+"/52");
+                            }
+                            
+                                                        
                             allBookings.get(i).setNumber(rs2.getString("Number"));
                             allBookings.get(i).setWristband(rs2.getString("Wristband"));
 

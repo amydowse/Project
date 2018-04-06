@@ -286,7 +286,7 @@ public class NonbedScreenDocumentController implements Initializable
                 LocalTime localTime = LocalTime.parse(time, DateTimeFormatter.ISO_LOCAL_TIME);
               
                 String name = rs.getString("Name");
-                int age = rs.getInt("Age");
+                String age = rs.getString("Age");
                 String hospitalNumber = rs.getString("HospitalNumber");
                 String procedure = rs.getString("Procedure");
                 String reason = rs.getString("Reason");
