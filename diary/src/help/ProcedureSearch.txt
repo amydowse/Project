@@ -2,9 +2,11 @@ USE
 
 This is used to look for the when you can book in a certain procedure.
 
-You can select which time frame you want to consider - 1 week, 2 weeks, 3 weeks or 4 weeks - you select this at the top of the screen.
+You can select which time frame you want to consider - 1 week, 2 weeks, 3 weeks or 4 weeks - you select this at the top of the screen. 1 week is automatically selected.
 
 You then select the procedure that you want suggested appointments of from the drop down.
+
+You also select the first day that you want to consider from - this is automatically set to todays date.
 
 You then press 'Search'.
 

@@ -7,6 +7,8 @@ package schedule;
  */
 
 
+import com.sun.javafx.scene.control.skin.DatePickerContent;
+import com.sun.javafx.scene.control.skin.DatePickerSkin;
 import schedule.specificWorking;
 import common.DatabaseConnector;
 import common.HelpDialogController;
@@ -34,6 +36,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -43,6 +46,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -91,6 +95,9 @@ public class SearchProcedureScreenDocumentController implements Initializable
     
     ArrayList<LocalDate> days = new ArrayList<LocalDate>();
     
+    @FXML StackPane paneCal = new StackPane();
+    
+    DatePicker dp = new DatePicker();
     
 
     @Override
@@ -102,7 +109,17 @@ public class SearchProcedureScreenDocumentController implements Initializable
         rb2W.setToggleGroup(group);
         rb3W.setToggleGroup(group);
         rb4W.setToggleGroup(group);
+        rb1W.setSelected(true);
         tblSearchResult.setPlaceholder(new Label("There are no available appointments within that range"));
+        
+        //https://stackoverflow.com/questions/44010082/how-to-scale-javafx-datepicker-and-transform-to-a-calendar accessed 6/4/18
+        dp.setShowWeekNumbers(false);
+        DatePickerSkin pickerSkin = new DatePickerSkin(dp);
+        DatePickerContent calendar = (DatePickerContent) pickerSkin.getPopupContent();
+        paneCal.getChildren().add(calendar);
+        
+        dp.setValue(LocalDate.now());
+        
     }
     
     public void fillDropDown()
@@ -202,7 +219,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
         if(rb4W.isSelected())
             count = 28;
         
-        LocalDate considering = LocalDate.now();
+        LocalDate considering = dp.getValue();
         
         for(int i=0; i<count; i++)
         {
