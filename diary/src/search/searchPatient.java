@@ -18,10 +18,10 @@ public class searchPatient
     private LocalDate date;
     private LocalTime time;
     private String name;
-    private int age;
+    private String age;
     private String procedure;
     
-    public searchPatient(LocalDate date, LocalTime time, String name, int age, String procedure)
+    public searchPatient(LocalDate date, LocalTime time, String name, String age, String procedure)
     {
         this.date = date;
         this.time = time;
@@ -50,7 +50,7 @@ public class searchPatient
         return name;
     }
     
-    public int getAge()
+    public String getAge()
     {
         return age;
     }
@@ -77,7 +77,7 @@ public class searchPatient
         this.name = name;
     }
     
-    public void setAge(int age)
+    public void setAge(String age)
     {
         this.age = age;
     }

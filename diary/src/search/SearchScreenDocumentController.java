@@ -106,7 +106,7 @@ public class SearchScreenDocumentController implements Initializable
                 LocalTime time = LocalTime.parse(Time);
                 
                 String name = rs.getString("Name");
-                int age = rs.getInt("Age");
+                String age = rs.getString("Age");
                 String reason = rs.getString("Speciality");
                 
                 searchPatient x = new searchPatient(date, time, name, age, reason);
@@ -146,9 +146,30 @@ public class SearchScreenDocumentController implements Initializable
                 String name = rs.getString("Name");
                 
                 String dob = rs.getString("DateOfBirth");
-                LocalDate dobDate = codeBank.stringToDate(dob);
-                Period period = Period.between(dobDate, LocalDate.now());
-                int age = period.getYears(); 
+                String age;
+                if(dob.equals(""))
+                {
+                    age = "N/A";
+                }
+                else
+                {
+                    LocalDate dobDate = codeBank.stringToDate(dob);
+                    Period period = Period.between(dobDate, LocalDate.now());
+                    
+                    if (period.getYears() >= 1) 
+                    {
+                        age = period.getYears() + "";
+                    } 
+                    else if (period.getMonths() > 4) 
+                    {
+                        age = period.getMonths() + "/12";
+                    } 
+                    else 
+                    {
+                        age = (period.getDays()) % 7 + "/52";
+                    }
+                }
+                
                 
                 searchPatient x = new searchPatient(date, time, name, age, "Blood");
                 
@@ -186,7 +207,7 @@ public class SearchScreenDocumentController implements Initializable
                 LocalTime time = LocalTime.parse(Time);
                 
                 String name = rs.getString("Name");
-                int age = rs.getInt("Age");
+                String age = rs.getString("Age");
                 String reason = rs.getString("Procedure");
                 
                 searchPatient x = new searchPatient(date, time, name, age, reason);
@@ -214,7 +235,7 @@ public class SearchScreenDocumentController implements Initializable
             
             //Search preop
             //preop - Date, Time, Name, Age
-            rs = stmt.executeQuery("SELECT * FROM blood WHERE Name LIKE '%" + txtSearchName.getText() + "%'"); 
+            rs = stmt.executeQuery("SELECT * FROM preop WHERE Name LIKE '%" + txtSearchName.getText() + "%'"); 
             while(rs.next())
             {  
                 String Date = rs.getString("Date");
@@ -225,10 +246,7 @@ public class SearchScreenDocumentController implements Initializable
                 
                 String name = rs.getString("Name");
                 
-                String dob = rs.getString("DateOfBirth");
-                LocalDate dobDate = codeBank.stringToDate(dob);
-                Period period = Period.between(dobDate, LocalDate.now());
-                int age = period.getYears(); 
+                String age = rs.getString("Age");
                 
                 searchPatient x = new searchPatient(date, time, name, age, "Pre op");
                 
@@ -269,10 +287,7 @@ public class SearchScreenDocumentController implements Initializable
                 String Lastname = rs.getString("LastName");
                 String name = Firstname + " " + Lastname;
                 
-                String dob = rs.getString("DateOfBirth");
-                LocalDate dobDate = codeBank.stringToDate(dob);
-                Period period = Period.between(dobDate, LocalDate.now());
-                int age = period.getYears(); 
+                String age = rs.getString("Age");
                 
                 String reason = rs.getString("Reason");
                 
