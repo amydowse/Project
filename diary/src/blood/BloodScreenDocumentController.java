@@ -396,7 +396,7 @@ public class BloodScreenDocumentController implements Initializable
             }
             );
             
-            tblColNotes.setCellValueFactory(new PropertyValueFactory<blood, String>("Notes"));
+            tblColNotes.setCellValueFactory(new PropertyValueFactory<blood, String>("ExtraInfo"));
             tblColNotes.setCellFactory(cellFactory);
             tblColNotes.setOnEditCommit(
                     new EventHandler<CellEditEvent<blood, String>>() {
