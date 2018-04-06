@@ -225,7 +225,7 @@
       <TextField fx:id="txtNotesP3" alignment="CENTER" layoutX="1626.0" layoutY="629.0" onMouseClicked="#P3Notes" prefHeight="42.0" prefWidth="100.0" />      
       
     <!-- PM ROW 4 -->
-      <TextField fx:id="txtAttendanceP4" layoutX="45.0" layoutY="670.0" onMouseClicked="#P4Attendance" prefHeight="42.0" prefWidth="45.0" />
+      <TextField fx:id="txtAttendanceP4" layoutX="45.0" layoutY="671.0" onMouseClicked="#P4Attendance" prefHeight="42.0" prefWidth="45.0" />
       <TextField fx:id="txtTimeP4" alignment="CENTER" editable="false" layoutX="90.0" layoutY="671.0" prefHeight="42.0" prefWidth="141.0" text="15:30">
          <font>
             <Font name="System Bold" size="15.0" />
