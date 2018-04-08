@@ -173,24 +173,35 @@ public class SearchProcedureScreenDocumentController implements Initializable
         
         calculateDays();
         
-        for(int i=0; i<days.size(); i++)
-        {
-            findWhatIsOn(days.get(i));
-            
-                
-//        for(int k=0; k<scheduleSTAFF.length; k++)
+//        for(int i=0; i<days.size(); i++)
 //        {
-//            for(int j=0; j<145; j++)
-//            {
-//                System.out.print("(" + j  +")" + scheduleSTAFF[k][j] + "-");
-//            }
-//            System.out.println("");
+//            findWhatIsOn(days.get(i));
+//            
+//                
+////        for(int k=0; k<scheduleSTAFF.length; k++)
+////        {
+////            for(int j=0; j<145; j++)
+////            {
+////                System.out.print("(" + j  +")" + scheduleSTAFF[k][j] + "-");
+////            }
+////            System.out.println("");
+////        }
+//            
+//            System.out.println(days.get(i));
+//            suggest(cmbSearchProcedure.getValue().toString(), days.get(i));
 //        }
-            
-            System.out.println(days.get(i));
-            suggest(cmbSearchProcedure.getValue().toString(), days.get(i));
-        }
         
+        findWhatIsOn(codeBank.stringToDate("10/04/2018"));
+            for(int k=0; k<scheduleSTAFF.length; k++)
+            {
+                System.out.print(workingStaff.get(k) + " ---- ");
+                for(int j=0; j<145; j++)
+                {
+                    System.out.print("(" + j  +")" + scheduleSTAFF[k][j] + "-");
+                }
+                System.out.println("");
+            }
+        suggest(cmbSearchProcedure.getValue().toString(), codeBank.stringToDate("10/04/2018"));
         
         
         displayResult();
@@ -463,7 +474,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
             remove(12);
         }
         
-        if(Preop == 1 && inSpecificWorking("Preop"))
+        if(Preop == 1 && (inSpecificWorking("PreopAM") || inSpecificWorking("PreopPM")))
         {
             preop();
         }
@@ -624,11 +635,17 @@ public class SearchProcedureScreenDocumentController implements Initializable
             {
                 //System.out.println("AM PREOP HIT");
                 AMStaff = findIndex(specificStaff.get(i).getID());
+                
+                System.out.println("AM INDEX: " + AMStaff);
+                System.out.println("AM Staff ID: " + workingStaff.get(AMStaff));
             }        
             if(specificStaff.get(i).getLocation().equals("PreopPM") )
             {
                 //System.out.println("PM PREOP HIT");
                 PMStaff = findIndex(specificStaff.get(i).getID());
+                
+                System.out.println("PM INDEX: " + PMStaff);
+                System.out.println("PM Staff ID: " + workingStaff.get(PMStaff));
             }
             
             try 
@@ -659,13 +676,16 @@ public class SearchProcedureScreenDocumentController implements Initializable
                         index = PMStaff;
                     }
 
-                    LocalTime dayStart = LocalTime.parse("07:00");
-                    long minutesBetween = ChronoUnit.MINUTES.between(dayStart, appointments.get(j).getTime());
-                    int arraySpace = (int) minutesBetween / 5;
-                    for (int k = arraySpace; k < arraySpace + 6; k++) 
+                    if(index != -1)
                     {
-                        scheduleSTAFF[index][k] = true;
-                        scheduleLOCATION[13][k] = true;
+                        LocalTime dayStart = LocalTime.parse("07:00");
+                        long minutesBetween = ChronoUnit.MINUTES.between(dayStart, appointments.get(j).getTime());
+                        int arraySpace = (int) minutesBetween / 5;
+                        for (int k = arraySpace; k < arraySpace + 6; k++) 
+                        {
+                            scheduleSTAFF[index][k] = true;
+                            scheduleLOCATION[13][k] = true;
+                        }
                     }
                 }
             } 
@@ -852,6 +872,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
                             scheduleLOCATION[14][k] = true;
                         }
                     }
+                    c.close();
                 }
                 catch (SQLException e)
                 {
@@ -1445,14 +1466,14 @@ public class SearchProcedureScreenDocumentController implements Initializable
                             if(!done)
                             {
                                 int boxesBooked = timeAlreadyBooked(j, startPlace, duration);
-                                if(boxesBooked <= (duration/5))
+                                if(boxesBooked <= (duration/20)) //allow to be booked for 1/4 of the duration (5*4)
                                 {
                                     if(hasSkill(workingStaff.get(j)) && freeBed(startPlace, duration))  
                                     {  
                                         for(int i = 0; i<multiplePatientsAM.get(MPIndexAM).getMaximum(); i++)
                                         {
                                             results.add(new result(date, startTime));
-                                            startTime = startTime.plusMinutes(10);
+                                            startTime = startTime.plusMinutes(15);
                                         }
                                         done = true; 
                                     }
@@ -1462,14 +1483,14 @@ public class SearchProcedureScreenDocumentController implements Initializable
                     }
                     else
                     {
-                        startTime = startTime.plusMinutes(10);
+                        startTime = startTime.plusMinutes(15);
                         for(int i = multiplePatientsAM.get(MPIndexAM).getCount(); i<multiplePatientsAM.get(MPIndexAM).getMaximum(); i++)
                         {
                             //if bed free
                             if(freeBed(startPlace, duration))
                             {
                                 results.add(new result(date, startTime));
-                                startTime = startTime.plusMinutes(i * 10);
+                                startTime = startTime.plusMinutes(i * 15);
                             }
                         }
                     }
@@ -1490,14 +1511,14 @@ public class SearchProcedureScreenDocumentController implements Initializable
                             if(!done)
                             {
                                 int boxesBooked = timeAlreadyBooked(j, startPlace, duration);
-                                if(boxesBooked <= (duration/5))
+                                if(boxesBooked <= (duration/20)) //allow to be booked for 1/4 of the duration (5*4)
                                 {
                                     if(hasSkill(workingStaff.get(j)) && freeBed(startPlace, duration))  
                                     {  
                                         for(int i = 0; i<multiplePatientsPM.get(MPIndexPM).getMaximum(); i++)
                                         {
                                             results.add(new result(date, startTime));
-                                            startTime = startTime.plusMinutes(10);
+                                            startTime = startTime.plusMinutes(15);
                                         }
                                         done = true;
                                     }
@@ -1507,14 +1528,14 @@ public class SearchProcedureScreenDocumentController implements Initializable
                     }
                     else
                     {
-                        startTime = startTime.plusMinutes(10);
+                        startTime = startTime.plusMinutes(15);
                         for(int i = multiplePatientsPM.get(MPIndexPM).getCount(); i<multiplePatientsPM.get(MPIndexPM).getMaximum(); i++)
                         {
                             //if bed free
                             if(freeBed(startPlace, duration))
                             {
                                 results.add(new result(date, startTime));
-                                startTime = startTime.plusMinutes(i * 10);
+                                startTime = startTime.plusMinutes(i * 15);
                             }
                         }
                     }
