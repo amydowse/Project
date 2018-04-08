@@ -279,6 +279,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
                     //System.out.println("1");
                     if(rs.getInt("Blood") == 0)
                     {
+                        System.out.println(date + "NO BLOOD---------------------------");
                         fill(Date, 1, 0, 1, 1, 1);
                     }
                 }
@@ -313,7 +314,7 @@ public class SearchProcedureScreenDocumentController implements Initializable
                 while(rs.next())
                 {
                     //System.out.println("5");
-                    fill(Date, rs.getInt("Diary"), rs.getInt("Blood"), rs.getInt("Preop"), rs.getInt("Oncology"), rs.getInt("Nonbed"));
+                    fill(Date, rs.getInt("Surgery"), rs.getInt("Blood"), rs.getInt("Preop"), rs.getInt("Oncology"), rs.getInt("Nonbed"));
                 }
             }
         }
@@ -453,10 +454,12 @@ public class SearchProcedureScreenDocumentController implements Initializable
         
         if(Blood == 1 && inSpecificWorking("Blood"))
         {
+            System.out.println("BLOOD <<<<<<<<<<<<<<<");
             blood();
         }
         else
         {
+            System.out.println("REMOVE BLOOD >>>>>>>>>>>>>>>");
             remove(12);
         }
         
@@ -1768,19 +1771,11 @@ public class SearchProcedureScreenDocumentController implements Initializable
             c.setAutoCommit(true);
             ResultSet rs;
             Statement stmt = c.createStatement();
-
-            rs = stmt.executeQuery("SELECT * FROM template WHERE Day ='" + Date + "'"); //get all the pre-op appoinments for that day  
-            if (rs.next()) 
+            
+            rs = stmt.executeQuery("SELECT * FROM extra WHERE Date = '" + Date + "'");
+            if(!rs.isBeforeFirst() || rs.getInt("Blood") == 1)
             {
-                startTimeS = rs.getString("Start");
-                endTimeS = rs.getString("End");
-                duration = rs.getInt("Duration");
-                breakStartTimeS = rs.getString("BreakStart");
-                breakEndTimeS = rs.getString("BreakEnd");
-            } 
-            else 
-            {
-                rs = stmt.executeQuery("SELECT * FROM template WHERE Day ='" + Day + "' AND ToDate IS NULL"); //get all the pre-op appoinments for that day  
+                rs = stmt.executeQuery("SELECT * FROM template WHERE Day ='" + Date + "'"); //get all the blood appoinments for that day  
                 if (rs.next()) 
                 {
                     startTimeS = rs.getString("Start");
@@ -1788,69 +1783,82 @@ public class SearchProcedureScreenDocumentController implements Initializable
                     duration = rs.getInt("Duration");
                     breakStartTimeS = rs.getString("BreakStart");
                     breakEndTimeS = rs.getString("BreakEnd");
-                }
-                else
-                {
-                    return;//there is not blood clinic found 
-                }
-            }
-            
-            
-            LocalTime startTime = LocalTime.parse(startTimeS, DateTimeFormatter.ISO_LOCAL_TIME);
-            LocalTime endTime = LocalTime.parse(endTimeS, DateTimeFormatter.ISO_LOCAL_TIME);
-            LocalTime breakStart = LocalTime.parse(breakStartTimeS, DateTimeFormatter.ISO_LOCAL_TIME);
-            LocalTime breakEnd = LocalTime.parse(breakEndTimeS, DateTimeFormatter.ISO_LOCAL_TIME);
-
-            result x = new result(date, startTime);
-            LocalTime previousTime = startTime;
-            allTimes.add(x);
-
-            while (previousTime != endTime && previousTime.compareTo(endTime)!= 1) 
-            {
-                previousTime = previousTime.plusMinutes(duration);
-
-                if (previousTime.compareTo(breakStart) < 0) 
-                {
-                    x = new result(date, previousTime);
-                    allTimes.add(x);
                 } 
-                else if (previousTime.compareTo(breakEnd) >= 0) 
+                else 
                 {
-                    x = new result(date, previousTime);
-                    allTimes.add(x);
-                }
-            }
-            
-            
-            rs = stmt.executeQuery("SELECT * FROM blood WHERE Date ='" + Date + "'"); //get all the blood appoinments for that day  
-            while(rs.next()) 
-            {
-                String time = rs.getString("Time");
-                LocalTime Time = LocalTime.parse(time);
-                x = new result(date, Time);
-                allAppointments.add(x);
-            }
-            
-            //System.out.println("TIMES : " + allTimes.size());
-            //System.out.println("APP : " + allAppointments.size());
-            
-            boolean match = false;
-            for(int i=0; i<allTimes.size(); i++)
-            {
-                match = false;
-                for(int j=0; j<allAppointments.size(); j++)
-                {
-                    if(allTimes.get(i).getTime().compareTo(allAppointments.get(j).getTime())==0)
+                    rs = stmt.executeQuery("SELECT * FROM template WHERE Day ='" + Day + "' AND ToDate IS NULL"); //get all the blood appoinments for that day  
+                    if (rs.next()) 
                     {
-                        match = true;
+                        startTimeS = rs.getString("Start");
+                        endTimeS = rs.getString("End");
+                        duration = rs.getInt("Duration");
+                        breakStartTimeS = rs.getString("BreakStart");
+                        breakEndTimeS = rs.getString("BreakEnd");
+                    }
+                    else
+                    {
+                        return;//there is not blood clinic found 
                     }
                 }
-                if(!match)
+
+
+                LocalTime startTime = LocalTime.parse(startTimeS, DateTimeFormatter.ISO_LOCAL_TIME);
+                LocalTime endTime = LocalTime.parse(endTimeS, DateTimeFormatter.ISO_LOCAL_TIME);
+                LocalTime breakStart = LocalTime.parse(breakStartTimeS, DateTimeFormatter.ISO_LOCAL_TIME);
+                LocalTime breakEnd = LocalTime.parse(breakEndTimeS, DateTimeFormatter.ISO_LOCAL_TIME);
+
+                result x = new result(date, startTime);
+                LocalTime previousTime = startTime;
+                allTimes.add(x);
+
+                while (previousTime != endTime && previousTime.compareTo(endTime)!= 1) 
                 {
-                    results.add(allTimes.get(i));
+                    previousTime = previousTime.plusMinutes(duration);
+
+                    if (previousTime.compareTo(breakStart) < 0) 
+                    {
+                        x = new result(date, previousTime);
+                        allTimes.add(x);
+                    } 
+                    else if (previousTime.compareTo(breakEnd) >= 0) 
+                    {
+                        x = new result(date, previousTime);
+                        allTimes.add(x);
+                    }
                 }
+
+
+                rs = stmt.executeQuery("SELECT * FROM blood WHERE Date ='" + Date + "'"); //get all the blood appoinments for that day  
+                while(rs.next()) 
+                {
+                    String time = rs.getString("Time");
+                    LocalTime Time = LocalTime.parse(time);
+                    x = new result(date, Time);
+                    allAppointments.add(x);
+                }
+
+                //System.out.println("TIMES : " + allTimes.size());
+                //System.out.println("APP : " + allAppointments.size());
+
+                boolean match = false;
+                for(int i=0; i<allTimes.size(); i++)
+                {
+                    match = false;
+                    for(int j=0; j<allAppointments.size(); j++)
+                    {
+                        if(allTimes.get(i).getTime().compareTo(allAppointments.get(j).getTime())==0)
+                        {
+                            match = true;
+                        }
+                    }
+                    if(!match)
+                    {
+                        results.add(allTimes.get(i));
+                    }
+                }
+                //System.out.println("SHOW : " + results.size());
             }
-            //System.out.println("SHOW : " + results.size());
+            c.close();
         }
         catch(SQLException e)
         {

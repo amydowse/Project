@@ -99,8 +99,8 @@
         <TextField fx:id="txtName2" alignment="CENTER" layoutX="231.0" layoutY="302.0" prefHeight="48.0" prefWidth="285.0" />
         <TextField fx:id="txtAge2" alignment="CENTER" layoutX="516.0" layoutY="302.0" prefHeight="48.0" prefWidth="159.0" />
         <TextField fx:id="txtHospital2" alignment="CENTER" layoutX="675.0" layoutY="302.0" prefHeight="48.0" prefWidth="204.0" />
-        <TextArea fx:id="txtReason2" layoutX="1242.0" layoutY="301.0" prefHeight="49.0" prefWidth="373.0" />
         <TextField fx:id="txtProcedure2" alignment="CENTER" layoutX="879.0" layoutY="302.0" prefHeight="48.0" prefWidth="363.0" />
+        <TextArea fx:id="txtReason2" layoutX="1242.0" layoutY="301.0" prefHeight="49.0" prefWidth="373.0" />
         <TextField fx:id="txtNotes2" alignment="CENTER" editable="false" layoutX="1614.0" layoutY="302.0" onMouseClicked="#Notes2" prefHeight="48.0" prefWidth="111.0" />
 
 

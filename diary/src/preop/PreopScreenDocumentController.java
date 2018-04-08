@@ -383,19 +383,18 @@ public class PreopScreenDocumentController implements Initializable
                     showSingle(singleBooking, 7);
                     break;
                 default:
-                    if(!OneUnscheduled)
+                    if(count == 0)
                     {
-                        OneUnscheduled = true;
                         showSingle(singleBooking, 8);
+                        count++;
                     }
-                    if(!TwoUnscheduled)
+                    else if(count == 1)
                     {
-                        TwoUnscheduled = true;
                         showSingle(singleBooking, 9);
+                        count++;
                     }
-                    if(!ThreeUnscheduled)
+                    else
                     {
-                        ThreeUnscheduled = true;
                         showSingle(singleBooking, 10);
                     }
                     
@@ -643,7 +642,7 @@ public class PreopScreenDocumentController implements Initializable
             {
                 if(cbAMNurse.getValue().equals(""))
                 {
-                    queries.add("DELETE FROM specificworking WHERE Date = '" + stringDate + "', Place = 'PreopAM'");
+                    queries.add("DELETE FROM specificworking WHERE Date = '" + stringDate + "' AND Place = 'PreopAM'");
                 }
 
                 if(!cbAMNurse.getValue().equals(""))
@@ -659,7 +658,7 @@ public class PreopScreenDocumentController implements Initializable
             {
                 if(cbPMNurse.getValue().equals(""))
                 {
-                    queries.add("DELETE FROM specificworking WHERE Date = '" + stringDate + "', Place = 'PreopPM'");
+                    queries.add("DELETE FROM specificworking WHERE Date = '" + stringDate + "' AND Place = 'PreopPM'");
                 }
 
                 if(!cbPMNurse.getValue().equals(""))
