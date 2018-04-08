@@ -8,6 +8,9 @@ package diary;
 /**
  *
  * @author amydo
+ * 
+ * Object that represents a staff member who is scheduled to work on a given day
+ * 
  */
 public class workingStaff 
 {

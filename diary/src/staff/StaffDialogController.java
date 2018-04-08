@@ -34,6 +34,9 @@ import javafx.stage.Stage;
 /**
  *
  * @author amydo
+ * 
+ * Controller for the pop-up when you are adding a new staff member 
+ * 
  */
 public class StaffDialogController implements Initializable
 {
@@ -69,11 +72,13 @@ public class StaffDialogController implements Initializable
             Statement stmt = c.createStatement();
             ResultSet rs;
 
+            //Finding the next ID for a staff member - adding 1 to the highest one already in use 
             String sql = "SELECT MAX(ID) FROM staff";
 
             rs = stmt.executeQuery(sql);
 
-            if (rs.next()) {
+            if (rs.next()) 
+            {
                 ID = rs.getInt(1) + 1;
             }
 
@@ -88,7 +93,7 @@ public class StaffDialogController implements Initializable
         loadProcedures();
     }
     
-    
+    //Getting all of the proceudres the ward offers - automatically saying that the new staff member cannot do any of them (showing a cross)
     public void loadProcedures()
     {
         try 
@@ -110,7 +115,6 @@ public class StaffDialogController implements Initializable
         }
         catch (SQLException e)
         {
-            
         }
         display();
     }
@@ -118,12 +122,13 @@ public class StaffDialogController implements Initializable
     
     public void display()
     {
+        //Sort proceudres into alphabetical order and display 
         Collections.sort(allProcedures);
         tblProcedures.getItems().addAll(allProcedures);
         tblColProcedure.setCellValueFactory(new PropertyValueFactory("ProcedureName"));
         tblColStatus.setCellValueFactory(new PropertyValueFactory("hasSkill"));
         
-        //Add in changing the skill set of a staff member 
+        //Add in changing the skill set of a staff member - can click on the procedure in the list so say they can/cannot do it 
         //https://stackoverflow.com/questions/27281370/javafx-tableview-format-one-cell-based-on-the-value-of-another-in-the-row accessed 10/2/18
             tblColStatus.setCellValueFactory(new PropertyValueFactory<skill, String>("hasSkill"));
             tblColStatus.setCellFactory(tc -> {
@@ -146,6 +151,7 @@ public class StaffDialogController implements Initializable
         
     }
     
+    //Chaning the symbol showed in the procedure list when it is clicked 
     public void changeStatus(int index, int ID)
     {
         if(allProcedures.get(index).getHasSkill().equals("✔"))
@@ -163,10 +169,11 @@ public class StaffDialogController implements Initializable
     }
     
   
-        
+    //Saving the new staff member and their skills 
     @FXML
     public void Save()
     {
+        //Checking that all of the data is entered 
         if (!txtFirstName.getText().equals("") && !txtLastName.getText().equals("")) 
         {
             try 
@@ -193,7 +200,11 @@ public class StaffDialogController implements Initializable
                     
             }
             saveProcedures();
+            
+            //Reloads the staff screen to show the new staff member 
             TopMenuDocumentController.SSDC.showInformation();
+            
+            //Close the pop-up when it is saved 
             //https://stackoverflow.com/questions/13567019/close-fxml-window-by-code-javafx accessed 21/2
             Stage stage = (Stage) btnSave.getScene().getWindow();
             stage.close();
@@ -205,6 +216,7 @@ public class StaffDialogController implements Initializable
         }
     }
     
+    //Saving the procedures of the newly added staff memeber 
     public void saveProcedures()
     {
         try 
@@ -217,7 +229,6 @@ public class StaffDialogController implements Initializable
             {
                 if (allProcedures.get(i).getHasSkill().equals("✔")) 
                 {
-                    //System.out.println(lblID.getText() + "  " + allProcedures.get(i).getProcedureName());
                     stmt.executeUpdate("INSERT INTO skill (Staff_ID, Procedure_Name) VALUES ('" + lblID.getText() + "','" + allProcedures.get(i).getProcedureName() + "')");
                 }
             }
@@ -225,8 +236,7 @@ public class StaffDialogController implements Initializable
         }
         catch(SQLException e)
         {
-            System.out.println("Saving pr");
-            Logger.getLogger(StaffScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
+            //Logger.getLogger(StaffScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
         }
     }
     

@@ -53,6 +53,9 @@ import org.controlsfx.control.textfield.TextFields;
 /**
  *
  * @author amydo
+ * 
+ * Controller for the main diary screen 
+ * 
  */
 public class DiaryScreenDocumentController  implements Initializable
 {
@@ -363,6 +366,7 @@ public class DiaryScreenDocumentController  implements Initializable
         
         setUpAutoComplete();
         
+        //Add listener to age column so it will tell you when you click off if it is incorrect 
         //https://stackoverflow.com/questions/42943652/how-to-trigger-an-event-on-focus-out-for-a-textfield-in-javafx-using-fxml accessed 24/2
         for(int i=0; i<24; i++)
         {
@@ -375,6 +379,7 @@ public class DiaryScreenDocumentController  implements Initializable
             });
         }
         
+        //Add listener to time column so it will tell you when you click off if it is incorrect 
         for(int i=0; i<24; i++)
         {
             TextField selected = timeList.get(i);
@@ -388,6 +393,7 @@ public class DiaryScreenDocumentController  implements Initializable
     
     }
     
+    //Checks the text to see if it is an age - if not, shows error 
     public void checkingAge(TextField selected)
     {
         String value = selected.getText();
@@ -398,6 +404,7 @@ public class DiaryScreenDocumentController  implements Initializable
         }
     }
     
+    //Checks the text to see if it is a valid time - if not, shows error 
     public void checkingTime(TextField selected)
     {
         String value = selected.getText();
@@ -410,7 +417,7 @@ public class DiaryScreenDocumentController  implements Initializable
     
     
     
-    
+    //Fills an array with all of the bed numbers 
     public void fillBedArray()
     {
         bedArray[0] = "1MA";
@@ -441,7 +448,7 @@ public class DiaryScreenDocumentController  implements Initializable
     }
     
     
-    //Each method associated with the textfield for the bed numbers 
+    //Each method associated with the textfield for the bed numbers - used to change the attendance colour of each 
     @FXML public void MA1Attendance(){change(0);}
     @FXML public void MA2Attendance(){change(1);}
     @FXML public void MA3Attendance(){change(2);}
@@ -488,7 +495,7 @@ public class DiaryScreenDocumentController  implements Initializable
     }
     
     
-    //Each method associated with the textfield for notes
+    //Each method associated with the textfield for notes - change the symbol of notes 
     @FXML public void MA1Notes(){changeNotes(0);}
     @FXML public void MA2Notes(){changeNotes(1);}
     @FXML public void MA3Notes(){changeNotes(2);}
@@ -568,7 +575,7 @@ public class DiaryScreenDocumentController  implements Initializable
     private DialogController DC;
     private Pane x;
     
-   
+   //Method that brings up the pop-up box when you click into the extra information box 
     public void showExtraInfo(int arrayValue, String name, String time)
     {      
               
@@ -605,7 +612,7 @@ public class DiaryScreenDocumentController  implements Initializable
  
     
     
-    
+    //Fills the drop dowm of all possible staff that you can book 
     public void fillStaffDropDowns()
     {
         try
@@ -626,7 +633,6 @@ public class DiaryScreenDocumentController  implements Initializable
                 staffList.get(i).getItems().add("");
                 shiftList.get(i).getItems().add("");
             }
-            
             
             while(rs.next())
             { 
@@ -654,6 +660,7 @@ public class DiaryScreenDocumentController  implements Initializable
     }
     
     
+    //Get the staff that have already been booked to work that day 
     public void showStaff(LocalDate SearchDate)
     {
         try
@@ -690,6 +697,8 @@ public class DiaryScreenDocumentController  implements Initializable
         } 
     }
     
+    //Show the staff working that day along with the shift they are working 
+    //Formatting it to show ID and name 
     public void printStaffNames()
     {
         for(int i=0; i<staff.size(); i++)
@@ -701,6 +710,7 @@ public class DiaryScreenDocumentController  implements Initializable
     }
     
     
+    //Showing the main notes for the whole diary page 
     public void showNotes(LocalDate SearchDate)
     {
         try
@@ -731,15 +741,11 @@ public class DiaryScreenDocumentController  implements Initializable
     }
     
     
-   
-    
-    
-   
-    
     
     //Getting the main diary information 
     public void showInformation(LocalDate SearchDate)
-    {   clearAll();
+    {  
+        clearAll();
         showStaff(codeBank.getCurrentDate());
         showNotes(codeBank.getCurrentDate());
         
@@ -755,9 +761,7 @@ public class DiaryScreenDocumentController  implements Initializable
             
             //make localdate into string
             String stringDate = codeBank.dateToString(SearchDate);
-            
-            System.out.println(stringDate);
-            
+                        
             //implement query
             rs = stmt.executeQuery("SELECT * FROM diary WHERE Date = '" + stringDate + "'" );
             
@@ -794,6 +798,7 @@ public class DiaryScreenDocumentController  implements Initializable
         }  
     }
     
+    //Used to display all of the information for a single row of the diary
     public void showSingle(diary singleBooking, int i)
     {
         timeList.get(i).setText((singleBooking.getTime()).toString());
@@ -917,9 +922,7 @@ public class DiaryScreenDocumentController  implements Initializable
               
     }
     
-    
-    
-    
+
     public void clearAll()
     {
         clearTopSection();
@@ -954,6 +957,7 @@ public class DiaryScreenDocumentController  implements Initializable
         }
     }
     
+    //Clearing a single row of the diary 
     public void clearSingle(int i)
     {
         timeList.get(i).setText("");
@@ -971,9 +975,8 @@ public class DiaryScreenDocumentController  implements Initializable
    
    
     
-    
-    
-    //SAVING-----------------------------------------------------------------
+    //Checks that you have all of the information you need in every row
+    //If any row is missing any information, none will save, you will get an error and you will not change screen 
     public boolean beforeSave()
     {
         for(int i=0; i<24; i++)
@@ -984,7 +987,6 @@ public class DiaryScreenDocumentController  implements Initializable
             }
             else if(!timeList.get(i).getText().equals("") || !nameList.get(i).getText().equals("") || !ageList.get(i).getText().equals("") || !hospitalList.get(i).getText().equals("") || !specialityList.get(i).getText().equals(""))
             {
-                System.out.println("Diary");
                 codeBank.missingError();
                 return false;
             }
@@ -993,7 +995,7 @@ public class DiaryScreenDocumentController  implements Initializable
     }
     
     
-    
+    //Actually saving the data - done once you know that all data is entered 
     public void save(LocalDate today)
     {
         
@@ -1035,39 +1037,7 @@ public class DiaryScreenDocumentController  implements Initializable
         
     }
     
-    //----------------------------------------------------------------------------------------------------
-    
-    
-    public String deleteStaff(String date)
-    {
-        return "DELETE FROM working WHERE Date = '" + date + "'" ;
-    }
-    
-    public String saveStaff(int i, String date)
-    {
-        if(!staffList.get(i).getValue().equals(""))
-        {
-            String line = staffList.get(i).getValue().toString();
-            int first = line.indexOf("(");
-            int second = line.indexOf(")");
-            String ID = line.substring(first+1, second);
-            String Shift = shiftList.get(i).getValue().toString();
-                        
-            return "INSERT INTO working (Staff_ID, Date, Shift) VALUES (' "
-                                                                + ID + "','"
-                                                                + date + "','"
-                                                                + Shift + "')"   ;
-        }
-        else
-        {
-            return "";
-        }
-    }
-    
-    
-    
-    
-    //OK
+    //The actaul code to save each specific line 
     public String SQLLine(int i, String date)
     {
         if(!timeList.get(i).getText().equals("") & !nameList.get(i).getText().equals("") & !ageList.get(i).getText().equals("") & !hospitalList.get(i).getText().equals("") & !specialityList.get(i).getText().equals(""))
@@ -1091,8 +1061,37 @@ public class DiaryScreenDocumentController  implements Initializable
         }        
     }   
     
-   
-    //OK
+    
+    //Removing all staff for that date from the database
+    public String deleteStaff(String date)
+    {
+        return "DELETE FROM working WHERE Date = '" + date + "'" ;
+    }
+    
+    //Saving the staff that have been selected 
+    public String saveStaff(int i, String date)
+    {
+        if(!staffList.get(i).getValue().equals(""))
+        {
+            String line = staffList.get(i).getValue().toString();
+            int first = line.indexOf("(");
+            int second = line.indexOf(")");
+            String ID = line.substring(first+1, second);
+            String Shift = shiftList.get(i).getValue().toString();
+                        
+            return "INSERT INTO working (Staff_ID, Date, Shift) VALUES (' "
+                                                                + ID + "','"
+                                                                + date + "','"
+                                                                + Shift + "')"   ;
+        }
+        else
+        {
+            return "";
+        }
+    }
+    
+    
+    //Saving the general notes for the whole day 
     public String saveNotes(String date)
     {
         if(notes)
@@ -1115,7 +1114,7 @@ public class DiaryScreenDocumentController  implements Initializable
     
     
     
-    
+    //Setting up the right click and delete 
     public void delete()
     {
         for(int i=0; i<24; i++)
@@ -1124,7 +1123,7 @@ public class DiaryScreenDocumentController  implements Initializable
         }
     }
     
-    
+    //Putting a menu item on the time cell - deleting that row from the database 
     public void deleteOption(int i)
     {
         TextField time = timeList.get(i);
@@ -1161,6 +1160,7 @@ public class DiaryScreenDocumentController  implements Initializable
     }
     
     
+    //Calling the help for the diary screen 
     private HelpDialogController HDC;
     private Pane Hx;
     
@@ -1188,8 +1188,6 @@ public class DiaryScreenDocumentController  implements Initializable
         } 
         catch (IOException ex) 
         {
-            //Logger.getLogger(ProcedureScreenDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("ISSUE IN MAIN");
         }
     }
     
@@ -1199,7 +1197,7 @@ public class DiaryScreenDocumentController  implements Initializable
     
     
     
-    
+    //Setting up autocomplete on the speciality box - will show the bed procedures that contain the entered letters 
     //https://stackoverflow.com/questions/22749621/how-to-implement-autocomplete-textfield-using-controlsfx
     public void setUpAutoComplete()
     {

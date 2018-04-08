@@ -50,6 +50,9 @@ import org.controlsfx.control.textfield.TextFields;
 /**
  *
  * @author amydo
+ * 
+ * Controller for the oncology screen 
+ * 
  */
 public class OncologyScreenDocumentController implements Initializable
 {
@@ -226,7 +229,8 @@ public class OncologyScreenDocumentController implements Initializable
         showInformation(codeBank.getCurrentDate());
         setUpAutoComplete();
         delete();
-               
+          
+        //Adding listener to each time box to check its a valid time when you click off of it 
         for(int i=0; i<14; i++)
         {
             TextField selected = timeList.get(i);
@@ -237,10 +241,9 @@ public class OncologyScreenDocumentController implements Initializable
             }
             });
         }
-        
-    
     }
     
+    //Checks that the time is valid - if not, show an error 
     public void checkingTime(TextField selected)
     {
         String value = selected.getText();
@@ -279,7 +282,8 @@ public class OncologyScreenDocumentController implements Initializable
             
             //make localdate into string
             String stringDate = codeBank.dateToString(date);
-                    
+                
+            //Get all of the booked oncology appointments 
             String sql = "SELECT * FROM oncology WHERE oncology.Date = '" + stringDate + "'";
             rs = stmt.executeQuery(sql);
             
@@ -313,75 +317,76 @@ public class OncologyScreenDocumentController implements Initializable
         {
             
         }
-            for(int i=0; i<allBookings.size(); i++)
+        
+        //Getting the patients information to autofill the boxes 
+        for (int i = 0; i < allBookings.size(); i++) 
+        {
+            if (allBookings.get(i).getName() == null || allBookings.get(i).getName().equals("false")) 
             {
-                if(allBookings.get(i).getName() == null || allBookings.get(i).getName().equals("false"))
+                try 
                 {
-                    try
+                    // open a connection
+                    Connection c2 = DatabaseConnector.activateConnection();
+                    c2.setAutoCommit(true);
+                    ResultSet rs2;
+
+                    // when creating a statement object, you MUST use a connection object to call the instance method
+                    Statement stmt2 = c2.createStatement();
+
+                    //make localdate into string
+                    String sql = "SELECT * FROM regular WHERE regular.HospitalNumber ='" + allBookings.get(i).getHospitalNumber() + "'";
+                    rs2 = stmt2.executeQuery(sql);
+
+                    while (rs2.next()) 
                     {
-                        // open a connection
-                        Connection c2 = DatabaseConnector.activateConnection();
-                        c2.setAutoCommit( true ); 
-                        ResultSet rs2 ;
 
-                        // when creating a statement object, you MUST use a connection object to call the instance method
-                        Statement stmt2 = c2.createStatement();
+                        String firstName = rs2.getString("FirstName");
+                        String lastName = rs2.getString("LastName");
+                        allBookings.get(i).setName(firstName + " " + lastName);
 
-                        //make localdate into string
-                        String sql = "SELECT * FROM regular WHERE regular.HospitalNumber ='" + allBookings.get(i).getHospitalNumber() + "'";
-                        rs2 = stmt2.executeQuery(sql);
+                        String dob = rs2.getString("DateOfBirth");
+                        LocalDate dobDate = codeBank.stringToDate(dob);
+                        Period period = Period.between(dobDate, LocalDate.now());
 
-                        while(rs2.next())
+                        //Getting baby ages to show in terms of months or weeks 
+                        if (period.getYears() >= 1) 
                         {
+                            allBookings.get(i).setAge(period.getYears() + "");
+                        } 
+                        else if (period.getMonths() > 4) 
+                        {
+                            allBookings.get(i).setAge(period.getMonths() + "/12");
+                        } 
+                        else 
+                        {
+                            allBookings.get(i).setAge((period.getDays()) % 7 + "/52");
+                        }
 
-                            String firstName = rs2.getString("FirstName");
-                            String lastName = rs2.getString("LastName");
-                            allBookings.get(i).setName(firstName + " " + lastName);
-                                                        
-                            String dob = rs2.getString("DateOfBirth");
-                            LocalDate dobDate = codeBank.stringToDate(dob);
-                            Period period = Period.between(dobDate, LocalDate.now());
-                            
-                            if(period.getYears() >= 1)
-                            {
-                                allBookings.get(i).setAge(period.getYears()+"");
-                            }
-                            else if(period.getMonths() > 4)
-                            {
-                                allBookings.get(i).setAge(period.getMonths()+"/12");
-                            }
-                            else
-                            {
-                                allBookings.get(i).setAge((period.getDays())%7+"/52");
-                            }
-                            
-                                                        
-                            allBookings.get(i).setNumber(rs2.getString("Number"));
-                            allBookings.get(i).setWristband(rs2.getString("Wristband"));
+                        allBookings.get(i).setNumber(rs2.getString("Number"));
+                        allBookings.get(i).setWristband(rs2.getString("Wristband"));
 
-                            
-                        }   
-                        c2.close();
                     }
-                    catch (SQLException ex)
-                    {
-                        
-                    }
+                    c2.close();
+                } 
+                catch (SQLException ex) 
+                {
+
                 }
-                deleted.set(i, true);
             }
-            
-            Collections.sort(allBookings);
-           
-            for(int i=0; i<allBookings.size(); i++)
-            {
-                allBookings.get(i).setPosition(i+1);
-            }
-            showResults(allBookings);
-            
-         
+            deleted.set(i, true);
+        }
+
+        //Sort the bookings into time order 
+        Collections.sort(allBookings);
+
+        for (int i = 0; i < allBookings.size(); i++) {
+            allBookings.get(i).setPosition(i + 1);
+        }
+        showResults(allBookings);
+
     }
     
+    //Display the booked appointments in the table - showing attendence and notes 
     public void showResults(ArrayList<oncology> allBookings)
     {
         for(int i=0; i<allBookings.size(); i++)
@@ -415,12 +420,7 @@ public class OncologyScreenDocumentController implements Initializable
             codeBank.showNotes(text2, notesArray[count2]);
             count2++;
         }
-        
     }
-    
-
-    
-    
     
     //Each method associated with the textfield for the bed numbers 
     @FXML public void Attendance1(){change(0);}
@@ -457,7 +457,6 @@ public class OncologyScreenDocumentController implements Initializable
         
         codeBank.attendanceColour(attendanceList.get(arrayValue),attendanceArray[arrayValue]);
     }
-    
     
     
      //Each method associated with the textfield for notes
@@ -498,7 +497,7 @@ public class OncologyScreenDocumentController implements Initializable
     
     
     
-    
+    //The check doen before saving to make sure you have all of the data 
     public boolean beforeSave()
     {
         for(int i=0; i<14; i++)
@@ -516,8 +515,8 @@ public class OncologyScreenDocumentController implements Initializable
         return true;
     }
  
-    
-     public void save(LocalDate today)
+    //Saving 
+    public void save(LocalDate today)
     {
         try
         {
@@ -552,11 +551,12 @@ public class OncologyScreenDocumentController implements Initializable
         }
         catch (SQLException e)
         {
-            Logger.getLogger(OncologyScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
+            
         } 
         
     }
     
+    //Saving each line of the screen 
     public String SQLLine(int i, String date)
     {
         if(nameList.get(i).getText().equals(""))
@@ -584,7 +584,7 @@ public class OncologyScreenDocumentController implements Initializable
         
     }   
     
-    
+    //Deleting a line 
     public String SQLLineDeleted(int i, String date)
     {
         if(nameList.get(i).getText().equals(""))
@@ -617,7 +617,7 @@ public class OncologyScreenDocumentController implements Initializable
     }   
     
     
-  
+    //Saving the selected specific staff mmeber 
     public void saveStaff()
     {
         try
@@ -662,9 +662,7 @@ public class OncologyScreenDocumentController implements Initializable
         }
     }
     
-    
-    
-    
+    //Showing the saved specific staff memeber 
     public void showStaff(LocalDate SearchDate)
     {
         try
@@ -702,7 +700,7 @@ public class OncologyScreenDocumentController implements Initializable
    
   
       
-    
+    //Loading the details about a patient - the saved information about them 
     @FXML
     public void Load(int position, String patient)
     {
@@ -745,7 +743,7 @@ public class OncologyScreenDocumentController implements Initializable
             }
             catch (SQLException e)
             {
-                    Logger.getLogger(OncologyScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
+                //Logger.getLogger(OncologyScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
             } 
         }
         
@@ -773,6 +771,7 @@ public class OncologyScreenDocumentController implements Initializable
         }
     }
     
+   //clearing a single row 
     public void clearSingle(int i)
     {
         nameList.get(i).setText("");        
@@ -789,6 +788,8 @@ public class OncologyScreenDocumentController implements Initializable
          
     }
     
+    
+    //Setting up the right click, delete on the time box
     public void delete()
     {
         for(int i=0; i<14; i++)
@@ -797,7 +798,7 @@ public class OncologyScreenDocumentController implements Initializable
         }
     }
     
-    
+    //Creating the menu for when you right click and the action of deleting 
     public void deleteOption(int i)
     {
         TextField time = timeList.get(i);
@@ -823,7 +824,9 @@ public class OncologyScreenDocumentController implements Initializable
                     
 
                     c.close();
-                } catch (SQLException x) {
+                } 
+                catch (SQLException x) 
+                {
 
                 }
                 clearSingle(i);
@@ -834,6 +837,8 @@ public class OncologyScreenDocumentController implements Initializable
 
     }
     
+    
+    //Getting the correct help file to show up when you click the ? button
     private HelpDialogController HDC;
     private Pane Hx;
     
@@ -862,7 +867,6 @@ public class OncologyScreenDocumentController implements Initializable
         catch (IOException ex) 
         {
             //Logger.getLogger(ProcedureScreenDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("ISSUE IN MAIN");
         }
     }
     

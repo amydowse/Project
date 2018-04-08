@@ -11,6 +11,9 @@ import java.time.LocalTime;
 /**
  *
  * @author amydo
+ * 
+ * Object that represents a blood appointment
+ * 
  */
 public class blood implements Comparable<blood>
 {

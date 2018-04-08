@@ -12,6 +12,9 @@ import java.time.LocalTime;
 /**
  *
  * @author amydo
+ * 
+ * Object representing the information needed for when an appointment matches the criteria being searched for 
+ * 
  */
 public class searchPatient 
 {

@@ -19,6 +19,10 @@ import javafx.scene.control.TextArea;
 /**
  *
  * @author amydo
+ * 
+ * Takes control of showing the help dialog and correct file when clicked on a screen
+ * Depending on the screen that it was clicked from, a different file is loaded 
+ * 
  */
 public class HelpDialogController implements Initializable
 {

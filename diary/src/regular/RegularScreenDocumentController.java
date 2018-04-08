@@ -50,6 +50,9 @@ import javafx.stage.Stage;
 /**
  *
  * @author amydo
+ * 
+ * Controller for the regular attenders screen 
+ * 
  */
 public class RegularScreenDocumentController implements Initializable
 {   
@@ -84,6 +87,7 @@ public class RegularScreenDocumentController implements Initializable
         
         showInformation();
         
+        //Add listener to check that the date of birth is a valid date 
         txtDOB.focusedProperty().addListener((ObservableValue<? extends Boolean> ov, Boolean oldV, Boolean newV) -> {
             if (!newV) {
                 checkingDate(txtDOB.getText());
@@ -91,6 +95,7 @@ public class RegularScreenDocumentController implements Initializable
         });
     }
     
+    //Method for checking an input is a valid date - if not, error 
     public void checkingDate(String value)
     {
         if(!codeBank.checkDate(value))
@@ -123,6 +128,7 @@ public class RegularScreenDocumentController implements Initializable
             ResultSet rs ;
             Statement stmt = c.createStatement();    
             
+            //Selecting all of the regular attenders from the database 
             String sql = "SELECT * FROM regular";
                        
             rs = stmt.executeQuery(sql); 
@@ -145,48 +151,45 @@ public class RegularScreenDocumentController implements Initializable
                 allPatients.add(x);
                 
             }
-                Collections.sort(allPatients);
+            //Sorting all of the regular attenders into alphabetical order by first name 
+            Collections.sort(allPatients);
             
-                tblColName.setCellValueFactory(new PropertyValueFactory("name"));
+            //Displaying regular attenders in a list
+            tblColName.setCellValueFactory(new PropertyValueFactory("name"));
+            tblNames.getItems().addAll(allPatients);
 
-                tblNames.getItems().addAll(allPatients);
-
-                tblNames.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> 
+            //Method so that when a regular attender is selected, their details show in the textboxes 
+            tblNames.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> 
+            {
+                if(newSelection != null)
                 {
-                    if(newSelection != null)
+                    txtFirstName.setText(((regular)newSelection).getFirstName());
+                    txtLastName.setText(((regular)newSelection).getLastName());
+                    txtDOB.setText(codeBank.dateToString(((regular)newSelection).getDOB()));
+                    txtNumber.setText(((regular)newSelection).getNumber());
+                    txtNHS.setText(((regular)newSelection).getHospitalNumber());
+                    txtExtraInfo.setText(((regular)newSelection).getExtraInformation());
+                        
+                    if(((regular)newSelection).getWristband().equals("Red"))
                     {
-                        txtFirstName.setText(((regular)newSelection).getFirstName());
-                        txtLastName.setText(((regular)newSelection).getLastName());
-                        txtDOB.setText(codeBank.dateToString(((regular)newSelection).getDOB()));
-                        txtNumber.setText(((regular)newSelection).getNumber());
-                        txtNHS.setText(((regular)newSelection).getHospitalNumber());
-                        txtExtraInfo.setText(((regular)newSelection).getExtraInformation());
-                        
-                        if(((regular)newSelection).getWristband().equals("Red"))
-                        {
-                            rdbRed.setSelected(true);
-                        }
-                        else
-                        {
-                            rdbWhite.setSelected(true);
-                        }
-                        
-                        if(((regular)newSelection).getOncology() == 1)
-                        {
-                            cbOncology.setSelected(true);
-                        }
-                        else
-                        {
-                            cbOncology.setSelected(false);
-                        }
-                       
-        
-                      
+                        rdbRed.setSelected(true);
                     }
-                });
+                    else
+                    {
+                        rdbWhite.setSelected(true);
+                    }
+                        
+                    if(((regular)newSelection).getOncology() == 1)
+                    {
+                        cbOncology.setSelected(true);
+                    }
+                    else
+                    {
+                        cbOncology.setSelected(false);
+                    }
+                }
+            });
 
-            
-            
             c.close();   
         }
         catch (SQLException e)
@@ -203,6 +206,7 @@ public class RegularScreenDocumentController implements Initializable
     @FXML
     public void Delete(ActionEvent event) throws IOException
     {
+        //Ask for confirmation before deleting a selected regular attender 
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Confirmation on Delete");
         alert.setHeaderText("You are about to delete a regular attender");
@@ -260,7 +264,7 @@ public class RegularScreenDocumentController implements Initializable
             }
             catch (SQLException e)
             {
-                Logger.getLogger(RegularScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
+                //Logger.getLogger(RegularScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
             }
         } 
         else 
@@ -269,6 +273,7 @@ public class RegularScreenDocumentController implements Initializable
         }
     }
  
+    //Saving a regular attender when you have selected it an edited details in the textboxes 
     @FXML
     public void Save() 
     {
@@ -322,13 +327,14 @@ public class RegularScreenDocumentController implements Initializable
         }
     }
     
+    
+    //Getting the pop-up to show to add a new regular attender 
     private RegularDialogController DC;
     private Pane x;
     
     @FXML
     public void Add()
-    {      
-        System.out.println("xxxx");      
+    {           
         try 
         {    
             Stage stage = new Stage();
@@ -348,11 +354,12 @@ public class RegularScreenDocumentController implements Initializable
         } 
         catch (IOException ex) 
         {
-            System.out.println("ISSUE IN MAIN");
         }
      
     }
     
+    
+    //Showing the help file when the ? is pressed 
     private HelpDialogController HDC;
     private Pane Hx;
     
@@ -381,7 +388,6 @@ public class RegularScreenDocumentController implements Initializable
         catch (IOException ex) 
         {
             //Logger.getLogger(ProcedureScreenDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("ISSUE IN MAIN");
         }
     }
 

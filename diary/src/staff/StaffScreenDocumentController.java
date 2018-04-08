@@ -46,6 +46,9 @@ import javafx.stage.Stage;
 /**
  *
  * @author amydo
+ * 
+ * Controller for the staff screen 
+ * 
  */
 public class StaffScreenDocumentController implements Initializable 
 {
@@ -105,6 +108,7 @@ public class StaffScreenDocumentController implements Initializable
             ResultSet rs ;
             Statement stmt = c.createStatement();    
             
+            //Getting all of the staff from the database 
             String sql = "SELECT * FROM staff";
                        
             rs = stmt.executeQuery(sql); 
@@ -130,42 +134,40 @@ public class StaffScreenDocumentController implements Initializable
             
             c.close(); 
             
-                tblColName.setCellValueFactory(new PropertyValueFactory("Show"));
+            //Showing the staffs name and ID number in a list 
+            tblColName.setCellValueFactory(new PropertyValueFactory("Show"));
 
-                tblNames.getItems().addAll(allStaff);
+            tblNames.getItems().addAll(allStaff);
 
-                tblNames.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> 
+            tblNames.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> 
+            {
+                allProcedures.clear();
+                specificProcedures.clear();
+                tblProcedures.getItems().clear();
+                   
+                //Showing the selected staff members details in the textboxes 
+                if(newSelection != null)
                 {
-                    allProcedures.clear();
-                    specificProcedures.clear();
-                    tblProcedures.getItems().clear();
+                    lblID.setText(""+((staff)newSelection).getID());
+                    txtFirstName.setText(((staff)newSelection).getFirstName());
+                    txtLastName.setText(((staff)newSelection).getLastName());
+                    txtPosition.setText(((staff)newSelection).getPosition());
+                    txtAgency.setText(((staff)newSelection).getAgency());
+                    txtNumber.setText(((staff)newSelection).getNumber());
+                    txtExtraInfo.setText(((staff)newSelection).getExtraInfo());
+                }
+                 
+                //Showing the skills of the selected staff member 
+                showStaffProcedures(Integer.parseInt(lblID.getText()));
                     
-                    if(newSelection != null)
-                    {
-                        lblID.setText(""+((staff)newSelection).getID());
-                        txtFirstName.setText(((staff)newSelection).getFirstName());
-                        txtLastName.setText(((staff)newSelection).getLastName());
-                        txtPosition.setText(((staff)newSelection).getPosition());
-                        txtAgency.setText(((staff)newSelection).getAgency());
-                        txtNumber.setText(((staff)newSelection).getNumber());
-                        txtExtraInfo.setText(((staff)newSelection).getExtraInfo());
-                    }
-                    
-                    showStaffProcedures(Integer.parseInt(lblID.getText()));
-                    
-                });
-
-            
-            
-              
+            });
         }
         catch (SQLException e)
         {
-            System.out.println("ISSUE");
-        }
-           
+        } 
     }
     
+    //Showing the skills of a selected staff member - using their unique ID number 
     public void showStaffProcedures(int ID)
     {
         try 
@@ -175,8 +177,8 @@ public class StaffScreenDocumentController implements Initializable
             Statement stmt = c.createStatement();
             ResultSet rs;
 
+            //Initlly having all skills as a NO
             String sql = "SELECT Name FROM procedures";
-
             rs = stmt.executeQuery(sql);
 
             while (rs.next()) 
@@ -185,9 +187,8 @@ public class StaffScreenDocumentController implements Initializable
                 allProcedures.add(x);
             }
             
-       
+            //Getting a list of all of the skills that a specific memeber has 
             sql = "SELECT Procedure_Name FROM skill WHERE Staff_ID ='" + ID + "'";
-
             rs = stmt.executeQuery(sql);
 
             while (rs.next()) 
@@ -201,10 +202,10 @@ public class StaffScreenDocumentController implements Initializable
         {
 
         }
-         display(ID);
+        display(ID);
     }
     
-    
+    //Method change NO to YES when the specific skill matches the whole list of skills 
     public void display(int ID)
     {
         for(skill skills : allProcedures)
@@ -218,6 +219,7 @@ public class StaffScreenDocumentController implements Initializable
             }
         }
         
+        //Sorting skills into alphabeitcal order and showing 
         Collections.sort(allProcedures);
         tblProcedures.getItems().addAll(allProcedures);
         
@@ -248,6 +250,7 @@ public class StaffScreenDocumentController implements Initializable
         
     }
     
+    //Method to change skill symbol 
     public void changeStatus(int index, int ID)
     {
         if(allProcedures.get(index).getHasSkill().equals("✔"))
@@ -265,11 +268,10 @@ public class StaffScreenDocumentController implements Initializable
     }
     
     
-      
-    
     @FXML
     public void Delete(ActionEvent event) throws IOException
     {
+        //Getting confirmation before deleting a selected staff member 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation on Delete");
         alert.setHeaderText("You are about to delete a staff member");
@@ -325,7 +327,7 @@ public class StaffScreenDocumentController implements Initializable
             }
             catch (SQLException e)
             {
-                Logger.getLogger(StaffScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
+                //Logger.getLogger(StaffScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
             }
         } 
         else 
@@ -335,7 +337,7 @@ public class StaffScreenDocumentController implements Initializable
     }
     
     
-    
+    //Saving when you have selected a staff member and edited details in the textboxes 
     @FXML
     public void Save() 
     {
@@ -365,7 +367,7 @@ public class StaffScreenDocumentController implements Initializable
             } 
             catch (SQLException e) 
             {
-                Logger.getLogger(StaffScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
+                //Logger.getLogger(StaffScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
             }
         }
         else if (!txtFirstName.getText().equals("") || !txtLastName.getText().equals("")) 
@@ -375,7 +377,7 @@ public class StaffScreenDocumentController implements Initializable
     }   
     
     
-    
+    //When you delete a staff member you need to deal with their skills  
     public void saveProcedures()
     {
         try 
@@ -393,19 +395,19 @@ public class StaffScreenDocumentController implements Initializable
                 else 
                 {
                     stmt.executeUpdate("REPLACE INTO skill (Staff_ID, Procedure_Name) VALUES ('" + lblID.getText() + "','" + allProcedures.get(i).getProcedureName() + "')");
-
                 }
             }
             c.close();
         }
         catch(SQLException e)
         {
-            System.out.println("Saving pr");
-            Logger.getLogger(StaffScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
+            //Logger.getLogger(StaffScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
         }
     }
     
     
+    
+    //Getting the pop-up when you are adding a new staff member 
     private StaffDialogController DC;
     private Pane x;
     
@@ -432,12 +434,13 @@ public class StaffScreenDocumentController implements Initializable
         catch (IOException ex) 
         {
             //Logger.getLogger(ProcedureScreenDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("ISSUE IN MAIN");
         }
      
     }
     
     
+    
+    //Getting the correct help file to show when clicking the ? 
     private HelpDialogController HDC;
     private Pane Hx;
     
@@ -466,7 +469,6 @@ public class StaffScreenDocumentController implements Initializable
         catch (IOException ex) 
         {
             //Logger.getLogger(ProcedureScreenDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("ISSUE IN MAIN");
         }
     }
     

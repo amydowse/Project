@@ -49,6 +49,10 @@ import javafx.util.Duration;
 /**
  *
  * @author amydo
+ * 
+ * Controller for the overall settings screen
+ * Controls the other 3 sub controllers 
+ * 
  */
 public class SettingScreenDocumentController implements Initializable
 {
@@ -95,8 +99,7 @@ public class SettingScreenDocumentController implements Initializable
         } 
         catch (IOException ex) 
         {
-            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-            Logger.getLogger(SettingScreenDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(SettingScreenDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         ContentAlter = this.paneAlterContainer;
@@ -113,9 +116,7 @@ public class SettingScreenDocumentController implements Initializable
       
     }
     
-    
-    
-    //Getting the screens to show when clicked on --------------------------------------------------------------------------------------
+    //Getting the screens to show when clicked on and hiding all others 
     public void extraClicked()
     {
         extraActive();
@@ -137,6 +138,7 @@ public class SettingScreenDocumentController implements Initializable
         alterActive();
     }
     
+    //Setting the 3 different sections to be active or inactive 
     //https://o7planning.org/en/11101/javafx-label-tutorial#a3712123 accessed 18/1/18
     public void extraActive()
     {
@@ -170,7 +172,7 @@ public class SettingScreenDocumentController implements Initializable
     }
     
     
-    
+    //Showing the correct help file depending on which section the ? is in that is clicked 
     @FXML 
     public void helpExtra()
     {
@@ -221,7 +223,6 @@ public class SettingScreenDocumentController implements Initializable
         catch (IOException ex) 
         {
             //Logger.getLogger(ProcedureScreenDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("ISSUE IN MAIN");
         }
     }
     

@@ -10,6 +10,9 @@ import java.time.LocalTime;
 /**
  *
  * @author amydo
+ * 
+ * Object that represents a diary booking
+ * 
  */
 public class diary 
 {

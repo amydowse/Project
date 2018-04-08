@@ -11,6 +11,9 @@ import java.time.LocalTime;
 /**
  *
  * @author amydo
+ * 
+ * Object that represents a non-bed appointment 
+ * 
  */
 public class nonbed implements Comparable<nonbed>
 {

@@ -33,6 +33,10 @@ import javafx.util.Duration;
 /**
  *
  * @author amydo
+ * 
+ * Controller for the alter section of the setting screen
+ * This is where you can alter the times of a specific blood clinic that has already been set up 
+ * 
  */
 public class AlterPaneDocumentController implements Initializable
 {
@@ -61,10 +65,6 @@ public class AlterPaneDocumentController implements Initializable
     
     
     
-    
-    
-    
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
@@ -78,7 +78,7 @@ public class AlterPaneDocumentController implements Initializable
     
     public void alterDateShowingDays()
     {
-        // Create a day cell factory
+        // Create a day cell factory - colouring the dates that have a blood clinic scheduled for 
         Callback<DatePicker, DateCell> dayCellFactory = new Callback<DatePicker, DateCell>()
         {
             public DateCell call(final DatePicker datePicker)
@@ -106,6 +106,7 @@ public class AlterPaneDocumentController implements Initializable
        alterDate.setDayCellFactory(dayCellFactory);
     }
     
+    //Determine which days have a blood clinic running 
     public boolean hasBlood(LocalDate date)
     {
         try
@@ -149,6 +150,7 @@ public class AlterPaneDocumentController implements Initializable
                     String From = rs.getString("FromDate");
                     String To = rs.getString("ToDate");
 
+                    //If the most current template in use 
                     if (To == null) 
                     {
                         LocalDate dateFrom = codeBank.stringToDate(From);
@@ -163,6 +165,7 @@ public class AlterPaneDocumentController implements Initializable
                         LocalDate dateFrom = codeBank.stringToDate(From);
                         LocalDate dateTo = codeBank.stringToDate(To);
 
+                        //Falls into the range of the template 
                         if (date.isBefore(dateTo) && (date.isAfter(dateFrom) || date.equals(dateFrom))) 
                         {
                             c.close();
@@ -189,7 +192,7 @@ public class AlterPaneDocumentController implements Initializable
     
     
     
-        
+    //Showing the details of the blood clinic when you click on a date     
     @FXML
     public void selectedDate()
     {
@@ -313,9 +316,11 @@ public class AlterPaneDocumentController implements Initializable
         txtAlterBreakEnd.setText("");
     }
     
+     
     @FXML
     public void saveAlterCheck()
     {
+        //Check that duration is a number and that the times are valid 
         if(codeBank.checkInteger(txtAlterLength.getText()))
         {
             if(codeBank.checkTime(txtAlterStart.getText()) && codeBank.checkTime(txtAlterEnd.getText()) && codeBank.checkTime(txtAlterBreakStart.getText()) && codeBank.checkTime(txtAlterBreakEnd.getText()))
@@ -323,6 +328,7 @@ public class AlterPaneDocumentController implements Initializable
                 if(allOkAlter())
                 {
                     saveAlter();
+                    //'Save successful' shows for a few seconds and then disappears to show save was ok 
                     //http://tomasmikula.github.io/blog/2014/06/04/timers-in-javafx-and-reactfx.html accessed 17/3
                     lblSaveAlter.setVisible(true);
                     Timeline timeline = new Timeline(new KeyFrame(
@@ -346,6 +352,7 @@ public class AlterPaneDocumentController implements Initializable
         }
     }
     
+    //Clearing the textboxes when you have saved new details 
     public void alterSaveSuccessful()
     {
         lblSaveAlter.setVisible(false);
@@ -353,6 +360,7 @@ public class AlterPaneDocumentController implements Initializable
         alterDate.getEditor().clear();
     }
     
+    //Checking that all the data is ok before saving - things are in the correct order 
      public boolean allOkAlter()
     {
         LocalTime start = LocalTime.parse(txtAlterStart.getText());
@@ -375,7 +383,7 @@ public class AlterPaneDocumentController implements Initializable
     }
     
     
-    
+    //The actual saving of the new information for the blood clinic - saves it by the date 
     public void saveAlter()
     {
         LocalDate selected = alterDate.getValue();
@@ -411,7 +419,7 @@ public class AlterPaneDocumentController implements Initializable
         } 
         catch (SQLException e) 
         {
-            Logger.getLogger(SettingScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
+            //Logger.getLogger(SettingScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
         }
     }
     

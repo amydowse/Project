@@ -47,6 +47,9 @@ import org.controlsfx.control.textfield.TextFields;
 /**
  *
  * @author amydo
+ * 
+ * Controls the non-bed screen 
+ * 
  */
 public class NonbedScreenDocumentController implements Initializable
 {
@@ -207,6 +210,7 @@ public class NonbedScreenDocumentController implements Initializable
         setUpAutoComplete();
         delete();
         
+        //Set up listeners on the age boxes to check it is a number when you click off of it 
         for(int i=0; i<14; i++)
         {
             TextField selected = ageList.get(i);
@@ -218,6 +222,7 @@ public class NonbedScreenDocumentController implements Initializable
             });
         }
     
+        //Set up listeners on time boxes to check its a valid time when you click off of it 
         for(int i=0; i<14; i++)
         {
             TextField selected = timeList.get(i);
@@ -231,6 +236,7 @@ public class NonbedScreenDocumentController implements Initializable
     
     }
     
+    //Checks if input is a valid time - if not gives an error 
     public void checkingTime(TextField selected)
     {
         String value = selected.getText();
@@ -241,6 +247,7 @@ public class NonbedScreenDocumentController implements Initializable
         }
     }
     
+    //Checks if input is a number - if not gives an error 
     public void checkingAge(TextField selected)
     {
         String value = selected.getText();
@@ -275,6 +282,7 @@ public class NonbedScreenDocumentController implements Initializable
             //implement query
             rs = stmt.executeQuery("SELECT * FROM nonbed WHERE Date = '" + stringDate + "'" );
            
+            //Gets all of the non-bed bookings 
             while(rs.next())
             { 
                 //get String into LocalDate
@@ -314,7 +322,7 @@ public class NonbedScreenDocumentController implements Initializable
     }
     
     
-    
+    //Shows each of the bookings in a new row - sets their attendance colour and notes symbol 
     public void showResults(ArrayList<nonbed> allBookings)
     {
         for(int i=0; i<allBookings.size(); i++)
@@ -346,20 +354,7 @@ public class NonbedScreenDocumentController implements Initializable
             count2++;
         }
     }
-    
-    
-    public boolean inList(String procedure)
-    {
-        for(int i=0; i<procedures.size(); i++)
-        {
-            if(procedures.get(i).equals(procedure))
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-    
+     
     
     
     public void clearAll()
@@ -377,6 +372,7 @@ public class NonbedScreenDocumentController implements Initializable
         }
     }
     
+    //Clears a single row 
     public void clearSingle(int i)
     {
         timeList.get(i).setText("");
@@ -393,6 +389,7 @@ public class NonbedScreenDocumentController implements Initializable
         
     }
     
+    //Puts the right click and delete on all rows 
     public void delete()
     {
         for(int i=0; i<14; i++)
@@ -401,7 +398,7 @@ public class NonbedScreenDocumentController implements Initializable
         }
     }
     
-    
+    //Sets up the right click and delete for a specific row - add in the menu and the action that takes 
     public void deleteOption(int i)
     {
         TextField time = timeList.get(i);
@@ -442,7 +439,7 @@ public class NonbedScreenDocumentController implements Initializable
     
     
     
-    
+    //Check that all data is entered before saving 
     public boolean beforeSave()
     {
         for(int i=0; i<14; i++)
@@ -465,8 +462,7 @@ public class NonbedScreenDocumentController implements Initializable
     }
     
     
-    
-    
+    //Saving once all the data is entered 
     public void save(LocalDate today)
     {
         try
@@ -497,6 +493,7 @@ public class NonbedScreenDocumentController implements Initializable
         } 
     }
     
+    //Specific code for saving a single row 
     public String SQLLine(int i, String date)
     {
         if(procedureList.get(i).getText().equals(""))
@@ -526,9 +523,7 @@ public class NonbedScreenDocumentController implements Initializable
         }
     }   
     
-    
-   
-    
+    //Saving the specific staff member scheudled to work in that area 
     public void saveStaff()
     {
         try
@@ -564,16 +559,14 @@ public class NonbedScreenDocumentController implements Initializable
         }
         catch (SQLException e)
         {
-            //Logger.getLogger(NonbedScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
         } 
         catch(NullPointerException n)
         {
-            //Logger.getLogger(NonbedScreenDocumentController.class.getName()).log(Level.SEVERE, null, n);
         }
     }
     
     
-    
+    //Showing the staff member who as already been scheduled to work in that area 
     public void showStaff(LocalDate SearchDate)
     {
         try
@@ -612,13 +605,7 @@ public class NonbedScreenDocumentController implements Initializable
     
     
     
-    
-    
-    
-    
-    
-    
-     //Each method associated with the textfield for the bed numbers 
+    //Each method associated with the textfield for the bed numbers 
     @FXML public void Attendance1(){change(0);}
     @FXML public void Attendance2(){change(1);}
     @FXML public void Attendance3(){change(2);}
@@ -656,7 +643,7 @@ public class NonbedScreenDocumentController implements Initializable
     
     
     
-     //Each method associated with the textfield for notes
+    //Each method associated with the textfield for notes
     @FXML public void Notes1(){changeNotes(0);}
     @FXML public void Notes2(){changeNotes(1);}
     @FXML public void Notes3(){changeNotes(2);}
@@ -673,7 +660,7 @@ public class NonbedScreenDocumentController implements Initializable
     @FXML public void Notes14(){changeNotes(13);}
   
     
-  //Change the attendance colour when you click on it 
+    //Change the attendance colour when you click on it 
     public void changeNotes(int arrayValue)
     {
         if(notesArray[arrayValue] == 0)
@@ -692,6 +679,8 @@ public class NonbedScreenDocumentController implements Initializable
         codeBank.showNotes(notesList.get(arrayValue),notesArray[arrayValue]);
     }  
     
+    
+    //Calls the help method to show the help information for the non-bed screen 
     private HelpDialogController HDC;
     private Pane Hx;
     
@@ -719,12 +708,11 @@ public class NonbedScreenDocumentController implements Initializable
         } 
         catch (IOException ex) 
         {
-            //Logger.getLogger(ProcedureScreenDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("ISSUE IN MAIN");
         }
     }
     
     
+    //Set up auto compelte on procedures to show non-bed proceudres 
     public void setUpAutoComplete()
     {
         ArrayList<String> procedures = new ArrayList<String>();

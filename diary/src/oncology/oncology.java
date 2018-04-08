@@ -11,6 +11,9 @@ import java.time.LocalTime;
 /**
  *
  * @author amydo
+ * 
+ * Object that represents an oncology appointment 
+ * 
  */
 public class oncology implements Comparable<oncology>
 {

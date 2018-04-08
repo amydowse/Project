@@ -8,6 +8,8 @@ package schedule;
 /**
  *
  * @author amydo
+ * 
+ * Object that represents a procedure
  */
 public class procedure implements Comparable<procedure>
 {

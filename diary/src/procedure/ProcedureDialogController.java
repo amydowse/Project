@@ -25,6 +25,9 @@ import javafx.stage.Stage;
 /**
  *
  * @author amydo
+ * 
+ * Controller for the pop-up when you are adding a new procedure 
+ * 
  */
 public class ProcedureDialogController implements Initializable
 {
@@ -42,6 +45,7 @@ public class ProcedureDialogController implements Initializable
         cbLocation.getItems().addAll("Bed", "Non-bed");
         cbLength.getItems().addAll("", "minutes", "hour(s)");
         
+        //Adding listener to the duration to check its a number when you click off of it 
         txtDuration.focusedProperty().addListener((ObservableValue<? extends Boolean> ov, Boolean oldV, Boolean newV) -> {
             if (!newV) 
             { 
@@ -49,6 +53,7 @@ public class ProcedureDialogController implements Initializable
             }
             });
         
+        //Adding listener to the number of nurses to check its a number when you click off of it 
         txtNurses.focusedProperty().addListener((ObservableValue<? extends Boolean> ov, Boolean oldV, Boolean newV) -> {
             if (!newV) 
             { 
@@ -56,6 +61,7 @@ public class ProcedureDialogController implements Initializable
             }
             });
         
+        //Adding listener to the number of patients to check its a number when you click off of it 
         txtPatients.focusedProperty().addListener((ObservableValue<? extends Boolean> ov, Boolean oldV, Boolean newV) -> {
             if (!newV) 
             { 
@@ -64,6 +70,7 @@ public class ProcedureDialogController implements Initializable
             });
     }
     
+    //Method to check that an input is a number 
     public void checkingInteger(TextField selected)
     {
         String value = selected.getText();
@@ -80,6 +87,7 @@ public class ProcedureDialogController implements Initializable
         //checks that all of the info has been entered
         if (!txtName.getText().equals("") && !txtDuration.equals("") && !txtNurses.getText().equals("") && !txtPatients.getText().equals("") && !cbLocation.getValue().equals("")) 
         {
+            //Check the ratio of nurse to patinet 
             if(cbLocation.getValue().equals("Non-bed"))
             {
                 if(txtNurses.getText().equals("1") && txtPatients.getText().equals("1") )
@@ -93,6 +101,7 @@ public class ProcedureDialogController implements Initializable
             }
             else
             {
+                //check the ratio of nurse to patient 
                 if(txtNurses.getText().equals("1") || txtPatients.getText().equals("1") )
                 {
                     saveProcess();
@@ -102,11 +111,9 @@ public class ProcedureDialogController implements Initializable
                     codeBank.bedError();
                 }
             }
-            
         }
         else if (!txtName.getText().equals("") || !txtDuration.equals("") || !txtNurses.getText().equals("") || !txtPatients.getText().equals("") || !cbLocation.getValue().equals(""))
         {
-            System.out.println("Procedure");
             codeBank.missingError();
         }
                 
@@ -115,7 +122,6 @@ public class ProcedureDialogController implements Initializable
     //the process of saving once you have done the checks 
     public void saveProcess() 
     {
-        System.out.println("SAVE ROCESS");
         int duration = Integer.parseInt(txtDuration.getText());
         
         if (cbLength.getValue().equals("hour(s)")) 
@@ -142,24 +148,16 @@ public class ProcedureDialogController implements Initializable
         } 
         catch (SQLException e) 
         {
-            System.out.println("ISSUE");
         }
         
+        //Refreshing the proceudre screen so that when the pop-up closes, the new procedure appears in the list 
         TopMenuDocumentController.PrSDC.showInformation();
+        
         //https://stackoverflow.com/questions/13567019/close-fxml-window-by-code-javafx accessed 21/2
+        //Closing the window when you have saved 
         Stage stage = (Stage) btnSave.getScene().getWindow();
         stage.close();
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     public void shutdown() 

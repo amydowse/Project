@@ -8,6 +8,9 @@ package schedule;
 /**
  *
  * @author amydo
+ * 
+ * Object that represents a specific staff member working in a specific location 
+ * 
  */
 public class specificWorking 
 {

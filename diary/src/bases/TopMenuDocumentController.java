@@ -29,6 +29,9 @@ import staff.StaffScreenDocumentController;
 /**
  *
  * @author amydo
+ * 
+ * The top menu used for all non-diary screens
+ * 
  */
 public class TopMenuDocumentController implements Initializable
 {
@@ -58,8 +61,7 @@ public class TopMenuDocumentController implements Initializable
         IV.setFitWidth(60);
         btnHome.setGraphic(IV);
        
-        
-        
+                
         ContentPane = this.Content;
         Pane newLoadedPane;
         try 

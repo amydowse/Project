@@ -10,6 +10,9 @@ import java.time.LocalDate;
 /**
  *
  * @author amydo
+ * 
+ * Object representing a regular attender 
+ * 
  */
 public class regular implements Comparable<regular>
 {

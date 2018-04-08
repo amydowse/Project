@@ -19,6 +19,9 @@ import javafx.scene.control.TextArea;
 /**
  *
  * @author amydo
+ * 
+ * Pop-up box for when you are adding in extra information about a diary appointment 
+ * 
  */
 
 public class DialogController implements Initializable
@@ -35,6 +38,7 @@ public class DialogController implements Initializable
     {
     }
     
+    //Dispalys the patients name and time of their appointment 
     public void showInformation(int arrayValue, String text, String name, String time)
     {
         this.arrayValue = arrayValue;
@@ -43,9 +47,9 @@ public class DialogController implements Initializable
         lblTime.setText(time);
     }
     
+    //Stores the information entered so that it can be saved to the database 
     public void shutdown() 
     {
-        System.out.println("Stop");
         MainScreenDocumentController.DSDC.updateArray(arrayValue, txtExtraInfo.getText());
         txtExtraInfo.setText("");
     }

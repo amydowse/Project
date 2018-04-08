@@ -8,6 +8,9 @@ package schedule;
 /**
  *
  * @author amydo
+ * 
+ * Object that represents a procedure that has multiple patients to 1 nurse
+ * 
  */
 public class multiple 
 {

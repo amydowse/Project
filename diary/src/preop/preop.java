@@ -11,6 +11,9 @@ import java.time.LocalTime;
 /**
  *
  * @author amydo
+ * 
+ * Object that represents a pre-op appointment 
+ * 
  */
 public class preop 
 {

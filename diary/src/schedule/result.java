@@ -12,6 +12,9 @@ import java.time.LocalTime;
 /**
  *
  * @author amydo
+ * 
+ * Object that represents a possible appointment date and time 
+ * 
  */
 public class result implements Comparable<result>
 {

@@ -34,6 +34,10 @@ import static settings.SettingScreenDocumentController.APDC;
 /**
  *
  * @author amydo
+ * 
+ * Controller for the extra pane of the settings screen
+ * Extra is where you can add in extra clinics / remove clinics 
+ * 
  */
 public class ExtraPaneDocumentController implements Initializable
 {
@@ -72,7 +76,6 @@ public class ExtraPaneDocumentController implements Initializable
         extraListDate.setShowWeekNumbers(false);
     }
     
-    
     private boolean initiallyBlood = false;
     
     
@@ -87,6 +90,7 @@ public class ExtraPaneDocumentController implements Initializable
         String day = selected.getDayOfWeek().name();
         String date = codeBank.dateToString(selected);
         
+        //For weekdays, have surgery, preop, oncology and nonbed selected and not allowed to deselect 
         if(day.equals("MONDAY") || day.equals("TUESDAY") || day.equals("WEDNESDAY") || day.equals("THURSDAY") || day.equals("FRIDAY"))
         {
             chbSurgery.setSelected(true);
@@ -111,7 +115,7 @@ public class ExtraPaneDocumentController implements Initializable
         
     }
     
-    
+    //Method to determine what is shown for a weekend 
     public void showWeekend(String date)
     {
         try
@@ -138,6 +142,7 @@ public class ExtraPaneDocumentController implements Initializable
                     chbSurgery.setSelected(true);
                 }
 
+                //If there is a blood clinic scheduled at the weekend, show the times for it too 
                 if(blood==1)
                 {
                     chbBlood.setSelected(true);
@@ -188,7 +193,7 @@ public class ExtraPaneDocumentController implements Initializable
         }
     }
     
-    
+    //Check to see if there is a blood clinic schedueld for a weekday 
     public void checkBlood(String date, String day)
     {
         try
@@ -230,7 +235,7 @@ public class ExtraPaneDocumentController implements Initializable
 
                 if((rs.isBeforeFirst() && rs.getInt("Blood")==1) || !rs.isBeforeFirst()) //if has data and blood is 1 OR no data 
                 {
-                    sql = "SELECT * FROM template WHERE Day='" + day + "'";
+                    sql = "SELECT * FROM template WHERE Day='" + day + "'"; //find by day
                     rs = stmt.executeQuery(sql);
                     
                     LocalDate currentDate = codeBank.stringToDate(date);
@@ -241,6 +246,7 @@ public class ExtraPaneDocumentController implements Initializable
                         String From = rs.getString("FromDate");
                         String To = rs.getString("ToDate");
 
+                        //Finding the active template 
                         if (To == null) 
                         {
                             LocalDate dateFrom = codeBank.stringToDate(From);
@@ -306,7 +312,8 @@ public class ExtraPaneDocumentController implements Initializable
     
     
     //SAVING--------------------------------------------------------------------------------------
-        
+    
+    //Checking that the times entered for a new blood clinic are in temporal order 
     public boolean allOk()
     {
         LocalTime start = LocalTime.parse(txtExtraStart.getText());
@@ -328,7 +335,7 @@ public class ExtraPaneDocumentController implements Initializable
         return false;
     }
     
-    
+    //Checking that duration is a number, that blood is selected, the times are valid and are in a temporal order 
     @FXML
     public void saveExtraCheck()
     {
@@ -340,6 +347,7 @@ public class ExtraPaneDocumentController implements Initializable
                 {   
                     if(allOk())
                     {
+                        //When saved successfully, message shows up for a few seconds 
                         saveExtra();
                         lblSaveExtra.setVisible(true);
                         Timeline timeline = new Timeline(new KeyFrame(
@@ -374,6 +382,7 @@ public class ExtraPaneDocumentController implements Initializable
         }
     }
     
+    //When save is successful clear all of the data and update the alter blood clinic section to show a blood clinic has been added 
     public void extraSaveSuccessful()
     {
         lblSaveExtra.setVisible(false);
@@ -383,18 +392,16 @@ public class ExtraPaneDocumentController implements Initializable
 
     }
     
-    
+    //Overall method to save the extra clinics added 
     public void saveExtra()
     {
         LocalDate selected = extraListDate.getValue();
         String day = selected.getDayOfWeek().name();
         String date = codeBank.dateToString(selected);
         
-        System.out.println(day);
-       
         if(day.equals("MONDAY") || day.equals("TUESDAY") || day.equals("WEDNESDAY") || day.equals("THURSDAY") || day.equals("FRIDAY"))
         {
-            //Creating a new blood clinic
+            //Weekday, initally no blood clinic and then one is createed 
             if(initiallyBlood == false && chbBlood.isSelected())
             {
                 try
@@ -421,10 +428,11 @@ public class ExtraPaneDocumentController implements Initializable
                 }
                 catch(SQLException e)
                 {
-                    Logger.getLogger(SettingScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
+                    ///Logger.getLogger(SettingScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
                 }
             }
             
+            //Weekday, initally a blood clinic and now there isnt 
             if(initiallyBlood == true && !chbBlood.isSelected())
             {
                 try
@@ -433,17 +441,18 @@ public class ExtraPaneDocumentController implements Initializable
                     c.setAutoCommit(true);
                     Statement stmt = c.createStatement();
                     
-                    
+                    //If blood is a date template, delete it 
                     String sql = "DELETE FROM template WHERE Day ='" + date + "'";
                     int result = stmt.executeUpdate(sql);
                                         
-                    //if day is a template day 
+                    //if day is a template day save that it does not follow template  
                     if(templateDay(day))
                     {
                         sql = "INSERT INTO extra VALUES ('" + date + "', '1', '0', '1', '1', '1')";
                         stmt.executeUpdate(sql);
                     }
                     
+                    //Delete any appointments that were booked 
                     sql = "DELETE FROM blood WHERE Date ='" + date + "'";
                     stmt.executeUpdate(sql);
                     
@@ -471,6 +480,7 @@ public class ExtraPaneDocumentController implements Initializable
             }
             else
             {
+                //Adding to an array all of the appointments that need to be deleted because that clinic has been removed 
                 toDelete.add("DELETE FROM diary WHERE Date ='" + date + "'");
             }
                         
@@ -512,19 +522,14 @@ public class ExtraPaneDocumentController implements Initializable
                 toDelete.add("DELETE FROM nonbed WHERE Date ='" + date + "'");
 
             }
-            
-            System.out.println(surgery);
-            System.out.println(blood);
-            System.out.println(preop);
-            System.out.println(oncology);
-            System.out.println(nonbed);
-            
+                        
             try
             {
                 Connection c = DatabaseConnector.activateConnection();
                 c.setAutoCommit(true);
                 Statement stmt = c.createStatement();
 
+                //If all clinics are cancelled, delete that date from extra 
                 if(surgery==0 & blood==0 & preop==0 & oncology==0 & nonbed==0)
                 {
                     String sql = "DELETE FROM extra WHERE Date='" + date + "'";
@@ -532,6 +537,7 @@ public class ExtraPaneDocumentController implements Initializable
                 }
                 else
                 {
+                    //Save into extra the clinics that are taking place 
                     String sql = "REPLACE INTO extra (Date, Surgery, Blood, Preop, Oncology, Nonbed) VALUES ('" 
                                                                                         + date + "','"
                                                                                         + surgery + "','"
@@ -543,7 +549,7 @@ public class ExtraPaneDocumentController implements Initializable
                     stmt.executeUpdate(sql);
                 }
                 
-                
+                //Delete those that need to be 
                 for(int i=0; i<toDelete.size(); i++)
                 {
                     stmt.executeUpdate(toDelete.get(i));
@@ -554,13 +560,14 @@ public class ExtraPaneDocumentController implements Initializable
             }
             catch(SQLException e)
             {
-                Logger.getLogger(SettingScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
+               //Logger.getLogger(SettingScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
             }
             
         }
         
     }
     
+    //Tells you if a day is an active template 
     public boolean templateDay(String day)
     {
         boolean answer = false;
@@ -585,7 +592,7 @@ public class ExtraPaneDocumentController implements Initializable
         } 
         catch (SQLException e) 
         {
-            Logger.getLogger(SettingScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
+            //Logger.getLogger(SettingScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
         }
         return answer;
     }
@@ -593,7 +600,7 @@ public class ExtraPaneDocumentController implements Initializable
     
     
     
-    
+    //Method to add in a new blood clinic 
     public void addBlood()
     {
         LocalDate selected = extraListDate.getValue();
@@ -624,13 +631,13 @@ public class ExtraPaneDocumentController implements Initializable
         } 
         catch (SQLException e) 
         {
-            Logger.getLogger(SettingScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
+            //Logger.getLogger(SettingScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
         }
     }
     
     
     
-    
+    //Method to delete a blood clinic when it has been unticked 
     public void deleteBlood()
     {
         LocalDate selected = extraListDate.getValue();
@@ -651,7 +658,7 @@ public class ExtraPaneDocumentController implements Initializable
         } 
         catch (SQLException e) 
         {
-            Logger.getLogger(SettingScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
+            //Logger.getLogger(SettingScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
         }
     }
     
@@ -692,6 +699,7 @@ public class ExtraPaneDocumentController implements Initializable
         txtExtraBreakEnd.setEditable(true);
     }
     
+    //If there is a blood clinic, show the textfields about blood clinic times 
     public void showBlood()
     {
         if(chbBlood.isSelected())

@@ -30,6 +30,9 @@ import javafx.stage.Stage;
 /**
  *
  * @author amydo
+ * 
+ * Controller for the regular attenders pop-up that is used to add a new person  
+ * 
  */
 public class RegularDialogController implements Initializable
 {
@@ -57,6 +60,7 @@ public class RegularDialogController implements Initializable
         rdbWhite.setToggleGroup(group);
         rdbWhite.setSelected(true);
         
+        //Add a listener to check that date of birth is a valid date 
         txtDOB.focusedProperty().addListener((ObservableValue<? extends Boolean> ov, Boolean oldV, Boolean newV) -> {
             if (!newV) {
                 checkingDate(txtDOB.getText());
@@ -64,6 +68,7 @@ public class RegularDialogController implements Initializable
         });
     }
     
+    //Method to check that date of birth is valid - if not, error 
     public void checkingDate(String value)
     {
         if(!codeBank.checkDate(value))
@@ -72,6 +77,7 @@ public class RegularDialogController implements Initializable
         }
     }
     
+    //Saving a regular attenders details 
     @FXML
     public void Save()
     {
@@ -90,6 +96,7 @@ public class RegularDialogController implements Initializable
         {
             oncology = 1;
         }
+        //Checking that all needed data is there 
         if(!txtNHS.getText().equals("") && !txtFirstName.getText().equals("") && !txtLastName.getText().equals("") && !txtDOB.getText().equals("")) 
         {
             try 
@@ -117,7 +124,10 @@ public class RegularDialogController implements Initializable
 
             }
 
+            //Refershes the regular attenders screen so that the new person shows up in the list
             TopMenuDocumentController.RSDC.showInformation();
+            
+            //Closes the pop-up when it has been saved 
             //https://stackoverflow.com/questions/13567019/close-fxml-window-by-code-javafx accessed 21/2
             Stage stage = (Stage) btnSave.getScene().getWindow();
             stage.close();

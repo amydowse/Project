@@ -31,6 +31,10 @@ import javafx.util.Duration;
 /**
  *
  * @author amydo
+ * 
+ * Controller for the template section of the settings
+ * This is where you set up a recurring template for blood clinics that is valid from that day forward 
+ * 
  */
 public class TemplatePaneDocumentController implements Initializable
 {
@@ -75,7 +79,7 @@ public class TemplatePaneDocumentController implements Initializable
     }
     
     
-    
+    //Showing the currenlty active template - showing for all the days that are active (have not finish date) 
     public void showTemplate()
     {
         try
@@ -113,7 +117,6 @@ public class TemplatePaneDocumentController implements Initializable
                 }
             }
                 
-            
         }
         catch (SQLException e)
         {
@@ -121,6 +124,7 @@ public class TemplatePaneDocumentController implements Initializable
         }
     }
     
+    //Getting the box ticked that corresponds to the day 
     public void tick(String day)
     {
         switch(day)
@@ -138,6 +142,7 @@ public class TemplatePaneDocumentController implements Initializable
         }
     }
     
+    //Saving the new template - check length is a number, times are valid and temporal order is ok 
     @FXML
     public void saveTemplateCheck()
     {
@@ -147,6 +152,7 @@ public class TemplatePaneDocumentController implements Initializable
             {   
                 if(allOkTemp())
                 {
+                    //If save is successful show a message for a few seconds that then disspears 
                     saveTemplate();
                     lblSaveTemplate.setVisible(true);
                     Timeline timeline = new Timeline(new KeyFrame(
@@ -176,7 +182,8 @@ public class TemplatePaneDocumentController implements Initializable
         lblSaveTemplate.setVisible(false);
     }
     
-     public boolean allOkTemp()
+    //Checks the temporal order of the times of a new template 
+    public boolean allOkTemp()
     {
         LocalTime start = LocalTime.parse(txtTempStart.getText());
         LocalTime end = LocalTime.parse(txtTempEnd.getText());
@@ -197,7 +204,7 @@ public class TemplatePaneDocumentController implements Initializable
         return false;
     }
     
-    
+    //Saving the template for each day that is selected 
     public void saveTemplate()
     {
         setToNull();
@@ -228,6 +235,7 @@ public class TemplatePaneDocumentController implements Initializable
         }
     }
     
+    //Saving a specific days template 
     public void save(String day)
     {
         try 
@@ -255,10 +263,11 @@ public class TemplatePaneDocumentController implements Initializable
         } 
         catch (SQLException e) 
         {
-            Logger.getLogger(SettingScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
+            //Logger.getLogger(SettingScreenDocumentController.class.getName()).log(Level.SEVERE, null, e);
         }
     }
     
+    //Setting a finish date to the currently active template 
     public void setToNull()
     {
         try 

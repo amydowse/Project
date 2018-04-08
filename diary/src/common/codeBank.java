@@ -31,6 +31,8 @@ import javafx.stage.Stage;
  *
  * @author amydo
  * 
+ * This contains sections of code that is used a lot in the system so are written here once to save repetition 
+ * 
  * https://stackoverflow.com/questions/42569204/is-it-possible-to-reload-the-same-fxml-controller-instance
  */
 public class codeBank 
@@ -72,7 +74,7 @@ public class codeBank
     }
     
     
-        //Showing the correct symbol in the notes column 
+    //Showing the correct symbol in the notes column 
     public static void showNotes(TextField txt, int notes)
     {
         if(notes == 0)
@@ -109,12 +111,12 @@ public class codeBank
         }
     }
     
+    //chaning the + in the extra info of the diary to show when information is added 
     public static void extraInfo(TextField txt, String info)
     {        
         if(info.equals("") || info.equals(null))
         {
             txt.setText("");
-            //txt.setStyle("font-weight: regular");
         }
         else
         {
@@ -125,7 +127,7 @@ public class codeBank
     
     
     
-    
+    //Fills the drop down menu with the staff working on that day 
     public static ObservableList<String> fillStaffDropDowns() 
     {
         ObservableList<String> workingStaff = FXCollections.observableArrayList();
@@ -163,7 +165,7 @@ public class codeBank
     }
     
     
-    
+    //Checks if an input is a valid date
     public static boolean checkDate(String input)
     {
         if(input.equals(""))
@@ -192,6 +194,7 @@ public class codeBank
    
     }
     
+    //Checks that an input is a number
     public static boolean checkInteger(String input)
     {
         try 
@@ -209,6 +212,7 @@ public class codeBank
         } 
     }
     
+    //Checks that an input is either an integer or ??/12 or ??/52 for ages 
     public static boolean checkAge(String input)
     {
         try 
@@ -238,6 +242,7 @@ public class codeBank
         } 
     }
     
+    //Checks that an input is a valid time 
     public static boolean checkTime(String input)
     {
         try
@@ -258,7 +263,7 @@ public class codeBank
     
     
     
-    
+    //Error shown when an age is not in format expected
     public static void ageError()
     {
         System.out.println("Alert");
@@ -270,6 +275,7 @@ public class codeBank
         alert.showAndWait();
     }
     
+    //Error shown when an input is not a number when it should be 
     public static void integerError()
     {
         System.out.println("Alert");
@@ -281,6 +287,7 @@ public class codeBank
         alert.showAndWait();
     }
     
+    //Error shown when an input is not a valid date 
     public static void dateError()
     {
         System.out.println("Alert");
@@ -292,6 +299,7 @@ public class codeBank
         alert.showAndWait();
     }
     
+    //Error shown when an input is not a valid time 
     public static void timeError()
     {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -301,6 +309,7 @@ public class codeBank
         alert.showAndWait();
     }
     
+    //Error shown when the order of times is not correct - used when setting up blood clinic 
     public static void timeOrderError()
     {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -310,6 +319,7 @@ public class codeBank
         alert.showAndWait();
     }
     
+    //Error shown when there is missing data when booking an appointment 
     public static void missingError()
     {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -319,6 +329,7 @@ public class codeBank
         alert.showAndWait();
     }
     
+    //Error shown when you are setting up a proceudre that is non-bed and it is not 1-1 relationship 
     public static void nonBedError()
     {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -328,6 +339,7 @@ public class codeBank
         alert.showAndWait();
     }
     
+    //Error shown when you are setting up a proceudre that is bed and it is not 1-x or x-1 relationship 
     public static void bedError()
     {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -336,9 +348,6 @@ public class codeBank
         alert.setContentText("Please try again");
         alert.showAndWait();
     }
-    
-    
-   
     
     
 }

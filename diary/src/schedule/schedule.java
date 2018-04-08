@@ -10,6 +10,10 @@ import java.time.LocalTime;
 /**
  *
  * @author amydo
+ * 
+ * Object that represents appointments that have already been made 
+ * Different appointment types make use of different attributes 
+ * 
  */
 public class schedule 
 {

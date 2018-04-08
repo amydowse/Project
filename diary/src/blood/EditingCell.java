@@ -24,6 +24,10 @@ import javafx.scene.input.KeyEvent;
 /**
  *
  * @author amydo
+ * 
+ * Code taken from a web site - see above
+ * Comments are my own to show understanding of the code used 
+ * 
  */
 class EditingCell extends TableCell<blood, String> 
 {

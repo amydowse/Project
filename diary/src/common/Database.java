@@ -8,6 +8,9 @@ package common;
 /**
  *
  * @author amydo
+ * 
+ * The connection to the database
+ * 
  */
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -44,6 +44,9 @@ import javafx.stage.Stage;
 /**
  *
  * @author amydo
+ * 
+ * Controller for the procedure screen - shows details of all of the procedures that the ward does 
+ * 
  */
 public class ProcedureScreenDocumentController implements Initializable
 {
@@ -86,6 +89,7 @@ public class ProcedureScreenDocumentController implements Initializable
         cbLocation.setValue("");
         cbLength.setValue("");
         
+        //Adding listener to duration to check that it is a number when you click off of it 
         txtDuration.focusedProperty().addListener((ObservableValue<? extends Boolean> ov, Boolean oldV, Boolean newV) -> {
             if (!newV) 
             { 
@@ -93,6 +97,7 @@ public class ProcedureScreenDocumentController implements Initializable
             }
             });
         
+        //Adding listener to the number of nurses to check that it is a number when you click off of it 
         txtNurses.focusedProperty().addListener((ObservableValue<? extends Boolean> ov, Boolean oldV, Boolean newV) -> {
             if (!newV) 
             { 
@@ -100,6 +105,7 @@ public class ProcedureScreenDocumentController implements Initializable
             }
             });
         
+        //Adding listener to the number of patients to check that it is a number when you click off of it 
         txtPatients.focusedProperty().addListener((ObservableValue<? extends Boolean> ov, Boolean oldV, Boolean newV) -> {
             if (!newV) 
             { 
@@ -115,6 +121,7 @@ public class ProcedureScreenDocumentController implements Initializable
             ResultSet rs ;
             Statement stmt = c.createStatement();    
             
+            //Getting all of the stored procedures from the database 
             String sql = "SELECT * FROM procedures";
                        
             rs = stmt.executeQuery(sql); 
@@ -131,58 +138,59 @@ public class ProcedureScreenDocumentController implements Initializable
                 allProcedures.add(x);
                 
             }
-             
-                Collections.sort(allProcedures);
-                tblColName.setCellValueFactory(new PropertyValueFactory("Name"));
+            //Sorting procedures into alphabetical order 
+            Collections.sort(allProcedures);
+            
+            //Displaying procedures in a list 
+            tblColName.setCellValueFactory(new PropertyValueFactory("Name"));
+            tblProcedures.getItems().addAll(allProcedures);
 
-                tblProcedures.getItems().addAll(allProcedures);
-
-                tblProcedures.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> 
+            //Adding method so that when you select a proceudre from the list, the information shows in the text boxes
+            tblProcedures.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection)
+                    -> {
+                if (newSelection != null) 
                 {
-                    if(newSelection != null)
-                    {
-                        txtName.setText(((procedure)newSelection).getName());
-                        txtDuration.setText(""+((procedure)newSelection).getDuration());
-                        
-                        int duration = ((procedure)newSelection).getDuration();
-                        if(duration < 60)
-                        {
-                            txtDuration.setText(""+duration);
-                            cbLength.setValue("minutes");
-                        }
-                        else
-                        {
-                            txtDuration.setText(""+(duration/60));
-                            cbLength.setValue("hour(s)");
-                        }
-                        
-                        txtNurses.setText(""+((procedure)newSelection).getNurses());
-                        txtPatients.setText(""+((procedure)newSelection).getPatients());
-                        cbLocation.setValue(((procedure)newSelection).getLocation());
-                        
-                        if(txtName.getText().equals("Preop") || txtName.getText().equals("Blood") || txtName.getText().equals("Oncology"))
-                        {
-                            btnDelete.setDisable(true);
-                        }
-                        else
-                        {
-                            btnDelete.setDisable(false);
-                        }
-                    }
-                });
+                    txtName.setText(((procedure) newSelection).getName());
+                    txtDuration.setText("" + ((procedure) newSelection).getDuration());
 
-            
-            
-            c.close();   
-        }
-        catch (SQLException e)
+                    int duration = ((procedure) newSelection).getDuration();
+                    if (duration < 60) 
+                    {
+                        txtDuration.setText("" + duration);
+                        cbLength.setValue("minutes");
+                    } 
+                    else 
+                    {
+                        txtDuration.setText("" + (duration / 60));
+                        cbLength.setValue("hour(s)");
+                    }
+
+                    txtNurses.setText("" + ((procedure) newSelection).getNurses());
+                    txtPatients.setText("" + ((procedure) newSelection).getPatients());
+                    cbLocation.setValue(((procedure) newSelection).getLocation());
+
+                    //Cannot delete core procedures - these are used in scheduling so cannot be removed 
+                    if (txtName.getText().equals("Preop") || txtName.getText().equals("Blood") || txtName.getText().equals("Oncology")) 
+                    {
+                        btnDelete.setDisable(true);
+                    } 
+                    else 
+                    {
+                        btnDelete.setDisable(false);
+                    }
+                }
+            });
+
+            c.close();
+        } 
+        catch (SQLException e) 
         {
-            
+
         }
-           
+
     }
     
-    
+    //Method to check that an input is a number 
     public void checkingInteger(TextField selected)
     {
         String value = selected.getText();
@@ -195,7 +203,7 @@ public class ProcedureScreenDocumentController implements Initializable
     
     
     
-    
+    //Asks for confirmation before deleting a selected procedure - textboxes cleared if successful 
     @FXML
     public void Delete(ActionEvent event) throws IOException
     {
@@ -233,12 +241,14 @@ public class ProcedureScreenDocumentController implements Initializable
         }
     }
  
+    //This saves a procedure when you have been editing it in the textfields 
     @FXML
     public void Save() 
     {
         //checks that all of the info has been entered
         if (!txtName.getText().equals("") && !txtDuration.equals("") && !txtNurses.getText().equals("") && !txtPatients.getText().equals("") && !cbLocation.getValue().equals("")) 
         {
+            //Checks the ratio of nurses to patients 
             if(cbLocation.getValue().equals("Non-bed"))
             {
                 if(txtNurses.getText().equals("1") && txtPatients.getText().equals("1") )
@@ -252,6 +262,7 @@ public class ProcedureScreenDocumentController implements Initializable
             }
             else
             {
+                //checks the ratio of nurses to patients 
                 if(txtNurses.getText().equals("1") || txtPatients.getText().equals("1") )
                 {
                     saveProcess();
@@ -265,7 +276,6 @@ public class ProcedureScreenDocumentController implements Initializable
         }
         else if (!txtName.getText().equals("") || !txtDuration.equals("") || !txtNurses.getText().equals("") || !txtPatients.getText().equals("") || !cbLocation.getValue().equals(""))
         {
-            System.out.println("Procedure");
             codeBank.missingError();
         }
                 
@@ -287,6 +297,7 @@ public class ProcedureScreenDocumentController implements Initializable
             c.setAutoCommit(true);
             Statement stmt = c.createStatement();
 
+            //Update as you are editing an existing procedure 
             String sql = "UPDATE procedures SET     Duration = '" + duration
                     + "', NumberOfNurses = '" + txtNurses.getText()
                     + "', NumberOfPatients = '" + txtPatients.getText()
@@ -295,6 +306,7 @@ public class ProcedureScreenDocumentController implements Initializable
             stmt.executeUpdate(sql);
             c.close();
 
+            //'refresh' after an update 
             tblProcedures.getItems().clear();
             showInformation();
         } 
@@ -304,6 +316,7 @@ public class ProcedureScreenDocumentController implements Initializable
         }
     }
     
+    //Showing the pop-up to add a new procedure 
     private ProcedureDialogController DC;
     private Pane x;
     
@@ -318,7 +331,7 @@ public class ProcedureScreenDocumentController implements Initializable
             
             FXMLLoader Y = new FXMLLoader(getClass().getResource("/procedure/ProcedureDialog.fxml"));   
             
-            x = Y.load(); //ISSUE
+            x = Y.load(); 
             DC = Y.getController();
             
             final Scene scene = new Scene(x, 600, 520);
@@ -329,14 +342,14 @@ public class ProcedureScreenDocumentController implements Initializable
         } 
         catch (IOException ex) 
         {
-            Logger.getLogger(ProcedureScreenDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("ISSUE IN MAIN");
+            //Logger.getLogger(ProcedureScreenDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
      
     }
 
     
     
+    //Showing the help file when you click on the ?
     private HelpDialogController HDC;
     private Pane Hx;
     
@@ -365,7 +378,6 @@ public class ProcedureScreenDocumentController implements Initializable
         catch (IOException ex) 
         {
             //Logger.getLogger(ProcedureScreenDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("ISSUE IN MAIN");
         }
     }
     

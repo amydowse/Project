@@ -8,6 +8,9 @@ package staff;
 /**
  *
  * @author amydo
+ * 
+ * Object representing a staff member 
+ * 
  */
 public class staff 
 {

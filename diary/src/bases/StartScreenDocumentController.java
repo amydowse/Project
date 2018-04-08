@@ -26,6 +26,11 @@ import javafx.scene.layout.Pane;
 /**
  *
  * @author amydo
+ * 
+ * The initial screen you start with
+ * The one with 7 buttons and the logo
+ * Contains the method calls for each button you press
+ * 
  */
 public class StartScreenDocumentController implements Initializable
 {
@@ -56,7 +61,6 @@ public class StartScreenDocumentController implements Initializable
         imgLogo.setImage(image1);
     }
     
-    //OK
     @FXML
     public void showDiaryMain() throws IOException
     {
@@ -65,9 +69,6 @@ public class StartScreenDocumentController implements Initializable
     }
 
     
-    
-    
-    
     @FXML
     public void load() throws IOException
     {
@@ -75,7 +76,6 @@ public class StartScreenDocumentController implements Initializable
         Scene scene = new Scene(root);
         bases.Start.stage.setScene(scene);        
     }
-    
     
     
     public void showStaffMain() throws IOException

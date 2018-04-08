@@ -8,7 +8,9 @@ package common;
 /**
  *
  * @author amydo
- * tutorial from : https://www.tutorialspoint.com/jdbc/jdbc-db-connections.htm
+ * Tutorial from : https://www.tutorialspoint.com/jdbc/jdbc-db-connections.htm
+ * 
+ * Connection to the database
  */
  
 import java.sql.* ;  // for standard JDBC programs
@@ -26,16 +28,11 @@ public class DatabaseConnector
             String url = "jdbc:sqlite:diaryDatabase.db";
             // create a connection to the database
             c = DriverManager.getConnection(url);
-            
-           // System.out.println("Connection to SQLite has been established.");
-           //Class.forName("org.sqlite.JDBC");
-          // c = DriverManager.getConnection("jdbc:sqlite:diaryDatabase.db");
-          
+           
            return c ; 
         }    
         catch ( Exception e ) 
         {
-           System.err.println( e.getClass().getName() + ": " + e.getMessage() );
            return null ;     
         }
     } 

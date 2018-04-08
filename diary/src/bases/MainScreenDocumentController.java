@@ -45,6 +45,10 @@ import procedure.ProcedureScreenDocumentController;
 /**
  *
  * @author amydo
+ * 
+ * This is the controller for the top section and right buttons for the diary
+ * It deals with showing the correct content and updating the buttons
+ * 
  */
 public class MainScreenDocumentController implements Initializable
 {
@@ -79,12 +83,12 @@ public class MainScreenDocumentController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
+        //Allows you to change button colour - greater control 
         btnDiary.setOpacity(1);
         btnBlood.setOpacity(1);
         btnPreOp.setOpacity(1);
         btnOncology.setOpacity(1);
         btnNonBed.setOpacity(1);
-        
         
         //Image from http://www.stickpng.com/img/icons-logos-emojis/home-icons/chimney-home-icon
         Image home = new Image(getClass().getResourceAsStream("/bases/home.png"));
@@ -136,7 +140,6 @@ public class MainScreenDocumentController implements Initializable
             OncologyPane.setAccessibleText("Oncology");
             OSDC = OSL.getController();
             
-            
             codeBank.setCurrentDate(LocalDate.now());
             
             updateDate();
@@ -153,7 +156,7 @@ public class MainScreenDocumentController implements Initializable
         
         
         //https://examples.javacodegeeks.com/desktop-java/javafx/datepicker-javafx/javafx-datepicker-example/#control_event accessed 24/2/18
-        // Create a day cell factory
+        // Create a day cell factory - block out the weekends
         Callback<DatePicker, DateCell> dayCellFactory = new Callback<DatePicker, DateCell>()
         {
             public DateCell call(final DatePicker datePicker)
@@ -186,8 +189,8 @@ public class MainScreenDocumentController implements Initializable
 
     }
     
-    //if there = true
-    //if not there = false
+    //if there = true, if not there = false
+    //Make it so that extra weekend dates are able to be selected on the date pickers
     public boolean Extra(LocalDate date)
     {
         try
@@ -372,9 +375,6 @@ public class MainScreenDocumentController implements Initializable
             else
             {
                 noBloodClinic();
-//                btnBlood.setDisable(true);
-//                btnBlood.setStyle("-fx-background-color: #c7c7c7");
-//                btnBlood.setText("Blood Clinic\n\nNO CLINIC");
             }
             
             c.close();
@@ -470,7 +470,7 @@ public class MainScreenDocumentController implements Initializable
         } 
     }
     
-    
+    //Controlling which buttons are clickable depending on what is allowed for that day 
     public void inUse()
     {
         LocalDate selected = codeBank.getCurrentDate();
@@ -575,10 +575,6 @@ public class MainScreenDocumentController implements Initializable
     
     
     
-    
-    
-    
-    
     public void updateDate()
     {
         DateTimeFormatter Stringformatter = DateTimeFormatter.ofPattern("EEEE dd MMMM yyyy");
@@ -668,7 +664,7 @@ public class MainScreenDocumentController implements Initializable
     
     
    
-    
+    //Deciding on which screen to show 
     public void show()
     {
         switch(ContentPane.getChildren().get(0).getAccessibleText())
@@ -691,6 +687,7 @@ public class MainScreenDocumentController implements Initializable
         }
     }
     
+    //Deciding and then saving the screen that is currently on show 
     public boolean save()
     {
         switch(ContentPane.getChildren().get(0).getAccessibleText())

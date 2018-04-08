@@ -46,10 +46,12 @@ import javafx.stage.Stage;
 /**
  *
  * @author amydo
+ * 
+ * Controller for the pre-op screen 
+ * 
  */
 public class PreopScreenDocumentController implements Initializable 
 {
-
     //The textfileds from the FXML file
     
     @FXML TextField txtAM = new TextField();
@@ -220,6 +222,7 @@ public class PreopScreenDocumentController implements Initializable
         loadInformation();
         delete();
       
+        //Adding listeners to the age boxes to check that age is a number 
         for(int i=0; i<11; i++)
         {
             TextField selected = ageList.get(i);
@@ -232,6 +235,7 @@ public class PreopScreenDocumentController implements Initializable
         }
     
           
+        //Adding listeners to the unscheudled pre-op rows to check that time is valid 
         txtTimeU1.focusedProperty().addListener((ObservableValue<? extends Boolean> ov, Boolean oldV, Boolean newV) -> {
             if (!newV) 
             { 
@@ -256,6 +260,7 @@ public class PreopScreenDocumentController implements Initializable
     
     }
     
+    //Method to check that time is valid - if not an error 
     public void checkingTime(TextField selected)
     {
         String value = selected.getText();
@@ -266,6 +271,7 @@ public class PreopScreenDocumentController implements Initializable
         }
     }
     
+    //Method to check that an age is a number - if not an error 
     public void checkingAge(TextField selected)
     {
         String value = selected.getText();
@@ -335,6 +341,7 @@ public class PreopScreenDocumentController implements Initializable
         }  
     }
     
+    //Showing a single row 
     public void showSingle(preop singleBooking, int i)
     {
         timeList.get(i).setText((singleBooking.getTime()).toString());
@@ -382,7 +389,7 @@ public class PreopScreenDocumentController implements Initializable
                 case "15:30":
                     showSingle(singleBooking, 7);
                     break;
-                default:
+                default:    //showing the non-scheduled appointments 
                     if(count == 0)
                     {
                         showSingle(singleBooking, 8);
@@ -415,11 +422,9 @@ public class PreopScreenDocumentController implements Initializable
             codeBank.showNotes(text2, notesArray[count2]);
             count2++;
         }
-        
-        
-
     }
     
+    //Clearing a signle row 
     public void clearSingle(int i)
     {
         nameList.get(i).setText("");
@@ -532,7 +537,7 @@ public class PreopScreenDocumentController implements Initializable
     
    
     
-    
+    //Checks before saving to ensure that all the data is entered 
     public boolean beforeSave()
     {
         for(int i =0; i<11; i++)
@@ -565,7 +570,7 @@ public class PreopScreenDocumentController implements Initializable
     }
     
     
-    //Saving the lines and the staff 
+    //Saving all the inforation 
     public void save(LocalDate today)
     {
         try
@@ -623,7 +628,7 @@ public class PreopScreenDocumentController implements Initializable
     
     
     
-    //Saving the selected staff
+    //Saving the selected staff - distinguishing between AM and PM
     public void saveStaff(LocalDate today)
     {
         ArrayList<String> queries = new ArrayList<String>();
@@ -687,7 +692,7 @@ public class PreopScreenDocumentController implements Initializable
         
     
     
-    //Show the specific staff that are working - selecting them from the list 
+    //Show the specific staff that are working - selecting them from the list - distinguishing between AM and PM
     public void showStaff(LocalDate SearchDate)
     {
         try
@@ -782,6 +787,9 @@ public class PreopScreenDocumentController implements Initializable
 
     }
     
+    
+    
+    //Showing the correct help file 
     private HelpDialogController HDC;
     private Pane Hx;
     
@@ -809,8 +817,6 @@ public class PreopScreenDocumentController implements Initializable
         } 
         catch (IOException ex) 
         {
-            //Logger.getLogger(ProcedureScreenDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("ISSUE IN MAIN");
         }
     }
     

@@ -60,6 +60,9 @@ import javafx.util.Callback;
 /**
  *
  * @author amydo
+ * 
+ * Controller for the blood clinic screen 
+ * 
  */
 public class BloodScreenDocumentController implements Initializable
 {
@@ -94,7 +97,7 @@ public class BloodScreenDocumentController implements Initializable
     }
     
     
-    
+    //This method generates all of the objects for all the possible blood clinic times
     public void Go(String startTimeS, String endTimeS, int duration, String breakStartS, String breakEndS)
     {        
         LocalTime startTime = LocalTime.parse(startTimeS, DateTimeFormatter.ISO_LOCAL_TIME);
@@ -127,11 +130,7 @@ public class BloodScreenDocumentController implements Initializable
     
     
     
-    
-    
-    
-    
-    
+    //Show all of the information for a blood clinic - staff, free appointments and booked appointments 
     public void showInformation()
     {
         cbStaff.getItems().clear();
@@ -162,7 +161,6 @@ public class BloodScreenDocumentController implements Initializable
         {
             specificBookings.clear();
         }
-        
         
         
         tblClinic.setEditable(true);
@@ -202,9 +200,7 @@ public class BloodScreenDocumentController implements Initializable
 
                 if(rs.isBeforeFirst()) //found it by the date
                 {
-                    System.out.println("Found by date");
                     Go(rs.getString("Start"), rs.getString("End"), rs.getInt("Duration"), rs.getString("BreakStart"), rs.getString("BreakEnd"));
-                    System.out.println("Found by date - back");
                 }
                 else
                 {
@@ -313,6 +309,8 @@ public class BloodScreenDocumentController implements Initializable
             allBookings = FXCollections.observableArrayList(allTimes);
     
            
+            //Getting each cell of the table to be editable and allow you to tab through them
+            //Updates the observable array when you make a change 
             tblClinic.setEditable(true);
 		Callback<TableColumn, TableCell> cellFactory = new Callback<TableColumn, TableCell>() {
 			public TableCell call(TableColumn p) {
@@ -320,7 +318,6 @@ public class BloodScreenDocumentController implements Initializable
 			}
 		};   
           
-                    
             //https://docs.oracle.com/javafx/2/ui_controls/table-view.htm accessed 10/2/18
             tblColName.setCellValueFactory(new PropertyValueFactory<blood, String>("Name"));
             tblColName.setCellFactory(cellFactory);
@@ -328,17 +325,11 @@ public class BloodScreenDocumentController implements Initializable
                     new EventHandler<CellEditEvent<blood, String>>() {
                 @Override
                 public void handle(CellEditEvent<blood, String> t) {
-                    System.out.println("HANDLED");
-                    System.out.println(t.getTablePosition().getRow());
-                    System.out.println(t.getNewValue());
-                    
                     ((blood) t.getTableView().getItems().get(t.getTablePosition().getRow())).setName(t.getNewValue());
                     int row = t.getTablePosition().getRow();
-                    System.out.println(allBookings.get(row).getName());
                 }
             }
             );
-            
             
             
             tblColDOB.setCellValueFactory(new PropertyValueFactory<blood, String>("DateOfBirth"));
@@ -357,7 +348,6 @@ public class BloodScreenDocumentController implements Initializable
                         }
                     }
             );
-            
             
             
             tblColNHS.setCellValueFactory(new PropertyValueFactory<blood, String>("NHSNumber"));
@@ -433,10 +423,7 @@ public class BloodScreenDocumentController implements Initializable
             );
             
             
-            
-            
-            
-            //-----------------------------------------------------------------------------------------
+           
            //Setting up the context menu
             ContextMenu contextMenu = new ContextMenu();
             MenuItem delete = new MenuItem("Delete");
@@ -501,7 +488,7 @@ public class BloodScreenDocumentController implements Initializable
             });
             
             
-            
+            //Changes the attendance cell when you click on the left most box 
             //https://stackoverflow.com/questions/35562037/how-to-set-click-event-for-a-cell-of-a-table-column-in-a-tableview accessed 11/2/1
             //https://stackoverflow.com/questions/27281370/javafx-tableview-format-one-cell-based-on-the-value-of-another-in-the-row accessed 10/2/18
             tblColAtt1.setCellValueFactory(new PropertyValueFactory<blood, Integer>("Att"));
@@ -510,7 +497,6 @@ public class BloodScreenDocumentController implements Initializable
                     @Override
                     protected void updateItem(Integer item, boolean empty) {
                         super.updateItem(item, empty);
-                        //setText(empty ? null : item.toString());
                     }
                 };
                 cell.setOnMouseClicked(e -> {
@@ -518,7 +504,6 @@ public class BloodScreenDocumentController implements Initializable
                         Integer userId = cell.getItem();
                         int row = cell.getIndex();
                         changeAttendance(row);
-                        //System.out.println(row + " --- " + userId);
                     }
 
                 });
@@ -553,12 +538,6 @@ public class BloodScreenDocumentController implements Initializable
                 }
             });
             
-            
-            
-            
-            
-            
-            
         tblClinic.getItems().addAll(allBookings);
             
             c.close();
@@ -568,15 +547,6 @@ public class BloodScreenDocumentController implements Initializable
                  
         }
       
-        
-        //LocalTime:        plusMinutes()       http://tutorials.jenkov.com/java-date-time/localtime.html
-        //Time range:       .compareTo()        https://docs.oracle.com/javase/8/docs/api/java/time/LocalTime.html#compareTo-java.time.LocalTime-
-        
-        //list of basicBlood that store just the times of all possible appointments
-        //replace with blood objects when there is an actual booking 
-        //if instance of basicBblood - show just time
-        //if isntace of blood - show all informaiton
-           
     }
     
     
@@ -603,13 +573,11 @@ public class BloodScreenDocumentController implements Initializable
     
     
   
-    
+    //Only saves the bookings that have a name 
     public void save()
     {
-        System.out.println("SAVE");
         for (blood appointment : allBookings)
         {
-            System.out.println(appointment.getName());
             if(!appointment.getName().equals(""))
             {
                 saveToDatabase(appointment);
@@ -622,7 +590,7 @@ public class BloodScreenDocumentController implements Initializable
         saveStaff();
     }
     
-    
+    //The actual saving to the database - already done the check for a name 
     public void saveToDatabase(blood appointment)
     {
         try
@@ -662,7 +630,7 @@ public class BloodScreenDocumentController implements Initializable
     }
     
     
-    
+    //Deeting an entry from the database 
     public void deleteFromDatabase(blood appointment)
     {
         try
@@ -670,8 +638,6 @@ public class BloodScreenDocumentController implements Initializable
             // open a connection
             Connection c = DatabaseConnector.activateConnection();
             c.setAutoCommit( true ); 
-            
-            // when creating a statement object, you MUST use a connection object to call the instance method
             Statement stmt = c.createStatement();
             
             String date = codeBank.dateToString(codeBank.getCurrentDate());
@@ -691,6 +657,7 @@ public class BloodScreenDocumentController implements Initializable
     }
     
     
+    //Saving the selected spefici memeber of staff 
     public void saveStaff()
     {
         try
@@ -736,7 +703,7 @@ public class BloodScreenDocumentController implements Initializable
     }
     
         
-        
+    //Populating the database with members of staff who are working on that day and who have the blood skill     
     public void showStaff(LocalDate SearchDate)
     {
         try
@@ -772,6 +739,9 @@ public class BloodScreenDocumentController implements Initializable
         } 
     }
     
+    
+    
+    //The help button 
     private HelpDialogController DC;
     private Pane x;
     
@@ -786,7 +756,7 @@ public class BloodScreenDocumentController implements Initializable
             
             FXMLLoader DL = new FXMLLoader(getClass().getResource("/common/HelpDialog.fxml"));   
             
-            x = DL.load(); //ISSUE
+            x = DL.load(); 
             DC = DL.getController();
             
             DC.show("Blood");
@@ -799,12 +769,9 @@ public class BloodScreenDocumentController implements Initializable
         } 
         catch (IOException ex) 
         {
-            //Logger.getLogger(ProcedureScreenDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("ISSUE IN MAIN");
+            
         }
     }
-    
-    
     
     
     

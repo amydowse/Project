@@ -8,6 +8,9 @@ package procedure;
 /**
  *
  * @author amydo
+ * 
+ * Object that represents a procedure object 
+ * 
  */
 public class procedure implements Comparable<procedure>
 {
@@ -80,6 +83,7 @@ public class procedure implements Comparable<procedure>
         this.location = location;
     }
 
+    //Allows to put procedures objects into alphabetical order 
     @Override
     public int compareTo(procedure o) 
     {

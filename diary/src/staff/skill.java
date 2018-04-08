@@ -8,6 +8,9 @@ package staff;
 /**
  *
  * @author amydo
+ * 
+ * Object representing a staff members skill - the name of the skill and if they have it or not 
+ * 
  */
 public class skill implements Comparable<skill>
 {

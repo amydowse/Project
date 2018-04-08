@@ -40,6 +40,9 @@ import javafx.stage.Stage;
 /**
  *
  * @author amydo
+ * 
+ * Controller for the search screen - searching for a patient by name to view their appointments 
+ * 
  */
 public class SearchScreenDocumentController implements Initializable
 {
@@ -71,6 +74,7 @@ public class SearchScreenDocumentController implements Initializable
         rbPast.setToggleGroup(group);
         rbBoth.setToggleGroup(group);
         
+        //Automatically have future selected 
         rbFuture.setSelected(true);
                 
         tblSearchResult.setPlaceholder(new Label("There are not results for your search criteria"));
@@ -111,6 +115,7 @@ public class SearchScreenDocumentController implements Initializable
                 
                 searchPatient x = new searchPatient(date, time, name, age, reason);
                 
+                //Depending on which option is selected, either add to results or not
                 if(rbFuture.isSelected())
                 {
                     if(date.isAfter(LocalDate.now()))
@@ -315,9 +320,6 @@ public class SearchScreenDocumentController implements Initializable
                       
             }
             
-            
-            
-            
         }
         catch (SQLException e)
         {
@@ -326,7 +328,7 @@ public class SearchScreenDocumentController implements Initializable
         display();
     }
     
-    
+    //Show the results in the table 
     public void display()
     {
         tblSearchResult.getItems().addAll(searchResult);
@@ -338,6 +340,9 @@ public class SearchScreenDocumentController implements Initializable
 
     }
     
+    
+    
+    //Showing the correct help file when ? is pressed 
     private HelpDialogController HDC;
     private Pane Hx;
     
@@ -366,7 +371,6 @@ public class SearchScreenDocumentController implements Initializable
         catch (IOException ex) 
         {
             //Logger.getLogger(ProcedureScreenDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("ISSUE IN MAIN");
         }
     }
     
