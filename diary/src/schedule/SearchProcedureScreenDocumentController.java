@@ -173,36 +173,36 @@ public class SearchProcedureScreenDocumentController implements Initializable
         
         calculateDays();
         
-//        for(int i=0; i<days.size(); i++)
+        for(int i=0; i<days.size(); i++)
+        {
+            findWhatIsOn(days.get(i));
+            
+                
+//        for(int k=0; k<scheduleSTAFF.length; k++)
 //        {
-//            findWhatIsOn(days.get(i));
-//            
-//                
-////        for(int k=0; k<scheduleSTAFF.length; k++)
-////        {
-////            for(int j=0; j<145; j++)
-////            {
-////                System.out.print("(" + j  +")" + scheduleSTAFF[k][j] + "-");
-////            }
-////            System.out.println("");
-////        }
-//            
-//            System.out.println(days.get(i));
-//            suggest(cmbSearchProcedure.getValue().toString(), days.get(i));
+//            for(int j=0; j<145; j++)
+//            {
+//                System.out.print("(" + j  +")" + scheduleSTAFF[k][j] + "-");
+//            }
+//            System.out.println("");
 //        }
+            
+            System.out.println(days.get(i));
+            suggest(cmbSearchProcedure.getValue().toString(), days.get(i));
+        }
         
-        findWhatIsOn(codeBank.stringToDate("10/04/2018"));
-            for(int k=0; k<scheduleSTAFF.length; k++)
-            {
-                System.out.print(workingStaff.get(k) + " ---- ");
-                for(int j=0; j<145; j++)
-                {
-                    System.out.print("(" + j  +")" + scheduleSTAFF[k][j] + "-");
-                }
-                System.out.println("");
-            }
-        suggest(cmbSearchProcedure.getValue().toString(), codeBank.stringToDate("10/04/2018"));
-        
+//        findWhatIsOn(codeBank.stringToDate("11/04/2018"));
+//            for(int k=0; k<scheduleSTAFF.length; k++)
+//            {
+//                System.out.print(workingStaff.get(k) + " ---- ");
+//                for(int j=0; j<145; j++)
+//                {
+//                    System.out.print("(" + j  +")" + scheduleSTAFF[k][j] + "-");
+//                }
+//                System.out.println("");
+//            }
+//        suggest(cmbSearchProcedure.getValue().toString(), codeBank.stringToDate("11/04/2018"));
+//        
         
         displayResult();
     }
@@ -1455,27 +1455,29 @@ public class SearchProcedureScreenDocumentController implements Initializable
                 if(MPIndexAM != -1)
                 {
                     boolean done = false;
-                    LocalTime startTime = calculateTime(name, "AM");
-                    long minutesBetween = ChronoUnit.MINUTES.between(LocalTime.parse("07:00"), startTime);
-                    int startPlace = (int) minutesBetween / 5;
+                    LocalTime startTime;
                     
                     if(multiplePatientsAM.get(MPIndexAM).getCount() == 0)
                     {
                         for(int j=0; j<scheduleSTAFF.length; j++)
                         {
-                            if(!done)
+                            for(int k = 24; k<145; k++)
                             {
-                                int boxesBooked = timeAlreadyBooked(j, startPlace, duration);
-                                if(boxesBooked <= (duration/20)) //allow to be booked for 1/4 of the duration (5*4)
+                                if(!done)
                                 {
-                                    if(hasSkill(workingStaff.get(j)) && freeBed(startPlace, duration))  
-                                    {  
-                                        for(int i = 0; i<multiplePatientsAM.get(MPIndexAM).getMaximum(); i++)
-                                        {
-                                            results.add(new result(date, startTime));
-                                            startTime = startTime.plusMinutes(15);
+                                    int boxesBooked = timeAlreadyBooked(j, k, duration);
+                                    if(boxesBooked <= ((duration/5)/5)) //allow to be booked for 1/5 of the duration (5*4)
+                                    {
+                                        if(hasSkill(workingStaff.get(j)) && freeBed(k, duration))  
+                                        {  
+                                            startTime = LocalTime.parse("07:00").plusMinutes(k*5);
+                                            for(int i = 0; i<multiplePatientsAM.get(MPIndexAM).getMaximum(); i++)
+                                            {
+                                                results.add(new result(date, startTime));
+                                                startTime = startTime.plusMinutes(15);
+                                            }
+                                            done = true; 
                                         }
-                                        done = true; 
                                     }
                                 }
                             }
@@ -1483,6 +1485,9 @@ public class SearchProcedureScreenDocumentController implements Initializable
                     }
                     else
                     {
+                        startTime = calculateTime(name, "AM");
+                        long minutesBetween = ChronoUnit.MINUTES.between(LocalTime.parse("07:00"), startTime);
+                        int startPlace = (int) minutesBetween / 5;
                         startTime = startTime.plusMinutes(15);
                         for(int i = multiplePatientsAM.get(MPIndexAM).getCount(); i<multiplePatientsAM.get(MPIndexAM).getMaximum(); i++)
                         {
@@ -1500,27 +1505,29 @@ public class SearchProcedureScreenDocumentController implements Initializable
                 if(MPIndexPM != -1)
                 {
                     boolean done = false;
-                    LocalTime startTime = calculateTime(name, "PM");
-                    long minutesBetween = ChronoUnit.MINUTES.between(LocalTime.parse("07:00"), startTime);
-                    int startPlace = (int) minutesBetween / 5;
+                    LocalTime startTime;
                     
                     if(multiplePatientsPM.get(MPIndexPM).getCount() == 0)
                     {
                         for(int j=0; j<scheduleSTAFF.length; j++)
                         {
-                            if(!done)
+                            for(int k = 78; k<145; k++)
                             {
-                                int boxesBooked = timeAlreadyBooked(j, startPlace, duration);
-                                if(boxesBooked <= (duration/20)) //allow to be booked for 1/4 of the duration (5*4)
+                                if(!done)
                                 {
-                                    if(hasSkill(workingStaff.get(j)) && freeBed(startPlace, duration))  
-                                    {  
-                                        for(int i = 0; i<multiplePatientsPM.get(MPIndexPM).getMaximum(); i++)
-                                        {
-                                            results.add(new result(date, startTime));
-                                            startTime = startTime.plusMinutes(15);
+                                    int boxesBooked = timeAlreadyBooked(j, k, duration);
+                                    if(boxesBooked <= ((duration/5)/5)) //allow to be booked for 1/5 of the duration (5*4)
+                                    {
+                                        if(hasSkill(workingStaff.get(j)) && freeBed(k, duration))  
+                                        {  
+                                            startTime = LocalTime.parse("07:00").plusMinutes(k*5);
+                                            for(int i = 0; i<multiplePatientsPM.get(MPIndexPM).getMaximum(); i++)
+                                            {
+                                                results.add(new result(date, startTime));
+                                                startTime = startTime.plusMinutes(15);
+                                            }
+                                            done = true;
                                         }
-                                        done = true;
                                     }
                                 }
                             }
@@ -1528,6 +1535,9 @@ public class SearchProcedureScreenDocumentController implements Initializable
                     }
                     else
                     {
+                        startTime = calculateTime(name, "PM");
+                        long minutesBetween = ChronoUnit.MINUTES.between(LocalTime.parse("07:00"), startTime);
+                        int startPlace = (int) minutesBetween / 5;
                         startTime = startTime.plusMinutes(15);
                         for(int i = multiplePatientsPM.get(MPIndexPM).getCount(); i<multiplePatientsPM.get(MPIndexPM).getMaximum(); i++)
                         {
