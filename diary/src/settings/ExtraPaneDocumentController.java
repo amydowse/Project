@@ -420,7 +420,8 @@ public class ExtraPaneDocumentController implements Initializable
                     
                     stmt.executeUpdate(sql);
                     
-                    sql = "DELETE FROM extra WHERE Date='" + date + "'";
+                    sql = "REPLACE INTO extra (Date, Surgery, Blood, Preop, Oncology, Nonbed) VALUES ('" + date + "', 1, 1, 1, 1, 1)";
+                    //sql = "DELETE FROM extra WHERE Date='" + date + "'";
                     stmt.executeUpdate(sql);
                     
                     c.close();
@@ -445,10 +446,16 @@ public class ExtraPaneDocumentController implements Initializable
                     String sql = "DELETE FROM template WHERE Day ='" + date + "'";
                     int result = stmt.executeUpdate(sql);
                                         
-                    //if day is a template day save that it does not follow template  
+                    //if day is a template day say that it does not follow template  
                     if(templateDay(day))
                     {
-                        sql = "INSERT INTO extra VALUES ('" + date + "', '1', '0', '1', '1', '1')";
+                        sql = "REPLACE INTO extra (Date, Surgery, Blood, Preop, Oncology, Nonbed) VALUES ('" + date + "', '1', '0', '1', '1', '1')";
+                        stmt.executeUpdate(sql);
+                    }
+                    else
+                    {
+                        //if it not a template day, remove it from the extra list 
+                        sql = "DELETE FROM extra WHERE Date = '" + date + "'";
                         stmt.executeUpdate(sql);
                     }
                     

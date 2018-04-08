@@ -377,7 +377,7 @@ public class StaffScreenDocumentController implements Initializable
     }   
     
     
-    //When you delete a staff member you need to deal with their skills  
+    //Saving the skills for a specific staff member 
     public void saveProcedures()
     {
         try 
