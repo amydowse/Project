@@ -6,16 +6,16 @@ All of the information will then be displayed in the text boxes at the centre of
 
 You can then edit this information.
 
-Click into the area where you want to enter data, enter the data and click off of it. You can press the 'Tab' button on the keyboard  to go to each section.
+Click into the area where you want to enter data, enter the data and click off of it. You can press the 'Tab' button on the keyboard to go to each section.
 
 You must fill in all of the information.
 
 When you have finished editing them, press the 'Save' button. If the save is successful the text boxes will be cleared.
 
 
-DELETING A EXISTING PROCEDURE
+DELETING AN EXISTING PROCEDURE
 
-Select an existing procedure the list on the left hand side of the screen.
+Select an existing procedure from the list on the left hand side of the screen.
 
 All of the information will then be displayed in the text boxes at the centre of the screen.
 
@@ -23,7 +23,7 @@ You then press the 'Delete' button - you will be asked to confirm that you want 
 
 When you say 'Yes', their details are deleted and the text boxes are cleared.
 
-If an appointment has been made for that procedure, that appointments will still be visible in the diary.
+If an appointment has been made for that procedure, that appointment will still be visible in the diary.
 
 
 ADDING A NEW PROCEDURE

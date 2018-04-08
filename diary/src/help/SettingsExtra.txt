@@ -23,7 +23,7 @@ Any appointments booked for that blood clinic will be deleted.
 
 ---------------------------------------------------------------------------------------------------
 
-MONDAY TO FRIDAY WITH A TEMPLATED, BUT ALTERED, BLOOD CLINIC
+MONDAY TO FRIDAY WITH A TEMPLATED, BUT ALTERED BLOOD CLINIC
 
 When you select a date, all of the tick boxes will be selected.
 
@@ -48,7 +48,7 @@ You will not be able to un-tick Surgery, Pre-op, Oncology or Non-bed as these ru
 
 Initially, the blood option will not be ticked.
 
-If you then click the blood option, the text boxes appear for you enter the details of the new blood clinic.
+If you then click the blood option, the text boxes appear for you to enter the details of the new blood clinic.
 
 You must enter all of the details for the blood clinic.
 
@@ -60,7 +60,7 @@ The start of the blood clinic must be before the end of the blood clinic.
 
 The start of the break must be before the end of the break.
 
-If you do not want any break in the clinic set the breaks start time and break end time the same as the clinic end time.
+If you do not want any break in the clinic set the break start time and break end time the same as the clinic end time.
 
 
 The duration of the blood clinic must be a number.
@@ -90,7 +90,7 @@ The start of the blood clinic must be before the end of the blood clinic.
 
 The start of the break must be before the end of the break.
 
-If you do not want any break in the clinic set the breaks start time and break end time the same as the clinic end time.
+If you do not want any break in the clinic set the break start time and break end time the same as the clinic end time.
 
 
 The duration of the blood clinic must be a number.

@@ -2,20 +2,20 @@ USE
 
 This is a list of all of the patients who regularly attend the ward.
 
-Patients marked an Oncology can be selected from a list when making oncology appointments.
+Patients marked as Oncology can be selected from a list when making oncology appointments.
 
 Other types of regular attenders are stored here for efficency - their details are easily accessible. 
 
 
 EDITING AN EXISTING REGULAR ATTENDER
 
-Select an regular attender from the list on the left hand side of the screen.
+Select a regular attender from the list on the left hand side of the screen.
 
 All of their current details will then be displayed in the text boxes at the centre of the screen.
 
 You can then edit this information.
 
-Click into the area where you want to enter data, enter the data and click off of it. You can press the 'Tab' button on the keyboard  to go to each section.
+Click into the area where you want to enter data, enter the data and click off of it. You can press the 'Tab' button on the keyboard to go to each section.
 
 You must have a first name, last name, hospital/NHS number and date of birth entered - the rest can be left blank.
 
@@ -34,7 +34,7 @@ You then press the 'Delete' button - you will be asked to confirm that you want 
 
 When you say 'Yes', their details are deleted and the text boxes are cleared.
 
-If a regular attender is an oncology patients and has had appointments, these appointments will still be visible in the oncology booking page.
+If a regular attender is an oncology patient and has had appointments, these appointments will still be visible in the oncology booking page.
 
 
 ADDING A NEW REGULAR ATTENDER

@@ -1,4 +1,4 @@
-TO BOOK AN APPOINTMENT
+﻿TO BOOK AN APPOINTMENT
 
 To make an appointment you need to enter the time, patient name, patient age, patient hospital number and the speciality they are under. Without these pieces of information you cannot make an appointment.
 
@@ -27,7 +27,7 @@ O   You are aware of the notes - they are on your list to be collected
 
 EXTRA INFORMATION
 
-You can add in extra information about the pre-op - click on the 'Extra Information' area and entered the information that you need.
+You can add in extra information about the pre-op - click on the 'Extra Information' area and enter the information that you need.
 
 
 TO DELETE AN APPOINTMENT
@@ -45,11 +45,11 @@ If you click once, the box turns green to show that the patient attended.
 
 If you press it a second time, the box turns red to show that the patient did not attend. 
 
-If you click it a third time, the box becomes white so show that you do not know their attendance status.
+If you click it a third time, the box becomes white to show that you do not know their attendance status.
 
 
 STAFF
 
-You can select the staff specific member of staff who will carryout the AM and PM pre-ops - this can be the same person or different people.
+You can select the specific member of staff who will carry out the AM and PM pre-ops - this can be the same person or different people.
 
-The staff that show in the drop down menu are the ones who are scheduled to work that day and have the skill of being able to carryout pre-ops.
+The staff that show in the drop down menu are the ones who are scheduled to work that day and have the skill of being able to carry out pre-ops.

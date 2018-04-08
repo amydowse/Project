@@ -1,4 +1,4 @@
-TO BOOK AN APPOINTMENT
+﻿TO BOOK AN APPOINTMENT
 
 To make an appointment you need to enter a time, patient name, patient age, patient hospital number and the speciality they are under. Without these pieces of information you cannot make an appointment.
 
@@ -40,7 +40,7 @@ If you click once, the box turns green to show that the patient attended.
 
 If you press it a second time, the box turns red to show that the patient did not attend. 
 
-If you click it a third time, the box becomes white so show that you do not know their attendance status.
+If you click it a third time, the box becomes white to show that you do not know their attendance status.
 
 
 
@@ -63,7 +63,7 @@ NOTES SECTION
 
 At the top of the page you can add in general notes about that day.
 
-You click into the box, enter the information you want. This will be saved when you click off of the diary screen.
+You click into the box to enter the information you want. This will be saved when you click off of the diary screen.
 
 
 

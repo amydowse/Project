@@ -19,7 +19,7 @@ The start of the blood clinic must be before the end of the blood clinic.
 
 The start of the break must be before the end of the break.
 
-If you do not want any break in the clinic set the breaks start time and break end time the same as the clinic end time.
+If you do not want any break in the clinic set the break start time and break end time the same as the clinic end time.
 
 
 The duration of the blood clinic must be a number.

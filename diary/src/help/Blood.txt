@@ -21,7 +21,7 @@ If you want to book another appointment into this slot, click the 'Blood Clinic'
 
 TO MARK THE ATTENDANCE OF AN APPOINTMENT
 
-At the very left of the appointment, click once - this turns the box next to it green to show that the patient attended. If you press is a second time, the box turns red to show that the patient did not attend. If you click it a third time, it becomes white so show that you do not know their attendance status.
+At the very left of the appointment, click once - this turns the box next to it green to show that the patient attended. If you press it a second time, the box turns red to show that the patient did not attend. If you click it a third time, it becomes white to show that you do not know their attendance status.
 
 
 

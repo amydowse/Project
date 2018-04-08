@@ -1,10 +1,10 @@
-TO BOOK AN APPOINTMENT
+﻿TO BOOK AN APPOINTMENT
 
 To make an appointment you need to enter the time, select a patient and enter a reason. Without these pieces of information you cannot make an appointment.
 
 Click into the area where you want to enter data, enter the data and click off of it. You can press the 'Tab' button on the keyboard to go along a row and enter all of the information for a single appointment.
 
-You need to select the patient from the drop down - this is a list of all of the regular attenders who are marked as being oncology patients.
+You need to enter the patient. You can begin to type their name and then select them from the suggestions  - this is a list of all of the regular attenders who are marked as being oncology patients.
 
 When you have selected a patient their age, hospital number, contact number and wristband colour will automatically be filled in. You cannot edit this information. 
 
@@ -15,7 +15,7 @@ The time entered must be a valid time in the 24-hour clock - when you click off 
 
 TO EDIT AN APPOINTMENT
 
-You can only alter the time or reason of the appointment.
+You can only alter the time or reason for the appointment - if you want to edit anything else you need to delete the appointment and make a new one.
 
 Click into the area where you want to edit the data, enter the new data and click off of it. 
 
@@ -46,11 +46,11 @@ If you click once, the box turns green to show that the patient attended.
 
 If you press it a second time, the box turns red to show that the patient did not attend. 
 
-If you click it a third time, the box becomes white so show that you do not know their attendance status.
+If you click it a third time, the box becomes white to show that you do not know their attendance status.
 
 
 STAFF
 
-You can select the staff specific member of staff who will carryout the oncology appointments.
+You can select the specific member of staff who will carry out the oncology appointments.
 
-The staff that show in the drop down menu are the ones who are scheduled to work that day and have the skill of being able to carryout oncology related procedures.
+The staff that show in the drop down menu are the ones who are scheduled to work that day and have the skill of being able to carry out oncology related procedures.

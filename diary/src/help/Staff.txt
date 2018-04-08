@@ -1,12 +1,12 @@
-EDITING AN EXISTING MEMBER OF STAFF
+﻿EDITING AN EXISTING MEMBER OF STAFF
 
 Select an existing staff member from the list on the left hand side of the screen.
 
 All of their current details will then be displayed in the text boxes at the centre of the screen.
 
-On the right hand side of the screen, there is a lit of all that staff members skills.
+On the right hand side of the screen there is a list of all that staff members skills.
 
-You can then edit this information - you can edit all information except for their ID (this is unique to each staff member and it automatically generated).
+You can then edit this information - you can edit all information except for their ID (this is unique to each staff member and it is automatically generated).
 
 Click into the area where you want to enter data, enter the data and click off of it. You can press the 'Tab' button on the keyboard to go to each section.
 
@@ -21,7 +21,7 @@ Select an existing staff member from the list on the left hand side of the scree
 
 All of their current details will then be displayed in the text boxes at the centre of the screen.
 
-On the right hand side of the screen, there is a lit of all of the procedures that the ward is able to do.
+On the right hand side of the screen there is a list of all of the procedures that the ward is able to do.
 
 ✔   The staff member does have this skill
 ✘   The staff member does not have this skill
