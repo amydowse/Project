@@ -420,8 +420,8 @@ public class ExtraPaneDocumentController implements Initializable
                     
                     stmt.executeUpdate(sql);
                     
+                    //Say that there is not a blood clinic that has been added 
                     sql = "REPLACE INTO extra (Date, Surgery, Blood, Preop, Oncology, Nonbed) VALUES ('" + date + "', 1, 1, 1, 1, 1)";
-                    //sql = "DELETE FROM extra WHERE Date='" + date + "'";
                     stmt.executeUpdate(sql);
                     
                     c.close();
