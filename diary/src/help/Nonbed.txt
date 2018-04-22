@@ -6,7 +6,7 @@ Click into the area where you want to enter data, enter the data and click off o
 
 You need to begin to type in the procedure - you can then select it from the suggestions.
 
-All of the appointments you enter will be saved when you click off of the screen - if there is either missing data or incorrect input, an error message will come up.
+All of the appointments you enter will be saved when you click off of the screen - if there is either missing data or incorrect input, an error message will appear.
 
 The time entered must be a valid time in the 24-hour clock - when you click off of the time, if it is not in the correct format you will get an error message.
 

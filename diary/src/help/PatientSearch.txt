@@ -10,7 +10,7 @@ You do not need to know the full name - just any part of their first or last nam
 
 You then press 'Search'.
 
-A label will confirm that text that was being search for.
+A label will confirm the text that was being searched for.
 
 The table will then show all of the appointments for patients that matched the search criteria.
 

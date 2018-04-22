@@ -1,6 +1,6 @@
 USE
 
-This is used to look for the when you can book in a certain procedure.
+This is used to look for when you can book in a certain procedure.
 
 You can select which time frame you want to consider - 1 week, 2 weeks, 3 weeks or 4 weeks - you select this at the top of the screen. 1 week is automatically selected.
 
@@ -10,7 +10,7 @@ You also select the first day that you want to consider from - this is automatic
 
 You then press 'Search'.
 
-A label will confirm that text that was being search for.
+A label will confirm the text that was being searched for.
 
 The table will then show all of the dates and times that the system suggests you can fit in that type of appointment.
 

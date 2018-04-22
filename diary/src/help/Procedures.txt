@@ -38,3 +38,8 @@ When finished, click the 'Save' button.
 
 The window will close and the new procedure will appear in the main procedure list and will be available in making appointments.
 
+
+Procedures where the location is 'Bed' can only have 1 nurse to 1 patient or 1 nurse to multiple patients or multiple nurses to 1 patient.
+
+Procedures where the location is 'Non-bed' can only have 1 nurse to 1 patient. 
+
