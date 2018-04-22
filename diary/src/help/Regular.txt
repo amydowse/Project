@@ -43,7 +43,7 @@ Click on the 'Add' button to bring up a new window.
 
 You then fill in the regular attenders information.
 
-It is automatically set that the patient will have a white wristband - it can either be red or white.
+It is automatically set that the patient will have a white wristband - it can be changed to either red or white.
 
 You can tick to say that the patient is an oncology patient.
 

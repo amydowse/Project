@@ -3,9 +3,7 @@ USE
 You can alter the times of a specific blood clinic that is already set up.
 
 
-
 If you alter a blood clinic that already has bookings, these bookings will remain (even if the new times do not allow for that appointment time).
-
 
 
 Select the date from the calendar and the current details will be shown - if there is no blood clinic on this day, this will be stated.
