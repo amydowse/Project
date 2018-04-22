@@ -24,4 +24,4 @@ On the column on the far left, click once - this turns the box next to it green 
 
 
 
-If there is no blood clinic scheduled, you can create one in 'Settings'.
+If there is no blood clinic scheduled, you can create one in 'Settings'. 
